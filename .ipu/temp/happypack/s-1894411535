@@ -1,0 +1,18 @@
+import Vuex from 'vuex';
+import Vue from 'vue';
+import cloud from './demo/cloud/store';
+import osp from './demo/osp/store';
+
+Vue.use(Vuex);
+
+var modules = {
+    cloud: cloud,
+    osp: osp
+};
+
+var store = new Vuex.Store({
+    state: {},
+    modules: modules
+});
+
+export default store;

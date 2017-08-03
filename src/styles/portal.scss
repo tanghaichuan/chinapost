@@ -1,0 +1,147 @@
+
+.layout-sidebar,
+.layout-content {
+  transition: all .1s;
+}
+
+.layout-logo-left {
+  display: flex;
+  align-items: center;
+  padding: 12.5px 20px;
+  height:60px;
+  white-space: nowrap;
+  background: #363745;
+}
+.layout-sidebar--folded .layout-logo-img,
+.layout-sidebar--folded .layout-logo-text{
+  display: none;
+}
+.layout-logo-img{
+  width:24px;
+  height:24px;
+}
+.layout-nav--top {
+  height:60px;
+  box-shadow: 0 0 10px 0 rgba(0,0,0,0.10);
+  padding:.5rem 1.5rem;
+  z-index: 1030;
+}
+.layout-search{
+  width:50%;
+  margin-left:auto;
+  margin-right:auto;
+}
+.toolbar__trigger{
+  display: inline-block;
+  padding:5px;
+  margin-left:5px;
+  .navbar &{
+    padding:10px;
+    margin-left:10px;
+  }
+  border-radius: $border-radius;
+  i{
+    line-height: 1;
+    color:$gray-dark;
+  }
+  &:hover,
+  &:focus,
+  &:active{
+    background: $gray-lightest-10;
+  }
+}
+
+.layout--one-screen {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+}
+
+.layout--one-screen .layout-sidebar {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  width: 240px;
+  z-index: 1030;
+}
+
+.layout--one-screen .layout-sidebar .menu--vertical {
+  position: absolute;
+  top: 60px;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  overflow: auto;
+  transition: all .3s;
+}
+
+.layout--one-screen .layout-sidebar--folded {
+  width: 64px;
+}
+
+.layout--one-screen .layout-sidebar--folded .menu--vertical {
+  overflow: visible;
+}
+
+.layout--one-screen .layout-sidebar .menu--vertical.menu--folded .menu__submenu-title,
+.layout--one-screen .layout-sidebar .menu--vertical.menu--folded > li {
+  width: auto;
+}
+
+.layout--one-screen .layout-content {
+  position: relative;
+  margin-left: 240px;
+  height: 100%;
+}
+
+.layout--one-screen .layout-sidebar--folded + .layout-content {
+  margin-left: 64px;
+}
+
+.layout--one-screen .layout-main {
+  position: absolute;
+  top: 100px;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  overflow: auto;
+  padding: 24px;
+}
+
+.layout--one-screen .layout-content footer {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translate(-50%, 0);
+}
+
+//menu
+.menu--dark.menu {
+  background-color: #2A2B3C;
+}
+.menu .menu__item  i,
+.menu .menu__submenu-title  i{
+  margin-right:15px;
+}
+.menu hr{
+  background: rgba(255,255,255,0.10);
+  margin-top:10px;
+  margin-bottom:10px;
+}
+.menu .menu__item:focus,
+.menu .menu__item:hover,
+.menu--dark .menu__item--checked{
+  background-color: rgba(0, 0, 0, 0.18);
+}
+.menu--dark li,
+.menu--dark .menu__submenu-title{
+  color:rgba(255,255,255,.85);
+}
+.menu--dark li:focus,
+.menu--dark li:hover,
+.menu--dark .menu__submenu-title:focus,
+.menu--dark .menu__submenu-title:hover{
+  color:#fff;
+}

@@ -1,0 +1,90 @@
+export default {
+  demo: {
+    index: {
+      welcome: 'Hello Taurus Desktop Project！',
+      'zh-CN': 'Simplified Chinese',
+      'en-US': 'American English',
+      language: 'Language',
+      module: 'Module Example',
+      cloud: 'Develop Cloud Example',
+      osp: 'Open Platform Example'
+    },
+    cloud: {
+      portal: {},
+      login: {
+        name: 'Name',
+        password: 'Password'
+      }
+    },
+    osp: {
+      login: {
+        input_username: 'User name',
+        input_password: 'Password',
+        verify_code: 'Verification code',
+        forgot_password: 'I forgot my password',
+        stay_signed_in: 'Stay signed in',
+        login: 'Sign in'
+      },
+      portal: {
+        access_app: 'Access applications',
+        quota: 'quota',
+        root_certificates: 'Root certificates',
+        capability_query: 'Capability query',
+        package_purchase: 'Package purchase',
+        dev_manual: 'Development Manual'
+      },
+      operation1: 'operation 1',
+      operation2: 'operation 2',
+      online_apps: 'Online',
+      offline_apps: 'Offline',
+      app_overview: 'App overview',
+      offline_tip1: 'Your application is not online yet',
+      offline_tip2: 'Make sure the following information is complete and your application can be submitted for on-line application.',
+      offline_tip3: 'Improve the basic information',
+      offline_tip4: 'Apply for some abilities',
+      offline_tip5: 'Interface sandbox debugging',
+      review: 'under review',
+      audited: 'Audited',
+      apply_online: 'Apply on-line',
+      basic_info: 'Basic information',
+      more: 'More',
+      apply_for_access: 'Apply for Access',
+      access_platform: 'Access Platform',
+      another: 'Another',
+      app_name: 'App Name',
+      app_catalog: 'App Catalog',
+      app_introduction: 'App Introduction',
+      c: 'Category',
+      c1: 'Category 1',
+      c2: 'Category 2',
+      c3: 'Category 3',
+      input_something: 'Please input keyword...',
+      cancel: 'Cancel',
+      ok: 'Ok',
+      code: 'Code',
+      integrated_office: 'Integrated Office',
+      e_commerce: 'e-commerce',
+      entertainment: 'Entertainment',
+      platform: 'Platform',
+      status: 'Status',
+      create_time: 'Create Time',
+      callback_addr: 'Callback Address',
+      response_addr: 'Response Address',
+      signing_algorithms: '签名算法',
+      encryption_type: '加密类型',
+      encryption_algorithm: '加密算法',
+      custom_public_key: 'Custom public key',
+      publick_key: 'Publick key',
+      custom_key: 'Custom key',
+      key: 'Key',
+      root_certificates_info: 'Root certificates Info.',
+      cancel_modify: 'Cancel modify',
+      commit: 'Commit',
+      capabilities: 'Capabilities',
+      application_capability_call: 'Application capability call',
+      app_log: 'App logs',
+      yes: 'Yes',
+      no: 'No'
+    }
+  }
+};

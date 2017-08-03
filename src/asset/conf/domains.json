@@ -1,0 +1,21 @@
+{
+  "domains": {
+    "$": {
+      "timeout": 1000
+    },
+    "cloud": {
+      "baseURL": "http://localhost:3000/",
+      "timeout": 2000,
+      "headers": {
+        "AiDesign": "AiDesign-Demo-Cloud"
+      }
+    },
+    "osp": {
+      "baseURL": "http://localhost:3000/",
+      "timeout": 1000,
+      "headers": {
+        "AiDesign": "AiDesign-Demo-OSP"
+      }
+    }
+  }
+}

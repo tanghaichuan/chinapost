@@ -1,0 +1,23 @@
+{
+  "output": {
+    "js": {
+      "base": "base-8a9999ce.js"
+    }
+  },
+  "meta": {
+    "js": {
+      "base": [
+        "vuex",
+        "vue-router",
+        "axios",
+        "aid-taurus-desktop"
+      ]
+    }
+  },
+  "version": {
+    "vuex": "2.3.1",
+    "vue-router": "2.7.0",
+    "axios": "0.15.3",
+    "aid-taurus-desktop": "0.8.1"
+  }
+}
