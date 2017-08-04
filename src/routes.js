@@ -20,6 +20,11 @@ export default [
   },
   ...osp,
   {
+    name: 'test',
+    path: '/test',
+    component: require('./demo/test/test.vue')
+  },
+  {
     path: '*',
     component: {
       template: '<div>not found</div>'

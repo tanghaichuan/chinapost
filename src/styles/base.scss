@@ -1,0 +1,261 @@
+
+/**
+ * 基础颜色
+ */
+$black: #000;
+$white: #fff;
+
+
+/**
+ * 品牌色应用
+ */
+$cp-brand-color: #009241;  			// 中邮主题品牌色
+$cp-select-color: #EEFEF3;			// 选中背景色
+$cp-hover-color: #3DAC6E;			// 悬停色
+$cp-default-color: #009241; 		// 状态默认色
+$cp-active-color: #007f3b;			// 点击色
+
+/**
+ * 中性色应用
+ */
+ $cp-bg-invalidation: #009D64;		// 失效背景色
+ $cp-bg-color: #F2FFFB;				// 界面背景底色
+ $cp-split-color: #eaeaea;			// 分割线色
+ $cp-border-default: #dadada;		// 边框线色
+ $cp-deepbg-font: #016D46;			// 深背景字体色
+
+ /**
+ * 功能色应用
+ */
+ $info: #108ee9;					// 链接说明色
+ $success: #87D068;					// 成功色
+ $warning: #e0cc00;					// 警告色
+ $failure: #F14134;					// 失败色
+
+// 状态色
+$brand-success: $success;
+$brand-info: $info;
+$brand-warning: $warning;
+$brand-danger: $failure;
+
+
+/**
+ * 字号
+ */
+@mixin fs($font-size: 24) {
+	font-size: $font-size*1px;
+}
+
+/**
+ * 行高
+ * [param] font-size
+ */
+@mixin lh($font-size: 12) {
+	line-height: $font-size*1.5px;
+}
+
+/**
+ * 字体颜色
+ * [param] color
+ * [param] opacity-percent 0-1
+ */
+ @mixin fs-colors($color: $black, $percent: 1) {
+	color: $color;
+	opacity: $percent
+ }
+
+// 去掉按钮渐变色,去掉单击特效
+@mixin setbgcolor($color: #fff){
+	background-color: $color;
+}
+
+// size状态
+$btn-size: (sm: (11px, 22px, 12px, ), lg: (28px, 36px, 16px));
+@each $size, $item in $btn-size{
+	.btn-#{$size} {
+		padding: 0 nth($item,1) !important;
+		height: nth($item,2) !important;
+		line-height: nth($item,2)-1px !important;
+		&>span{
+			font-size: nth($item,3) !important;
+		}	
+	}
+}
+
+$custom-list: primary, success, info, warning, danger;
+@each $item in $custom-list {
+	.btn-#{$item} {
+		@if $item == primary {
+			&:hover{
+				background: #3dac6e !important;
+			}
+			&:active{
+				background: #007f3b !important;
+			}
+		}
+		&:hover:not(:disabled){
+			opacity: 0.8;
+		}
+	}
+	.btn-outline-#{$item}{
+		box-shadow: none !important;
+	}
+	
+}
+
+.btn{
+	// 去掉按钮动画
+	//&:after{
+		//display: none !important;
+	//}
+	height: 28px;
+	line-height: 25px;
+	padding:0 16px;
+	background-image: none;
+	// 默认按钮样式
+	&.btn-secondary{
+		border: 1px solid $cp-border-default;
+		box-shadow:none;
+	}
+}
+.btn>span{
+	font-size: 12px;
+}
+
+// 次级按钮 按钮组件添加sub-btn类
+.sub-btn{
+	background-color: #fff;
+}
+
+// 中性按钮，适用于深色背景，btn组件上添加nature-btn类
+.nature-btn{
+	border:1px solid #fff !important;
+	color: #fff;
+}
+// 虚线按钮,同中性按钮
+.dashed-btn{
+	border:1px dashed #fff !important;
+	color: #fff;
+}
+
+// 面包屑
+.breadcrumb{
+	.breadcrumb__item{
+		color: #000;
+		opacity: 0.6;
+		&.active{
+			opacity: 1;
+		}
+	}
+}
+
+// 返回顶部
+.top{
+	display: inline-block;
+	text-align: center;
+	width: 50px;
+	height: 50px;
+	border-radius: 50%;
+	background: #dadada;
+	color: #fff;
+}
+
+// 步骤条wrong效果
+// 在前一步加上wrong类
+.wrong:first-child{
+	.steps-tail{
+		height: 1px;
+		background-color: #F14134 !important;
+		background-image: linear-gradient(225deg, #F14134 0%, #F14134 100%)
+	}
+}
+.wrong+.steps-custom{
+	.steps-head__inner{
+		background-color: #fff;
+		background-image: linear-gradient(225deg, #fff 0%, #fff 100%);
+		border-color: #F14134;
+		.steps-icon{
+			color: #F14134;
+		}
+	}
+	.steps-main{
+		.steps-main__title{
+			color: #F14134;
+		}
+		.steps-main__description{
+			color: #F14134;
+		}
+	}
+}
+
+// switch按钮样式改写
+
+.switch{
+	&.switch--checked{
+		.switch__inner{
+			padding-left: 1rem !important;
+			padding-right:10px !important;
+		}
+	}
+	transform: scale(0.53,0.55);
+	border-radius: 35px;
+	&:after{
+		border-radius: 35px;
+		color: #fff;
+	}
+	.switch__inner{
+		padding-left: 10px !important;
+		padding-right: 1rem;
+		transform: scale(1.8,1.9);
+	}
+}
+
+// 日期控件
+.dropdown__menu{
+	.date-pick__body{
+		padding: 0.595rem 0.6rem !important; 
+	}
+	table{
+		tbody td a{
+			width: 20px;
+			height: 20px;
+			line-height:20px;
+			margin: 0 3px;
+		}
+	}
+}
+
+// 多选框
+.form-checkbox{
+	.form-checkbox__inner{
+		padding: 0 0 0 1.325rem;
+		&:before{
+			width: 14px;
+			height: 14px;
+		}
+	}
+}
+// radio
+.form-radio{
+	.form-radio__inner{
+		padding-left: 20px !important;
+		&:before{
+			width: 14px !important;
+			height: 14px !important;
+		}
+		&:after{
+			width: 6px !important;
+			height: 6px !important;
+		}
+	}
+}
+// 分页
+.pagination {
+	.pagination__item {
+		.pagination__item-link{
+			width: 28px;
+			height: 28px;
+			line-height: 28px;
+		}
+	}
+}
