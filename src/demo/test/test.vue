@@ -25,6 +25,18 @@
 			<t-button type="outline" class="sub-btn">次按钮</t-button>
 			<t-button type="outline" class="sub-btn">次按钮</t-button>
 		</t-button-group>
+		<t-button-group>
+	      <t-button icon="chevron-left">前进</t-button>
+	      <t-button>后退
+	        <t-icon type="chevron-right"></t-icon>
+	      </t-button>
+	    </t-button-group>
+	    <t-button-group>
+	      <t-button icon="chevron-left">前进</t-button>
+	      <t-button>
+	        <t-icon type="chevron-right"></t-icon>
+	      </t-button>
+	    </t-button-group>
 	    <br><br>
 	     <t-dropdown trigger="click">
 		     <t-button type="outline-primary">
