@@ -248,15 +248,21 @@ $custom-list: primary, success, info, warning, danger;
 // 表单组件
 .form-control{
 	height: 28px;
+	line-height: 26px;
 }
 
 // 日期组件
 .date-picker {
 	width: 231px;
 }
+.date-pick__header{
+	background: #fff;
+	color: #000;
+	border-bottom: 1px solid #E9E9E9;
+}
 .dropdown__menu{
 	.date-pick__body{
-		padding: 0.595rem 0.6rem !important; 
+		padding:0 0.6rem 0.595rem 0.6rem !important; 
 	}
 	table{
 		tbody td a{
