@@ -104,10 +104,13 @@
 		<t-pager :total="100" :show-elevator="true"></t-pager>
 		<br><br>
 		<t-steps :current="1" size="sm">
+	      <t-step title="提交完成" desc="This is a description"></t-step>
+	      <t-step title="正在处理" desc="This is a description"></t-step>
+	      <t-step title="审核通过" desc="This is a description"></t-step>
+	    </t-steps>		
+	    <t-steps :current="1" size="sm">
 	      <t-step title="提交完成" desc="This is a description" class="wrong"></t-step>
-
 	      <t-step title="正在处理" desc="This is a description" icon="window-close"></t-step>
-
 	      <t-step title="审核通过" desc="This is a description"></t-step>
 	    </t-steps>
 	    <br><br>

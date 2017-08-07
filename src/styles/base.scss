@@ -174,6 +174,11 @@ $custom-list: primary, success, info, warning, danger;
 	color: #fff;
 }
 
+// stepbar
+.steps--horizontal .steps-item--status-finish .steps-tail{
+	height: 1px;
+}
+
 // 步骤条wrong效果
 // 在前一步加上wrong类
 .wrong:first-child{
