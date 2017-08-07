@@ -289,3 +289,11 @@ $custom-list: primary, success, info, warning, danger;
 	-webkit-align-items:center;
     align-items:center;
 }
+
+// 表格组件
+.table th{
+	height: 40px;
+}
+.table td{
+	height: 39.6px;
+}
