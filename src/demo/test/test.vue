@@ -110,10 +110,10 @@
 	    <br><br>
 	    <div style="margin-bottom: 15px">
 	    	<h6>日期选择</h6>
-	    	<t-date-picker style="width:250px" v-model="singleDateVal" v-on:date-change="onChange" placeholder="please select date"></t-date-picker>
+	    	<t-date-picker v-model="singleDateVal" v-on:date-change="onChange" placeholder="please select date"></t-date-picker>
 	  </div>
 	  <br><br>
-	  <t-form :model="formTop" :rules="ruleFormLabel" label-position="top" size="lg">
+	  <t-form :model="formTop" :rules="ruleFormLabel" label-position="top">
 	      <t-form-item label="活动名称" prop="input1">
 	        <t-input v-model="formTop.input1" placeholder="表单尺寸大 && 标题顶对齐"></t-input>
 	      </t-form-item>

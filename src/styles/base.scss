@@ -210,21 +210,6 @@ $custom-list: primary, success, info, warning, danger;
 	}
 }
 
-// 日期控件
-.dropdown__menu{
-	.date-pick__body{
-		padding: 0.595rem 0.6rem !important; 
-	}
-	table{
-		tbody td a{
-			width: 20px;
-			height: 20px;
-			line-height:20px;
-			margin: 0 3px;
-		}
-	}
-}
-
 // 多选框
 .form-checkbox{
 	.form-checkbox__inner{
@@ -258,4 +243,43 @@ $custom-list: primary, success, info, warning, danger;
 			line-height: 28px;
 		}
 	}
+}
+
+// 表单组件
+.form-control{
+	height: 28px;
+}
+
+// 日期组件
+.date-picker {
+	width: 231px;
+}
+.dropdown__menu{
+	.date-pick__body{
+		padding: 0.595rem 0.6rem !important; 
+	}
+	table{
+		tbody td a{
+			width: 20px;
+			height: 20px;
+			line-height:20px;
+			margin: 0 3px;
+		}
+	}
+}
+.dropdown--open > .date-pick.dropdown__menu{
+	width: 231px;
+}
+.date-pick__header{
+	height: 34px;
+	line-height: 34px;
+	padding-top: 0;
+	padding-bottom: 0;
+	display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+	justify-content: space-between;
+	-webkit-align-items:center;
+    align-items:center;
 }
