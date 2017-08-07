@@ -163,6 +163,14 @@
 	    <t-badge count="10" state='success' class="badge-circle">
 	    </t-badge>
 	    <br><br>
+	    <h5>上传</h5>
+	    <t-upload action="//jsonplaceholder.typicode.com/posts/" style="width: 300px;">
+        <t-button type="outline-secondary" icon="aid aid-upload" size="sm">
+            上传文件
+        </t-button>
+        <div class="text-sm mt-2 text-gray" slot="tip">支持扩展名：.rar .zip .doc .docx .pdf .jpg...</div>
+        </t-upload>
+	    <br><br>
 	    <h5>表格</h5>
 	    <t-table border :columns="customColumns" :data="data">
   	</t-table>
