@@ -87,10 +87,10 @@ $custom-list: primary, success, info, warning, danger;
 	.btn-#{$item} {
 		@if $item == primary {
 			&:hover{
-				background: #3dac6e !important;
+				background: #3DAC6E !important;
 			}
 			&:active{
-				background: #007f3b !important;
+				background: #007F3B !important;
 			}
 		}
 		&:hover:not(:disabled){
@@ -117,6 +117,11 @@ $custom-list: primary, success, info, warning, danger;
 		border: 1px solid $cp-border-default;
 		box-shadow:none;
 	}
+	&:disabled{
+		background: #F7F7F7 !important;
+		color: #CCCCCC;
+		border: 1px solid #D9D9D9;
+	}
 }
 .btn>span{
 	font-size: 12px;
@@ -124,18 +129,27 @@ $custom-list: primary, success, info, warning, danger;
 
 // 次级按钮 按钮组件添加sub-btn类
 .sub-btn{
+	border: 1px solid #D9D9D9;
+	color: #000000;
 	background-color: #fff;
+	&:hover:not(:disabled){
+		border: 1px solid #3DAC6E;
+		color: #009241;
+	}
 }
 
 // 中性按钮，适用于深色背景，btn组件上添加nature-btn类
 .nature-btn{
-	border:1px solid #fff !important;
-	color: #fff;
+	border-style: solid;
 }
 // 虚线按钮,同中性按钮
 .dashed-btn{
-	border:1px dashed #fff !important;
-	color: #fff;
+	border-style: dashed;
+	&:disabled{
+		background: #F7F7F7 !important;
+		color: #CCCCCC;
+		border: 1px dashed #D9D9D9;
+	}
 }
 
 // 面包屑

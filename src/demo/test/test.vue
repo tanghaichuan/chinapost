@@ -2,24 +2,24 @@
 	<div class="test">
 		<h1>按钮类</h1>
 		<t-button type="primary" class="actives" :disabled="true">disabled</t-button>
-
-	    <t-button type="primary">主动作按钮</t-button>
-	    <t-button type="warning">警告按钮</t-button>
+	    <t-button type="primary">主按钮</t-button>
 	    <br><br>
-		<t-button type="outline" class="sub-btn">次按钮</t-button>
-	    <t-button type="outline-primary" class="sub-btn">次按钮</t-button>
 	    <t-button type="outline" class="sub-btn" :disabled="true">次按钮</t-button>
+		<t-button type="outline" class="sub-btn">次按钮</t-button>
 	    <br><br>
-	    <div class="wrapper" style="width: 300px;height: 100px;background-color: #dadada;padding: 20px;">
-	    	<t-button type="outline" class="nature-btn">次按钮</t-button>
-	    	<t-button type="outline" class="dashed-btn">次按钮</t-button>
-	    </div>
+		<t-button type="outline" icon="content-save" class="sub-btn" :disabled="true">次按钮</t-button>
+		<t-button type="outline" icon="content-save" class="sub-btn">次按钮</t-button>
+	    <br><br>
+	    <t-button type="outline-primary" class="nature-btn">中性按钮</t-button>
+	    <t-button type="outline-primary" class="dashed-btn">虚框按钮</t-button>
+	    <t-button type="outline-primary" class="dashed-btn" disabled>虚框按钮</t-button>
 	    <br><br>
 	    <t-button type="outline-info">幽灵按钮</t-button>
 	    <t-button type="outline-success">幽灵按钮</t-button>
 	    <br><br>
-	    <t-button type="warning" size="sm">小按钮</t-button>
-		<t-button type="warning" size="lg">大按钮</t-button>
+	    <t-button type="primary" size="sm">小按钮</t-button>
+	    <t-button type="primary">普通按钮</t-button>
+		<t-button type="primary" size="lg">大按钮</t-button>
 	    <br><br>
 		<t-button-group>
 			<t-button type="outline" class="sub-btn">次按钮</t-button>
@@ -27,7 +27,7 @@
 		</t-button-group>
 	    <br><br>
 	     <t-dropdown trigger="click">
-		     <t-button>
+		     <t-button type="outline-primary">
 		        下拉菜单
 		        <t-icon type="chevron-down"></t-icon>
 		      </t-button>
