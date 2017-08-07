@@ -178,6 +178,9 @@ $custom-list: primary, success, info, warning, danger;
 .steps--horizontal .steps-item--status-finish .steps-tail{
 	height: 1px;
 }
+.steps--vertical .steps-item--status-finish .steps-tail{
+	width: 1px;
+}
 
 // 步骤条wrong效果
 // 在前一步加上wrong类
