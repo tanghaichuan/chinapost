@@ -7,7 +7,7 @@
 </div>
 </template>
 <script>
-import cheader from './base/header/header.vue'
+import cheader from './module/index/header.vue'
 export default {
   data() {
     return {

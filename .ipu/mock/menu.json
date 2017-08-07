@@ -1,0 +1,44 @@
+[{
+  "url": "/mock/historymenu",
+  "method": "get",
+  "response": {
+    "success": true,
+    "list": [{
+        "url": "/trouble",
+        "title": "故障单",
+        "describe": "工单工作区",
+        "icon": "aid-barcode-scan"
+      },
+      {
+        "url": "/trouble2",
+        "title": "故障单2",
+        "describe": "工单工作区",
+        "icon": "aid-battery-20"
+      },
+      {
+        "url": "/trouble3",
+        "title": "故障单3",
+        "describe": "工单工作区",
+        "icon": "aid-baby"
+      },
+      {
+        "url": "/trouble4",
+        "title": "故障单4",
+        "describe": "工单工作区",
+        "icon": "aid-baby"
+      }
+    ]
+  }
+}, {
+  "url": "/mock/getmenu",
+  "method": "get",
+  "response": {
+    "success": true,
+    "auth": [{
+      "url": "/trouble4",
+      "title": "故障单4",
+      "describe": "工单工作区",
+      "icon": "aid-baby"
+    }]
+  }
+}]

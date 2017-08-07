@@ -1,0 +1,5 @@
+/*
+* 定义mutations 常量名
+*/
+export var CHANGE_MENU = "CHANGE_MENU";
+export var NEW_TABS = "NEW_TABS";

@@ -1,0 +1,5 @@
+export default {
+  showHistoryMenu: function showHistoryMenu(state) {
+    return state.showHistoryMenu;
+  }
+};

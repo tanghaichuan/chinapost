@@ -1,0 +1,11 @@
+var _constants$CHANGE_MEN;
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+import * as constants from './constant';
+
+export default (_constants$CHANGE_MEN = {}, _defineProperty(_constants$CHANGE_MEN, constants.CHANGE_MENU, function (state, payload) {
+  state.showHistoryMenu = payload.showHistoryMenu;
+}), _defineProperty(_constants$CHANGE_MEN, constants.NEW_TABS, function (state, payload) {
+  state.tabList.push(payload);
+}), _constants$CHANGE_MEN);

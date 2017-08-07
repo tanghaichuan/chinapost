@@ -1,0 +1,26 @@
+import axios from "axios";
+import * as constants from "./constant";
+
+export function requestClients(_ref) {
+    var commit = _ref.commit;
+
+    commit(constants.REQUEST_CLIENTS);
+}
+
+export function responseClients(_ref2, payload) {
+    var commit = _ref2.commit;
+
+    commit(constants.RESPONSE_CLIENTS, payload);
+}
+
+export function fetchClients(_ref3) {
+    var dispatch = _ref3.dispatch;
+
+    dispatch('requestClients');
+    axios.get('/mock/clients').then(function (ret) {
+        ret = ret.data;
+        dispatch('responseClients', ret.data);
+    }).catch(function (err) {
+        return console.log('err', err);
+    });
+}

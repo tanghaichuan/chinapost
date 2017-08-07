@@ -1,0 +1,46 @@
+function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+
+import cloud from './demo/cloud/route';
+import osp from './demo/osp/route';
+
+export default [{
+  name: 'Index',
+  path: '/',
+  component: require('./module/index/index.vue'),
+  children: [{
+    name: 'Trouble',
+    path: '/trouble',
+    component: require('./module/trouble/trouble.vue')
+  }, {
+    name: 'Trouble2',
+    path: '/trouble2',
+    component: require('./module/trouble/trouble.vue')
+  }, {
+    name: 'Trouble3',
+    path: '/trouble3',
+    component: require('./module/trouble/trouble.vue')
+  }, {
+    name: 'Trouble4',
+    path: '/trouble4',
+    component: require('./module/trouble/trouble.vue')
+  }]
+}, {
+  name: 'Login',
+  path: '/login',
+  component: require('./module/login/login.vue')
+}, {
+  name: '管理门户示例',
+  path: '/portal',
+  component: require('./demo/portal/portal.vue')
+}, {
+  name: 'test',
+  path: '/test',
+  component: require('./demo/test/test.vue')
+}].concat(_toConsumableArray(cloud), [
+// ...osp,
+{
+  path: '*',
+  component: {
+    template: '<div>not found</div>'
+  }
+}]);

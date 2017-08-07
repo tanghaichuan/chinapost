@@ -65,7 +65,7 @@ function getDomains(conf) {
           axios.defaults = merge(axios.defaults, domains.$)
         } else {
           result[key] = axios.create(domains[key])
-          num++
+          num ++
         }
       }
     }

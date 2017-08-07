@@ -7,5 +7,6 @@
     "LOGOUT": "/mock/dologout",
     "APP_LIST": "/mock/osp/appList",
     "APP_DETAILS": "/mock/osp/appDetails"
-  }
+  },
+  "GET_HISTORY": "/mock/historymenu"
 }
