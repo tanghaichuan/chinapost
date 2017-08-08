@@ -8,10 +8,15 @@ export default [
     component: require('./module/index/index.vue'),
     children:[
       {
-        name: 'Trouble',
-        path: '/trouble',
-        component: require('./module/trouble/trouble.vue')
+        name: 'Home',
+        path: '',
+        component: require('./module/index/home.vue')
       },
+        {
+          name: 'Trouble',
+          path: '/trouble',
+          component: require('./module/trouble/trouble.vue')
+        },
       {
         name: 'Trouble2',
         path: '/trouble2',

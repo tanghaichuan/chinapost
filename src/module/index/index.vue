@@ -1,9 +1,8 @@
 <template>
 <div class="index-container">
   <div class="post-tabs">
-    <t-tabs mode="normal" :closeable="true" :threshold="10">
-      <t-tab-panel :key="index" v-for="(item,index) in tabList" :label="item.tabName" :name="'tab-'+index">
-
+    <t-tabs mode="normal" :closeable="true" :threshold="10" @input="tabClick" :value="tabIndex" v-on:!click="closeTab">
+      <t-tab-panel :key="index" v-for="(item,index) in tabList" :label="item.tabName+'2'" :name="'tab-'+index" :myurl="item.url" ref="tabSelect">
       </t-tab-panel>
     </t-tabs>
   </div>
@@ -12,18 +11,31 @@
 </div>
 </template>
 <script>
-import bus from '../../bus'
+import home from './home.vue'
+import {
+  attr
+} from '../../common/js/dom'
+
 import {
   mapState
 } from 'vuex'
 export default {
   data() {
     return {
-      tabList: []
+      tabList: [],
+      tabIndex: "tab-0"
     }
   },
   methods: {
-
+    closeTab() {
+      console.log(111);
+    },
+    tabClick(index) {
+      let oIndex = index.toString()
+      let el = this.$refs.tabSelect[index].$attrs.myurl
+      this.tabIndex = `tab-${oIndex}`
+      this.$router.push(el)
+    }
   },
   computed: {
     ...mapState({
@@ -34,7 +46,7 @@ export default {
     this.tabList = this.stateTabList
   },
   components: {
-
+    home
   }
 }
 </script>
