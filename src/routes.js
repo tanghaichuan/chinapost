@@ -3,7 +3,6 @@ import osp from './demo/osp/route'
 
 export default [
   {
-    name: 'Index',
     path: '/',
     component: require('./module/index/index.vue'),
     children:[

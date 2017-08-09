@@ -22,12 +22,25 @@
     </div>
 
     <div class="d-inline ml-3">
-      <t-input icon="magnify" size="lg" placeholder="搜索...">
-        <t-button slot="appendbtn" :class="['pl-3','pr-3']" style="{height:50px;}"><i class="aid aid-menu"></i></t-button>
-      </t-input>
+      <t-dropdown class="sb" trigger="click">
+        <t-input icon="magnify" size="lg" placeholder="搜索...">
+
+        </t-input>
+        <t-dropdown-menu slot="list">
+          <t-dropdown-item class="luda">
+            <t-icon type="account-box-outline" size="26" class="mr-2"></t-icon>
+            我是驴打滚驴打滚
+          </t-dropdown-item>
+          <t-dropdown-item divided>
+            <t-icon type="account-box-outline" size="26" class="mr-2"></t-icon>
+            我是北京烤鸭
+          </t-dropdown-item>
+        </t-dropdown-menu>
+      </t-dropdown>
     </div>
+    <t-button slot="appendbtn" :class="['pl-3','pr-3']" style="{height:50px;}"><i class="aid aid-menu"></i></t-button>
     <t-tooltip content="便签 & 待办事项" placement="bottom" class=" ml-auto">
-      <a href="javascript:;" class="menu-icon">
+      <a href="javascript:;" class="menu-icon" @click.stop.prevent="showCustom">
         <t-icon type="calendar-plus" size="26"></t-icon>
       </a>
     </t-tooltip>
@@ -89,6 +102,9 @@ export default {
     ])
   },
   methods: { // methods
+    showCustom() {
+      console.log(1);
+    },
     historyMenuHandle() {
       //根据 state 中的值来显示历史菜单
       this.changeMenu({
@@ -137,9 +153,10 @@ export default {
     }
 
     .d-inline {
-        width: 390px;
+        width: 320px;
         .form-control {
             background: #f5f5f5;
+            width: 320px;
         }
         .btn-secondary,
         .form-input .form-control {
@@ -155,9 +172,13 @@ export default {
     }
     .navbar {
         background: #fff;
-        .input-group--lg > .input-group-btn .btn.btn-secondary {
+        .btn.btn-secondary {
             height: 50px!important;
             line-height: 50px!important;
+            margin-left: -1px;
+            background: #f5f5f5;
+            border-radius: 0;
+            z-index: 2;
         }
     }
 }

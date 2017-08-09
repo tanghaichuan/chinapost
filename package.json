@@ -53,8 +53,8 @@
     "vue-template-compiler": "^2.2.1"
   },
   "dependencies": {
-    "aid-elements": "^0.7.35",
-    "aid-taurus-desktop": "^0.8.1",
+    "aid-elements": "^0.7.36",
+    "aid-taurus-desktop": "^0.8.2",
     "axios": "^0.15.3",
     "vue": "^2.1.10",
     "vue-i18n": "^7.0.5",
