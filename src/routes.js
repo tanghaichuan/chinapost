@@ -48,6 +48,11 @@ export default [
     path: '/test',
     component: require('./demo/test/test.vue')
   },
+  {
+    name: 'table示例',
+    path: '/demo-table',
+    component: require('./demo/table/table.vue')
+  },
   ...cloud,
   // ...osp,
   {
