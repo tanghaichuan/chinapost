@@ -96,12 +96,12 @@
 		<t-pager :total="100" :show-elevator="true"></t-pager>
 		<br><br>
 		<h5>步骤条</h5>
-		<t-steps :current="1" size="sm">
+		<t-steps :current="1">
 	      <t-step title="提交完成" desc="This is a description"></t-step>
 	      <t-step title="正在处理" desc="This is a description"></t-step>
 	      <t-step title="审核通过" desc="This is a description"></t-step>
 	    </t-steps>		
-	    <t-steps :current="1" size="sm">
+	    <t-steps :current="1">
 	      <t-step title="提交完成" desc="This is a description" class="wrong"></t-step>
 	      <t-step title="正在处理" desc="This is a description" icon="window-close"></t-step>
 	      <t-step title="审核通过" desc="This is a description"></t-step>
@@ -113,19 +113,21 @@
 	    </t-steps>
 	    <br><br>
 	    <h5>tabs选项卡</h5>
-	    <t-tabs>
-	        <t-tab-panel label="标签一" name="tab-1" icon="window-close">标签一内容</t-tab-panel>
-	        <t-tab-panel label="标签二" name="tab-2">标签二内容</t-tab-panel>
-	        <t-tab-panel label="标签三" name="tab-3">标签三内容</t-tab-panel>
-	    </t-tabs>	  
+	    <t-tabs :threshold="3">
+	        <t-tab-panel label="选中文字" name="tab-1">标签一内容</t-tab-panel>
+	        <t-tab-panel label="可选文字" name="tab-2">标签二内容</t-tab-panel>
+	        <t-tab-panel label="可选文字" name="tab-3">标签三内容</t-tab-panel>
+	        <t-tab-panel label="可选文字" name="tab-4">标签四内容</t-tab-panel>
+	        <t-tab-panel label="可选文字" name="tab-5">标签五内容</t-tab-panel>
+	    </t-tabs>  
 	    <br><br>
 	    <h5>日期选择</h5>
 	    <div style="margin-bottom: 15px">
-	    	<t-date-picker v-model="singleDateVal" v-on:date-change="onChange" placeholder="please select date"></t-date-picker>
+	    	<t-date-picker  placeholder="please select date"></t-date-picker>
 	    </div>
 	    <br><br>
 	    <h5>表单相关</h5>
-	    <t-form :model="formTop" :rules="ruleFormLabel" label-position="top">
+	    <t-form :model="formTop"  label-position="top">
 	        <t-form-item label="活动名称" prop="input1">
 	            <t-input v-model="formTop.input1" placeholder="表单尺寸大 && 标题顶对齐"></t-input>
 	        </t-form-item>
@@ -135,6 +137,27 @@
 	                <t-option value="shanghai">上海市</t-option>
 	            	<t-option value="shenzhen">深圳市</t-option>
 	            </t-select>
+	        </t-form-item>
+	        <t-form-item label="选择器">
+				<t-dropdown trigger="click" style="width: 200px">
+				    <t-input v-model="value" placeholder="请输入..."></t-input>
+				    <t-dropdown-menu slot="list">
+				      <t-dropdown-item>全部</t-dropdown-item>
+						<t-dropdown placement="right-start">
+							<t-dropdown-item>
+								选择一
+								<t-icon type="chevron-right"></t-icon>
+							</t-dropdown-item>
+							<t-dropdown-menu slot="list">
+					            <t-dropdown-item>选择一</t-dropdown-item>
+					            <t-dropdown-item>选择二</t-dropdown-item>
+					        </t-dropdown-menu>
+						</t-dropdown>
+				      <t-dropdown-item>选择二</t-dropdown-item>
+				      <t-dropdown-item>选择三</t-dropdown-item>
+				      <t-dropdown-item>选择四</t-dropdown-item>
+				    </t-dropdown-menu>
+				</t-dropdown>
 	        </t-form-item>
 	        <t-form-item label="是否订阅" prop="subscription">
 		        <t-switch>
@@ -172,21 +195,26 @@
         </t-upload>
 	    <br><br>
 	    <h5>表格</h5>
-	    <t-table border :columns="customColumns" :data="data">
-  	</t-table>
+	    
 	<br><br>
+	<t-table :columns="columns" :data="expandData">
+  	</t-table>
 	<t-back-top></t-back-top>
 		<t-back-top :height="100" :bottom="200" :duration="300">
         	<span class="top">
-        		<t-icon type="account-box-outline" size="36"></t-icon>
+        		<t-icon type="account-box-outline" :size="36"></t-icon>
         	</span>
     	</t-back-top>
 		<br><br>
 	</div>
 </template>
 <script>
+import tableTest from './table1.vue'
 export default {
 	name: 'test',
+	components:{
+		tableTest
+	},
 	data() {
 		return {
                 formTop: {
@@ -201,80 +229,84 @@ export default {
 		        value2: [20, 50],
 		        value3: [20, 50],
 		        value8: 30,
-		        customColumns: [
-		          {
-		            title: '姓名',
-		            key: 'name'
-		          },
-		          {
-		            title: '年龄',
-		            key: 'age'
-		          },
-		          {
-		            title: '地址',
-		            key: 'address'
-		          },
-		          {
-		            title: '操作',
-		            key: 'action',
-		            width: 120,
-		            align: 'center',
+		       	columns: [
+		       	{
+		            type: 'expand',
+		            width: 50,
 		            render: (h, params) => {
-		              if (params.row.age > 18) {
-		                return h('div', [
-		                  h('a', {
-		                    props: {
-		                      type: 'danger',
-		                      size: 'sm'
-		                    },
-		                    style: {
-		                    	cursor: 'pointer',
-		                      	color: '#108EEA'
-		                    }
-		                  }, '删除')
-		                ])
-		              } else {
-		                return h('div', [
-		                  h('a', {
-		                    props: {
-		                      type: 'primary',
-		                      size: 'sm'
-		                    },
-		                    style: {
-		                    	cursor: 'pointer',
-		                      	color: '#108EEA'
-		                    },
-		                    show: params.row.age > 18
-		                  }, '查看'),
-		                  h('a', {
-		                    props: {
-		                      	type: 'danger',
-		                      	size: 'sm'
-		                    },
-		                    style: {
-		                    	cursor: 'pointer',
-		                      	marginLeft: '5px',	
-		                      	color: '#108EEA'
-		                    }
-		                  }, '删除')
-		                ])
-		              }
+		              return h(tableTest, {
+		                props: {
+		                  row: params.row
+		                }
+		              })
 		            }
-		          }
-		        ],
-		      data: [
-		        {
-		          name: '王小明',
-		          age: 18,
-		          address: '北京市朝阳区芍药居'
 		        },
 		        {
-		          name: '张小刚',
-		          age: 25,
-		          address: '北京市海淀区西二旗'
+		            title: '姓名',
+		            key: 'name'
+		        },
+		        {
+		            title: '年龄',
+		            key: 'age'
+		        },
+		        {
+		            title: '地址',
+		            key: 'address'
 		        }
-		      ]
+		      ],
+		      expandData: [
+	          {
+	            name: '王小明',
+	            age: 18,
+	            address: '北京市朝阳区芍药居',
+	            job: '数据工程师',
+	            interest: '羽毛球',
+	            birthday: '1991-05-14',
+	            book: '乔布斯传',
+	            movie: '致命魔术',
+	            music: 'I Cry',
+	            _isExpanded: true
+	          },
+	          {
+	            name: '张小刚',
+	            age: 25,
+	            address: '北京市海淀区西二旗',
+	            job: '数据科学家',
+	            interest: '排球',
+	            birthday: '1989-03-18',
+	            book: '我的奋斗',
+	            movie: '罗马假日',
+	            music: 'My Heart Will Go On',
+	            _disableExpand: true
+	          },
+	          {
+	            name: '李小红',
+	            age: 30,
+	            address: '上海市浦东新区世纪大道',
+	            job: '数据产品经理',
+	            interest: '网球',
+	            birthday: '1992-01-31',
+	            book: '赢',
+	            movie: '乔布斯',
+	            music: 'Don’t Cry'
+	          },
+	          {
+	            name: '周小伟',
+	            age: 26,
+	            address: '深圳市南山区深南大道',
+	            job: '数据分析师',
+	            interest: '桌球，跑步',
+	            birthday: '1988-7-25',
+	            book: '红楼梦',
+	            movie: '倩女幽魂',
+	            music: '演员'
+	          }
+	        ]
             }
+	},
+	mounted(){
+		//console.log(this.expandData)
+		
 	}
 }
 </script>

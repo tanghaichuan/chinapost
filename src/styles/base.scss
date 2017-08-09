@@ -277,11 +277,6 @@ $custom-list: primary, success, info, warning, danger;
 .date-picker {
 	width: 231px;
 }
-.date-pick__header{
-	background: #fff;
-	color: #000;
-	border-bottom: 1px solid #E9E9E9;
-}
 .dropdown__menu{
 	.date-pick__body{
 		padding:0 0.6rem 0.595rem 0.6rem !important; 
@@ -310,12 +305,51 @@ $custom-list: primary, success, info, warning, danger;
 	justify-content: space-between;
 	-webkit-align-items:center;
     align-items:center;
+    background: #fff;
+	color: #000;
+	border-bottom: 1px solid #E9E9E9;
 }
-
+.date-pick__panel{
+	height: auto;
+}
 // 表格组件
 .table th{
 	height: 40px;
 }
 .table td{
 	height: 39.6px;
+}
+// tab切换
+/*.nav-cards .nav-link{
+	height: 30px;
+	line-height: 30px;
+	margin-right: 2px;
+	border: 1px solid;
+	border-color:#ccc #ccc transparent #ccc;
+	border-radius: 4px;
+	.aid-close{
+		position: absolute;
+	    right: 1rem;
+	    top: 15px;
+	}
+}
+.nav-cards .nav-link.active{
+	color: #009241;
+	border-color:#ccc #ccc transparent #ccc;
+}  */
+.tabs .nav-tabs .nav-link{
+	margin-right: 20px;
+	padding: 0 15px;
+	border-bottom-width: 2px;
+	&.active{
+		color: #009241 !important;
+	}
+}
+
+// dropdown
+.popover-wrap{
+	display: block;
+}
+.dropdown__item i{
+	float: right;
 }
