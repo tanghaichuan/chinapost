@@ -49,7 +49,7 @@ export default [
     component: require('./demo/test/test.vue')
   },
   ...cloud,
-  // ...osp,
+  ...osp,
   {
     path: '*',
     component: {
