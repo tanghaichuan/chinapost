@@ -89,10 +89,9 @@ export default {
           render: (h, params) => {
             if (params.row.age > 18) {
               return h('div', [
-                h('t-button', {
-                  props: {
-                    type: 'danger',
-                    size: 'sm'
+                h('span', {
+                  style: {
+                    color: '#108EEA'
                   },
                   on: {
                     click: () => {
@@ -103,13 +102,9 @@ export default {
               ])
             } else {
               return h('div', [
-                h('t-button', {
-                  props: {
-                    type: 'primary',
-                    size: 'sm'
-                  },
+                h('span', {
                   style: {
-                    marginRight: '5px'
+                    color: '#108EEA'
                   },
                   on: {
                     click: () => {
@@ -118,10 +113,10 @@ export default {
                   },
                   show: params.row.age > 18
                 }, '查看'),
-                h('t-button', {
-                  props: {
-                    type: 'danger',
-                    size: 'sm'
+                h('span', {
+                  style: {
+                    color: '#108EEA',
+                    marginLeft: '5px'
                   },
                   on: {
                     click: () => {

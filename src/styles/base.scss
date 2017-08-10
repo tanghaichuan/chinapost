@@ -350,7 +350,7 @@ $custom-list: primary, success, info, warning, danger;
 
 // dropdown
 .popover-wrap{
-	display: block;
+	display: inline-block;
 }
 .dropdown__item i{
 	float: right;

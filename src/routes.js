@@ -57,6 +57,16 @@ export default[
     path : '/demo-table',
     component : require('./demo/table/table.vue')
   },
+  {
+    name : 'test',
+    path : '/test',
+    component : require('./demo/test/test.vue')
+  },
+  {
+    name : 'table',
+    path : '/table',
+    component : require('./demo/table/table.vue')
+  },
   ...cloud,
   ...osp, {
     path : '*',
