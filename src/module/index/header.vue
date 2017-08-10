@@ -38,9 +38,9 @@
         </t-dropdown-menu>
       </t-dropdown>
     </div>
-    <t-button slot="appendbtn" :class="['pl-3','pr-3']" style="{height:50px;}"><i class="aid aid-menu"></i></t-button>
+    <t-button :class="['pl-3','pr-3']" style="{height:50px;}" @click.stop.prevent="showCustom"><i class="aid aid-menu"></i></t-button>
     <t-tooltip content="便签 & 待办事项" placement="bottom" class=" ml-auto">
-      <a href="javascript:;" class="menu-icon" @click.stop.prevent="showCustom">
+      <a href="javascript:;" class="menu-icon">
         <t-icon type="calendar-plus" size="26"></t-icon>
       </a>
     </t-tooltip>
@@ -103,6 +103,7 @@ export default {
   },
   methods: { // methods
     showCustom() {
+      // 点击菜单
       console.log(1);
     },
     historyMenuHandle() {
@@ -134,6 +135,8 @@ export default {
 .header {
     border-bottom: 1px solid #d9d9d9;
     box-shadow: 0 0 8px rgba(0, 0, 0,.14);
+    position: relative;
+    z-index: 3;
     .mymenu {
         height: 50px;
         // padding: 10px 0;

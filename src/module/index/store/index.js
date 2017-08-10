@@ -10,7 +10,11 @@ export default {
         },
         {
           tabName: '历史',
-          url: '/trouble'
+          url: '/trouble1'
+        },
+        {
+          tabName: '历史2',
+          url: '/trouble2'
         }]
     },
     getters,

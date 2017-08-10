@@ -15,6 +15,10 @@ export default [{
     path: '/trouble',
     component: require('./module/trouble/trouble.vue')
   }, {
+    name: 'trouble1',
+    path: '/trouble1',
+    component: require('./module/trouble/trouble.vue')
+  }, {
     name: 'Trouble2',
     path: '/trouble2',
     component: require('./module/trouble/trouble.vue')
@@ -25,6 +29,18 @@ export default [{
   }, {
     name: 'Trouble4',
     path: '/trouble4',
+    component: require('./module/trouble/trouble.vue')
+  }, {
+    name: 'Trouble11',
+    path: '/trouble11',
+    component: require('./module/trouble/trouble.vue')
+  }, {
+    name: 'Trouble12',
+    path: '/trouble12',
+    component: require('./module/trouble/trouble.vue')
+  }, {
+    name: 'Trouble13',
+    path: '/trouble13',
     component: require('./module/trouble/trouble.vue')
   }]
 }, {
@@ -39,9 +55,11 @@ export default [{
   name: 'test',
   path: '/test',
   component: require('./demo/test/test.vue')
-}].concat(_toConsumableArray(cloud), [
-// ...osp,
-{
+}, {
+  name: 'table示例',
+  path: '/demo-table',
+  component: require('./demo/table/table.vue')
+}].concat(_toConsumableArray(cloud), _toConsumableArray(osp), [{
   path: '*',
   component: {
     template: '<div>not found</div>'

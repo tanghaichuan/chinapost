@@ -4,25 +4,25 @@
   "response": {
     "success": true,
     "list": [{
-        "url": "/trouble",
+        "url": "/trouble12",
         "title": "故障单",
         "describe": "工单工作区",
         "icon": "aid-barcode-scan"
       },
       {
-        "url": "/trouble2",
+        "url": "/trouble13",
         "title": "故障单2",
         "describe": "工单工作区",
         "icon": "aid-battery-20"
       },
       {
-        "url": "/trouble3",
+        "url": "/trouble14",
         "title": "故障单3",
         "describe": "工单工作区",
         "icon": "aid-baby"
       },
       {
-        "url": "/trouble4",
+        "url": "/trouble15",
         "title": "故障单4",
         "describe": "工单工作区",
         "icon": "aid-baby"

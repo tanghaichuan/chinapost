@@ -14,8 +14,13 @@ import {
   mapMutations,
   mapGetters
 } from 'vuex'
+import {
+  mixin
+} from '../../common/js/mixin-newtab'
+console.log(mixin);
 export default {
   name: "historyMenu",
+  mixins: [mixin],
   props: {
     list: {
       type: Array,
@@ -34,7 +39,8 @@ export default {
   },
   methods: {
     liclick(item) {
-      this.newTabs({
+
+      this.createTab({
         tabName: item.title,
         url: item.url
       })

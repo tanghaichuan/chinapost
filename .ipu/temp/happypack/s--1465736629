@@ -1,5 +1,8 @@
 export default {
   showHistoryMenu: function showHistoryMenu(state) {
     return state.showHistoryMenu;
+  },
+  tabListLength: function tabListLength(state) {
+    return state.tabList.length;
   }
 };

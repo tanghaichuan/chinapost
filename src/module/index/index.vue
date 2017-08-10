@@ -1,8 +1,8 @@
 <template>
 <div class="index-container">
   <div class="post-tabs">
-    <t-tabs mode="normal" :closeable="true" :threshold="10" @input="tabClick" :value="tabIndex" v-on:!click="closeTab">
-      <t-tab-panel :key="index" v-for="(item,index) in tabList" :label="item.tabName+'2'" :name="'tab-'+index" :myurl="item.url" ref="tabSelect">
+    <t-tabs mode="normal" :closeable="true" :threshold="10" @input="changeTab" :value="tabIndex" @remove="removeItem">
+      <t-tab-panel :key="index" v-for="(item,index) in tabList" :label="item.tabName" :sb="'tab-'+index" :name="'tab-'+index" :myurl="item.url" ref="tabSelect">
       </t-tab-panel>
     </t-tabs>
   </div>
@@ -17,7 +17,8 @@ import {
 } from '../../common/js/dom'
 
 import {
-  mapState
+  mapState,
+  mapGetters
 } from 'vuex'
 export default {
   data() {
@@ -26,20 +27,34 @@ export default {
       tabIndex: "tab-0"
     }
   },
+  watch: {
+    tabLength(newVal, oldVal) {
+      if (newVal > oldVal) {
+        setTimeout(() => {
+          let url = this.$refs.tabSelect[oldVal].$attrs.myurl
+          this.tabIndex = `tab-${oldVal}`
+          this.$router.push(url)
+        }, 300)
+
+      }
+    }
+  },
   methods: {
-    closeTab() {
-      console.log(111);
+    removeItem(rmIndex) {
+
     },
-    tabClick(index) {
-      let oIndex = index.toString()
-      let el = this.$refs.tabSelect[index].$attrs.myurl
-      this.tabIndex = `tab-${oIndex}`
-      this.$router.push(el)
+    changeTab(index) {
+      let url = this.$refs.tabSelect[index].$attrs.myurl
+      this.tabIndex = `tab-${index}`
+      this.$router.push(url)
     }
   },
   computed: {
     ...mapState({
       stateTabList: state => state.index.tabList
+    }),
+    ...mapGetters({
+      tabLength: 'tabListLength'
     })
   },
   created() {
@@ -60,8 +75,9 @@ export default {
     }
 }
 .post-tabs {
+
     .tabs-list {
-        background: #fff;
+        background: #f9f9f9;
         li {
             .nav-link {
 
