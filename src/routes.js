@@ -52,11 +52,7 @@ export default[
     name : '管理门户示例',
     path : '/portal',
     component : require('./demo/portal/portal.vue')
-  }, {
-    name : 'test',
-    path : '/test',
-    component : require('./demo/test/test.vue')
-  }, {
+  },  {
     name : 'table示例',
     path : '/demo-table',
     component : require('./demo/table/table.vue')
