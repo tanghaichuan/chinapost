@@ -1,6 +1,11 @@
 <template>
 <div class="home">
-  i am home page
+  <div class="home-container">
+    <img src="" alt="">
+    <ul>
+
+    </ul>
+  </div>
 </div>
 </template>
 <script>
