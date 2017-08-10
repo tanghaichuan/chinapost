@@ -43,7 +43,7 @@ import {
   mapActions
 } from 'vuex'
 
-// const KEY_USER_NAME = 'osp-user-name'
+ const KEY_USER_NAME = 'osp-user-name'
 
 export default {
   components: {},
