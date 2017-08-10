@@ -17,6 +17,9 @@
 	</div>
 </template>
 <script>
+import {
+  mapMutations
+} from 'vuex'
 export default {
 	name: 'systemMenu',
 	data() {
@@ -34,9 +37,12 @@ export default {
 		}
 	},
 	computed: {
-
+		
 	},
 	methods: {
+		...mapMutations({
+	      newTabs: 'NEW_TABS'
+	    }),
 		traverse(arr) {
 			let temp = arr;
 			if (this.path.length === 0) {
@@ -55,10 +61,10 @@ export default {
 				this.title = this.menuList[index].name;
 			} else {
 				let send = {
-					title: this.tempList[index].name,
+					tabName: this.tempList[index].name,
 					url: this.tempList[index].url
 				}
-				console.log(send)
+				this.newTabs(send);
 			}
 			
 		},
