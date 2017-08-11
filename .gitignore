@@ -60,3 +60,4 @@ typings/
 .ipu/
 dist/
 .DS_Store
+test/
