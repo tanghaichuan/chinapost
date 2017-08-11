@@ -17,7 +17,7 @@ import {
 import {
   mixin
 } from '../../common/js/mixin-newtab'
-console.log(mixin);
+
 export default {
   name: "historyMenu",
   mixins: [mixin],

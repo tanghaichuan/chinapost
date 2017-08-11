@@ -9,7 +9,12 @@ function rules(config) {
         }
         return v
     })
-    return { module: { rules } }
+    return { module: { rules },resolve:{
+    alias:{
+      '@': './src' //定义一个源码目录别名
+    },
+    extensions: [".js", ".json", ".vue", ".styl", ".css", ".less", '.scss'] //自定义模块后缀
+  } }
 }
 
 module.exports = {
