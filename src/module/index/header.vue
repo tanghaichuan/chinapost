@@ -10,7 +10,7 @@
 
     <div class="mymenu">
       <div class="mymenu-block--muenu" ref="systemMenu">
-        <t-tooltip content="系统菜单" placement="bottom" @click.native="showSystemMenu=!showSystemMenu">
+        <t-tooltip content="系统菜单" placement="bottom" @click.native="toggleSysMenue">
           <a href="javascript:;" class="menu-icon">
             <t-icon type="apps" size="26"></t-icon>
           </a>
@@ -89,9 +89,9 @@ import {
   mapMutations,
   mapGetters
 } from 'vuex'
-import historyMenu from './historyMenu'
-import systemMenu from './systemMenu'
-import invokers from '../../invokers'
+import historyMenu from 'components/historyMenu'
+import systemMenu from 'components/systemMenu'
+import invokers from '@/invokers'
 export default {
   data() { // store data
     return {
@@ -123,6 +123,9 @@ export default {
     }),
     closeSystemMenu() {
       this.showSystemMenu = false;
+    },
+    toggleSysMenue() {
+      this.showSystemMenu = !this.showSystemMenu;
     }
   },
   created() {

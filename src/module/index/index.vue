@@ -11,10 +11,10 @@
 </div>
 </template>
 <script>
-import home from './home.vue'
+import home from 'components/home.vue'
 import {
   attr
-} from '../../common/js/dom'
+} from 'common/js/dom'
 
 import {
   mapState,

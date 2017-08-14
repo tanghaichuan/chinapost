@@ -1,4 +1,5 @@
 let { join } = require('path')
+let path = require('path')
 function rules(config) {
     let rules = config.module.rules.map(v => {
         if (v.test.toString() === '/\\.css/') {
@@ -11,9 +12,14 @@ function rules(config) {
     })
     return { module: { rules },resolve:{
     alias:{
-      '@': './src' //定义一个源码目录别名
+      '@'           : path.resolve(__dirname, '../src'),                       // 定义一个源码目录别名
+      'components'  : path.resolve(__dirname, '../src/module/index'),          // components
+      'common'      : path.resolve(__dirname, '../src/common'),                // 公用vue类
+      'module'      : path.resolve(__dirname, '../src/module'),                // 项目组件
+      'styles'      : path.resolve(__dirname, '../src/styles'),                // 项目公用样式
+      'demo'        : path.resolve(__dirname, '../src/demo')                   // demo,后期记得删去
     },
-    extensions: [".js", ".json", ".vue", ".styl", ".css", ".less", '.scss'] //自定义模块后缀
+    extensions: [".js", ".json", ".vue", ".styl", ".css", ".less", '.scss']                     //自定义模块后缀
   } }
 }
 
