@@ -103,16 +103,27 @@ export default {
             .memo-item {
               line-height: 36px;
               list-style: none;
+              &:after {
+                content: '';
+                width: 0;
+                height: 0;
+                display: block;
+                visibility: hidden;
+                clear: both;
+              }
               .content{
               }
               .edit {
                 float: right;
                 margin-right: 6px;
                 line-height: 36px;
+                height: 36px;
                 color: rgba(7, 17, 27, 0.4);
               }
               .delete {
                 float: right;
+                line-height: 36px;
+                height: 36px;
                 color: rgba(7, 17, 27, 0.4);
               }
             }
