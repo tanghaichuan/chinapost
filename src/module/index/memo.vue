@@ -7,26 +7,28 @@
     <t-tabs class="tab" :threshold="2">
         <t-tab-panel label="未完成" name="tab-l" class="unfinish text-lg">
           <ul class="memoList">
-            <li v-for="(item,index) in list" v-show="type(item.status,unfinish)" class="memo-item text-md">  <span class="content">{{item.title}}</span>
+            <li v-for="(item,index) in list" v-show="type(item.status,unfinish)" class="memo-item text-md">  
+              <span class="content">{{item.title}}</span>
+              <span class="delete" @click="deleteItem(index)">
+                <t-icon type="delete" size="10px"></t-icon>
+              </span>
               <span class="edit">
                 <t-icon type="border-color" size="10px">
                 </t-icon>
-              </span>
-              <span class="delete" @click="deleteItem(index)">
-                <t-icon type="delete" size="10px"></t-icon>
               </span>
             </li>
           </ul>
         </t-tab-panel>
         <t-tab-panel label="已完成" name="tab-2" class="finished text">
           <ul class="memoList">
-            <li v-for="(item,index) in list" v-show="type(item.status,finished)" class="memo-item text-md">  <span class="content">{{item.title}}</span>
+            <li v-for="(item,index) in list" v-show="type(item.status,finished)" class="memo-item text-md">  
+              <span class="content">{{item.title}}</span>
+              <span class="delete" @click="deleteItem(index)">
+                <t-icon type="delete" size="10px"></t-icon>
+              </span>
               <span class="edit">
                 <t-icon type="border-color" size="10px">
                 </t-icon>
-              </span>
-              <span class="delete" @click="deleteItem(index)">
-                <t-icon type="delete" size="10px"></t-icon>
               </span>
             </li>
           </ul>
@@ -105,12 +107,13 @@ export default {
               }
               .edit {
                 float: right;
+                margin-right: 6px;
+                line-height: 36px;
                 color: rgba(7, 17, 27, 0.4);
               }
               .delete {
                 float: right;
                 color: rgba(7, 17, 27, 0.4);
-                margin-right:4px;
               }
             }
           }
