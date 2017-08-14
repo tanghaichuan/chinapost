@@ -10,7 +10,7 @@
   
       <div class="mymenu">
         <div class="mymenu-block--muenu" ref="systemMenu">
-          <t-tooltip content="系统菜单" placement="bottom" @click.native="showSystemMenu=!showSystemMenu">
+          <t-tooltip content="系统菜单" placement="bottom" @click.native="toggleSysMenue">
             <a href="javascript:;" class="menu-icon">
               <t-icon type="apps" size="26"></t-icon>
             </a>
@@ -72,6 +72,7 @@
           <t-dropdown-item>退出</t-dropdown-item>
         </t-dropdown-menu>
       </t-dropdown>
+<<<<<<< HEAD
   
       <t-dropdown trigger="click" placement="bottom-end" class="mr-2">
         <t-badge count="3" state='warning' class="ml-4">
@@ -91,11 +92,70 @@ import { mapMutations, mapGetters } from 'vuex'
 import historyMenu from './historyMenu'
 import systemMenu from './systemMenu'
 import invokers from '../../invokers'
+=======
+    </div>
+    <t-button slot="appendbtn" :class="['pl-3','pr-3']" style="{height:50px;}"><i class="aid aid-menu"></i></t-button>
+    <t-tooltip content="便签 & 待办事项" placement="bottom" class=" ml-auto">
+      <a href="javascript:;" class="menu-icon" @click="toggleMemo">
+        <t-icon type="calendar-plus" size="26"></t-icon>
+      </a>
+    </t-tooltip>
+    <t-tooltip content="公告" placement="bottom">
+      <a href="javascript:;" class="menu-icon ml-2">
+        <t-icon type="bullhorn" size="26"></t-icon>
+      </a>
+    </t-tooltip>
+    <t-tooltip content="消息" placement="bottom">
+      <a href="javascript:;" class="menu-icon ml-2">
+        <t-icon type="bell-outline" size="26"></t-icon>
+      </a>
+    </t-tooltip>
+
+    <t-dropdown trigger="click" placement="bottom-end">
+      <t-badge class="ml-4">
+        <t-avatar dot-state="danger" text="HC" size="sm"></t-avatar>
+        <t-icon type="arrow-down-drop" size="20"></t-icon>
+      </t-badge>
+      <t-dropdown-menu slot="list">
+        <t-dropdown-item>个人中心</t-dropdown-item>
+        <t-dropdown-item>账号设置</t-dropdown-item>
+        <t-dropdown-item>意见反馈</t-dropdown-item>
+        <t-dropdown-item>退出</t-dropdown-item>
+      </t-dropdown-menu>
+    </t-dropdown>
+
+    <t-dropdown trigger="click" placement="bottom-end" class="mr-2">
+      <t-badge count="3" state='warning' class="ml-4">
+        <a href="javascript:;" class="text-muted">
+          <t-icon type="bell" size="20"></t-icon>
+        </a>
+      </t-badge>
+    </t-dropdown>
+    <transition name="fade">
+      <history-menu v-show="showHistoryMenu" :list="historyData"></history-menu>
+    </transition>
+    <transition name="slide">
+      <memo v-show="showMemo" :list="memoList" class="memo"></memo>      
+    </transition>
+  </nav>
+</div>
+</template>
+<script>
+import {
+  mapMutations,
+  mapGetters
+} from 'vuex'
+import historyMenu from 'components/historyMenu'
+import systemMenu from 'components/systemMenu'
+import memo from 'components/memo'
+import invokers from '@/invokers'
+>>>>>>> e5faa32ae71298a6d42e85d59364d727df68211e
 export default {
   data() { // store data
     return {
       historyData: [],
       showSystemMenu: false,
+<<<<<<< HEAD
       menuList: [{
         name: '营销管理',
         children: [{
@@ -369,6 +429,11 @@ export default {
         ]
       }
       ],
+=======
+      showMemo: false,
+      menuList: [],
+      memoList: []
+>>>>>>> e5faa32ae71298a6d42e85d59364d727df68211e
     }
   },
   props: { // props data
@@ -394,12 +459,25 @@ export default {
     }),
     closeSystemMenu() {
       this.showSystemMenu = false;
+    },
+    toggleSysMenue() {
+      this.showSystemMenu = !this.showSystemMenu;
+    },
+    toggleMemo() {
+      this.showMemo = !this.showMemo;
+      console.log('showMemo')
     }
   },
   created() {
     this.$domains.cnpost.get(this.$services.GET_HISTORY).then((res) => {
       this.historyData = res.data.list
-    })
+    });
+    this.$domains.cnpost.get(this.$services.SYSTEM_MENU).then((res) => {
+      this.menuList = res.data.list;
+    });
+    this.$domains.cnpost.get(this.$services.GET_MEMO).then((res) => {
+      this.memoList = res.data.list;
+    });
   },
   mounted() {
     //do something after mounting vue instance
@@ -412,7 +490,8 @@ export default {
   },
   components: {
     historyMenu,
-    systemMenu
+    systemMenu,
+    memo
   }
 }
 </script>
@@ -449,9 +528,31 @@ export default {
       background: #f5f5f5;
       width: 320px;
     }
+<<<<<<< HEAD
     .btn-secondary,
     .form-input .form-control {
       border-radius: 0!important;
+=======
+    .memo {
+      width: 300px;
+      background: #fff;
+      position: fixed;
+      left: 79%;
+      top: 67px;
+      box-shadow: 0 5px 30px rgba(0,0,0,.15);
+      transition: all 0.3s linear;
+      transform: translate3d(0, 0, 0);
+      &.slide-enter,&.slide-leave-to{
+        opacity: 0;
+        transform: translate3d(70%, 0, 0);
+      } 
+    }
+    .input-group {
+        .aid-magnify,
+        .aid-menu {
+            color: #333;
+        }
+>>>>>>> e5faa32ae71298a6d42e85d59364d727df68211e
     }
   }
   .input-group {

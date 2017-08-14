@@ -1,6 +1,11 @@
 import cloud from './demo/cloud/route'
 import osp from './demo/osp/route'
 
+const popQuery = r => require.ensure([], () => r(require('demo/popquery/popquery')), 'test')
+const test = r => require.ensure([], () => r(require('demo/test/test')), 'test')
+const tabel =  r => require.ensure([], () => r(require('demo/test/table1')), 'test')
+const tabelDemo =  r => require.ensure([], () => r(require('demo/table/table')), 'test')
+
 export default[
   {
     path : '/',
@@ -55,17 +60,22 @@ export default[
   },  {
     name : 'table示例',
     path : '/demo-table',
-    component : require('./demo/table/table.vue')
+    component : tabelDemo
   },
   {
     name : 'test',
     path : '/test',
-    component : require('./demo/test/test.vue')
+    component : test
   },
   {
     name : 'table',
     path : '/table',
-    component : require('./demo/table/table.vue')
+    component : tabel
+  },
+  {
+    name : 'popQuery',
+    path : '/query',
+    component : popQuery
   },
   ...cloud,
   ...osp, {

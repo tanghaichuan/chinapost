@@ -16,7 +16,7 @@ import {
 } from 'vuex'
 import {
   mixin
-} from '../../common/js/mixin-newtab'
+} from 'common/js/mixin-newtab'
 
 export default {
   name: "historyMenu",
@@ -47,7 +47,6 @@ export default {
       this.changeMenu({
         showHistoryMenu: !this.showHistoryMenu
       })
-
     },
     ...mapMutations({
       changeMenu: 'CHANGE_MENU',
