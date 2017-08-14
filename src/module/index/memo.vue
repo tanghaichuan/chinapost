@@ -7,12 +7,12 @@
     <t-tabs class="tab" :threshold="2">
         <t-tab-panel label="未完成" name="tab-l" class="unfinish text-lg">
           <ul class="memoList">
-            <li v-for="item in list" v-show="type(item.status,unfinish)" class="memo-item text-md">  <span class="content">{{item.title}}</span>
+            <li v-for="(item,index) in list" v-show="type(item.status,unfinish)" class="memo-item text-md">  <span class="content">{{item.title}}</span>
               <span class="edit">
                 <t-icon type="border-color" size="10px">
                 </t-icon>
               </span>
-              <span class="delete">
+              <span class="delete" @click="deleteItem(index)">
                 <t-icon type="delete" size="10px"></t-icon>
               </span>
             </li>
@@ -20,18 +20,18 @@
         </t-tab-panel>
         <t-tab-panel label="已完成" name="tab-2" class="finished text">
           <ul class="memoList">
-            <li v-for="item in list" v-show="type(item.status,finished)" class="memo-item text-md">  <span class="content">{{item.title}}</span>
+            <li v-for="(item,index) in list" v-show="type(item.status,finished)" class="memo-item text-md">  <span class="content">{{item.title}}</span>
               <span class="edit">
                 <t-icon type="border-color" size="10px">
                 </t-icon>
               </span>
-              <span class="delete">
+              <span class="delete" @click="deleteItem(index)">
                 <t-icon type="delete" size="10px"></t-icon>
               </span>
             </li>
           </ul>
         </t-tab-panel>
-        <span class="addMemo"><t-icon type="plus" class="add"></t-icon></span>
+        <span class="addMemo" @click="addItem"><t-icon type="plus" class="add"></t-icon></span>
     </t-tabs>
   </div>
 </div>
@@ -56,29 +56,50 @@ export default {
   methods: {
     type(status,tip) {//分别显示已完成和未完成 tip用于标记
       return tip === status
+    },
+    editItem(index) {
+      console.log('编辑选项')
+    },
+    deleteItem(index) {
+      console.log(this.list.length)
+      this.list.splice(index,1)
+      console.log('删除之后'+this.list.length)
+    },
+    addItem() {
+      let data ={}
+      data.url = ''
+      data.title = this.titleVal
+      data.content = this.contentVal
+      data.status = 'unfinish'
+      if (this.titleVal != '' && this.contentVal != '') {
+        this.list.push(data)
+      } else {
+        alert('请输入内容')
+      }
     }
   }
 }
 </script>
 <style lang="less">
   .memo {
-    // width: 300px;
-    // background: #fff;
-    // position: fixed;
-    // left: 70%;
-    // top: 67px;
-    // box-shadow: 0 5px 30px rgba(0,0,0,.15);
       .memo-container {
         .tab {
           font-size: 16px;
-          .unfinish {
-            
+          .tabs-list {
+            .nav-tabs {
+              .nav-item {
+                .nav-link {
+                  padding: 0 43px;
+                  margin: 0;
+                }
+              }
+            }
           }
           .memoList {
             padding-left: 10px;
             padding-right: 10px;
             .memo-item {
-              line-height: 24px;
+              line-height: 36px;
               list-style: none;
               .content{
               }
