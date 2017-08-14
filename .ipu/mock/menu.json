@@ -339,4 +339,53 @@
       }
     ]
   }
-}]
+},{
+  "url": "/mock/memomenu",
+  "method": "get",
+  "response": {
+    "success": true,
+    "list": [{
+        "url": "/memo1",
+        "title": "已完成的便签1",
+        "status": "finished"
+      },
+      {
+        "url": "/memo2",
+        "title": "已完成的便签2",
+        "status": "finished"
+      },
+      {
+        "url": "/memo3",
+        "title": "已完成的便签3",
+        "status": "finished"
+      },
+      {
+        "url": "/memo4",
+        "title": "已完成的便签4",
+        "status": "finished"
+      },
+      {
+        "url": "/memo5",
+        "title": "未完成的便签5",
+        "status": "unfinish"
+      },
+      {
+        "url": "/memo6",
+        "title": "未完成的便签6",
+        "status": "unfinish"
+      },
+      {
+        "url": "/memo7",
+        "title": "未完成的便签7",
+        "status": "unfinish"
+      },
+      {
+        "url": "/memo8",
+        "title": "未完成的便签8",
+        "status": "unfinish"
+      }
+    ]
+  }
+}
+
+]

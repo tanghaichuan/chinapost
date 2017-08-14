@@ -9,5 +9,6 @@
     "APP_DETAILS": "/mock/osp/appDetails"
   },
   "GET_HISTORY": "/mock/historymenu",
-  "SYSTEM_MENU": "/mock/getsysmenu"
+  "SYSTEM_MENU": "/mock/getsysmenu",
+  "GET_MEMO": "/mock/memomenu"
 }

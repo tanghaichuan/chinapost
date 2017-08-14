@@ -43,7 +43,7 @@
     </div>
     <t-button slot="appendbtn" :class="['pl-3','pr-3']" style="{height:50px;}"><i class="aid aid-menu"></i></t-button>
     <t-tooltip content="便签 & 待办事项" placement="bottom" class=" ml-auto">
-      <a href="javascript:;" class="menu-icon" @click.stop.prevent="showCustom">
+      <a href="javascript:;" class="menu-icon" @click="toggleMemo">
         <t-icon type="calendar-plus" size="26"></t-icon>
       </a>
     </t-tooltip>
@@ -81,6 +81,9 @@
     <transition name="fade">
       <history-menu v-show="showHistoryMenu" :list="historyData"></history-menu>
     </transition>
+    <transition name="slide">
+      <memo v-show="showMemo" :list="memoList" class="memo"></memo>      
+    </transition>
   </nav>
 </div>
 </template>
@@ -91,13 +94,16 @@ import {
 } from 'vuex'
 import historyMenu from 'components/historyMenu'
 import systemMenu from 'components/systemMenu'
+import memo from 'components/memo'
 import invokers from '@/invokers'
 export default {
   data() { // store data
     return {
       historyData: [],
       showSystemMenu: false,
-      menuList: []
+      showMemo: false,
+      menuList: [],
+      memoList: []
     }
   },
   props: { // props data
@@ -126,14 +132,21 @@ export default {
     },
     toggleSysMenue() {
       this.showSystemMenu = !this.showSystemMenu;
+    },
+    toggleMemo() {
+      this.showMemo = !this.showMemo;
+      console.log('showMemo')
     }
   },
   created() {
     this.$domains.cnpost.get(this.$services.GET_HISTORY).then((res) => {
       this.historyData = res.data.list
     });
-    this.$domains.cnpost.get(this.$services.SYSTEM_MENU).then(res => {
+    this.$domains.cnpost.get(this.$services.SYSTEM_MENU).then((res) => {
       this.menuList = res.data.list;
+    });
+    this.$domains.cnpost.get(this.$services.GET_MEMO).then((res) => {
+      this.memoList = res.data.list;
     });
   },
   mounted() {
@@ -147,7 +160,8 @@ export default {
   },
   components: {
     historyMenu,
-    systemMenu
+    systemMenu,
+    memo
   }
 }
 </script>
@@ -190,6 +204,20 @@ export default {
             border-radius: 0!important;
         }
 
+    }
+    .memo {
+      width: 300px;
+      background: #fff;
+      position: fixed;
+      left: 79%;
+      top: 67px;
+      box-shadow: 0 5px 30px rgba(0,0,0,.15);
+      transition: all 0.3s linear;
+      transform: translate3d(0, 0, 0);
+      &.slide-enter,&.slide-leave-to{
+        opacity: 0;
+        transform: translate3d(70%, 0, 0);
+      } 
     }
     .input-group {
         .aid-magnify,
