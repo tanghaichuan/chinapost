@@ -72,27 +72,6 @@
           <t-dropdown-item>退出</t-dropdown-item>
         </t-dropdown-menu>
       </t-dropdown>
-<<<<<<< HEAD
-  
-      <t-dropdown trigger="click" placement="bottom-end" class="mr-2">
-        <t-badge count="3" state='warning' class="ml-4">
-          <a href="javascript:;" class="text-muted">
-            <t-icon type="bell" size="20"></t-icon>
-          </a>
-        </t-badge>
-      </t-dropdown>
-      <transition name="fade">
-        <history-menu v-show="showHistoryMenu" :list="historyData"></history-menu>
-      </transition>
-    </nav>
-  </div>
-</template>
-<script>
-import { mapMutations, mapGetters } from 'vuex'
-import historyMenu from './historyMenu'
-import systemMenu from './systemMenu'
-import invokers from '../../invokers'
-=======
     </div>
     <t-button slot="appendbtn" :class="['pl-3','pr-3']" style="{height:50px;}"><i class="aid aid-menu"></i></t-button>
     <t-tooltip content="便签 & 待办事项" placement="bottom" class=" ml-auto">
@@ -149,291 +128,14 @@ import historyMenu from 'components/historyMenu'
 import systemMenu from 'components/systemMenu'
 import memo from 'components/memo'
 import invokers from '@/invokers'
->>>>>>> e5faa32ae71298a6d42e85d59364d727df68211e
 export default {
   data() { // store data
     return {
       historyData: [],
       showSystemMenu: false,
-<<<<<<< HEAD
-      menuList: [{
-        name: '营销管理',
-        children: [{
-          name: '统计报表',
-          url: '/trouble/1'
-        },
-        {
-          name: '活动管理',
-          children: [{
-            name: '活动视图',
-            url: '/trouble/2'
-          },
-          {
-            name: '问卷统计',
-            url: '/trouble/3'
-          }
-          ]
-        },
-        {
-          name: '细分管理',
-          children: [{
-            name: '共享列表',
-            url: '/trouble/4'
-          },
-          {
-            name: '市场细分',
-            url: '/trouble/5'
-          }
-          ]
-        },
-        {
-          name: '营销配置',
-          children: [{
-            name: '频次控制',
-            url: '/trouble/6'
-          },
-          {
-            name: '活动类型',
-            url: '/trouble/7'
-          }
-          ]
-        }
-        ]
-      },
-      {
-        name: '故障单',
-        children: [{
-          name: '工单工作区',
-          url: '/trouble/8'
-        },
-        {
-          name: '工单统计',
-          url: '/trouble/9'
-        },
-        {
-          name: '工单配置',
-          children: [{
-            name: '工单类型配置',
-            url: '/trouble/10'
-          },
-          {
-            name: '离岗规则配置',
-            url: '/trouble/11'
-          },
-          {
-            name: '自动建单配置',
-            url: '/trouble/12'
-          },
-          ]
-        }
-        ]
-      },
-      {
-        name: '销售',
-        children: [{
-          name: '销售管理',
-          children: [{
-            name: '线索管理',
-            url: '/trouble/13'
-          },
-          {
-            name: '商机管理',
-            url: '/trouble/14'
-          },
-          {
-            name: '建议书管理',
-            url: '/trouble/15'
-          },
-          {
-            name: '客户竞争者管理',
-            url: '/trouble/16'
-          },
-          {
-            name: '销售漏斗',
-            url: '/trouble/17'
-          },
-          {
-            name: '商机追踪',
-            url: '/trouble/18'
-          },
-          {
-            name: '未分配全局线索池',
-            url: '/trouble/19'
-          }
-          ]
-        },
-        {
-          name: '销售助手',
-          children: [{
-            name: '销售任务',
-            url: '/trouble/20'
-          },
-          {
-            name: '销售记录',
-            url: '/trouble/21'
-          },
-          {
-            name: '销售账户',
-            url: '/trouble/22'
-          },
-          {
-            name: '销售日程安排',
-            url: '/trouble/23'
-          },
-          {
-            name: '统一分配日志',
-            url: '/trouble/24'
-          },
-          ]
-        },
-        {
-          name: '销售层级管理',
-          children: [{
-            name: '销售组织管理',
-            url: '/trouble/25'
-          },
-          {
-            name: '操作员管理',
-            url: '/trouble/26'
-          }
-          ]
-        },
-        {
-          name: '销售分析',
-          children: [{
-            name: '销售洞察',
-            url: '/trouble/27'
-          },
-          {
-            name: '销售仪表盘',
-            url: '/trouble/28'
-            
-          }
-          ]
-        }
-        ]
-      },
-      {
-        name: '合同',
-        children: [{
-          name: '合同管理',
-          children: [{
-            name: '合同编辑',
-            url: '/trouble/29'
-          }]
-        },
-        {
-          name: '模版管理',
-          children: [{
-            name: '协议条款模版',
-            url: '/trouble/30'
-          },
-          {
-            name: '协议模版',
-            url: '/trouble/31'
-          }
-          ]
-        },
-        {
-          name: '合同设置',
-          children: [{
-            name: '协议类型管理',
-            url: '/trouble/32'
-          },
-          {
-            name: '标签管理',
-            url: '/trouble/33'
-          },
-          {
-            name: '协议层级管理',
-            url: '/trouble/34'
-          }
-          ]
-        },
-        {
-          name: '合同跟踪',
-          children: [{
-            name: '监控规则配置',
-            url: '/trouble/35'
-          },
-          {
-            name: '监控结束',
-            url: '/trouble/36'
-          }
-          ]
-        }
-        ]
-      },
-      {
-        name: '知识库',
-        children: [{
-          name: 'Knowledge Homepage'
-        },
-        {
-          name: 'Application for Approval'
-        },
-        {
-          name: 'Article Management'
-        },
-        {
-          name: 'My Article'
-        },
-        {
-          name: 'Template Management'
-        },
-        {
-          name: 'Business Type Management'
-        },
-        {
-          name: 'Recommended Article Management'
-        },
-        {
-          name: 'Recycle Bin'
-        },
-        {
-          name: 'Public Favorites Management'
-        },
-        {
-          name: 'Personal Favorites Management'
-        },
-        {
-          name: 'Operation Log'
-        },
-        {
-          name: 'Search Hot Article'
-        },
-        {
-          name: 'Article Hits Statistics'
-        },
-        {
-          name: 'Article Hits Details'
-        },
-        {
-          name: 'Lexicon Management'
-        },
-        {
-          name: 'Ticket Management'
-        }
-        ]
-      },
-      {
-        name: '系统配置',
-        children: [{
-          name: 'Bulletin Management',
-          url: '/trouble/37'
-        },
-        {
-          name: 'Bulletin Catalog Management',
-          url: '/trouble/38'
-        }
-        ]
-      }
-      ],
-=======
       showMemo: false,
       menuList: [],
       memoList: []
->>>>>>> e5faa32ae71298a6d42e85d59364d727df68211e
     }
   },
   props: { // props data
@@ -528,11 +230,6 @@ export default {
       background: #f5f5f5;
       width: 320px;
     }
-<<<<<<< HEAD
-    .btn-secondary,
-    .form-input .form-control {
-      border-radius: 0!important;
-=======
     .memo {
       width: 300px;
       background: #fff;
@@ -552,7 +249,6 @@ export default {
         .aid-menu {
             color: #333;
         }
->>>>>>> e5faa32ae71298a6d42e85d59364d727df68211e
     }
   }
   .input-group {
