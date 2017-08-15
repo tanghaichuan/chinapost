@@ -1,7 +1,11 @@
 {
   "output": {
     "js": {
+<<<<<<< HEAD
       "base": "base-24d864c7.js"
+=======
+      "base": "base-195d3383.js"
+>>>>>>> 22d5dc3ea555c98b02d8ac6c7741391145467e09
     }
   },
   "meta": {
