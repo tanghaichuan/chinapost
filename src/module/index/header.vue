@@ -78,7 +78,7 @@
     <transition name="fade">
       <history-menu v-show="showHistoryMenu" :list="historyData"></history-menu>
     </transition>
-    <transition name="slide">
+    <transition name="move-right">
       <memo v-show="showMemo" :list="memoList" class="memo"></memo>
     </transition>
   </nav>
