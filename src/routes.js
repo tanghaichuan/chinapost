@@ -1,7 +1,7 @@
 import cloud from './demo/cloud/route'
 import osp from './demo/osp/route'
 
-const popQuery = r => require.ensure([], () => r(require('demo/popquery/popquery')), 'test')
+const query = r => require.ensure([], () => r(require('demo/popquery/popquery')), 'test')
 const test = r => require.ensure([], () => r(require('demo/test/test')), 'test')
 const tabel =  r => require.ensure([], () => r(require('demo/test/table1')), 'test')
 const tabelDemo =  r => require.ensure([], () => r(require('demo/table/table')), 'test')
@@ -73,9 +73,9 @@ export default[
     component : tabel
   },
   {
-    name : 'popQuery',
+    name : 'query',
     path : '/query',
-    component : popQuery
+    component : query
   },
   ...cloud,
   ...osp, {
