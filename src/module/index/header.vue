@@ -1,75 +1,42 @@
 <template>
-  <div class="header">
-    <nav class="navbar  navbar-expand-lg">
-      <t-tooltip content="主页" placement="bottom">
-        <a href="/" class="layout-logo mr-4">
+<div class="header">
+  <nav class="navbar  navbar-expand-lg">
+    <t-tooltip content="主页" placement="bottom">
+      <a href="/" class="layout-logo mr-4">
           <img src="../../asset/image/aid-icon-alone.png" alt="">
           <span class="text-xxl align-middle ml-1">Veris</span>
         </a>
-      </t-tooltip>
-  
-      <div class="mymenu">
-        <div class="mymenu-block--muenu" ref="systemMenu">
-          <t-tooltip content="系统菜单" placement="bottom" @click.native="toggleSysMenue">
-            <a href="javascript:;" class="menu-icon">
-              <t-icon type="apps" size="26"></t-icon>
-            </a>
-          </t-tooltip>
-          <system-menu v-show="showSystemMenu" :menuList="menuList"></system-menu>
-        </div>
-        <t-tooltip content="历史记录" placement="bottom">
-          <a href="javascript:;" :class="['menu-icon ml-2',{'active':showHistoryMenu}]" @click="historyMenuHandle">
-            <t-icon type="backup-restore" size="26"></t-icon>
+    </t-tooltip>
+    <div class="mymenu">
+      <div class="mymenu-block--muenu" ref="systemMenu">
+        <t-tooltip content="系统菜单" placement="bottom" @click.native="toggleSysMenue">
+          <a href="javascript:;" class="menu-icon">
+            <t-icon type="apps" size="26"></t-icon>
           </a>
         </t-tooltip>
+        <system-menu v-show="showSystemMenu" :menuList="menuList"></system-menu>
       </div>
-  
-      <div class="d-inline ml-3">
-        <t-dropdown class="sb" trigger="click">
-          <t-input icon="magnify" size="lg" placeholder="搜索...">
-  
-          </t-input>
-          <t-dropdown-menu slot="list">
-            <t-dropdown-item class="luda">
-              <t-icon type="account-box-outline" size="26" class="mr-2"></t-icon>
-              我是驴打滚驴打滚
-            </t-dropdown-item>
-            <t-dropdown-item divided>
-              <t-icon type="account-box-outline" size="26" class="mr-2"></t-icon>
-              我是北京烤鸭
-            </t-dropdown-item>
-          </t-dropdown-menu>
-        </t-dropdown>
-      </div>
-      <t-button slot="appendbtn" :class="['pl-3','pr-3']" style="{height:50px;}">
-        <i class="aid aid-menu"></i>
-      </t-button>
-      <t-tooltip content="便签 & 待办事项" placement="bottom" class=" ml-auto">
-        <a href="javascript:;" class="menu-icon" @click.stop.prevent="showCustom">
-          <t-icon type="calendar-plus" size="26"></t-icon>
+      <t-tooltip content="历史记录" placement="bottom">
+        <a href="javascript:;" :class="['menu-icon ml-2',{'active':showHistoryMenu}]" @click="historyMenuHandle">
+          <t-icon type="backup-restore" size="26"></t-icon>
         </a>
       </t-tooltip>
-      <t-tooltip content="公告" placement="bottom">
-        <a href="javascript:;" class="menu-icon ml-2">
-          <t-icon type="bullhorn" size="26"></t-icon>
-        </a>
-      </t-tooltip>
-      <t-tooltip content="消息" placement="bottom">
-        <a href="javascript:;" class="menu-icon ml-2">
-          <t-icon type="bell-outline" size="26"></t-icon>
-        </a>
-      </t-tooltip>
-  
-      <t-dropdown trigger="click" placement="bottom-end">
-        <t-badge class="ml-4">
-          <t-avatar dot-state="danger" text="HC" size="sm"></t-avatar>
-          <t-icon type="arrow-down-drop" size="20"></t-icon>
-        </t-badge>
+    </div>
+
+    <div class="d-inline ml-3">
+      <t-dropdown class="sb" trigger="click">
+        <t-input icon="magnify" size="lg" placeholder="搜索...">
+
+        </t-input>
         <t-dropdown-menu slot="list">
-          <t-dropdown-item>个人中心</t-dropdown-item>
-          <t-dropdown-item>账号设置</t-dropdown-item>
-          <t-dropdown-item>意见反馈</t-dropdown-item>
-          <t-dropdown-item>退出</t-dropdown-item>
+          <t-dropdown-item class="luda">
+            <t-icon type="account-box-outline" size="26" class="mr-2"></t-icon>
+            我是驴打滚驴打滚
+          </t-dropdown-item>
+          <t-dropdown-item divided>
+            <t-icon type="account-box-outline" size="26" class="mr-2"></t-icon>
+            我是北京烤鸭
+          </t-dropdown-item>
         </t-dropdown-menu>
       </t-dropdown>
     </div>
@@ -89,7 +56,6 @@
         <t-icon type="bell-outline" size="26"></t-icon>
       </a>
     </t-tooltip>
-
     <t-dropdown trigger="click" placement="bottom-end">
       <t-badge class="ml-4">
         <t-avatar dot-state="danger" text="HC" size="sm"></t-avatar>
@@ -102,7 +68,6 @@
         <t-dropdown-item>退出</t-dropdown-item>
       </t-dropdown-menu>
     </t-dropdown>
-
     <t-dropdown trigger="click" placement="bottom-end" class="mr-2">
       <t-badge count="3" state='warning' class="ml-4">
         <a href="javascript:;" class="text-muted">
@@ -114,7 +79,7 @@
       <history-menu v-show="showHistoryMenu" :list="historyData"></history-menu>
     </transition>
     <transition name="slide">
-      <memo v-show="showMemo" :list="memoList" class="memo"></memo>      
+      <memo v-show="showMemo" :list="memoList" class="memo"></memo>
     </transition>
   </nav>
 </div>
@@ -199,50 +164,58 @@ export default {
 </script>
 <style lang="less">
 .header {
-  border-bottom: 1px solid #d9d9d9;
-  box-shadow: 0 0 8px rgba(0, 0, 0, .14);
-  position: relative;
-  z-index: 3;
-  .mymenu {
-    height: 50px; // padding: 10px 0;
-    line-height: 50px;
-    .mymenu-block--muenu {
-      display: inline-block;
-      position: relative;
+    border-bottom: 1px solid #d9d9d9;
+    box-shadow: 0 0 8px rgba(0, 0, 0, .14);
+    position: relative;
+    z-index: 3;
+    .mymenu {
+        height: 50px; // padding: 10px 0;
+        line-height: 50px;
+        .mymenu-block--muenu {
+            display: inline-block;
+            position: relative;
+        }
     }
-  }
-  .menu-icon {
-    background: #f5f5f5;
-    display: inline-block;
-    width: 50px;
-    height: 50px;
-    text-align: center;
-    line-height: 50px;
-    color: #333;
-    &.active {
-      background: #e5e5e5;
+    .menu-icon {
+        background: #f5f5f5;
+        display: inline-block;
+        width: 50px;
+        height: 50px;
+        text-align: center;
+        line-height: 50px;
+        color: #333;
+        &.active {
+            background: #e5e5e5;
+        }
     }
-  }
 
-  .d-inline {
-    width: 320px;
-    .form-control {
-      background: #f5f5f5;
-      width: 320px;
-    }
-    .memo {
-      width: 300px;
-      background: #fff;
-      position: fixed;
-      left: 79%;
-      top: 67px;
-      box-shadow: 0 5px 30px rgba(0,0,0,.15);
-      transition: all 0.3s linear;
-      transform: translate3d(0, 0, 0);
-      &.slide-enter,&.slide-leave-to{
-        opacity: 0;
-        transform: translate3d(70%, 0, 0);
-      } 
+    .d-inline {
+        width: 320px;
+        .form-control {
+            background: #f5f5f5;
+            width: 320px;
+        }
+        .memo {
+            width: 300px;
+            background: #fff;
+            position: fixed;
+            left: 79%;
+            top: 67px;
+            box-shadow: 0 5px 30px rgba(0,0,0,.15);
+            transition: all 0.3s linear;
+            transform: translate3d(0, 0, 0);
+            &.slide-enter,
+            &.slide-leave-to {
+                opacity: 0;
+                transform: translate3d(70%, 0, 0);
+            }
+        }
+        .input-group {
+            .aid-magnify,
+            .aid-menu {
+                color: #333;
+            }
+        }
     }
     .input-group {
         .aid-magnify,
@@ -250,23 +223,16 @@ export default {
             color: #333;
         }
     }
-  }
-  .input-group {
-    .aid-magnify,
-    .aid-menu {
-      color: #333;
+    .navbar {
+        background: #fff;
+        .btn.btn-secondary {
+            height: 50px!important;
+            line-height: 50px!important;
+            margin-left: -1px;
+            background: #f5f5f5;
+            border-radius: 0;
+            z-index: 2;
+        }
     }
-  }
-  .navbar {
-    background: #fff;
-    .btn.btn-secondary {
-      height: 50px!important;
-      line-height: 50px!important;
-      margin-left: -1px;
-      background: #f5f5f5;
-      border-radius: 0;
-      z-index: 2;
-    }
-  }
 }
 </style>
