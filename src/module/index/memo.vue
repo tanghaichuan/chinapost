@@ -87,10 +87,10 @@ export default {
     position: fixed;
     top: 68px;
     right: 0;
-    box-shadow: 4px 0 4px rgba(0,0,0,.1);
+    box-shadow: 0 5px 30px rgba(0,0,0,.15);
     width: 300px;
     height: 100%;
-
+    background-color: #fff;
     .memo-container {
         .tab {
             font-size: 16px;

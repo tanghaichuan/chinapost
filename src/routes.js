@@ -5,6 +5,7 @@ const query = r => require.ensure([], () => r(require('demo/popquery/popquery'))
 const test = r => require.ensure([], () => r(require('demo/test/test')), 'test')
 const tabel =  r => require.ensure([], () => r(require('demo/test/table1')), 'test')
 const tabelDemo =  r => require.ensure([], () => r(require('demo/table/table')), 'test')
+const comTable =  r => require.ensure([], () => r(require('demo/owns/listTable/comperhensiveTable')), 'test')
 
 export default[
   {
@@ -71,6 +72,11 @@ export default[
     name : 'table',
     path : '/table',
     component : tabel
+  },
+  {
+    name : 'conperhensiveTable',
+    path : '/comTable',
+    component :  comTable
   },
   {
     name : 'query',

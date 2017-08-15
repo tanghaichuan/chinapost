@@ -197,10 +197,11 @@ export default {
         }
         .memo {
             width: 300px;
+            height: 100%;
             background: #fff;
             position: fixed;
-            left: 79%;
-            top: 67px;
+            top: 68px;
+            right: 0;
             box-shadow: 0 5px 30px rgba(0,0,0,.15);
             transition: all 0.3s linear;
             transform: translate3d(0, 0, 0);
