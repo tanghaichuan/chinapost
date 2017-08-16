@@ -29,21 +29,17 @@
           <t-form>
             <t-form-item label="自定义列">
               <t-checkbox-group vertical>
-                <t-checkbox label="twitter">
-                  <t-icon type="twitter"></t-icon>
-                  <span>Twitter</span>
+                <t-checkbox label="name">
+                  <span>姓名</span>
                 </t-checkbox>
-                <t-checkbox label="facebook">
-                  <t-icon type="facebook"></t-icon>
-                  <span>Facebook</span>
+                <t-checkbox label="age">
+                  <span>年龄</span>
                 </t-checkbox>
-                <t-checkbox label="github">
-                  <t-icon type="github"></t-icon>
-                  <span>Github</span>
+                <t-checkbox label="address">
+                  <span>地址</span>
                 </t-checkbox>
-                <t-checkbox label="snapchat">
-                  <t-icon type="snapchat"></t-icon>
-                  <span>Snapchat</span>
+                <t-checkbox label="phone">
+                  <span>手机</span>
                 </t-checkbox>
               </t-checkbox-group>
             </t-form-item>
@@ -264,4 +260,3 @@
     }
  }
  </style>
-e>

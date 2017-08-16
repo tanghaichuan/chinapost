@@ -78,7 +78,7 @@
       <history-menu v-show="showHistoryMenu" :list="historyData"></history-menu>
     </transition>
     <transition name="move-right">
-      <memo v-show="showMemo" :list="memoList" class="memo" ref="memoWrap"></memo>
+      <memo v-show="showMemo" :list="memoList" class="memo"></memo>
     </transition>
   </nav>
 </div>
@@ -150,11 +150,11 @@ export default {
   mounted() {
     //do something after mounting vue instance
     let stopEl = this.$refs.systemMenu;
-    let memoEl = this.$refs.memoWrap;
-    console.log(memoEl);
+    // let memoEl = this.$refs.memoWrap;
+    // console.log(memoEl);
     document.addEventListener('click', this.closeAllMenu);
     stopEl.addEventListener('click', e => e.stopPropagation());
-    memoEl.addEventListener('click', e => e.stopPropagation());
+    // memoEl.addEventListener('click', e => e.stopPropagation());
   },
   destroyed() {
     document.removeEventListener('click', this.closeAllMenu);
