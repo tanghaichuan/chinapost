@@ -6,6 +6,7 @@ const test = r => require.ensure([], () => r(require('demo/test/test')), 'test')
 const tabel =  r => require.ensure([], () => r(require('demo/test/table1')), 'test')
 const tabelDemo =  r => require.ensure([], () => r(require('demo/table/table')), 'test')
 const comTable =  r => require.ensure([], () => r(require('demo/owns/listTable/comperhensiveTable')), 'test')
+const editTable = r => require.ensure([], () => r(require('demo/owns/listTable/editTable')), 'test')
 
 export default[
   {
@@ -82,6 +83,11 @@ export default[
     name : 'query',
     path : '/query',
     component : query
+  },
+  {
+    name : 'editTable',
+    path : '/edit-table',
+    component : editTable
   },
   ...cloud,
   ...osp, {
