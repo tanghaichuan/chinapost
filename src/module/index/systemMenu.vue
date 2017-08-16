@@ -29,7 +29,7 @@ export default {
   },
   props: {
     menuList: {
-      type: Object
+      type: Array
     }
   },
   computed: {
@@ -61,6 +61,7 @@ export default {
           url: this.tempList[index].url
         }
         this.newTabs(send);
+        this.$emit("closesysmenu")
       }
     },
     back(index) {
