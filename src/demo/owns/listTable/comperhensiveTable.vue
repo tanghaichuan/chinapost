@@ -19,15 +19,45 @@
             <span class="ml-2 btn-name">新建联系人</span>
       </t-button>
       </span>
-      <t-button icon="view-column" class="select-btn align-middle"></t-button>
-      <t-button icon="filter-variant" class="filter-btn align-middle"></t-button>
+      <t-button @click="showFilter" icon="filter-variant" class="filter-btn align-middle" type="outline"></t-button>
+      <t-button @click="showDiy" icon="view-column" class="select-btn align-middle" type="outline"></t-button>
       <span class="right">
-          <t-input v-model="searchVal" icon="magnify" placeholder="搜索..." style="width: 200px;"></t-input>
-        </span>
+        <t-input v-model="searchVal" icon="magnify" placeholder="搜索..." style="width: 200px;"></t-input>
+      </span>
+      <transition name="fade">
+        <div class="col-diy" v-show="showDiyTab">
+          <t-form>
+            <t-form-item label="自定义列">
+              <t-checkbox-group vertical>
+                <t-checkbox label="twitter">
+                  <t-icon type="twitter"></t-icon>
+                  <span>Twitter</span>
+                </t-checkbox>
+                <t-checkbox label="facebook">
+                  <t-icon type="facebook"></t-icon>
+                  <span>Facebook</span>
+                </t-checkbox>
+                <t-checkbox label="github">
+                  <t-icon type="github"></t-icon>
+                  <span>Github</span>
+                </t-checkbox>
+                <t-checkbox label="snapchat">
+                  <t-icon type="snapchat"></t-icon>
+                  <span>Snapchat</span>
+                </t-checkbox>
+              </t-checkbox-group>
+            </t-form-item>
+            <t-button type="primary" @click="handleSave" block>保存</t-button>
+          </t-form>
+        </div>
+      </transition>
     </div>
     <div class="table">
       <t-table line :columns="MultiSelectcolumns" :data="data">
       </t-table>
+      <transition name="move-right">
+        <filterSlide v-show="showFilterTab"></filterSlide>
+      </transition>
     </div>
     <div class="pageNum">
       <t-pager :total="100"></t-pager>
@@ -37,10 +67,14 @@
 </template>
 
  <script>
+ import filterSlide from '@/demo/owns/listTable/filterSlide'
  export default {
    data (){
      return {
        searchVal: '',
+       showFilterTab: false,
+       showDiyTab: false,
+       social:'',
        MultiSelectcolumns: [
        {
          type: 'selection',
@@ -126,7 +160,19 @@
      },
      remove(index) {
       this.data.splice(index, 1)
-     }
+    },
+    showFilter() {
+      this.showFilterTab = !this.showFilterTab
+    },
+    showDiy() {
+      this.showDiyTab = !this.showDiyTab
+    },
+    handleSave() {
+      console.log('保存')
+    }
+   },
+   components: {
+     filterSlide
    }
  }
  </script>
@@ -147,6 +193,7 @@
       .head {
         width: 100%;
         margin-bottom: 20px;
+        position: relative;
         &:after {
           display: block;
           content: '';
@@ -175,6 +222,17 @@
             }
           }
         }
+        .col-diy {
+          position: absolute;
+          right: 40px;
+          top: 30px;
+          width: 182px;
+          padding: 10px;
+          background: #fff;
+          border-radius: 2px;
+          box-shadow: 0 5px 30px rgba(0,0,0,.15);
+          z-index: 999;
+        }
         .right {
           float: right;
           white-space: nowrap;
@@ -185,12 +243,15 @@
           line-height: 28px;
           padding: 0 5px;
         }
-        .filter-btn {
+        .select-btn {
           margin-right: 10px;
         }
       }
       .table {
         margin-bottom: 10px;
+        position: relative;
+        width: 100%;
+        height: 400px;
       }
       .pageNum {
         width: 100%;

@@ -26,7 +26,6 @@
     <div class="d-inline ml-3">
       <t-dropdown class="sb" trigger="click">
         <t-input icon="magnify" size="lg" placeholder="搜索...">
-
         </t-input>
         <t-dropdown-menu slot="list">
           <t-dropdown-item class="luda">
@@ -79,7 +78,7 @@
       <history-menu v-show="showHistoryMenu" :list="historyData"></history-menu>
     </transition>
     <transition name="move-right">
-      <memo v-show="showMemo" :list="memoList" class="memo"></memo>
+      <memo v-show="showMemo" :list="memoList" class="memo" ref="memoWrap"></memo>
     </transition>
   </nav>
 </div>
@@ -124,15 +123,17 @@ export default {
     ...mapMutations({
       changeMenu: 'CHANGE_MENU'
     }),
-    closeSystemMenu() {
+    closeAllMenu() {
       this.showSystemMenu = false;
+      this.showMemo = false;
     },
     toggleSysMenue() {
       this.showSystemMenu = !this.showSystemMenu;
     },
-    toggleMemo() {
+    toggleMemo(e) {
+
+      e.stopPropagation()
       this.showMemo = !this.showMemo;
-      console.log('showMemo')
     }
   },
   created() {
@@ -149,11 +150,14 @@ export default {
   mounted() {
     //do something after mounting vue instance
     let stopEl = this.$refs.systemMenu;
-    document.addEventListener('click', this.closeSystemMenu);
+    let memoEl = this.$refs.memoWrap;
+    console.log(memoEl);
+    document.addEventListener('click', this.closeAllMenu);
     stopEl.addEventListener('click', e => e.stopPropagation());
+    memoEl.addEventListener('click', e => e.stopPropagation());
   },
   destroyed() {
-    document.removeEventListener('click', this.closeSystemMenu);
+    document.removeEventListener('click', this.closeAllMenu);
   },
   components: {
     historyMenu,

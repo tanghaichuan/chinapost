@@ -1,5 +1,5 @@
 <template>
-<div class="memo">
+<div class="memo" ref="memo">
   <div class="memo-container p-3">
     <h1 class="text-xl text-justify">便签</h1>
     <t-input class="pb-2" v-model="titleVal" placeholder="未命名" size="sm"></t-input>
@@ -79,6 +79,11 @@ export default {
         alert('请输入内容')
       }
     }
+  },
+  mounted() {
+    this.$refs.memo.addEventListener('click', (e) => {
+      e.stopPropagation()
+    })
   }
 }
 </script>
