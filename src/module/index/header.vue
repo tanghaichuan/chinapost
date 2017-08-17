@@ -17,9 +17,32 @@
           <system-menu v-show="showSystemMenu" :menuList="menuList" @closesysmenu="closemenu"></system-menu>
         </transition>
       </div>
-      <t-tooltip content="历史记录" placement="bottom">
-        <a href="javascript:;" :class="['menu-icon ml-2',{'active':showHistoryMenu}]" @click="historyMenuHandle($event)">
-          <t-icon type="backup-restore" size="26"></t-icon>
+
+      <div class="d-inline ml-3">
+        <t-dropdown class="sb" trigger="click">
+          <t-input icon="magnify" size="lg" placeholder="搜索...">
+          </t-input>
+          <t-dropdown-menu slot="list">
+            <t-dropdown-item class="luda">
+              <t-icon type="account-box-outline" size="26" class="mr-2"></t-icon>
+              我是驴打滚驴打滚
+            </t-dropdown-item>
+            <t-dropdown-item divided>
+              <t-icon type="account-box-outline" size="26" class="mr-2"></t-icon>
+              我是北京烤鸭
+            </t-dropdown-item>
+          </t-dropdown-menu>
+        </t-dropdown>
+      </div>
+      <div class="querybtn">
+        <t-button slot="appendbtn" :class="['pl-3','pr-3']" style="{height:50px;}" @click.native="toggleQueryBtn">
+          <i class="aid aid-menu"></i>
+        </t-button>
+        <popquery v-show="showQuery"></popquery>
+      </div>
+      <t-tooltip content="便签 & 待办事项" placement="bottom" class=" ml-auto">
+        <a href="javascript:;" class="menu-icon" @click="toggleMemo">
+          <t-icon type="calendar-plus" size="26"></t-icon>
         </a>
       </t-tooltip>
     </div>
@@ -93,6 +116,7 @@ import {
 } from 'vuex'
 import historyMenu from 'components/historyMenu'
 import systemMenu from 'components/systemMenu'
+import popquery from 'components/popquery'
 import memo from 'components/memo'
 import invokers from '@/invokers'
 export default {
@@ -101,6 +125,7 @@ export default {
       historyData: [],
       showSystemMenu: false,
       showMemo: false,
+      showQuery: false,
       menuList: [],
       memoList: []
     }
@@ -131,6 +156,9 @@ export default {
     },
     toggleSysMenue() {
       this.showSystemMenu = !this.showSystemMenu;
+    },
+    toggleQueryBtn() {
+      this.showQuery = !this.showQuery;
     },
     closemenu() {
       this.showSystemMenu = false;
@@ -169,7 +197,8 @@ export default {
   components: {
     historyMenu,
     systemMenu,
-    memo
+    memo,
+    popquery
   }
 }
 </script>
@@ -235,16 +264,22 @@ export default {
             color: #333;
         }
     }
-    .navbar {
-        background: #fff;
-        .btn.btn-secondary {
-            height: 50px!important;
-            line-height: 50px!important;
-            margin-left: -1px;
-            background: #f5f5f5;
-            border-radius: 0;
-            z-index: 2;
-        }
+}
+.input-group {
+    .aid-magnify,
+    .aid-menu {
+        color: #333;
+    }
+}
+.navbar {
+    background: #fff;
+    .btn.btn-secondary {
+        height: 50px;
+        line-height: 50px;
+        margin-left: -1px;
+        background: #f5f5f5;
+        border-radius: 0;
+        z-index: 2;
     }
 }
 </style>

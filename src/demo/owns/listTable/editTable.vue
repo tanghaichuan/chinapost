@@ -1,5 +1,18 @@
 <template>
 <div class="edit-table">
+	<!-- 这是一个查询结果的div -->
+	<div class="query-result">
+		<h2 class="query-tit">查询结果</h2>
+		<ul class="query-list">
+			<li v-for="items in queryList">
+				<p v-for="item in items.list">
+					<t-avatar :img-src="item.src" v-if="item.flag"></t-avatar>
+					{{item.label}}
+				</p>
+			</li>
+		</ul>
+	</div>
+	<!-- 查询结果结束 -->
 	<p class="text">行内编辑</p>
 	<div class="table-edit">
 		<t-table border :columns="columns" :data="data"></t-table>
@@ -28,6 +41,92 @@
 export default{
 	data(){
 		return{
+			queryList:[
+				{
+					list:[
+						{
+							label:'Axxx',
+							flag:true,
+							src:require('../../../asset/image/avastar.jpg')
+						},
+						{
+							label:'编号235412636',
+							flag:false
+						},
+						{	
+							label:'客户洞察相关属性',
+							flag:false
+						},
+						{
+							label:'客户洞察相关属性',
+							flag:false
+						}
+					]
+				},
+				{
+					list:[
+						{
+							label:'Axxx',
+							flag:true,
+							src:require('../../../asset/image/avastar.jpg')
+						},
+						{
+							label:'编号235412636',
+							flag:false
+						},
+						{	
+							label:'客户洞察相关属性',
+							flag:false
+						},
+						{
+							label:'客户洞察相关属性',
+							flag:false
+						}
+					]
+				},
+				{
+					list:[
+						{
+							label:'Axxx',
+							flag:true,
+							src:require('../../../asset/image/avastar.jpg')
+						},
+						{
+							label:'编号235412636',
+							flag:false
+						},
+						{	
+							label:'客户洞察相关属性',
+							flag:false
+						},
+						{
+							label:'客户洞察相关属性',
+							flag:false
+						}
+					]
+				},
+				{
+					list:[
+						{
+							label:'Axxx',
+							flag:true,
+							src:require('../../../asset/image/avastar.jpg')
+						},
+						{
+							label:'编号235412636',
+							flag:false
+						},
+						{	
+							label:'客户洞察相关属性',
+							flag:false
+						},
+						{
+							label:'客户洞察相关属性',
+							flag:false
+						}
+					]
+				}
+			],
 			textValue:'',
 			columns:[
 				{
@@ -228,6 +327,50 @@ export default{
 }	
 </script>
 <style lang="less">
+.query-result{
+	// width:80%;
+	margin-top:20px;
+	padding:0 10px 20px;
+	background:#f4f8f9;
+	.query-tit{
+		margin:0;
+		padding:18px 0;
+		line-height:20px;
+		color:#009241;
+		font-size:16px;
+	}
+	.query-list{
+		list-style: none;
+		margin:0;
+		padding:0;
+		li{
+			background:#fff;
+			border-radius:8px;
+			padding:10px 15px;
+			margin-bottom:12px;
+			*zoom:1;
+			&:after{
+				content:" ";
+				height:0;
+				clear:both;
+				display:block;
+			}
+			p{
+				margin:0;
+				width:25%;
+				float:left;
+				line-height:40px;
+				color:#333;
+				.avatar{	
+					margin-right:10px;
+				}
+				&:last-child{
+					text-align:center;
+				}
+			}
+		}
+	}
+}
 .edit-table{
 	width:80%;
 	margin:0 auto;

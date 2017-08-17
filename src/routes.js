@@ -1,7 +1,6 @@
 import cloud from './demo/cloud/route'
 import osp from './demo/osp/route'
 
-const query = r => require.ensure([], () => r(require('demo/popquery/popquery')), 'test')
 const test = r => require.ensure([], () => r(require('demo/test/test')), 'test')
 const tabel =  r => require.ensure([], () => r(require('demo/test/table1')), 'test')
 const tabelDemo =  r => require.ensure([], () => r(require('demo/table/table')), 'test')
@@ -20,6 +19,14 @@ export default[
       }, {
         name: 'Trouble',
         path: '/trouble',
+        component: require('./module/trouble/trouble.vue')
+      },{
+        name: 'Trouble1',
+        path: '/trouble/1',
+        component: require('./module/trouble/trouble.vue')
+      },{
+        name: 'Trouble2',
+        path: '/trouble/2',
         component: require('./module/trouble/trouble.vue')
       }, {
         name: 'trouble1',
@@ -49,6 +56,11 @@ export default[
         name: 'Trouble13',
         path: '/trouble13',
         component: require('./module/trouble/trouble.vue')
+      },{
+        path : '*',
+        component : {
+          template: '<div>not found</div>'
+        }
       }
     ]
   }, {
@@ -80,16 +92,11 @@ export default[
     component :  comTable
   },
   {
-    name : 'query',
-    path : '/query',
-    component : query
-  },
-  {
     name : 'editTable',
     path : '/edit-table',
     component : editTable
   },
-  ...cloud,
+  ...cloud, 
   ...osp, {
     path : '*',
     component : {
