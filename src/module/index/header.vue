@@ -39,9 +39,12 @@
           </t-dropdown-menu>
         </t-dropdown>
       </div>
-      <t-button slot="appendbtn" :class="['pl-3','pr-3']" style="{height:50px;}">
-        <i class="aid aid-menu"></i>
-      </t-button>
+      <div class="querybtn">
+        <t-button slot="appendbtn" :class="['pl-3','pr-3']" style="{height:50px;}" @click.native="toggleQueryBtn">
+          <i class="aid aid-menu"></i>
+        </t-button>
+        <popquery v-show="showQuery"></popquery>
+      </div>
       <t-tooltip content="便签 & 待办事项" placement="bottom" class=" ml-auto">
         <a href="javascript:;" class="menu-icon" @click="toggleMemo">
           <t-icon type="calendar-plus" size="26"></t-icon>
@@ -92,6 +95,7 @@ import {
 } from 'vuex'
 import historyMenu from 'components/historyMenu'
 import systemMenu from 'components/systemMenu'
+import popquery from 'components/popquery'
 import memo from 'components/memo'
 import invokers from '@/invokers'
 export default {
@@ -100,6 +104,7 @@ export default {
       historyData: [],
       showSystemMenu: false,
       showMemo: false,
+      showQuery: false,
       menuList: [],
       memoList: []
     }
@@ -131,6 +136,9 @@ export default {
     },
     toggleSysMenue() {
       this.showSystemMenu = !this.showSystemMenu;
+    },
+    toggleQueryBtn() {
+      this.showQuery = !this.showQuery;
     },
     closemenu() {
       this.showSystemMenu = false;
@@ -166,7 +174,8 @@ export default {
   components: {
     historyMenu,
     systemMenu,
-    memo
+    memo,
+    popquery
   }
 }
 </script>
@@ -181,6 +190,9 @@ export default {
     line-height: 50px;
     .mymenu-block--muenu {
       display: inline-block;
+      position: relative;
+    }
+    .querybtn{
       position: relative;
     }
   }
@@ -235,8 +247,8 @@ export default {
   .navbar {
     background: #fff;
     .btn.btn-secondary {
-      height: 50px!important;
-      line-height: 50px!important;
+      height: 50px;
+      line-height: 50px;
       margin-left: -1px;
       background: #f5f5f5;
       border-radius: 0;
