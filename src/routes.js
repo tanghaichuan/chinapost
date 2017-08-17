@@ -61,11 +61,11 @@ export default[
     path : '/alert',
     component :  permissionAlert
   },
-  {
-    name : 'query',
-    path : '/query',
-    component : query
-  },
+  // {
+  //   name : 'query',
+  //   path : '/query',
+  //   component : query
+  // },
   {
     name : 'editTable',
     path : '/edit-table',

@@ -44,12 +44,12 @@
       </t-dropdown>
     </div>
     <div class="pop-query">
-        <t-button slot="appendbtn" @click.native="toggleQueryBtn" :class="['pl-3','pr-3']" style="{height:50px;}">
-          <i class="aid aid-menu"></i>
-        </t-button> 
-        <popquery v-show="showQuery"></popquery>
+      <t-button slot="appendbtn" @click.native="toggleQueryBtn" :class="['pl-3','pr-3']" style="{height:50px;}">
+        <i class="aid aid-menu"></i>
+      </t-button>
+      <popquery v-show="showQuery"></popquery>
     </div>
-    
+
     <!-- 待办事项按钮 -->
     <t-tooltip content="便签 & 待办事项" placement="bottom" class=" ml-auto">
       <a href="javascript:;" class="menu-icon" @click="toggleMemo">
