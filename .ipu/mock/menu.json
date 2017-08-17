@@ -161,7 +161,7 @@
             },
             {
               "name": "客户洞察",
-              "icon":"&#xe786;"，
+              "icon":"&#xe786;",
               "children": [{
                   "name": "客户价值",
                   "url": "/insight/1"
@@ -227,6 +227,7 @@
         },
         {
           "name": "产品管理",
+          "icon":"&#xe78a;",
           "children": [{
               "name": "Bulletin Management",
               "url": "/trouble/37"

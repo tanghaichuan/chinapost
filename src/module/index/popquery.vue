@@ -1,6 +1,6 @@
 <template>
-    <div class="pop-query" @input="getInput">
-        <t-tabs>
+    <div class="pop-query">
+        <t-tabs  @input="getInput">
             <t-tab-panel label="个人客户" name="tab-1">
                 <t-form :model="formPersonal" label-position="left" :rules="rulePersonal" ref="formPersonal" :label-span="4">
                     <t-form-item label="证件类型" prop="type" class="ext-width">
@@ -157,7 +157,7 @@ export default {
 .pop-query {
     padding-top: 20px;
     position: absolute;
-    top: 75px;
+    top: 66px;
     left: 438px;
     z-index: 3;
     display: inline-block;
@@ -165,15 +165,20 @@ export default {
     box-shadow: 0 5px 30px rgba(0, 0, 0, 0.15);
     padding-bottom: 20px;
     .tab-content {
-        padding: 30px 60px 0px 30px;
+        padding: 20px 30px 0px 20px;
+        &>.active{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
         .tab-pane {
             height: 170px;
         }
     }
 }
-
 .form-group {
     margin-bottom: 0.7rem;
+    width: 100%;
 }
 
 .ext-width {
@@ -181,7 +186,6 @@ export default {
         text-align: right !important;
     }
 }
-
 .query-btn-group {
     padding: 0 30px;
     display: flex;
