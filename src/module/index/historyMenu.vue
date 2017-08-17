@@ -1,7 +1,7 @@
 <template>
 <div class="history-menu">
   <ul class="dropdown_menu">
-    <router-link v-for="(item,index) in list" key="index" :to="item.url" tag="li" @click.native="liclick(item)">
+    <router-link v-for="(item,index) in list" key="index" :to="item.url" tag="li" @click.native="goNext(item)">
       <span class="icon"><i :class="['aid',item.icon]"></i></span>
       <p class="title">{{item.title}}</p>
       <p class="desc">{{item.describe}}</p>
@@ -38,8 +38,7 @@ export default {
     ])
   },
   methods: {
-    liclick(item) {
-
+    goNext(item) {
       this.createTab({
         tabName: item.title,
         url: item.url

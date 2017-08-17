@@ -7,14 +7,6 @@ export default {
       tabList: [{
           tabName: 'home',
           url: '/'
-        },
-        {
-          tabName: '历史',
-          url: '/trouble1'
-        },
-        {
-          tabName: '历史2',
-          url: '/trouble2'
         }]
     },
     getters,

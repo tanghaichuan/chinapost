@@ -12,9 +12,6 @@
 </template>
 <script>
 import home from 'components/home.vue'
-import {
-  attr
-} from 'common/js/dom'
 
 import {
   mapState,
@@ -40,8 +37,8 @@ export default {
     }
   },
   methods: {
-    removeItem(rmIndex) {
-
+    removeItem(i) {
+      console.log(i)
     },
     changeTab(index) {
       let url = this.$refs.tabSelect[index].$attrs.myurl
@@ -75,7 +72,7 @@ export default {
     }
 }
 .post-tabs {
-
+    border-bottom: 1px solid #eee;
     .tabs-list {
         background: #f9f9f9;
         li {
