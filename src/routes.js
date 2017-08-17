@@ -17,45 +17,9 @@ export default[
         path: '',
         component: require('./module/index/home.vue')
       }, {
-        name: 'Trouble',
-        path: '/trouble',
-        component: require('./module/trouble/trouble.vue')
-      },{
-        name: 'Trouble1',
-        path: '/trouble/1',
-        component: require('./module/trouble/trouble.vue')
-      },{
-        name: 'Trouble2',
-        path: '/trouble/2',
-        component: require('./module/trouble/trouble.vue')
-      }, {
-        name: 'trouble1',
-        path: '/trouble1',
-        component: require('./module/trouble/trouble.vue')
-      }, {
-        name: 'Trouble2',
-        path: '/trouble2',
-        component: require('./module/trouble/trouble.vue')
-      }, {
-        name: 'Trouble3',
-        path: '/trouble3',
-        component: require('./module/trouble/trouble.vue')
-      }, {
-        name: 'Trouble4',
-        path: '/trouble4',
-        component: require('./module/trouble/trouble.vue')
-      }, {
-        name: 'Trouble11',
-        path: '/trouble11',
-        component: require('./module/trouble/trouble.vue')
-      }, {
-        name: 'Trouble12',
-        path: '/trouble12',
-        component: require('./module/trouble/trouble.vue')
-      }, {
-        name: 'Trouble13',
-        path: '/trouble13',
-        component: require('./module/trouble/trouble.vue')
+        name: 'Agentview',
+        path: '/agentview/:id',
+        component: require('./module/index/home.vue')
       },{
         path : '*',
         component : {
@@ -96,7 +60,7 @@ export default[
     path : '/edit-table',
     component : editTable
   },
-  ...cloud, 
+  ...cloud,
   ...osp, {
     path : '*',
     component : {

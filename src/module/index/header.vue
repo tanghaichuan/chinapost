@@ -1,52 +1,32 @@
 <template>
 <div class="header">
   <nav class="navbar  navbar-expand-lg">
+    <!-- logo  -->
     <t-tooltip content="主页" placement="bottom">
       <a href="/" class="layout-logo mr-4">
           <img src="../../asset/image/logo.png" width="130" alt="">
         </a>
     </t-tooltip>
+    <!-- 菜单按钮 -->
     <div class="mymenu">
       <div class="mymenu-block--muenu" ref="systemMenu">
         <t-tooltip content="系统菜单" placement="bottom" @click.native="toggleSysMenue">
-          <a href="javascript:;" class="menu-icon">
+          <a href="javascript:;" :class="[{'active':showSystemMenu},'menu-icon']">
             <t-icon type="apps" size="26"></t-icon>
           </a>
         </t-tooltip>
         <transition name="fade">
           <system-menu v-show="showSystemMenu" :menuList="menuList" @closesysmenu="closemenu"></system-menu>
         </transition>
+        <!-- 历史记录菜单 -->
+        <t-tooltip class="ml-2" content="历史记录" placement="bottom" @click.native="historyMenuHandle">
+          <a href="javascript:;" :class="[{'active':showHistoryMenu},'menu-icon']">
+            <t-icon type="history" size="26"></t-icon>
+          </a>
+        </t-tooltip>
       </div>
-
-      <div class="d-inline ml-3">
-        <t-dropdown class="sb" trigger="click">
-          <t-input icon="magnify" size="lg" placeholder="搜索...">
-          </t-input>
-          <t-dropdown-menu slot="list">
-            <t-dropdown-item class="luda">
-              <t-icon type="account-box-outline" size="26" class="mr-2"></t-icon>
-              我是驴打滚驴打滚
-            </t-dropdown-item>
-            <t-dropdown-item divided>
-              <t-icon type="account-box-outline" size="26" class="mr-2"></t-icon>
-              我是北京烤鸭
-            </t-dropdown-item>
-          </t-dropdown-menu>
-        </t-dropdown>
-      </div>
-      <div class="querybtn">
-        <t-button slot="appendbtn" :class="['pl-3','pr-3']" style="{height:50px;}" @click.native="toggleQueryBtn">
-          <i class="aid aid-menu"></i>
-        </t-button>
-        <popquery v-show="showQuery"></popquery>
-      </div>
-      <t-tooltip content="便签 & 待办事项" placement="bottom" class=" ml-auto">
-        <a href="javascript:;" class="menu-icon" @click="toggleMemo">
-          <t-icon type="calendar-plus" size="26"></t-icon>
-        </a>
-      </t-tooltip>
     </div>
-
+    <!-- 搜索框 -->
     <div class="d-inline ml-3">
       <t-dropdown class="sb" trigger="click">
         <t-input icon="magnify" size="lg" placeholder="搜索...">
@@ -66,21 +46,13 @@
     <t-button slot="appendbtn" :class="['pl-3','pr-3']" style="{height:50px;}">
       <i class="aid aid-menu"></i>
     </t-button>
+    <!-- 待办事项按钮 -->
     <t-tooltip content="便签 & 待办事项" placement="bottom" class=" ml-auto">
       <a href="javascript:;" class="menu-icon" @click="toggleMemo">
         <t-icon type="calendar-plus" size="26"></t-icon>
       </a>
     </t-tooltip>
-    <!-- <t-tooltip content="公告" placement="bottom">
-      <a href="javascript:;" class="menu-icon ml-2">
-        <t-icon type="bullhorn" size="26"></t-icon>
-      </a>
-    </t-tooltip>
-    <t-tooltip content="消息" placement="bottom">
-      <a href="javascript:;" class="menu-icon ml-2">
-        <t-icon type="bell-outline" size="26"></t-icon>
-      </a>
-    </t-tooltip> -->
+    <!-- 个人中心按钮 -->
     <t-dropdown trigger="click" placement="bottom-end">
       <t-badge class="ml-4">
         <t-avatar dot-state="danger" text="HC" size="sm"></t-avatar>
@@ -93,16 +65,11 @@
         <t-dropdown-item>退出</t-dropdown-item>
       </t-dropdown-menu>
     </t-dropdown>
-    <!-- <t-dropdown trigger="click" placement="bottom-end" class="mr-2">
-      <t-badge count="3" state='warning' class="ml-4">
-        <a href="javascript:;" class="text-muted">
-          <t-icon type="bell" size="20"></t-icon>
-        </a>
-      </t-badge>
-    </t-dropdown> -->
+    <!-- 历史记录菜单 -->
     <transition name="fade">
       <history-menu v-show="showHistoryMenu" :list="historyData"></history-menu>
     </transition>
+    <!-- 便签 -->
     <transition name="move-right">
       <memo v-show="showMemo" :list="memoList" class="memo"></memo>
     </transition>
@@ -116,7 +83,7 @@ import {
 } from 'vuex'
 import historyMenu from 'components/historyMenu'
 import systemMenu from 'components/systemMenu'
-import popquery from 'components/popquery'
+// import popquery from 'components/popquery'
 import memo from 'components/memo'
 import invokers from '@/invokers'
 export default {
@@ -140,7 +107,6 @@ export default {
   methods: { // methods
     historyMenuHandle(e) {
       //根据 state 中的值来显示历史菜单
-      console.log(e);
       e.stopPropagation()
       this.changeMenu({
         showHistoryMenu: !this.showHistoryMenu
@@ -198,7 +164,7 @@ export default {
     historyMenu,
     systemMenu,
     memo,
-    popquery
+    // popquery
   }
 }
 </script>
