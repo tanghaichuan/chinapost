@@ -92,6 +92,7 @@ export default {
     overflow: auto;
     backface-visibility: hidden;
     height: auto;
+    box-shadow: 0 5px 30px rgba(0, 0, 0, 0.15);
 }
 
 .menu-wrapper {
