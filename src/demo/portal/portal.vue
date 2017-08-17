@@ -8,35 +8,82 @@
       <t-menu theme="dark" :accordion="accordion" :open-position="openPosition" :class="[{'menu--folded': isOpen===false}]">
         <t-submenu name="1">
           <template slot="title">
-            <t-icon type="home"></t-icon>
-            <span>内容管理</span>
+            <i class="iconfont">&#xe784;</i>
+            <span>客户360视图</span>
           </template>
-          <t-menu-item name="1-1">文章管理</t-menu-item>
-          <t-menu-item name="1-2">评论管理</t-menu-item>
-          <t-menu-item name="1-3">举报管理</t-menu-item>
+          <t-submenu name="1-1">
+            <template slot="title">
+              <span>基本视图</span>
+            </template>
+            <t-menu-item name="1-1-1">客户基本信息</t-menu-item>
+            <t-menu-item name="1-1-2">联系信息</t-menu-item>
+            <t-menu-item name="1-1-3">社交网络信息</t-menu-item>
+          </t-submenu>          
+          <t-submenu name="1-2">
+            <template slot="title">
+              <span>关系视图</span>
+            </template>
+            <t-menu-item name="1-2-1">咨询&投诉记录</t-menu-item>
+            <t-menu-item name="1-2-2">客户服务活动记录</t-menu-item>
+            <t-menu-item name="1-2-3">地址信息</t-menu-item>
+            <t-menu-item name="1-2-3">获客来源</t-menu-item>
+          </t-submenu>
         </t-submenu>
         <t-submenu name="2">
           <template slot="title">
-            <t-icon type="account-multiple"></t-icon>
-            <span>用户管理</span>
+            <i class="iconfont">&#xe783;</i>
+            <span>客户管理</span>
           </template>
           <t-menu-item name="2-1">新增用户</t-menu-item>
           <t-menu-item name="2-2">活跃用户</t-menu-item>
         </t-submenu>
         <t-submenu name="3">
           <template slot="title">
-            <t-icon type="chart-bar"></t-icon>
-            <span>统计分析</span>
+            <i class="iconfont">&#xe785;</i>
+            <span>销售管理</span>
           </template>
-          <t-menu-group title="使用">
-            <t-menu-item name="3-1">新增和启动</t-menu-item>
-            <t-menu-item name="3-2">活跃分析</t-menu-item>
-            <t-menu-item name="3-3">时段分析</t-menu-item>
-          </t-menu-group>
-          <t-menu-group title="留存">
-            <t-menu-item name="3-4">用户留存</t-menu-item>
-            <t-menu-item name="3-5">流失用户</t-menu-item>
-          </t-menu-group>
+          <t-menu-item name="2-1">新增用户</t-menu-item>
+          <t-menu-item name="2-2">活跃用户</t-menu-item>
+        </t-submenu>
+        <t-submenu name="4">
+          <template slot="title">
+            <i class="iconfont">&#xe787;</i>
+            <span>服务管理</span>
+          </template>
+          <t-menu-item name="2-1">新增用户</t-menu-item>
+          <t-menu-item name="2-2">活跃用户</t-menu-item>
+        </t-submenu>
+        <t-submenu name="5">
+          <template slot="title">
+            <i class="iconfont">&#xe786;</i>
+            <span>客户洞察</span>
+          </template>
+          <t-menu-item name="2-1">新增用户</t-menu-item>
+          <t-menu-item name="2-2">活跃用户</t-menu-item>
+        </t-submenu>
+        <t-submenu name="6">
+          <template slot="title">
+            <i class="iconfont">&#xe788;</i>
+            <span>知识库管理</span>
+          </template>
+          <t-menu-item name="2-1">新增用户</t-menu-item>
+          <t-menu-item name="2-2">活跃用户</t-menu-item>
+        </t-submenu>
+        <t-submenu name="7">
+          <template slot="title">
+            <i class="iconfont">&#xe789;</i>
+            <span>营销管理</span>
+          </template>
+          <t-menu-item name="2-1">新增用户</t-menu-item>
+          <t-menu-item name="2-2">活跃用户</t-menu-item>
+        </t-submenu>
+        <t-submenu name="8">
+          <template slot="title">
+            <i class="iconfont">&#xe78a;</i>
+            <span>渠道管理</span>
+          </template>
+          <t-menu-item name="2-1">新增用户</t-menu-item>
+          <t-menu-item name="2-2">活跃用户</t-menu-item>
         </t-submenu>
       </t-menu>
     </div>
