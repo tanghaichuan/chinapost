@@ -155,9 +155,10 @@ export default {
 </script>
 <style scoped lang="less">
 .pop-query {
+    padding-top: 20px;
     position: absolute;
     top: 75px;
-    left: 0;
+    left: 438px;
     z-index: 3;
     display: inline-block;
     background: #fff;
@@ -169,12 +170,6 @@ export default {
             height: 170px;
         }
     }
-}
-
-
-.form .form--label-left {
-
-
 }
 
 .form-group {
