@@ -10,7 +10,7 @@
         >
           <div class="tags mb-3">
             <span class="text-sm mr-2">已选择:</span>
-            <t-tag  v-for="(item,index) in name" :key="item" type="text" @on-close="handleClose($event,name,index)" >{{ item }}</t-tag>
+            <t-tag  v-for="(item,index) in name" :key="item" type="text" @on-close="handleClose($event,name,item,index)" >{{ item }}</t-tag>
             <!-- <t-button type="primary" size="sm" @click="tagAdd">添加标签</t-button> -->
           </div>
           <div class="contentList">
@@ -41,10 +41,10 @@
             modal: false,
             name: [],
             show: [],
-            names: ['李四','王小丫','刘晓虎'],
+            names: ['李四','王小丫','刘晓虎',"张三"],
             showNames: false,//显示选择人员中的名字
-            // names: [{name:'李四',show:false},{name:'王小丫',show:false},{name:'刘晓虎',show:false}],
-            showIcon: [false,false,false],
+            namesObj: [],//mock人员数据
+            showIcon: [false,false,false,false],
             data: [{
                 label: '北京市',
                 children: [{
@@ -74,37 +74,42 @@
         //    type: Boolean,
         //    default: false
         //  }
+        namesObj: {
+          type: Array,
+          default: []
+        }
        },
        methods: {
           ok () {
             this.$Message.info('点击了确定');
+            console.log(this.namesObj.length)
           },
           cancel () {
             this.$Message.info('点击了取消');
           },
-          handleClose (data,name,index) {
+          handleClose (data,name,item,index) {
             console.log('删除标签',name)
             // console.log(data.target)
-            console.log(index)
             this.name.splice(index,1)
-            for (let i = 0;i<this.showIcon.length;i++){
-              if (i === index ) {
-                this.showIcon[i] = !this.showIcon[i]
+            for (let i = 0;i<this.names.length;i++){
+              if (this.names[i] === item ) {
+                this.showIcon[i] = false
               }
             }
             console.log(this.name)
           },
           tagAdd (index) {
+            // this.getArrayFromMock();
               let val = this.$refs.nameVal[index].innerHTML
               for(let i = 0;i<this.name.length;i++){
                 if (val === this.name[i]) {
                   this.name.splice(i ,1)
-                  this.showIcon[index] = !this.showIcon[index];
+                  // this.showIcon[index] = !this.showIcon[index];
                   return
                 }
               }
               this.name.push(val)//push进显示tag的数组
-              this.showIcon[index] = !this.showIcon[index];
+              this.showIcon[index] = true;
           },
           handleNodeClick(data) {
             console.log(data);
@@ -118,12 +123,22 @@
             for (let i = 0;i < this.names.length;i++){
               this.name = this.names[i].name
             }
-            console.log(name)
+          },
+          getArrayFromMock() {
+            console.log('执行')
+            console.log(this.namesObj.length)
+            for (let i = 0;i<this.namesObj.length;i++){
+              this.names[i] = this.namesObj[i].name
+              console.log(this.namesObj[i].name)
+            }
           }
        },
        created () {
         //  this.names = this.data
-       }
+        this.$domains.cnpost.get(this.$services.GET_NAMES).then((res) => {
+          this.namesObj = res.data.list;
+        })
+      }
     }
 </script>
 <style lang="less">
