@@ -96,11 +96,11 @@
           </t-checkbox-group>
         </div>
 
-        <div class="d-flex flex-column ifrom" @click="modaltrue">
-          <div class="mt-3">
+        <div class="d-flex flex-column ifrom">
+          <div class="mt-3" @click="modaltrue">
             <t-form inline class="t-form">
               <t-form-item label="选择人员:" class="person">
-                <t-input v-model="value4" @click="modal" icon="account-multiple" icon-placement="right" placeholder=""></t-input>
+                <t-input v-model="value4" icon="account-multiple" icon-placement="right" placeholder=""></t-input>
               </t-form-item>
             </t-form>
           </div>
@@ -159,7 +159,7 @@
   </t-tab-panel>
   <div class="alert-container">
     <!-- <t-button type="primary" @click="modal = true">点击显示模态框</t-button> -->
-    <t-modal v-model="modal" title="选择人员" @on-ok="ok" @on-cancel="cancel" class="modal-body" style="background:#fff;">
+    <t-modal v-model="modalShow" title="选择人员" @on-ok="ok" @on-cancel="cancel" class="modal-body" style="background:#fff;">
       <div class="tags mb-3">
         <span class="text-sm mr-2">已选择:</span>
         <!-- @on-close="handleClose(item,index) -->
@@ -343,6 +343,7 @@ export default {
 
       },
       modal: false,
+      modalShow: false,
       tags: [],
       selItems: 0,
       single: false,
@@ -409,8 +410,7 @@ export default {
       console.log(data);
     },
     modaltrue() {
-      this.modal = !this.modal
-      console.log(this.modal)
+      this.modalShow = !this.modalShow
     },
     ok() {
       // 点击弹窗确定按钮
