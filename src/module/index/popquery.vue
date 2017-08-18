@@ -1,6 +1,6 @@
 <template>
     <div class="pop-query">
-        <t-tabs  @input="getInput">
+        <t-tabs @input="getInput">
             <t-tab-panel label="个人客户" name="tab-1">
                 <t-form :model="formPersonal" label-position="left" :rules="rulePersonal" ref="formPersonal" :label-span="4">
                     <t-form-item label="证件类型" prop="type" class="ext-width">
@@ -19,12 +19,7 @@
                 </t-form>
             </t-tab-panel>
             <t-tab-panel label="机构客户" name="tab-2">
-                <t-form 
-                :model="formOrganize" 
-                label-position="left" 
-                :rules="ruleOrganize" 
-                ref="formOrganize" 
-                :label-span="4">
+                <t-form :model="formOrganize" label-position="left" :rules="ruleOrganize" ref="formOrganize" :label-span="4">
                     <t-form-item label="同一社会信用代码" prop="credit" class="ext-width">
                         <t-input v-model="formOrganize.credit"></t-input>
                     </t-form-item>
@@ -166,7 +161,7 @@ export default {
     padding-bottom: 20px;
     .tab-content {
         padding: 20px 30px 0px 20px;
-        &>.active{
+        &>.active {
             display: flex;
             align-items: center;
             justify-content: center;
@@ -176,6 +171,7 @@ export default {
         }
     }
 }
+
 .form-group {
     margin-bottom: 0.7rem;
     width: 100%;
@@ -184,8 +180,11 @@ export default {
 .ext-width {
     .col-4 {
         text-align: right !important;
+        flex: 0 0 36.33333%;
+        max-width: 36.33333%;
     }
 }
+
 .query-btn-group {
     padding: 0 30px;
     display: flex;
@@ -196,4 +195,5 @@ export default {
     height: 28px !important;
     line-height: 28px !important;
 }
+
 </style>
