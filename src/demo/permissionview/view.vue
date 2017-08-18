@@ -1,65 +1,3 @@
-<style scoped lang="scss">
-    .t-tab {
-        width: 100%;
-        height: 1000px;
-        .nav-item {
-            margin-left: 1rem;
-        }
-        .index {
-            margin-top: 2rem;
-            .my-tree {
-                border: 1px solid darkblue;
-            }
-            .person {
-                padding-left: 16px;
-                .form-control {
-                    margin-left: 8px;
-                    width: 800px;
-                }
-            }
-            .role-man {
-                .form-group {
-                    padding-left: 16px;
-                }
-                .form-control {
-                    width: 800px;
-                }
-                .mybutton{
-                    margin-top: 16px;
-                    margin-left: 80px;
-                }
-            }
-
-        }
-        .view{
-            display: flex;
-
-            align-items: center;
-            justify-content: center;
-            .person {
-                padding-left: 16px;
-                .form-control {
-                    margin-left: 8px;
-                    width: 800px;
-                }
-            }
-            .role-man {
-                .form-group {
-                    padding-left: 16px;
-                }
-                .form-control {
-                    width: 800px;
-                }
-                .mybutton{
-                    margin-top: 16px;
-                    margin-left: 80px;
-                }
-            }
-        }
-
-    }
-
-</style>
 <template>
     <t-tabs class="t-tab">
         <t-tab-panel label="指标授权" name="tab-1">
@@ -104,7 +42,7 @@
                                 </t-form-item>
                             </t-form>
                         </div>
-                        <div class="mt-3 role-man">
+                        <div class="mt-3  role-man">
                             <t-form inline class="t-form">
                                 <t-form-item label="角色管理：">
                                     <t-select v-model="model12" filterable multiple class="t-form-item">
@@ -162,6 +100,80 @@
         </t-tab-panel>
     </t-tabs>
 </template>
+<style scoped lang="scss">
+    .dropdown__menu .dropdown__item--checked{
+        background: url("../../../src/asset/image/hook.png");
+        background-repeat: no-repeat;
+        background-size: 1rem,1rem;
+        background-position: 98%, 0%;
+        background-color: #f7f7f7;
+
+
+    }
+    .t-tab {
+        width: 100%;
+        height: 1000px;
+        .nav-item {
+            margin-left: 1rem;
+        }
+        .index {
+            margin-top: 2rem;
+            .my-tree {
+                border: 1px solid #e9e9e9;
+            }
+            .person {
+                padding-left: 16px;
+                .form-control {
+                    margin-left: 8px;
+                    width: 800px;
+                }
+            }
+            .role-man {
+
+
+                .form-group {
+                    padding-left: 16px;
+                }
+                .form-control {
+                    width: 800px;
+                }
+                .mybutton{
+                    margin-top: 16px;
+                    margin-left: 80px;
+                }
+            }
+
+        }
+        .view{
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+            .person {
+                padding-left: 16px;
+                .form-control {
+                    margin-left: 8px;
+                    width: 800px;
+                }
+            }
+            .role-man {
+                .form-group {
+                    padding-left: 16px;
+                }
+                .form-control {
+                    width: 800px;
+                }
+                .mybutton{
+                    margin-top: 16px;
+                    margin-left: 80px;
+                }
+            }
+        }
+
+    }
+
+</style>
+
 <script>
     export default {
         data() {
