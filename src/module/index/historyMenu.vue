@@ -82,7 +82,7 @@ export default {
             height: 38px;
             border-radius: 50%;
             color: #fff;
-            background: pink;
+            background: #009241;
             line-height: 18px;
             text-align: center;
             margin-right: 10px;

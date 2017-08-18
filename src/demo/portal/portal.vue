@@ -1,5 +1,42 @@
 <style lang="scss">
 @import "../osp/osp.scss";
+//左侧菜单
+.menu--vertical .menu__submenu .menu__submenu-title {
+  &:hover {
+    background: #fff;
+    color: #009448;  
+  }
+  .menu__submenu-title-icon {
+    &:hover {
+      color: #009448;
+    }
+  }
+}
+.menu--vertical .menu__submenu i.iconfont {font-size: 18px;}
+.menu--vertical .menu__submenu .menu .menu__submenu-title{
+  padding-left: 57px;
+}
+.menu--vertical .menu li.menu__item {
+  padding-left: 54px;
+}
+.menu--vertical .menu__submenu .menu .menu__submenu .menu__item {
+  padding-left: 67px;
+}
+.menu--vertical .menu__submenu .menu .menu__item {
+  border-left: 3px solid #fff;
+  &:hover {
+    color: #009448;
+    background: #fff;
+  }
+  &.menu__item--checked{
+    background: #eefff4;
+    border-left: 3px solid #009549;
+    border-right: 0;
+    &:hover {
+      background: #eefff4;
+    }
+  }
+}
 
 </style>
 <template>
@@ -9,12 +46,28 @@
         <!-- logo  -->
       <t-tooltip content="主页" placement="bottom">
         <a href="/" class="layout-logo mr-4">
-            <img src="../../asset/image/logo.png" width="130" alt="">
-          </a>
+          <img src="../../asset/image/logo.png" width="130" alt="" v-if="isOpen">
+          <img src="../../asset/image/logo2.png" width="130" alt="" v-if="!isOpen" style="width: 30px;">
+        </a>
       </t-tooltip>
       </div>
       <t-menu theme="dark" :open-position="openPosition" :class="[{'menu--folded': isOpen===false}]">
         <t-submenu 
+        :name="x" 
+        v-for="(item1, x) in menuList" 
+        :key="x">
+          <template slot="title">
+            <i class="iconfont" v-html="item1.icon"></i>
+            <span>{{item1.name}}</span>
+          </template>
+          <t-menu-item 
+          :name="`${x}-${y}`" 
+          v-for="(item2, y) in item1.children"
+          :key="y">
+          {{item2.name}}
+          </t-menu-item>
+        </t-submenu>
+        <!-- <t-submenu 
         :name="x" 
         v-for="(item1, x) in menuList" 
         :key="x">
@@ -42,7 +95,7 @@
           :key="y">
           {{item2.name}}
           </t-menu-item>
-        </t-submenu>
+        </t-submenu> -->
       </t-menu>
     </div>
     <div class="layout-content">
@@ -100,6 +153,7 @@ export default {
       this.isOpen = !this.isOpen
       this.accordion = !this.accordion
       this.openPosition = this.openPosition === 'down' ? 'right' : 'down'
+
     }
   },
   created() { // init entry

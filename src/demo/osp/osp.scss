@@ -448,41 +448,4 @@
   }
 }
 
-//左侧菜单
-.menu--vertical .menu__submenu .menu__submenu-title {
-  &:hover {
-    background: #fff;
-    color: #009448;  
-  }
-  .menu__submenu-title-icon {
-    &:hover {
-      color: #009448;
-    }
-  }
-}
-.menu--vertical .menu__submenu i.iconfont {font-size: 18px;}
-.menu--vertical .menu__submenu .menu .menu__submenu-title{
-  padding-left: 57px;
-}
-.menu--vertical .menu li.menu__item {
-  padding-left: 54px;
-}
-.menu--vertical .menu__submenu .menu .menu__submenu .menu__item {
-  padding-left: 67px;
-}
-.menu--vertical .menu__submenu .menu .menu__item {
-  border-left: 3px solid #fff;
-  &:hover {
-    color: #009448;
-    background: #fff;
-  }
-  &.menu__item--checked{
-    background: #eefff4;
-    border-left: 3px solid #009549;
-    border-right: 0;
-    &:hover {
-      background: #eefff4;
-    }
-  }
-}
 
