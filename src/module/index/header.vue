@@ -59,7 +59,7 @@
     <!-- 个人中心按钮 -->
     <t-dropdown trigger="click" placement="bottom-end">
       <t-badge class="ml-4">
-        <t-avatar dot-state="danger" text="HC" size="sm"></t-avatar>
+        <t-avatar :img-src="avastar"></t-avatar>
         <t-icon type="arrow-down-drop" size="20"></t-icon>
       </t-badge>
       <t-dropdown-menu slot="list">
@@ -98,7 +98,8 @@ export default {
       showMemo: false,
       showQuery: false,
       menuList: [],
-      memoList: []
+      memoList: [],
+      avastar: require("../../asset/image/avt.png")
     }
   },
   props: { // props data
