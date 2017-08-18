@@ -1,10 +1,18 @@
 <style lang="scss">
 @import "../osp/osp.scss";
+
 </style>
 <template>
   <div class="layout layout--one-screen bg-gray-lightest-5">
     <div :class="['layout-sidebar bg-gray-darker',{'layout-sidebar--folded': isOpen===false}]">
-      <div href="#" class="layout-logo-left"></div>
+      <div href="#" class="layout-logo-left">
+        <!-- logo  -->
+      <t-tooltip content="主页" placement="bottom">
+        <a href="/" class="layout-logo mr-4">
+            <img src="../../asset/image/logo.png" width="130" alt="">
+          </a>
+      </t-tooltip>
+      </div>
       <t-menu theme="dark" :open-position="openPosition" :class="[{'menu--folded': isOpen===false}]">
         <t-submenu 
         :name="x" 
