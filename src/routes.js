@@ -21,12 +21,17 @@ export default[
         name: 'Agentview',
         path: '/agentview/:id',
         component: require('./module/index/home.vue')
-      // },{
+      }, {
+        name: 'Permission',
+        path: '/permission/:id',
+        component: require('./module/permission/permission.vue')
+      }
+      // ,{
       //   path : '*',
       //   component : {
       //     template: '<div>not found</div>'
       //   }
-      }
+      // }
     ]
   }, {
     name : 'Login',

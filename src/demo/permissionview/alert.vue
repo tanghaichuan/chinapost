@@ -7,6 +7,7 @@
         @on-ok="ok"
         @on-cancel="cancel"
         class="modal-body"
+        style="background:#fff;"
         >
           <div class="tags mb-3">
             <span class="text-sm mr-2">已选择:</span>
@@ -25,8 +26,9 @@
                 <h1 class="listTitle text-md p-1 mb-0">选择人员</h1>
               </div>
               <div class="nameList" v-show="names.length">
+                <t-checkbox v-model="single" class="pl-2">全选</t-checkbox>
                 <ul class="list" v-show="showNames">
-                  <li class="listItem" v-for="(item,index) in names" @click="tagAdd(index)"><span class="name" ref="nameVal">{{item}}</span><t-icon type="check" class="icon text-right" v-show="showIcon[index]"></t-icon></li>
+                  <li class="listItem" :class="{'item-active':showIcon[index]}" v-for="(item,index) in names" @click="tagAdd(index)"><span class="name" ref="nameVal">{{item}}</span><t-icon type="check" class="icon text-right" v-show="showIcon[index]"></t-icon></li>
                 </ul>
               </div>
             </div>
@@ -40,7 +42,8 @@
          return {
             modal: false,
             name: [],
-            show: [],
+            // show: [],
+            single: false,
             names: ['李四','王小丫','刘晓虎',"张三"],
             showNames: false,//显示选择人员中的名字
             namesObj: [],//mock人员数据
@@ -99,6 +102,7 @@
             console.log(this.name)
           },
           tagAdd (index) {
+              // this.single = false
             // this.getArrayFromMock();
               let val = this.$refs.nameVal[index].innerHTML
               for(let i = 0;i<this.name.length;i++){
@@ -111,7 +115,7 @@
               this.name.push(val)//push进显示tag的数组
               // this.showIcon[index] = true;
               this.showIcon[index] = !this.showIcon[index];
-              
+
           },
           handleNodeClick(data) {
             console.log(data);
@@ -121,11 +125,6 @@
               this.showNames = false;
             }
           },
-          getName() {
-            for (let i = 0;i < this.names.length;i++){
-              this.name = this.names[i].name
-            }
-          },
           getArrayFromMock() {
             console.log('执行')
             console.log(this.namesObj.length)
@@ -133,7 +132,28 @@
               this.names[i] = this.namesObj[i].name
               console.log(this.namesObj[i].name)
             }
+          },
+          selectAll() {
+            console.log('click')
+            for(let i = 0;i<this.showIcon.length;i++){
+              this.showIcon[i] = !this.showIcon[i];
+
+            }
           }
+       },
+       watch: {
+         single() {
+           for(let i = 0;i<this.showIcon.length;i++){
+             this.showIcon[i] = !this.showIcon[i];
+           }
+           if(this.showIcon[0] === true){
+             for(let i =0;i<this.names.length;i++){
+               this.name[i] = this.names[i]
+             }
+           } else {
+             this.name = []
+           }
+         }
        },
        created () {
         //  this.names = this.data
@@ -147,9 +167,13 @@
 .modal-body {
     .modal {
         .modal-dialog {
+            background-color: #fff;
             .modal-content {
+                background-color: #fff;
                 .modal-body {
+                    background-color: #fff;
                     .contentList {
+                        background-color: #fff;
                         &:after {
                             content: '';
                             width: 0;
@@ -161,10 +185,10 @@
                         .rightList {
                             .nameList {
                                 .list {
-                                    padding: 10px;
+                                    padding: 0;
                                     .listItem {
                                         list-style: none;
-                                        padding: 5px 0;
+                                        padding: 5px 10px;
                                         &:after {
                                             content: '';
                                             display: block;
@@ -180,6 +204,9 @@
                                             float: right;
                                             color: green;
                                         }
+                                    }
+                                    .item-active {
+                                        background-color: rgb(247, 247, 247);
                                     }
                                 }
                             }
