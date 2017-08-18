@@ -91,7 +91,7 @@
               "url": "/business/3"
             }]
           }, {
-            "name": "洞察信息",
+            "name": "客户洞察",
             "children": [{
               "name": "业务概览",
               "url": "/agentview/7"
@@ -103,7 +103,7 @@
               "url": "/agentview/9"
             }]
           }, {
-            "name": "价值试图",
+            "name": "价值视图",
             "children": [{
               "name": "业务概览",
               "url": "/agentview/10"
@@ -244,23 +244,6 @@
           }, {
             "name": "知识优化",
             "url": "/knowledge/3"
-          }]
-        },
-        {
-          "name": "营销管理",
-          "icon": "&#xe789;",
-          "children": [{
-            "name": "营销计划管理",
-            "url": "/mark/1"
-          }, {
-            "name": "营销活动管理",
-            "url": "/mark/2"
-          }, {
-            "name": "线索管理",
-            "url": "/mark/3"
-          }, {
-            "name": "营销活动效果评估",
-            "url": "/mark/4"
           }]
         },
         {
