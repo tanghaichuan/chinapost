@@ -50,6 +50,7 @@
       "success": true,
       "list": [{
           "name": "客户360视图",
+          "icon":"&#xe784;",
           "children": [{
             "name": "客户基本信息",
             "url": "/agentview/1"
@@ -66,6 +67,7 @@
         },
         {
           "name": "客户管理",
+          "icon":"&#xe783;",
           "children": [{
               "name": "客户主数据管理",
               "url": "/customer/1"
@@ -82,6 +84,7 @@
         },
         {
           "name": "销售",
+          "icon":"&#xe785;",
           "children": [{
               "name": "销售管理",
               "children": [{
@@ -116,6 +119,7 @@
             },
             {
               "name": "服务管理",
+              "icon":"&#xe787;",
               "children": [{
                   "name": "客户咨询/投诉/理赔",
                   "url": "/service/1"
@@ -136,6 +140,7 @@
             },
             {
               "name": "会员积分管理",
+              "icon":"&#xe787;",
               "children": [{
                   "name": "会员体系",
                   "url": "/viper/1"
@@ -156,6 +161,7 @@
             },
             {
               "name": "客户洞察",
+              "icon":"&#xe786;",
               "children": [{
                   "name": "客户价值",
                   "url": "/insight/1"
@@ -174,6 +180,7 @@
         },
         {
           "name": "知识库管理",
+          "icon":"&#xe788;",
           "children": [{
               "name": "知识录入",
               "url": "/knowledge/1"
@@ -190,6 +197,7 @@
         },
         {
           "name": "营销管理",
+          "icon":"&#xe789;",
           "children": [{
               "name": "营销计划管理"
             },
@@ -206,6 +214,7 @@
         },
         {
           "name": "渠道管理",
+          "icon":"&#xe78a;",
           "children": [{
               "name": "Bulletin Management",
               "url": "/trouble/37"
@@ -218,6 +227,7 @@
         },
         {
           "name": "产品管理",
+          "icon":"&#xe78a;",
           "children": [{
               "name": "Bulletin Management",
               "url": "/trouble/37"
@@ -230,6 +240,7 @@
         },
         {
           "name": "权限管理",
+          "icon":"&#xe78a;",
           "children": [{
             "name": "权限管理",
             "url": "/permission/1"

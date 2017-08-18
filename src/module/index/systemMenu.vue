@@ -6,6 +6,7 @@
       <span>{{title}}</span>
     </li>
     <li :class="['menu-item',{'item-active':(path.length === 0  && item.name === menuList[0].name)}]" v-for="(item, index) in tempList" @click="next(index)">
+      <i class="iconfont" v-html="item.icon"></i>
       <span>{{item.name}}</span>
       <t-icon type="chevron-right" style="float:right;" size="24" v-show="item.children"></t-icon>
     </li>

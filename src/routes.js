@@ -6,6 +6,7 @@ const tabel =  r => require.ensure([], () => r(require('demo/test/table1')), 'te
 const tabelDemo =  r => require.ensure([], () => r(require('demo/table/table')), 'test')
 const comTable =  r => require.ensure([], () => r(require('demo/owns/listTable/comperhensiveTable')), 'test')
 const editTable = r => require.ensure([], () => r(require('demo/owns/listTable/editTable')), 'test')
+const permissionAlert = r => require.ensure([], () => r(require('demo/permissionview/alert')), 'test')
 
 export default[
   {
@@ -59,6 +60,16 @@ export default[
     path : '/comTable',
     component :  comTable
   },
+  {
+    name : 'permissionAlert',
+    path : '/alert',
+    component :  permissionAlert
+  },
+  // {
+  //   name : 'query',
+  //   path : '/query',
+  //   component : query
+  // },
   {
     name : 'editTable',
     path : '/edit-table',
