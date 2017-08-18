@@ -1,1 +1,147 @@
-{"context":{"loaders":[{"path":"K:\\web-developer-stack\\nvm\\nvm\\v6.10.2\\node_modules\\ipu-cli\\node_modules\\babel-loader\\lib\\index.js","query":"?{\"cacheDirectory\":true}","request":"K:\\web-developer-stack\\nvm\\nvm\\v6.10.2\\node_modules\\ipu-cli\\node_modules\\babel-loader\\lib\\index.js?{\"cacheDirectory\":true}"}],"external":{}},"mtimes":{"K:\\asiainfo\\chinapost\\src\\main.js":{"mtime":1502964204297,"compiledPath":"K:\\asiainfo\\chinapost\\.ipu\\temp\\happypack\\s--1954617989","error":null},"K:\\asiainfo\\chinapost\\src\\invokers.js":{"mtime":1502964204293,"compiledPath":"K:\\asiainfo\\chinapost\\.ipu\\temp\\happypack\\s-871460834","error":null},"K:\\asiainfo\\chinapost\\src\\bus.js":{"mtime":1502964202720,"compiledPath":"K:\\asiainfo\\chinapost\\.ipu\\temp\\happypack\\s--1806540106","error":null},"K:\\asiainfo\\chinapost\\src\\store.js":{"mtime":1502964204625,"compiledPath":"K:\\asiainfo\\chinapost\\.ipu\\temp\\happypack\\s--1452661014","error":null},"K:\\asiainfo\\chinapost\\src\\router.js":{"mtime":1502964204621,"compiledPath":"K:\\asiainfo\\chinapost\\.ipu\\temp\\happypack\\s-1014436757","error":null},"K:\\asiainfo\\chinapost\\src\\demo\\cloud\\store\\index.js":{"mtime":1502964203578,"compiledPath":"K:\\asiainfo\\chinapost\\.ipu\\temp\\happypack\\s--704386057","error":null},"K:\\asiainfo\\chinapost\\src\\demo\\osp\\store\\index.js":{"mtime":1502964203931,"compiledPath":"K:\\asiainfo\\chinapost\\.ipu\\temp\\happypack\\s-828628542","error":null},"K:\\asiainfo\\chinapost\\src\\module\\index\\store\\index.js":{"mtime":1502964204472,"compiledPath":"K:\\asiainfo\\chinapost\\.ipu\\temp\\happypack\\s--787407910","error":null},"K:\\asiainfo\\chinapost\\src\\demo\\cloud\\route.js":{"mtime":1502964203381,"compiledPath":"K:\\asiainfo\\chinapost\\.ipu\\temp\\happypack\\s--1240259887","error":null},"K:\\asiainfo\\chinapost\\src\\demo\\osp\\route.js":{"mtime":1502964203794,"compiledPath":"K:\\asiainfo\\chinapost\\.ipu\\temp\\happypack\\s--610907839","error":null},"K:\\asiainfo\\chinapost\\src\\demo\\cloud\\store\\action.js":{"mtime":1502964203500,"compiledPath":"K:\\asiainfo\\chinapost\\.ipu\\temp\\happypack\\s--340758694","error":null},"K:\\asiainfo\\chinapost\\src\\common\\js\\mixin-newtab.js":{"mtime":1502964202972,"compiledPath":"K:\\asiainfo\\chinapost\\.ipu\\temp\\happypack\\s--118724359","error":null},"K:\\asiainfo\\chinapost\\src\\module\\index\\store\\actions.js":{"mtime":1502964204368,"compiledPath":"K:\\asiainfo\\chinapost\\.ipu\\temp\\happypack\\s--965241575","error":null},"K:\\asiainfo\\chinapost\\src\\demo\\cloud\\store\\mutation.js":{"mtime":1502964203649,"compiledPath":"K:\\asiainfo\\chinapost\\.ipu\\temp\\happypack\\s--1875408439","error":null},"K:\\asiainfo\\chinapost\\src\\module\\index\\store\\getters.js":{"mtime":1502964204426,"compiledPath":"K:\\asiainfo\\chinapost\\.ipu\\temp\\happypack\\s-1769785031","error":null},"K:\\asiainfo\\chinapost\\src\\demo\\osp\\store\\action.js":{"mtime":1502964203796,"compiledPath":"K:\\asiainfo\\chinapost\\.ipu\\temp\\happypack\\s-311555364","error":null},"K:\\asiainfo\\chinapost\\src\\demo\\osp\\store\\mutation.js":{"mtime":1502964203993,"compiledPath":"K:\\asiainfo\\chinapost\\.ipu\\temp\\happypack\\s--639888822","error":null},"K:\\asiainfo\\chinapost\\src\\module\\index\\store\\mutations.js":{"mtime":1502964204518,"compiledPath":"K:\\asiainfo\\chinapost\\.ipu\\temp\\happypack\\s--346546931","error":null},"K:\\asiainfo\\chinapost\\src\\demo\\cloud\\client\\store.js":{"mtime":1502964203284,"compiledPath":"K:\\asiainfo\\chinapost\\.ipu\\temp\\happypack\\s-1647755063","error":null},"K:\\asiainfo\\chinapost\\src\\demo\\cloud\\store\\constant.js":{"mtime":1502964203501,"compiledPath":"K:\\asiainfo\\chinapost\\.ipu\\temp\\happypack\\s--1006462501","error":null},"K:\\asiainfo\\chinapost\\src\\demo\\osp\\store\\constant.js":{"mtime":1502964203797,"compiledPath":"K:\\asiainfo\\chinapost\\.ipu\\temp\\happypack\\s-722297023","error":null},"K:\\asiainfo\\chinapost\\src\\module\\index\\store\\constant.js":{"mtime":1502964204368,"compiledPath":"K:\\asiainfo\\chinapost\\.ipu\\temp\\happypack\\s-1627397136","error":null},"K:\\asiainfo\\chinapost\\src\\demo\\cloud\\client\\action.js":{"mtime":1502964203064,"compiledPath":"K:\\asiainfo\\chinapost\\.ipu\\temp\\happypack\\s--163266325","error":null},"K:\\asiainfo\\chinapost\\src\\demo\\cloud\\client\\mutation.js":{"mtime":1502964203234,"compiledPath":"K:\\asiainfo\\chinapost\\.ipu\\temp\\happypack\\s--1884421726","error":null},"K:\\asiainfo\\chinapost\\src\\demo\\cloud\\client\\constant.js":{"mtime":1502964203174,"compiledPath":"K:\\asiainfo\\chinapost\\.ipu\\temp\\happypack\\s-1103734973","error":null},"K:\\asiainfo\\chinapost\\src\\routes.js":{"mtime":1503038967899,"compiledPath":"K:\\asiainfo\\chinapost\\.ipu\\temp\\happypack\\s-1270956680","error":null}}}
+{
+  "context": {
+    "loaders": [{
+      "path": "/usr/local/lib/node_modules/ipu-cli/node_modules/babel-loader/lib/index.js",
+      "query": "?{\"cacheDirectory\":true}",
+      "request": "/usr/local/lib/node_modules/ipu-cli/node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true}"
+    }],
+    "external": {}
+  },
+  "mtimes": {
+    "/Users/vicson/chinapost/src/main.js": {
+      "mtime": 1502077038000,
+      "compiledPath": "/Users/vicson/chinapost/.ipu/temp/happypack/s-1642319621",
+      "error": null
+    },
+    "/Users/vicson/chinapost/src/invokers.js": {
+      "mtime": 1502091519000,
+      "compiledPath": "/Users/vicson/chinapost/.ipu/temp/happypack/s--1186690538",
+      "error": null
+    },
+    "/Users/vicson/chinapost/src/bus.js": {
+      "mtime": 1501667364000,
+      "compiledPath": "/Users/vicson/chinapost/.ipu/temp/happypack/s-960258454",
+      "error": null
+    },
+    "/Users/vicson/chinapost/src/store.js": {
+      "mtime": 1502087122000,
+      "compiledPath": "/Users/vicson/chinapost/.ipu/temp/happypack/s-1581424557",
+      "error": null
+    },
+    "/Users/vicson/chinapost/src/router.js": {
+      "mtime": 1501728831000,
+      "compiledPath": "/Users/vicson/chinapost/.ipu/temp/happypack/s--32419739",
+      "error": null
+    },
+    "/Users/vicson/chinapost/src/module/index/store/index.js": {
+      "mtime": 1502941637000,
+      "compiledPath": "/Users/vicson/chinapost/.ipu/temp/happypack/s-637111886",
+      "error": null
+    },
+    "/Users/vicson/chinapost/src/demo/cloud/route.js": {
+      "mtime": 1501667364000,
+      "compiledPath": "/Users/vicson/chinapost/.ipu/temp/happypack/s--47158280",
+      "error": null
+    },
+    "/Users/vicson/chinapost/src/demo/osp/route.js": {
+      "mtime": 1501667364000,
+      "compiledPath": "/Users/vicson/chinapost/.ipu/temp/happypack/s--1411395317",
+      "error": null
+    },
+    "/Users/vicson/chinapost/src/module/index/store/actions.js": {
+      "mtime": 1502086428000,
+      "compiledPath": "/Users/vicson/chinapost/.ipu/temp/happypack/s-335841304",
+      "error": null
+    },
+    "/Users/vicson/chinapost/src/module/index/store/getters.js": {
+      "mtime": 1502332009000,
+      "compiledPath": "/Users/vicson/chinapost/.ipu/temp/happypack/s-1921255352",
+      "error": null
+    },
+    "/Users/vicson/chinapost/src/demo/cloud/store/index.js": {
+      "mtime": 1501667364000,
+      "compiledPath": "/Users/vicson/chinapost/.ipu/temp/happypack/s-839639353",
+      "error": null
+    },
+    "/Users/vicson/chinapost/src/demo/osp/store/index.js": {
+      "mtime": 1501742031000,
+      "compiledPath": "/Users/vicson/chinapost/.ipu/temp/happypack/s--708998278",
+      "error": null
+    },
+    "/Users/vicson/chinapost/src/module/index/store/mutations.js": {
+      "mtime": 1502093078000,
+      "compiledPath": "/Users/vicson/chinapost/.ipu/temp/happypack/s-1072699031",
+      "error": null
+    },
+    "/Users/vicson/chinapost/src/common/js/dom.js": {
+      "mtime": 1502161473000,
+      "compiledPath": "/Users/vicson/chinapost/.ipu/temp/happypack/s-1073766936",
+      "error": null
+    },
+    "/Users/vicson/chinapost/src/common/js/mixin-newtab.js": {
+      "mtime": 1502334854000,
+      "compiledPath": "/Users/vicson/chinapost/.ipu/temp/happypack/s--1654668396",
+      "error": null
+    },
+    "/Users/vicson/chinapost/src/demo/cloud/store/mutation.js": {
+      "mtime": 1501667364000,
+      "compiledPath": "/Users/vicson/chinapost/.ipu/temp/happypack/s--1344063218",
+      "error": null
+    },
+    "/Users/vicson/chinapost/src/demo/cloud/store/action.js": {
+      "mtime": 1501667364000,
+      "compiledPath": "/Users/vicson/chinapost/.ipu/temp/happypack/s-1662389485",
+      "error": null
+    },
+    "/Users/vicson/chinapost/src/demo/cloud/client/store.js": {
+      "mtime": 1501667364000,
+      "compiledPath": "/Users/vicson/chinapost/.ipu/temp/happypack/s--209784031",
+      "error": null
+    },
+    "/Users/vicson/chinapost/src/demo/osp/store/mutation.js": {
+      "mtime": 1501667364000,
+      "compiledPath": "/Users/vicson/chinapost/.ipu/temp/happypack/s-350424979",
+      "error": null
+    },
+    "/Users/vicson/chinapost/src/module/index/store/constant.js": {
+      "mtime": 1502092967000,
+      "compiledPath": "/Users/vicson/chinapost/.ipu/temp/happypack/s-653970154",
+      "error": null
+    },
+    "/Users/vicson/chinapost/src/demo/osp/store/action.js": {
+      "mtime": 1501667364000,
+      "compiledPath": "/Users/vicson/chinapost/.ipu/temp/happypack/s--1415151416",
+      "error": null
+    },
+    "/Users/vicson/chinapost/src/demo/cloud/client/action.js": {
+      "mtime": 1501667364000,
+      "compiledPath": "/Users/vicson/chinapost/.ipu/temp/happypack/s-1857063446",
+      "error": null
+    },
+    "/Users/vicson/chinapost/src/demo/cloud/client/mutation.js": {
+      "mtime": 1501667364000,
+      "compiledPath": "/Users/vicson/chinapost/.ipu/temp/happypack/s-163316791",
+      "error": null
+    },
+    "/Users/vicson/chinapost/src/demo/cloud/store/constant.js": {
+      "mtime": 1501667364000,
+      "compiledPath": "/Users/vicson/chinapost/.ipu/temp/happypack/s-119386984",
+      "error": null
+    },
+    "/Users/vicson/chinapost/src/demo/osp/store/constant.js": {
+      "mtime": 1501667364000,
+      "compiledPath": "/Users/vicson/chinapost/.ipu/temp/happypack/s-2049498732",
+      "error": null
+    },
+    "/Users/vicson/chinapost/src/demo/cloud/client/constant.js": {
+      "mtime": 1501667364000,
+      "compiledPath": "/Users/vicson/chinapost/.ipu/temp/happypack/s--282462055",
+      "error": null
+    },
+    "/Users/vicson/chinapost/src/routes.js": {
+      "mtime": 1503037291000,
+      "compiledPath": "/Users/vicson/chinapost/.ipu/temp/happypack/s-273774826",
+      "error": null
+    }
+  }
+}
