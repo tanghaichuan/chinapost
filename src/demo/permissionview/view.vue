@@ -36,13 +36,13 @@
                     <div class="d-flex flex-column ifrom">
                         <div class="mt-3">
                             <t-form inline class="t-form">
-                                <t-form-item label="选择人员:">
+                                <t-form-item label="选择人员:" class="person">
                                     <t-input v-model="value4" icon="account-multiple" icon-placement="right"
                                              placeholder=""></t-input>
                                 </t-form-item>
                             </t-form>
                         </div>
-                        <div class="mt-3">
+                        <div class="mt-3 role-man">
                             <t-form inline class="t-form">
                                 <t-form-item label="角色管理：">
                                     <t-select v-model="model12" filterable multiple class="t-form-item">
@@ -52,6 +52,12 @@
                                     </t-select>
                                 </t-form-item>
                             </t-form>
+                            <div class="mybutton">
+                                <t-button type="primary">保存</t-button>
+                                <t-button class="ml-2">取消</t-button>
+
+                            </div>
+
 
                         </div>
                     </div>
@@ -60,19 +66,19 @@
             </div>
 
         </t-tab-panel>
-        <t-tab-panel label="视图授权" name="tab-2">
+        <t-tab-panel label="视图授权" name="tab-2" class="">
             <div class=" view">
                 <div class="d-flex flex-column ifrom">
                     <div class="mt-3">
-                        <t-form inline class="t-form text-md">
-                            <t-form-item label="选择人员:">
+                        <t-form inline class="t-form">
+                            <t-form-item label="选择人员:" class="person">
                                 <t-input v-model="value4" icon="account-multiple" icon-placement="right"
-                                         placeholder="" style="width:200px"></t-input>
+                                         placeholder=""></t-input>
                             </t-form-item>
                         </t-form>
                     </div>
-                    <div class="mt-3">
-                        <t-form inline class="t-form text-md">
+                    <div class="mt-3 role-man">
+                        <t-form inline class="t-form">
                             <t-form-item label="角色管理：">
                                 <t-select v-model="model12" filterable multiple class="t-form-item">
                                     <t-option v-for="item in cityList" :value="item.value" :key="item">{{ item.label
@@ -81,6 +87,12 @@
                                 </t-select>
                             </t-form-item>
                         </t-form>
+                        <div class="mybutton">
+                            <t-button type="primary">保存</t-button>
+                            <t-button class="ml-2">取消</t-button>
+
+                        </div>
+
 
                     </div>
                 </div>
@@ -91,38 +103,59 @@
 <style scoped lang="scss">
     .t-tab {
         width: 100%;
-        height: 100%;
+        height: 1000px;
         .nav-item {
             margin-left: 1rem;
         }
         .index {
+            margin-top: 2rem;
             .my-tree {
                 border: 1px solid darkblue;
             }
-            .form-group__label {
-                margin: 0;
+            .person {
+                padding-left: 16px;
+                .form-control {
+                    margin-left: 8px;
+                    width: 800px;
+                }
+            }
+            .role-man {
+                .form-group {
+                    padding-left: 16px;
+                }
+                .form-control {
+                    width: 800px;
+                }
+                .mybutton{
+                    margin-top: 16px;
+                    margin-left: 80px;
+                }
             }
 
         }
-        .ifrom {
-            margin-left: 16px;
-            .t-form {
-
+        .view{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            .person {
+                padding-left: 16px;
+                .form-control {
+                    margin-left: 8px;
+                    width: 800px;
+                }
             }
-
-        }
-        .form-control{
-            width: 800px !important;
-            /*margin-left: 20px;*/
-        }
-        .dropdown-input{
-            width: 60px !important;
-        }
-        .input-group-icon .input-group-icon--right{
-            right: -100px;
-        }
-        .t-form .form-control{
-            margin-left: 12px !important;
+            .role-man {
+                .form-group {
+                    padding-left: 16px;
+                }
+                .form-control {
+                    width: 800px;
+                }
+                .mybutton{
+                    margin-top: 16px;
+                    margin-left: 80px;
+                }
+            }
         }
 
     }
