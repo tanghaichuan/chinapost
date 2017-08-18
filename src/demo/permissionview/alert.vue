@@ -104,12 +104,14 @@
               for(let i = 0;i<this.name.length;i++){
                 if (val === this.name[i]) {
                   this.name.splice(i ,1)
-                  // this.showIcon[index] = !this.showIcon[index];
+                  this.showIcon[index] = !this.showIcon[index];
                   return
                 }
               }
               this.name.push(val)//push进显示tag的数组
-              this.showIcon[index] = true;
+              // this.showIcon[index] = true;
+              this.showIcon[index] = !this.showIcon[index];
+              
           },
           handleNodeClick(data) {
             console.log(data);
