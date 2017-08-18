@@ -249,6 +249,13 @@ export default {
                         }
                     }
                 }
+                .modal-footer {
+                    padding: 20px !important;
+                    .btn {
+                        width: auto !important;
+                        margin-left: 10px !important;
+                    }
+                }
             }
         }
     }
