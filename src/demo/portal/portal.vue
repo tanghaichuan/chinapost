@@ -1,5 +1,4 @@
-<style lang="scss">
-@import "../osp/osp.scss";
+<style scoped lang="scss">
 //左侧菜单
 .menu--vertical .menu__submenu .menu__submenu-title {
   &:hover {
