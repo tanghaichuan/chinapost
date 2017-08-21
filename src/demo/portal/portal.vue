@@ -4,7 +4,7 @@
 .menu--vertical .menu__submenu .menu__submenu-title {
   &:hover {
     background: #fff;
-    color: #009448;  
+    color: #009448;
   }
   .menu__submenu-title-icon {
     &:hover {
@@ -12,23 +12,30 @@
     }
   }
 }
-.menu--vertical .menu__submenu i.iconfont {font-size: 18px;}
-.menu--vertical .menu__submenu .menu .menu__submenu-title{
+
+.menu--vertical .menu__submenu i.iconfont {
+  font-size: 18px;
+}
+
+.menu--vertical .menu__submenu .menu .menu__submenu-title {
   padding-left: 57px;
 }
+
 .menu--vertical .menu li.menu__item {
   padding-left: 54px;
 }
+
 .menu--vertical .menu__submenu .menu .menu__submenu .menu__item {
   padding-left: 67px;
 }
+
 .menu--vertical .menu__submenu .menu .menu__item {
   border-left: 3px solid #fff;
   &:hover {
     color: #009448;
     background: #fff;
   }
-  &.menu__item--checked{
+  &.menu__item--checked {
     background: #eefff4;
     border-left: 3px solid #009549;
     border-right: 0;
@@ -38,64 +45,65 @@
   }
 }
 
+.layout-main {
+  background: #f4f8f9;
+}
+
+.breadcrumb {
+  background: #f4f8f9;
+}
 </style>
 <template>
   <div class="layout layout--one-screen bg-gray-lightest-5">
     <div :class="['layout-sidebar bg-gray-darker',{'layout-sidebar--folded': isOpen===false}]">
       <div href="#" class="layout-logo-left">
         <!-- logo  -->
-      <t-tooltip content="主页" placement="bottom">
-        <a href="/" class="layout-logo mr-4">
-          <img src="../../asset/image/logo.png" width="130" alt="" v-if="isOpen">
-          <img src="../../asset/image/logo2.png" width="130" alt="" v-if="!isOpen" style="width: 30px;">
-        </a>
-      </t-tooltip>
+        <t-tooltip content="主页" placement="bottom">
+          <a href="/" class="layout-logo mr-4">
+            <img src="../../asset/image/logo.png" width="130" alt="" v-if="isOpen">
+            <img src="../../asset/image/logo2.png" width="130" alt="" v-if="!isOpen" style="width: 32px; position:relative;left:-3px;">
+          </a>
+        </t-tooltip>
       </div>
       <t-menu theme="dark" :open-position="openPosition" :class="[{'menu--folded': isOpen===false}]">
-        <t-submenu 
-        :name="x" 
-        v-for="(item1, x) in menuList" 
-        :key="x">
+        <t-submenu :name="x" v-for="(item1, x) in menuList" :key="x">
           <template slot="title">
             <i class="iconfont" v-html="item1.icon"></i>
             <span>{{item1.name}}</span>
           </template>
-          <t-menu-item 
-          :name="`${x}-${y}`" 
-          v-for="(item2, y) in item1.children"
-          :key="y">
-          {{item2.name}}
+          <t-menu-item :name="`${x}-${y}`" v-for="(item2, y) in item1.children" :key="y" @click.native="getMenu">
+            {{item2.name}}
           </t-menu-item>
         </t-submenu>
         <!-- <t-submenu 
-        :name="x" 
-        v-for="(item1, x) in menuList" 
-        :key="x">
-          <template slot="title">
-            <i class="iconfont" v-html="item1.icon"></i>
-            <span>{{item1.name}}</span>
-          </template>
-          <t-submenu 
-          v-if="item2.children"
-          :name="`${x}-${y}`" 
-          v-for="(item2, y) in item1.children"
-          :key="y">
-            <template slot="title">
-              <span>{{item2.name}}</span>
-            </template>
-            <t-menu-item 
-            :name="`${x}-${y}-${z}`" 
-            v-for="(item3, z) in item2.children"
-            :key="z">{{item3.name}}</t-menu-item>
-          </t-submenu>
-          <t-menu-item 
-          :name="`${x}-${y}`" 
-          v-if="!item2.children"
-          v-for="(item2, y) in item1.children"
-          :key="y">
-          {{item2.name}}
-          </t-menu-item>
-        </t-submenu> -->
+              :name="x" 
+              v-for="(item1, x) in menuList" 
+              :key="x">
+                <template slot="title">
+                  <i class="iconfont" v-html="item1.icon"></i>
+                  <span>{{item1.name}}</span>
+                </template>
+                <t-submenu 
+                v-if="item2.children"
+                :name="`${x}-${y}`" 
+                v-for="(item2, y) in item1.children"
+                :key="y">
+                  <template slot="title">
+                    <span>{{item2.name}}</span>
+                  </template>
+                  <t-menu-item 
+                  :name="`${x}-${y}-${z}`" 
+                  v-for="(item3, z) in item2.children"
+                  :key="z">{{item3.name}}</t-menu-item>
+                </t-submenu>
+                <t-menu-item 
+                :name="`${x}-${y}`" 
+                v-if="!item2.children"
+                v-for="(item2, y) in item1.children"
+                :key="y">
+                {{item2.name}}
+                </t-menu-item>
+              </t-submenu> -->
       </t-menu>
     </div>
     <div class="layout-content">
@@ -121,13 +129,16 @@
           </t-dropdown-menu>
         </t-dropdown>
       </nav>
-      <t-breadcrumb>
-        <t-breadcrumb-item href="#">首页</t-breadcrumb-item>
-        <t-breadcrumb-item href="#">二级</t-breadcrumb-item>
-        <t-breadcrumb-item href="#">三级</t-breadcrumb-item>
-        <t-breadcrumb-item>当前页</t-breadcrumb-item>
+
+      <t-breadcrumb v-if="currentMenu">
+        <t-breadcrumb-item href="/portal" @click.native="emptyMenu">首页</t-breadcrumb-item>
+        <t-breadcrumb-item href="#">{{parMenu}}</t-breadcrumb-item>
+        <t-breadcrumb-item>{{currentMenu}}</t-breadcrumb-item>
       </t-breadcrumb>
-      <div class="layout-main">内容区域</div>
+
+      <div class="layout-main">内容区域
+        <img src="../../asset/image/view.png" alt="" width="100%" />
+      </div>
       <footer class="p-3 text-center text-gray-light text-sm">
         2011-2016 © AI design
       </footer>
@@ -141,7 +152,9 @@ export default {
       isOpen: true,
       accordion: true,
       openPosition: 'down',
-      menuList: []
+      menuList: [],
+      currentMenu: "",
+      parMenu: ""
     }
   },
   props: { // props data
@@ -153,13 +166,23 @@ export default {
       this.isOpen = !this.isOpen
       this.accordion = !this.accordion
       this.openPosition = this.openPosition === 'down' ? 'right' : 'down'
-
+    },
+    getMenu(e) {
+      this.currentMenu = e.target.innerHTML;
+      this.parMenu = e.target.parentNode.parentNode.querySelector("span").innerHTML
+    },
+    emptyMenu() {
+      this.currentMenu = ""
+      this.parMenu = ""
     }
   },
   created() { // init entry
     this.$domains.cnpost.get(this.$services.SYSTEM_MENU).then((res) => {
       this.menuList = res.data.list;
-    });
+    })
+  },
+  mounted() {
+
   }
 }
 </script>
