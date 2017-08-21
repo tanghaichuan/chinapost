@@ -385,3 +385,16 @@ $custom-list: primary, success, info, warning, danger;
 .input-group-icon {
   line-height: 28px;
 }
+/* tree */
+.tree__node-content{
+  &:hover{
+    background: #fff;
+    color: #009448;
+  }
+}
+.tree__node-content--checked {
+  background: #eefff4;
+  border-left: 3px solid #009549;
+  border-right: 0;
+  color: #009448;
+}
