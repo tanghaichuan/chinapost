@@ -197,11 +197,17 @@ export default {
     }
   }
 </script>
-<style lang="less">
+<style lang="less" scoped>
 .header{
   display:none;
 }
 .wrap-green-layout{
+  position:absolute;
+  top:0;
+  left:0;
+  right:0;
+  z-index:1000;
+  background:#fff;
   .navbar.bg-white{
     background-color:#3ca358!important;
   }
