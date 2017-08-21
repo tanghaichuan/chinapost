@@ -23,7 +23,7 @@
 			<t-input type="textarea" placeholder="请输入描述" v-model="textValue" :autosize="true"></t-input>
 		</div>
 		<p class="area-txt">
-			<span class="fl">请至少输入3个字符</span><span class="fr">{{textValue.length}}/10</span>
+			<span class="fl">{{numText}}</span><span class="fr">{{textValue.length}}/10</span>
 		</p>
 		<div class="area-btn">
 			<t-button type="primary" :disabled="numLength">提交</t-button>
@@ -165,7 +165,7 @@ export default{
 
 									},
 									style:{
-										width:'100%',
+										width:'145px',
 										display:'inline-block',
 										'margin-right':'15px'
 									},
@@ -174,8 +174,19 @@ export default{
 											params.row.name = value
 											
 										}
-										,
-										'on-blur':function(){
+									}
+								}),
+								h('t-icon',{
+									props:{
+										type:'check',
+										gradient:'primary',
+										size:20
+									},
+									style:{
+										'cursor':'pointer'	
+									},
+									nativeOn:{
+										click:function(){
 											vm.$set(vm.data,inx,params.row)
 											vm.data[inx].isEdit = false
 											console.log(vm.data[inx])
@@ -306,7 +317,8 @@ export default{
 					isEdit:false,
 					isAge:false
 				}
-			]
+			],
+			numText:'请至少输入3个字符'
 		}
 	},
 	methods:{
@@ -318,15 +330,21 @@ export default{
 	computed:{
 		numLength(){
 			if(this.textValue.length >= 3 && this.textValue.length <= 10){
+				this.numText='请至少输入3个字符'
 				return false
 			}else{
+				if(this.textValue.length > 10){
+					this.numText='请控制10个以内'
+				}else{
+					this.numText='请至少输入3个字符'
+				}
 				return true
 			}
 		}
 	}
 }	
 </script>
-<style lang="less">
+<style lang="less" scoped>
 .query-result{
 	// width:80%;
 	margin-top:20px;
