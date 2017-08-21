@@ -70,7 +70,6 @@
         <t-tree :data="data" :props="defaultProps" is-select @on-select="handleNodeSelect" class=""></t-tree>
       </div>
       <div class="col  ">
-
         <div class="col ">
           <t-checkbox-group v-model="formItem.checkbox">
             <div class="row">
@@ -91,16 +90,13 @@
               <t-checkbox label="职业" class="col"></t-checkbox>
               <t-checkbox label="证件到期日" class="col"></t-checkbox>
             </div>
-
-
           </t-checkbox-group>
         </div>
-
         <div class="d-flex flex-column ifrom">
           <div class="mt-3" @click="modaltrue">
             <t-form inline class="t-form">
               <t-form-item label="选择人员:" class="person">
-                <t-input v-model="value4" icon="account-multiple" icon-placement="right" placeholder=""></t-input>
+                <t-input v-model="nameStr" icon="account-multiple" icon-placement="right" placeholder=""></t-input>
               </t-form-item>
             </t-form>
           </div>
@@ -116,24 +112,20 @@
             <div class="mybutton">
               <t-button type="primary">保存</t-button>
               <t-button class="ml-2">取消</t-button>
-
             </div>
-
-
           </div>
         </div>
       </div>
-
     </div>
-
   </t-tab-panel>
   <t-tab-panel label="视图授权" name="tab-2" class="">
     <div class=" view">
       <div class="d-flex flex-column ifrom">
-        <div class="mt-3">
+        <div class="mt-3" @click="modaltrue">
           <t-form inline class="t-form">
             <t-form-item label="选择人员:" class="person">
-              <t-input v-model="value4" icon="account-multiple" icon-placement="right" placeholder=""></t-input>
+              <t-input v-model="nameStr" icon="account-multiple" icon-placement="right" placeholder=""></t-input>
+              </t-input>
             </t-form-item>
           </t-form>
         </div>
@@ -149,10 +141,7 @@
           <div class="mybutton">
             <t-button type="primary">保存</t-button>
             <t-button class="ml-2">取消</t-button>
-
           </div>
-
-
         </div>
       </div>
     </div>
@@ -345,6 +334,7 @@ export default {
       modal: false,
       modalShow: false,
       tags: [],
+      nameStr: '',
       selItems: 0,
       single: false,
       personList: [{
@@ -415,6 +405,7 @@ export default {
     ok() {
       // 点击弹窗确定按钮
       this.$Message.info('点击了确定');
+      this.tagsName()
     },
     cancel() {
       // 点击弹窗取消按钮
@@ -503,7 +494,25 @@ export default {
       } else {
         this.showLists = false;
       }
+    },
+    tagsName() {
+      let nameStr = ''
+      let length = this.tags.length
+      for (let i = 0; i < length; i++) {
+        nameStr += this.tags[i].name + ','
+      }
+      this.nameStr = nameStr.substr(0, nameStr.length - 1)
     }
+  },
+  computed: {
+    // tagsName() {
+    //   let nameStr = ''
+    //   let length = this.tags.length
+    //   for (let i = 0; i < length; i++) {
+    //     nameStr += this.tags[i].name + ','
+    //   }
+    //   return nameStr.substr(0, nameStr.length - 1)
+    // }
   },
   components: {
     alert
