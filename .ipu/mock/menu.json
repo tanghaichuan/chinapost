@@ -50,203 +50,214 @@
       "success": true,
       "list": [{
           "name": "客户360视图",
-          "icon":"&#xe784;",
+          "icon": "&#xe784;",
           "children": [{
-            "name": "客户基本信息",
-            "url": "/agentview/1"
+            "name": "基本视图",
+            "children": [{
+              "name": "客户基本信息",
+              "url": "/agentview/1"
+            }, {
+              "name": "联系信息",
+              "url": "/agentview/2"
+            }, {
+              "name": "社交网络信息",
+              "url": "/agentview/3"
+            }]
           }, {
-            "name": "客户查询信息",
-            "url": "/agentview/1"
+            "name": "关系视图",
+            "children": [{
+              "name": "咨询&投诉记录",
+              "url": "/relation/1"
+            }, {
+              "name": "客户服务活动记录",
+              "url": "/relation/2"
+            }, {
+              "name": "地址信息",
+              "url": "/relation/3"
+            }, {
+              "name": "获客来源",
+              "url": "/relation/4"
+            }]
           }, {
-            "name": "客户关系",
-            "url": "/agentview/1"
+            "name": "业务视图",
+            "children": [{
+              "name": "业务概览",
+              "url": "/business/1"
+            }, {
+              "name": "被保人信息",
+              "url": "/business/2"
+            }, {
+              "name": "续保信息",
+              "url": "/business/3"
+            }]
           }, {
-            "name": "客户接触历史",
-            "url": "/agentview/1"
+            "name": "客户洞察",
+            "children": [{
+              "name": "业务概览",
+              "url": "/agentview/7"
+            }, {
+              "name": "被保人信息",
+              "url": "/agentview/8"
+            }, {
+              "name": "续保信息",
+              "url": "/agentview/9"
+            }]
+          }, {
+            "name": "价值视图",
+            "children": [{
+              "name": "业务概览",
+              "url": "/agentview/10"
+            }, {
+              "name": "被保人信息",
+              "url": "/agentview/11"
+            }, {
+              "name": "续保信息",
+              "url": "/agentview/12"
+            }]
+          }, {
+            "name": "风险试图",
+            "children": [{
+              "name": "业务概览",
+              "url": "/agentview/7"
+            }, {
+              "name": "被保人信息",
+              "url": "/agentview/8"
+            }, {
+              "name": "续保信息",
+              "url": "/agentview/9"
+            }]
+          }, {
+            "name": "行为视图",
+            "children": [{
+              "name": "业务概览",
+              "url": "/agentview/7"
+            }, {
+              "name": "被保人信息",
+              "url": "/agentview/8"
+            }, {
+              "name": "续保信息",
+              "url": "/agentview/9"
+            }]
           }]
         },
         {
           "name": "客户管理",
-          "icon":"&#xe783;",
+          "icon": "&#xe783;",
           "children": [{
-              "name": "客户主数据管理",
-              "url": "/customer/1"
-            },
-            {
-              "name": "客户分级",
-              "url": "/customer/1"
-            },
-            {
-              "name": "资源共享",
-              "url": "/customer/1"
-            }
-          ]
+            "name": "客户主数据管理",
+            "url": "/customer/1"
+          }, {
+            "name": "客户分级",
+            "url": "/customer/2"
+          }, {
+            "name": "资源共享",
+            "url": "/customer/3"
+          }]
         },
         {
-          "name": "销售",
-          "icon":"&#xe785;",
+          "name": "销售管理",
+          "icon": "&#xe785;",
           "children": [{
-              "name": "销售管理",
-              "children": [{
-                  "name": "商机管理",
-                  "url": "/sale/1"
-                },
-                {
-                  "name": "大客户销售",
-                  "url": "/sale/2"
-                },
-                {
-                  "name": "交叉销售管理",
-                  "url": "/sale/3"
-                },
-                {
-                  "name": "活动/日程/任务跟踪",
-                  "url": "/sale/4"
-                },
-                {
-                  "name": "销售团队管理",
-                  "url": "/sale/5"
-                },
-                {
-                  "name": "合同管理",
-                  "url": "/sale/6"
-                },
-                {
-                  "name": "业务协同",
-                  "url": "/sale/7"
-                }
-              ]
-            },
-            {
-              "name": "服务管理",
-              "icon":"&#xe787;",
-              "children": [{
-                  "name": "客户咨询/投诉/理赔",
-                  "url": "/service/1"
-                },
-                {
-                  "name": "客户回访",
-                  "url": "/service/1"
-                },
-                {
-                  "name": "客户关怀",
-                  "url": "/service/1"
-                },
-                {
-                  "name": "创新服务",
-                  "url": "/service/1"
-                }
-              ]
-            },
-            {
-              "name": "会员积分管理",
-              "icon":"&#xe787;",
-              "children": [{
-                  "name": "会员体系",
-                  "url": "/viper/1"
-                },
-                {
-                  "name": "忠诚度管理",
-                  "url": "/viper/2"
-                },
-                {
-                  "name": "会员权益",
-                  "url": "/viper/2"
-                },
-                {
-                  "name": "联盟合作",
-                  "url": "/viper/2"
-                }
-              ]
-            },
-            {
-              "name": "客户洞察",
-              "icon":"&#xe786;",
-              "children": [{
-                  "name": "客户价值",
-                  "url": "/insight/1"
-                },
-                {
-                  "name": "客户分类",
-                  "url": "/insight/1"
-                },
-                {
-                  "name": "经营分析报表",
-                  "url": "/insight/1"
-                }
-              ]
-            }
-          ]
+            "name": "商机管理",
+            "url": "/sale/1"
+          }, {
+            "name": "大客户销售",
+            "url": "/sale/2"
+          }, {
+            "name": "交叉销售管理",
+            "url": "/sale/3"
+          }, {
+            "name": "活动/日程/任务跟踪",
+            "url": "/sale/4"
+          }, {
+            "name": "销售团队管理",
+            "url": "/sale/5"
+          }, {
+            "name": "合同管理",
+            "url": "/sale/6"
+          }, {
+            "name": "业务协同",
+            "url": "/sale/7"
+          }]
         },
         {
-          "name": "知识库管理",
-          "icon":"&#xe788;",
+          "name": "服务管理",
+          "icon": "&#xe787;",
           "children": [{
-              "name": "知识录入",
-              "url": "/knowledge/1"
-            },
-            {
-              "name": "知识应用",
-              "url": "/knowledge/1"
-            },
-            {
-              "name": "知识优化",
-              "url": "/knowledge/1"
-            }
-          ]
+            "name": "客户咨询、投诉、理赔",
+            "url": "/service/1"
+          }, {
+            "name": "客户回访",
+            "url": "/service/2"
+          }, {
+            "name": "客户关怀",
+            "url": "/service/3"
+          }, {
+            "name": "创新服务",
+            "url": "/service/4"
+          }]
         },
         {
           "name": "营销管理",
-          "icon":"&#xe789;",
+          "icon": "&#xe789;",
           "children": [{
-              "name": "营销计划管理"
+              "name": "营销计划管理",
+              "url": "/market/1"
             },
             {
-              "name": "营销活动管理"
+              "name": "营销活动管理",
+              "url": "/market/1"
             },
             {
-              "name": "线索管理"
+              "name": "线索管理",
+              "url": "/market/1"
             },
             {
-              "name": "营销活动效果评估"
+              "name": "营销活动效果评估",
+              "url": "/market/1"
             }
           ]
+        },
+        {
+          "name": "客户洞察",
+          "icon": "&#xe786;",
+          "children": [{
+            "name": "客户价值",
+            "url": "/trouble/37"
+          }, {
+            "name": "客户分类",
+            "url": "/trouble/38"
+          }, {
+            "name": "客户分析报告",
+            "url": "/trouble/38"
+          }]
+        },
+        {
+          "name": "知识库管理",
+          "icon": "&#xe788;",
+          "children": [{
+            "name": "知识录入",
+            "url": "/knowledge/1"
+          }, {
+            "name": "知识应用",
+            "url": "/knowledge/2"
+          }, {
+            "name": "知识优化",
+            "url": "/knowledge/3"
+          }]
         },
         {
           "name": "渠道管理",
-          "icon":"&#xe78a;",
+          "icon": "&#xe78a;",
           "children": [{
-              "name": "Bulletin Management",
-              "url": "/trouble/37"
-            },
-            {
-              "name": "Bulletin Catalog Management",
-              "url": "/trouble/38"
-            }
-          ]
-        },
-        {
-          "name": "产品管理",
-          "icon":"&#xe78a;",
-          "children": [{
-              "name": "Bulletin Management",
-              "url": "/trouble/37"
-            },
-            {
-              "name": "Bulletin Catalog Management",
-              "url": "/trouble/38"
-            }
-          ]
-        },
-        {
-          "name": "权限管理",
-          "icon":"&#xe78a;",
-          "children": [{
-            "name": "权限管理",
-            "url": "/permission/1"
+            "name": "渠道整合",
+            "url": "/channel/1"
           }, {
-            "name": "权限管理2",
-            "url": "/permission/2"
+            "name": "渠道协同",
+            "url": "/channel/2"
+          }, {
+            "name": "渠道持续优化",
+            "url": "/channel/2"
           }]
         }
       ]
