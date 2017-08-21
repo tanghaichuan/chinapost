@@ -7,6 +7,7 @@ const tabelDemo =  r => require.ensure([], () => r(require('demo/table/table')),
 const comTable =  r => require.ensure([], () => r(require('demo/owns/listTable/comperhensiveTable')), 'test')
 const editTable = r => require.ensure([], () => r(require('demo/owns/listTable/editTable')), 'test')
 const permissionAlert = r => require.ensure([], () => r(require('demo/permissionview/alert')), 'test')
+const menu = r => require.ensure([], () => r(require('demo/portal/menu')), 'test')
 
 export default[
   {
@@ -21,18 +22,11 @@ export default[
         name: 'Agentview',
         path: '/agentview/:id',
         component: require('./module/index/home.vue')
+      }, {
+        name: 'Permission',
+        path: '/permissionview',
+        component: require('./demo/permissionview/view.vue')
       }
-      // }, {
-      //   name: 'Permission',
-      //   path: '/permission/:id',
-      //   component: require('./module/permission/permission.vue')
-      // }
-      // ,{
-      //   path : '*',
-      //   component : {
-      //     template: '<div>not found</div>'
-      //   }
-      // }
     ]
   }, {
     name : 'Login',
@@ -56,6 +50,11 @@ export default[
     name : 'table',
     path : '/table',
     component : tabel
+  },
+  {
+    name : 'menu',
+    path :'/menu',
+    component :menu
   },
   {
     name : 'conperhensiveTable',
