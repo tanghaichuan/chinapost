@@ -25,7 +25,7 @@
         <t-input v-model="searchVal" icon="magnify" placeholder="搜索..." style="width: 200px;"></t-input>
       </span>
       <transition name="fade">
-        <div class="col-diy" v-show="showDiyTab">
+        <div class="col-diy" v-show="showDiyTab" ref="diyTab">
           <t-form>
             <t-form-item label="自定义列">
               <t-checkbox-group vertical>
@@ -157,18 +157,33 @@
      remove(index) {
       this.data.splice(index, 1)
     },
-    showFilter() {
+    showFilter(e) {
+      e.stopPropagation()
       this.showFilterTab = !this.showFilterTab
     },
-    showDiy() {
+    showDiy(e) {
+      e.stopPropagation()
       this.showDiyTab = !this.showDiyTab
     },
     handleSave() {
       console.log('保存')
+    },
+    closeAllMenu() {
+      this.showFilterTab = false
+      this.showDiyTab = false
     }
    },
    components: {
      filterSlide
+   },
+   mounted() {
+     document.addEventListener('click', this.closeAllMenu)
+     this.$refs.diyTab.addEventListener('click',(e) => {
+     e.stopPropagation()
+   })
+   },
+   destroyed() {
+     document.removeEventListener('click', this.closeAllMenu)
    }
  }
  </script>

@@ -1,5 +1,5 @@
 <template>
-<div class="slide">
+<div class="slide" ref="slidetab">
   <div class="container">
     <h1 class="title text-lg">筛选</h1>
     <div class="content">
@@ -61,6 +61,11 @@ export default {
     handleCancel(name) {
       this.$refs[name].resetFields();
     }
+  },
+  mounted() {
+    this.$refs.slidetab.addEventListener('click', (e) => {
+      e.stopPropagation()
+    })
   }
 }
 </script>
