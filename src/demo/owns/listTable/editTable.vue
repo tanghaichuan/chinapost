@@ -35,12 +35,68 @@
           <input class="form-control"  placeholder="我是输入框">
         </t-poptip>
 	</div>
+	<!-- 这下面是一个可以展开收起的 -->
+	<p class="text">高级搜索-简易搜索切换</p>
+  	<div class="tab-search">
+  		<div class="search" v-if="showSearch">
+  			<t-input v-model="values" icon="magnify" icon-placement="right" placeholder="请输入..." class="search-input"></t-input>
+  			<span class="text" @click="tabShow">高级搜索</span>
+  		</div>
+  		<div class="search-panel" v-else>
+  			<div class="search-row row">
+  				<div class="col-4">
+  					<label class="label">应用名称:</label>
+  					<div class="content">
+  						<t-input v-model="value" placeholder="请输入名称..." class="search-input"></t-input>
+  					</div>
+  				</div>
+  				<div class="col-4">
+  					<label class="label">应用类型:</label>
+  					<div class="content">
+  						<t-select v-model="selectCity">
+							<t-option v-for="item in cityList" :value="item.value">{{item.label}}</t-option>
+						</t-select>
+  					</div>
+  				</div>
+  				<div class="col-4">
+  					<label class="label">应用分组:</label>
+  					<div class="content">
+  						<t-select v-model="selectCity1">
+							<t-option v-for="item in cityList1" :value="item.value">{{item.label}}</t-option>
+						</t-select>
+  					</div>
+  				</div>
+  			</div>
+  			<div class="search-row row">
+  				<div class="col-4">
+  					<label class="label">应用创建者:</label>
+  					<div class="content">
+  						<t-select v-model="selectCity2">
+							<t-option v-for="item in cityList2" :value="item.value">{{item.label}}</t-option>
+						</t-select>
+  					</div>
+  				</div>
+  			</div>
+  			<div class="button-group">
+  				<span class="search-text" @click="tabShow">简易搜索</span>
+  				<t-button type="outline-primary" class="btn" @click="clear">清空</t-button>
+  				<t-button type="primary" class="btn">搜索</t-button>
+  			</div>
+  		</div>
+  	</div>
 </div>	
 </template>
 <script>
 export default{
 	data(){
 		return{
+			values:'',
+			value:'',
+			selectCity:'',
+			selectCity1:'',
+			selectCity2:'',
+			showSearch:true,
+			numText:'请至少输入3个字符',
 			queryList:[
 				{
 					list:[
@@ -318,11 +374,84 @@ export default{
 					isAge:false
 				}
 			],
-			numText:'请至少输入3个字符'
+			cityList:[
+				{
+					value:'1',
+					label:'北京市'
+				},
+				{
+					value:'2',
+					label:'上海市'
+				},
+				{
+					value:'3',
+					label:'杭州市'
+				},
+				{
+					value:'4',
+					label:'南京市'
+				},
+				{
+					value:'5',
+					label:'重庆市'
+				}
+			],
+			cityList1:[
+				{
+					value:'1',
+					label:'北京市'
+				},
+				{
+					value:'2',
+					label:'上海市'
+				},
+				{
+					value:'3',
+					label:'杭州市'
+				},
+				{
+					value:'4',
+					label:'南京市'
+				},
+				{
+					value:'5',
+					label:'重庆市'
+				}
+			],
+			cityList2:[
+				{
+					value:'1',
+					label:'北京市'
+				},
+				{
+					value:'2',
+					label:'上海市'
+				},
+				{
+					value:'3',
+					label:'杭州市'
+				},
+				{
+					value:'4',
+					label:'南京市'
+				},
+				{
+					value:'5',
+					label:'重庆市'
+				}
+			]
 		}
 	},
 	methods:{
-		
+		tabShow(){
+			this.showSearch = !this.showSearch
+		},
+		clear(){
+			this.value = ''
+			this.selectCity = ''
+			this.selectCity1 = ''
+			this.selectCity2 = ''
+		}
 	},
 	mounted(){
 
@@ -454,5 +583,82 @@ export default{
 		display:none;
 	}
 }
-
+.tab-search{
+	.search{
+		line-height:28px;
+		*zoom:1;
+		&:after{
+			content:" ";
+			height:0;
+			clear:both;
+			display:block;
+		}
+		.search-input{
+			width:200px;
+			float:left;
+			cursor:pointer;
+		}
+		.text{
+			margin-left:10px;
+			padding:0;
+			font-size:12px;
+			color:#2db7f5;
+			float:left;
+			cursor:pointer;
+		}
+	}
+	.search-panel{
+		padding:25px 0;
+		background:#fbfbfb;
+		border:1px solid #d9d9d9;
+		border-radius:8px;
+		.search-row{
+			padding-bottom:20px;
+			*zoom:1;
+			.label{
+				margin:0;
+				padding-right:3%;
+				width:30%;
+				float:left;
+				line-height:28px;
+				text-align:right;
+			}
+			.content{
+				width:70%;
+				float:left;
+				.search-input{
+					width:70%;
+				}
+			}
+			&:after{
+				content:" ";
+				height:0;
+				clear:both;
+				disolay:block;
+			}
+		}
+		.button-group{
+			padding-right:20px;
+			*zoom:1;
+			&:after{
+				content:" ";
+				height:0;
+				clear:both;
+				display:block;
+			}
+			.btn{
+				margin-left:10px;
+				float:right;
+			}
+			.search-text{
+				margin-left:10px;
+				float:right;
+				line-height:28px;
+				font-size:12px;
+				color:#2db7f5;
+				cursor:pointer;
+			}
+		}
+	}
+}
 </style>
