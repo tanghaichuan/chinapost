@@ -7,7 +7,8 @@ import taurus from 'aid-taurus-desktop'
 // import aidenLocale from 'aid-taurus-desktop/src/locale/lang/en-US'
 
 import store from './store'
-import container from './container.vue'
+//import container from './container.vue'
+import main from './app.vue'
 import bus from './bus'
 import router from './router'
 import './invokers'
@@ -51,7 +52,7 @@ const app = new Vue({
   router,
   // i18n,
   render(h) {
-    return h(container)
+    return h(main)
   }
 })
 

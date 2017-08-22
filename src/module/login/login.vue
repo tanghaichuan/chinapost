@@ -19,7 +19,7 @@
               </t-input>
             </div>
             <div class="ml-2">
-              <img src="../../asset/image/code.png" style="height:40px" />
+              <img src="../../asset/image/code.png" style="height:32px" />
             </div>
           </div>
         </t-form-item>
@@ -121,3 +121,10 @@ export default {
   }
 }
 </script>
+<style scoped lang="less">
+.login-box{
+  width: 300px;
+  margin: 0 auto;
+  margin-top: 100px;
+}
+</style>
