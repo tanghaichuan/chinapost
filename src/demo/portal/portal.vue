@@ -25,7 +25,7 @@
 }
 
 .menu--vertical .menu__submenu .menu .menu__submenu .menu__item {
-  padding-left: 67px;
+  padding-left: 16px;
 }
 
 .menu--vertical .menu__submenu .menu .menu__item {
@@ -51,6 +51,9 @@
 .breadcrumb {
   background: #f4f8f9;
 }
+.menu--vertical.menu--folded .sec .menu__submenu-title>span{
+  display: block;
+} 
 </style>
 <template>
   <div class="layout layout--one-screen bg-gray-lightest-5">
@@ -65,7 +68,7 @@
         </t-tooltip>
       </div>
       <t-menu theme="dark" :open-position="openPosition" :class="[{'menu--folded': isOpen===false}]">
-        <t-submenu :name="x" v-for="(item1, x) in menuList" :key="x">
+        <!-- <t-submenu :name="x" v-for="(item1, x) in menuList" :key="x">
           <template slot="title">
             <i class="iconfont" v-html="item1.icon"></i>
             <span>{{item1.name}}</span>
@@ -73,11 +76,12 @@
           <t-menu-item :name="`${x}-${y}`" v-for="(item2, y) in item1.children" :key="y" @click.native="getMenu">
             {{item2.name}}
           </t-menu-item>
-        </t-submenu>
-        <!-- <t-submenu 
+        </t-submenu> -->
+        <t-submenu 
               :name="x" 
               v-for="(item1, x) in menuList" 
-              :key="x">
+              :key="x" 
+              class="first">
                 <template slot="title">
                   <i class="iconfont" v-html="item1.icon"></i>
                   <span>{{item1.name}}</span>
@@ -86,7 +90,8 @@
                 v-if="item2.children"
                 :name="`${x}-${y}`" 
                 v-for="(item2, y) in item1.children"
-                :key="y">
+                :key="y"
+                class="sec">
                   <template slot="title">
                     <span>{{item2.name}}</span>
                   </template>
@@ -102,7 +107,7 @@
                 :key="y">
                 {{item2.name}}
                 </t-menu-item>
-              </t-submenu> -->
+              </t-submenu>
       </t-menu>
     </div>
     <div class="layout-content">

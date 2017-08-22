@@ -1,7 +1,10 @@
+import {proxyLoad} from './common/js/proxyLoad'
+
 import cloud from './demo/cloud/route'
 import osp from './demo/osp/route'
 
-const test = r => require.ensure([], () => r(require('demo/test/test')), 'test')
+const test = proxyLoad('demo/test/test', 'test')
+//const test = r => require.ensure([], () => r(require("demo/test/test")), 'test')
 const tabel = r => require.ensure([], () => r(require('demo/test/table1')), 'test')
 const tabelDemo = r => require.ensure([], () => r(require('demo/table/table')), 'test')
 const comTable = r => require.ensure([], () => r(require('demo/owns/listTable/comperhensiveTable')), 'test')
