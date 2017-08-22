@@ -106,7 +106,7 @@
                     },
                     on: {
                       click: () => {
-                        this.remove(params.index)
+                      console.log('编辑')
                       }
                     }
                   }, '编辑'),
