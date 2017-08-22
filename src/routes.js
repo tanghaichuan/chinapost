@@ -6,6 +6,7 @@ const tabel =  r => require.ensure([], () => r(require('demo/test/table1')), 'te
 const tabelDemo =  r => require.ensure([], () => r(require('demo/table/table')), 'test')
 const comTable =  r => require.ensure([], () => r(require('demo/owns/listTable/comperhensiveTable')), 'test')
 const editTable = r => require.ensure([], () => r(require('demo/owns/listTable/editTable')), 'test')
+const frozenTable = r => require.ensure([], () => r(require('demo/owns/listTable/frozenTable')), 'test')
 const permissionAlert = r => require.ensure([], () => r(require('demo/permissionview/alert')), 'test')
 const menu = r => require.ensure([], () => r(require('demo/portal/menu')), 'test')
 
@@ -75,6 +76,11 @@ export default[
     name : 'editTable',
     path : '/edit-table',
     component : editTable
+  },
+  {
+    name : 'forzenTable',
+    path : '/frozen-table',
+    component : frozenTable
   },
   ...cloud,
   ...osp, {
