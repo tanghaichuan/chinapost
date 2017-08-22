@@ -55,7 +55,24 @@ export default [{
   {
     name: 'menu',
     path: '/menu',
-    component: menu
+    component :menu,
+    children: [
+      {
+        name: 'comperhenTable',
+        path: '',
+        component: comTable
+      },
+      {
+        name: 'frozeTable',
+        path: 'froze',
+        component: frozenTable
+      },
+      {
+        name: 'ediTable',
+        path: 'editTable',
+        component: editTable
+      }
+    ]
   },
   {
     name: 'conperhensiveTable',
