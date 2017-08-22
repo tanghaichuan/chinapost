@@ -11,28 +11,18 @@
           <t-submenu name="1" class="sub-first">
             <template slot="title">
               <i class="iconfont">&#xe784;</i>
-              <span class="sub-text">客户360视图</span>
-              <p class="sub-fold-text"><span>客户360视图</span></p>
+              <span class="sub-text">表格</span>
+              <p class="sub-fold-text"><span>表格</span></p>
             </template>
             <t-menu-item name="1-1">
-
-              客户基本信息
-              <!-- <t-menu type="dark" :open-names="['11']" :accordion="accordion" :open-position="openPosition" class="menuthre-list">
-                <t-submenu name="11">
-                  <template slot="title">
-                      <span class="sub-text">客户基本信息</span>
-
-                  </template>
-                  <t-menu-item name="11-1">11</t-menu-item>
-                  <t-menu-item name="11-2">12</t-menu-item>
-                  <t-menu-item name="11-3">12</t-menu-item>
-                </t-submenu>
-              </t-menu> -->
-
+                <router-link :to="{path:'/menu'}">综合表格</router-link> 
             </t-menu-item>
-            <t-menu-item name="1-2">客户查询信息</t-menu-item>
-            <t-menu-item name="1-3">客户关系</t-menu-item>
-            <t-menu-item name="1-4">客户接触历史</t-menu-item>
+            <t-menu-item name="1-2">
+                <router-link :to="{path:'/menu/froze'}">冻结列表格</router-link>
+              </t-menu-item>
+            <t-menu-item name="1-3">
+                <router-link :to="{path:'/menu/editTable'}">可编辑表格</router-link>
+            </t-menu-item>
           </t-submenu>
           <t-submenu name="2">
             <template slot="title">
@@ -160,10 +150,13 @@
         <t-breadcrumb>
           <t-breadcrumb-item href="#">首页</t-breadcrumb-item>
           <t-breadcrumb-item href="#">二级</t-breadcrumb-item>
-          <t-breadcrumb-item href="#">三级</t-breadcrumb-item>
           <t-breadcrumb-item>当前页</t-breadcrumb-item>
         </t-breadcrumb>
-        <div class="bg-white p-3 ml-3 mr-3 layout-main" style="min-height: 500px">内容区域</div>
+        <div class="bg-white p-3 ml-3 mr-3 layout-main" style="min-height: 500px">
+          <keep-alive>
+            <router-view></router-view>
+          </keep-alive>
+        </div>
         <footer class="p-3 text-center text-gray-light text-sm">
           2011-2016 © AI design
         </footer>

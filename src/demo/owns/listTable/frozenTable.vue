@@ -246,7 +246,10 @@ export default{
 		    content: `姓名：${this.data[index].name}<br>年龄：${this.data[index].age}<br>地址：${this.data[index].address}`
 		  })
 		},
-		onChange (value) {
+		remove(index) {
+	       this.data.splice(index, 1)
+	    },
+	    onChange (value) {
       		console.log('date change:' + value)
 	    },
 		selecAll(value) {
@@ -287,6 +290,9 @@ export default{
 			tr{
 				td{
 					height:48px;
+					.btn {
+						margin-bottom: 0;
+					}
 				}
 			}
 		}
