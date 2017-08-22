@@ -4,8 +4,8 @@
 	<div class="query-result">
 		<h2 class="query-tit">查询结果</h2>
 		<ul class="query-list">
-			<li v-for="items in queryList">
-				<p v-for="item in items.list">
+			<li v-for="(items,index) in queryList" :key="index">
+				<p v-for="(item,index) in items.list" :key="index">
 					<t-avatar :img-src="item.src" v-if="item.flag"></t-avatar>
 					{{item.label}}
 				</p>
@@ -54,7 +54,7 @@
   					<label class="label">应用类型:</label>
   					<div class="content">
   						<t-select v-model="selectCity">
-							<t-option v-for="item in cityList" :value="item.value">{{item.label}}</t-option>
+							<t-option v-for="(item,index) in cityList" :value="item.value" :key="index">{{item.label}}</t-option>
 						</t-select>
   					</div>
   				</div>
@@ -62,7 +62,7 @@
   					<label class="label">应用分组:</label>
   					<div class="content">
   						<t-select v-model="selectCity1">
-							<t-option v-for="item in cityList1" :value="item.value">{{item.label}}</t-option>
+							<t-option v-for="(item,index) in cityList1" :value="item.value" :key="index">{{item.label}}</t-option>
 						</t-select>
   					</div>
   				</div>
@@ -72,7 +72,7 @@
   					<label class="label">应用创建者:</label>
   					<div class="content">
   						<t-select v-model="selectCity2">
-							<t-option v-for="item in cityList2" :value="item.value">{{item.label}}</t-option>
+							<t-option v-for="(item,index) in cityList2" :value="item.value" :key="index">{{item.label}}</t-option>
 						</t-select>
   					</div>
   				</div>
