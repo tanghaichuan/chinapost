@@ -251,7 +251,6 @@ export default{
 	    },
 		selecAll(value) {
 			this.selecData = value
-			console.log(this.selecData)
 		},
 		handleSubmit(name) {
 	        this.$refs[name].validate((valid) => {
@@ -266,12 +265,13 @@ export default{
             this.$refs[name].resetFields();
         },
         deleteParams() {
-		// for(let i = 0; i<=this.selecData.length; i++) {
-		// 	if(this.data1[i].id = this.selecData[i].id) {
-		// 		this.data1[i].remove()
-		// 		//alert(1);
-		// 	}
-		// }
+			for(let i=0;i<this.selecData.length;i++){
+				for(let j=0;j<this.data1.length;j++){
+					if(this.selecData[i].id == this.data1[j].id){
+						this.data1.splice(j,1);
+					}
+				}
+			}
 		}
 	}
 }	
