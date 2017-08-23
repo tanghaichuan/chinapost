@@ -61,7 +61,7 @@
       <div href="#" class="layout-logo-left">
         <!-- logo  -->
         <t-tooltip content="主页" placement="bottom">
-          <a href="/" class="layout-logo mr-4">
+          <a href="/portal" class="layout-logo mr-4">
             <img src="../../asset/image/logo.png" width="130" alt="" v-if="isOpen">
             <img src="../../asset/image/logo2.png" width="130" alt="" v-if="!isOpen" style="width: 32px; position:relative;left:-3px;">
           </a>
