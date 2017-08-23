@@ -88,7 +88,7 @@
         <t-submenu :name="x" v-for="(item1, x) in menuList" :key="x" class="first">
           <template slot="title">
             <i class="iconfont" v-html="item1.icon"></i>
-            <span>{{item1.name}}</span>
+            <span ref="parMenu">{{item1.name}}</span>
           </template>
           <t-submenu v-if="item2.children" :name="`${x}-${y}`" v-for="(item2, y) in item1.children" :key="y" class="sec">
             <template slot="title">

@@ -52,19 +52,54 @@ export default [{
         component: require('demo/portal/wrapper.vue')
       },
       {
-        name: '客户管理',
+        name: '客户360视图',
         path: 'relation/1',
         component: comTable
       },
       {
-        name: '客户管理',
+        name: '客户360视图',
         path: 'relation/2',
         component: frozenTable
       },
       {
-        name: '客户管理',
+        name: '客户360视图',
         path: 'relation/3',
         component: editTable
+      },
+      {
+        name: '客户管理',
+        path: 'customer/:id',
+        component: require('demo/portal/wrapper.vue')
+      },
+      {
+        name: '销售管理',
+        path: 'sale/:id',
+        component: require('demo/portal/wrapper.vue')
+      },
+      {
+        name: '服务管理',
+        path: 'service/:id',
+        component: require('demo/portal/wrapper.vue')
+      },
+      {
+        name: '营销管理',
+        path: 'market/:id',
+        component: require('demo/portal/wrapper.vue')
+      },
+      {
+        name: '客户洞察',
+        path: 'trouble/:id',
+        component: require('demo/portal/wrapper.vue')
+      },
+      {
+        name: '知识库管理',
+        path: 'knowledge/:id',
+        component: require('demo/portal/wrapper.vue')
+      },
+      {
+        name: '渠道管理',
+        path: 'channel/:id',
+        component: require('demo/portal/wrapper.vue')
       },
       {
         path: '*',
