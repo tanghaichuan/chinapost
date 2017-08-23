@@ -1,4 +1,11 @@
 <style scoped lang="scss">
+.main {
+  height: 100%;
+  overflow: auto;
+  padding: 24px;
+  background: #f4f8f9;
+}
+
 //左侧菜单
 .menu--vertical .menu__submenu .menu__submenu-title {
   &:hover {
@@ -51,9 +58,10 @@
 .breadcrumb {
   background: #f4f8f9;
 }
-.menu--vertical.menu--folded .sec .menu__submenu-title>span{
+
+.menu--vertical.menu--folded .sec .menu__submenu-title>span {
   display: block;
-} 
+}
 </style>
 <template>
   <div class="layout layout--one-screen bg-gray-lightest-5">
@@ -69,45 +77,29 @@
       </div>
       <t-menu theme="dark" :open-position="openPosition" :class="[{'menu--folded': isOpen===false}]">
         <!-- <t-submenu :name="x" v-for="(item1, x) in menuList" :key="x">
+            <template slot="title">
+              <i class="iconfont" v-html="item1.icon"></i>
+              <span>{{item1.name}}</span>
+            </template>
+            <t-menu-item :name="`${x}-${y}`" v-for="(item2, y) in item1.children" :key="y" @click.native="getMenu">
+              {{item2.name}}
+            </t-menu-item>
+          </t-submenu> -->
+        <t-submenu :name="x" v-for="(item1, x) in menuList" :key="x" class="first">
           <template slot="title">
             <i class="iconfont" v-html="item1.icon"></i>
             <span>{{item1.name}}</span>
           </template>
-          <t-menu-item :name="`${x}-${y}`" v-for="(item2, y) in item1.children" :key="y" @click.native="getMenu">
+          <t-submenu v-if="item2.children" :name="`${x}-${y}`" v-for="(item2, y) in item1.children" :key="y" class="sec">
+            <template slot="title">
+              <span>{{item2.name}}</span>
+            </template>
+            <t-menu-item :name="`${x}-${y}-${z}`" v-for="(item3, z) in item2.children" :key="z" @click.native="getMenu(item3)">{{item3.name}}</t-menu-item>
+          </t-submenu>
+          <t-menu-item :name="`${x}-${y}`" v-if="!item2.children" v-for="(item2, y) in item1.children" :key="y" @click.native="getMenu(item2)">
             {{item2.name}}
           </t-menu-item>
-        </t-submenu> -->
-        <t-submenu 
-              :name="x" 
-              v-for="(item1, x) in menuList" 
-              :key="x" 
-              class="first">
-                <template slot="title">
-                  <i class="iconfont" v-html="item1.icon"></i>
-                  <span>{{item1.name}}</span>
-                </template>
-                <t-submenu 
-                v-if="item2.children"
-                :name="`${x}-${y}`" 
-                v-for="(item2, y) in item1.children"
-                :key="y"
-                class="sec">
-                  <template slot="title">
-                    <span>{{item2.name}}</span>
-                  </template>
-                  <t-menu-item 
-                  :name="`${x}-${y}-${z}`" 
-                  v-for="(item3, z) in item2.children"
-                  :key="z">{{item3.name}}</t-menu-item>
-                </t-submenu>
-                <t-menu-item 
-                :name="`${x}-${y}`" 
-                v-if="!item2.children"
-                v-for="(item2, y) in item1.children"
-                :key="y">
-                {{item2.name}}
-                </t-menu-item>
-              </t-submenu>
+        </t-submenu>
       </t-menu>
     </div>
     <div class="layout-content">
@@ -136,12 +128,13 @@
 
       <t-breadcrumb v-if="currentMenu">
         <t-breadcrumb-item href="/portal" @click.native="emptyMenu">首页</t-breadcrumb-item>
-        <t-breadcrumb-item href="#">{{parMenu}}</t-breadcrumb-item>
+        <t-breadcrumb-item href="#">{{$route.name === 'wrapper' ? currentMenu='' : $route.name}}</t-breadcrumb-item>
         <t-breadcrumb-item>{{currentMenu}}</t-breadcrumb-item>
       </t-breadcrumb>
 
-      <div class="layout-main">内容区域
-        <img src="../../asset/image/view.png" alt="" width="100%" />
+      <div class="main">
+        <router-view></router-view>
+        <!-- <img src="../../asset/image/view.png" alt="" width="100%;height:100%;" /> -->
       </div>
       <footer class="p-3 text-center text-gray-light text-sm">
         2011-2016 © AI design
@@ -171,9 +164,10 @@ export default {
       this.accordion = !this.accordion
       this.openPosition = this.openPosition === 'down' ? 'right' : 'down'
     },
-    getMenu(e) {
-      this.currentMenu = e.target.innerHTML;
-      this.parMenu = e.target.parentNode.parentNode.querySelector("span").innerHTML
+    getMenu(item) {
+      this.$router.push({ path: `/portal${item.url}` });
+      this.currentMenu = item.name;
+      //this.parMenu = e.target.parentNode.parentNode.querySelector("span").innerHTML
     },
     emptyMenu() {
       this.currentMenu = ""

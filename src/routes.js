@@ -1,4 +1,6 @@
-import {proxyLoad} from './common/js/proxyLoad'
+import {
+  proxyLoad
+} from './common/js/proxyLoad'
 
 import cloud from './demo/cloud/route'
 import osp from './demo/osp/route'
@@ -38,7 +40,37 @@ export default [{
   {
     name: '管理门户示例',
     path: '/portal',
-    component: require('./demo/portal/portal.vue')
+    component: require('./demo/portal/portal.vue'),
+    children: [{
+        name: 'wrapper',
+        path: '',
+        component: require('./demo/portal/wrapper.vue')
+      },
+      {
+        name: '客户360视图',
+        path: 'agentview/:id',
+        component: require('demo/portal/wrapper.vue')
+      },
+      {
+        name: '客户管理',
+        path: 'relation/1',
+        component: comTable
+      },
+      {
+        name: '客户管理',
+        path: 'relation/2',
+        component: frozenTable
+      },
+      {
+        name: '客户管理',
+        path: 'relation/3',
+        component: editTable
+      },
+      {
+        path: '*',
+        component: require('demo/portal/wrapper.vue')
+      }
+    ]
   },
   {
     name: 'table示例',
@@ -58,9 +90,8 @@ export default [{
   {
     name: 'menu',
     path: '/menu',
-    component :menu,
-    children: [
-      {
+    component: menu,
+    children: [{
         name: 'comperhenTable',
         path: '',
         component: comTable
