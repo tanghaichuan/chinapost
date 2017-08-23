@@ -390,15 +390,10 @@ export default{
 }	
 </script>
 <style lang="less" scoped>
-*{
-	margin:0;
-	padding:0;
-}
 .comment{
 	.comment-con{
 		margin-bottom:20px;
 		.comment-form{
-			height:40px;
 			*zoom:1;
 			&:after{
 				content:" ";
@@ -489,6 +484,7 @@ export default{
 		}
 	}
 	.text-tit{
+		margin:0;
 		padding:20px 0 10px;
 		line-height:22px;
 		font-size:16px;
