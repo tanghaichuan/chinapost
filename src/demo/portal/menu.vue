@@ -23,6 +23,9 @@
             <t-menu-item name="1-3">
                 <router-link :to="{path:'/menu/editTable'}">可编辑表格</router-link>
             </t-menu-item>
+            <t-menu-item name="1-4">
+                <router-link :to="{path:'/menu/mergeTable'}">合并表格</router-link>
+            </t-menu-item>
           </t-submenu>
           <t-submenu name="2">
             <template slot="title">
@@ -191,16 +194,7 @@ export default {
   }
 </script>
 <style lang="less" scoped>
-.header{
-  display:none;
-}
 .wrap-green-layout{
-  position:absolute;
-  top:0;
-  left:0;
-  right:0;
-  z-index:1000;
-  background:#fff;
   .navbar.bg-white{
     background-color:#3ca358!important;
   }

@@ -14,6 +14,7 @@ const editTable = r => require.ensure([], () => r(require('demo/owns/listTable/e
 const frozenTable = r => require.ensure([], () => r(require('demo/owns/listTable/frozenTable')), 'test')
 const permissionAlert = r => require.ensure([], () => r(require('demo/permissionview/alert')), 'test')
 const menu = r => require.ensure([], () => r(require('demo/portal/menu')), 'test')
+const merge = r => require.ensure([], () => r(require('demo/owns/listTable/mergeTable')), 'test')
 
 export default [{
     path: '/',
@@ -140,7 +141,12 @@ export default [{
         name: 'ediTable',
         path: 'editTable',
         component: editTable
-      }
+      },
+      {
+        name: 'mergeTable',
+        path: 'mergeTable',
+        component: merge
+      }  
     ]
   },
   {

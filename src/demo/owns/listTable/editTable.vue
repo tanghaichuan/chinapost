@@ -519,7 +519,7 @@ export default{
 	}
 }
 .edit-table{
-	width:80%;
+	width:95%;
 	margin:0 auto;
 	padding-bottom:60px;
 	p{
