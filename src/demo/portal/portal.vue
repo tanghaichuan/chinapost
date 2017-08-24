@@ -59,7 +59,12 @@
   background: #f4f8f9;
 }
 
-.menu--vertical.menu--folded .sec .menu__submenu-title>span {
+.menu--folded .sec .menu__submenu-title>span {
+  padding-left: 0px;
+  display: block;
+}
+.sec .menu__submenu-title>span {
+  padding-left: 40px;
   display: block;
 }
 </style>
