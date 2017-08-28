@@ -32,9 +32,11 @@
 }
 
 .menu--vertical .menu__submenu .menu .menu__submenu .menu__item {
+  padding-left: 55px;
+}
+.menu--folded .menu__submenu .menu .menu__submenu .menu__item{
   padding-left: 16px;
 }
-
 .menu--vertical .menu__submenu .menu .menu__item {
   border-left: 3px solid #fff;
   &:hover {
