@@ -57,10 +57,8 @@ typings/
 # dotenv environment variables file
 .env
 
-.ipu/
+.ipu/temp
 dist/
 .DS_Store
 test/
-.ipu/temp/happypack/cache--js.json
-dist/vendor/base-manifest.json
 src/index.html
