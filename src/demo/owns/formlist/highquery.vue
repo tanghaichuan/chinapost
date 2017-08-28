@@ -136,7 +136,7 @@
                     input: ''
                 },
                 data:'',
-                show:false,
+                show:true,
                 hide:true
             }
         },
