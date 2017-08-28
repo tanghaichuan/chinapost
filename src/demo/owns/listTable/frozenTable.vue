@@ -42,6 +42,7 @@
 	      </t-form-item>
 	    </t-form>
 	</div>
+	<table-demo></table-demo>
 </div>	
 </template>
 <script>
@@ -87,26 +88,32 @@ export default{
 			      width: 150,
 			      render: (h, params) => {
 			        return h('div', [
-			          h('t-button', {
+			          h('span', {
 			            props: {
 			              type: 'primary',
 			              size: 'sm'
 			            },
-			            style: {
-			              marginRight: '5px'
-			            },
+				        style: {
+		                    color: '#108EEA',
+		                    cursor: 'pointer'
+		                },
 			            on: {
 			              click: () => {
 			                this.show(params.index)
 			              }
 			            }
 			          }, '查看'),
-			          h('t-button', {
+			          h('span', {
 			            props: {
 			              type: 'danger',
 			              size: 'sm'
 			            },
-			            on: {
+						style: {
+							marginLeft: '5px',
+		                    color: '#108EEA',
+		                    cursor: 'pointer'
+		                },			            
+		                on: {
 			              click: () => {
 			                this.remove(params.index)
 			              }
