@@ -53,8 +53,11 @@
                 <a href="javascript:;" class="ml-8 p-t text-info">文字链接</a>
             </div>
             <div class="clearfix mar b-mar ">
-                <div class="title text-right float-left">我是标题:</div>
-                <t-switch rounded class="mt-1 ml-8"></t-switch>
+                <div class="title text-right float-left" >我是标题:</div>
+                <t-switch rounded class="mt-1 ml-8">
+                    <span slot="open">开</span>
+                    <span slot="close">关</span>
+                </t-switch>
             </div>
             <div class="clearfix mar b-mar ">
                 <div class="title text-right float-left">我是标题:</div>
@@ -158,7 +161,7 @@
         }
     }
 </script>
-<style scoped lang="less">
+<style   lang="less">
 
     .title{
         width: 232px;
@@ -191,10 +194,9 @@
     .switch--checked, .switch[checked]{
         background: #6AD367;
     }
-    .left{
-        margin-left: -8px;
+    .form-control, .select .dropdown-input{
+        height: 100% ;
     }
-    //以下写到父组件
     .slider__handle-button{
         background-color: #b0e9fe !important;
     }

@@ -1,4 +1,4 @@
-<style scoped lang="scss">
+<style scoped lang="less">
     table {
         border-collapse: collapse;
         border-spacing: 0;
@@ -8,9 +8,8 @@
         padding: 0;
     }
 
-    .alignment {
-        border: 1px dashed #DDDAD6;
-        padding: 1rem;
+    .highquery {
+
         .name {
             text-align: right;
         }
@@ -31,33 +30,42 @@
         margin-right: 8px;
         margin-left: 16px;
     }
+    .form{
+        border: 1px dashed #DDDAD6;
+        padding: 1rem;
+    }
 
 
 </style>
 <template>
-    <div class="alignment">
-        <t-form :model="formItem" class="form">
+    <div class="highquery">
+        <div class="clearfix" v-show="hide">
+            <t-input v-model="value4" icon="aid-account-search" icon-placement="right" placeholder="请输入用户名..." style="width: 200px" class="float-left"></t-input>
+            <p class="float-left text-info" @click="showAll" >高级查询</p>
+        </div>
+
+        <t-form :model="formItem" class="form" v-show="show">
             <table>
                 <tr class="tr">
                     <td>
-                        <div class="name">名字较长的标签:</div>
+                        <div class="name" >名字较长的标签:</div>
                     </td>
                     <td>
-                        <t-input placeholder=""></t-input>
-                    </td>
-                    <td>
-                        <div class="name">名字较长的标签:</div>
-                    </td>
-
-                    <td>
-                        <t-input placeholder=""></t-input>
+                        <t-input placeholder=""v-model="data"></t-input>
                     </td>
                     <td>
                         <div class="name">名字较长的标签:</div>
                     </td>
 
                     <td>
-                        <t-input placeholder=""></t-input>
+                        <t-input placeholder=""v-model="data"></t-input>
+                    </td>
+                    <td>
+                        <div class="name">名字较长的标签:</div>
+                    </td>
+
+                    <td>
+                        <t-input placeholder="" v-model="data"></t-input>
                     </td>
                 </tr>
                 <tr>
@@ -69,21 +77,21 @@
                     </td>
 
                     <td>
-                        <t-input placeholder=""></t-input>
+                        <t-input placeholder=""v-model="data"></t-input>
                     </td>
                     <td>
                         <div class="name">标签:</div>
                     </td>
 
                     <td>
-                        <t-input placeholder=""></t-input>
+                        <t-input placeholder=""v-model="data"></t-input>
                     </td>
                     <td>
                         <div class="name">标签:</div>
                     </td>
 
                     <td>
-                        <t-input placeholder=""></t-input>
+                        <t-input placeholder="" v-model="data"></t-input>
                     </td>
                 </tr>
                 <tr>
@@ -94,7 +102,7 @@
                         <div class="name">标签:</div>
                     </td>
                     <td colspan="3">
-                        <t-input placeholder=""></t-input>
+                        <t-input placeholder="" v-model="data"></t-input>
                     </td>
 
                 </tr>
@@ -108,8 +116,8 @@
                     <td colspan="2" class="clearfix">
                         <div class="float-right">
                             <t-button type="info" class="">搜索</t-button>
-                            <t-button class="ml-2">清空</t-button>
-                            <a href="javascript:void(0);" class="ml-2 text-info">简易搜索</a>
+                            <t-button class="ml-2" @click="empty">清空</t-button>
+                            <a href="javascript:void(0);" class="ml-2 text-info" @click="simpleQuery">简易搜索</a>
                         </div>
 
                     </td>
@@ -126,7 +134,23 @@
             return {
                 formItem: {
                     input: ''
-                }
+                },
+                data:'',
+                show:false,
+                hide:true
+            }
+        },
+        methods:{
+            empty(){
+                this.data=''
+            },
+            showAll(){
+                this.show=true
+                this.hide=false
+            },
+            simpleQuery(){
+                this.show=false
+                this.hide=true
             }
         }
     }
