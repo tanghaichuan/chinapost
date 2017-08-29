@@ -41,7 +41,7 @@
     <div class="highquery">
         <div class="clearfix" v-show="hide">
             <t-input v-model="value4" icon="aid-account-search" icon-placement="right" placeholder="请输入用户名..." style="width: 200px" class="float-left"></t-input>
-            <p class="float-left text-info" @click="showAll" >高级查询</p>
+            <p class="float-left text-primary" @click="showAll" >高级查询</p>
         </div>
 
         <t-form :model="formItem" class="form" v-show="show">
@@ -115,9 +115,9 @@
                     </td>
                     <td colspan="2" class="clearfix">
                         <div class="float-right">
-                            <t-button type="info" class="">搜索</t-button>
-                            <t-button class="ml-2" @click="empty">清空</t-button>
-                            <a href="javascript:void(0);" class="ml-2 text-info" @click="simpleQuery">简易搜索</a>
+                            <t-button type="primary" class="">搜索</t-button>
+                            <t-button class="ml-2"type="outline-primary" @click="empty">清空</t-button>
+                            <a href="javascript:void(0);" class="ml-2 text-primary" @click="simpleQuery">简易搜索</a>
                         </div>
 
                     </td>

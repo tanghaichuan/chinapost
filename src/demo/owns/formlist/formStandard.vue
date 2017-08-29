@@ -1,6 +1,7 @@
 <template>
     <div>
         <div>
+            <!--较长标题*2-->
             <div class="d-flex justify-content-start mar">
                 <div class="d-flex justify-content-start ">
                     <div class="title text-right">我是较长标题:</div>
@@ -26,8 +27,8 @@
                     </t-select>
 
                 </div>
-
             </div>
+            <!--较长标题*1-->
             <div class="d-flex justify-content-start mar">
                 <div class="title text-right">我是较长标题:</div>
                 <t-select
@@ -39,26 +40,30 @@
                     <t-option v-for="option in options1" :value="option.value" :key="new Date()">{{option.label}}</t-option>
                 </t-select>
             </div>
+            <!--计数器-->
             <div>
                 <div class="d-flex justify-content-start mar">
                     <div class="title text-right">我是较长标题:</div>
                     <t-numberstepper class="ml-8" max="10000000"></t-numberstepper>
-                    <p class="p-t ml-8">台机器</p>
-                    <t-checkbox class="p-t ml-8"> <p class="left">我是较长的内容</p></t-checkbox>
+                    <p class="higth-28 ml-8">台机器</p>
+                    <t-checkbox class="higth-28 ml-8"> <p class="left">我是较长的内容</p></t-checkbox>
                 </div>
             </div>
+            <!--文字链接-->
             <div class="d-flex justify-content-start mar ml-16">
-                <div class="title text-right">我是标题:</div>
-                <p class="ml-8 p-t">唧唧复唧唧木兰</p>
-                <a href="javascript:;" class="ml-8 p-t text-info">文字链接</a>
+                <span class="title text-right higth-28">我是标题:</span>
+                <span class="ml-8 higth-28">唧唧复唧唧木兰</span>
+                <a href="javascript:;" class="ml-8  text-info higth-28">文字链接</a>
             </div>
+            <!--开关-->
             <div class="clearfix mar b-mar ">
-                <div class="title text-right float-left" >我是标题:</div>
-                <t-switch rounded class="mt-1 ml-8">
+                <div class="title text-right float-left"  >我是标题:</div>
+                <t-switch rounded class="">
                     <span slot="open">开</span>
                     <span slot="close">关</span>
                 </t-switch>
             </div>
+            <!--滑块-->
             <div class="clearfix mar b-mar ">
                 <div class="title text-right float-left">我是标题:</div>
                 <div style="width: 600px" class="float-left ml-8"><div>
@@ -162,20 +167,26 @@
     }
 </script>
 <style   lang="less">
-
+.input{
+    height: 28px;
+}
     .title{
         width: 232px;
-        padding-top: 10px;
+        height: 28px;
+        line-height: 28px;
+
     }
-    .p-t{
-        padding-top: 10px;
+    .higth-28{
+        height: 28px;
+        line-height:28px ;
     }
     .ml-8{
         margin-left: 8px;
     }
     .net-d{
         margin-left: 16px;
-        padding-top: 10px;
+        height: 28px;
+        line-height: 28px;
     }
     .title::before{
         content: "*";
@@ -192,18 +203,24 @@
         margin-bottom: 24px;
     }
     .switch--checked, .switch[checked]{
-        background: #6AD367;
+        background: #009241
+    ;
     }
     .form-control, .select .dropdown-input{
         height: 100% ;
     }
     .slider__handle-button{
-        background-color: #b0e9fe !important;
+        background-color: #009241
+        !important;
     }
     .slider .slider__track{
-        background-color: #b0e9fe;
+        background-color: #009241
+    ;
         background-image: none;
     }
+.input-number__control , .input-number--decrease{
+    height: 28px;
+}
 
 
 
