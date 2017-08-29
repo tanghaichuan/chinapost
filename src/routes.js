@@ -16,6 +16,7 @@ const merge = r => require.ensure([], () => r(require('demo/owns/listTable/merge
 const formStandard = r => require.ensure([], () => r(require('demo/owns/formlist/formStandard')), 'test')
 const highquery = r => require.ensure([], () => r(require('demo/owns/formlist/highquery')), 'test')
 const alignment = r => require.ensure([], () => r(require('demo/owns/formlist/alignment')), 'test')
+const popupEdit = r => require.ensure([], () => r(require('demo/owns/formlist/popupEdit')), 'test')
 
 export default[
   {
@@ -164,10 +165,15 @@ export default[
     path : '/highquery',
     component : highquery
   }, {
-    name : 'alignment',
-    path : '/alignment',
-    component : alignment
-  },
+        name : 'alignment',
+        path : '/alignment',
+        component : alignment
+    },
+    {
+        name : 'popupEdit',
+        path : '/popupEdit',
+        component : popupEdit
+    },
   ...cloud,
   ...osp, {
     path : '*',
