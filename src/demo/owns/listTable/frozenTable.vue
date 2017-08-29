@@ -3,7 +3,7 @@
 	<!-- 固定表格 -->
 	<p class="text">固定表格</p>
 	<div class="table-frozen">
-		<t-table border :columns="fixedColumns" :data="data"></t-table>	
+		<t-table width="1270" border :columns="fixedColumns" :data="data"></t-table>	
 	</div>
 	<p class="text">加载表格</p>
 	<div class="table-frozen">
@@ -29,12 +29,12 @@
 				<t-slider :step="25" show-stops></t-slider>
 			</t-form-item>
 	        <t-form-item label="Select选择器" prop="select">
-				 <t-select v-model="formValidate.select" size="sm" style="width:200px">
+				 <t-select v-model="formValidate.select" size="sm" style="width:250px">
 			      <t-option v-for="item in cityList" :value="item.value" :key="item">{{ item.label }}</t-option>
 			    </t-select>
 			</t-form-item> 
 			<t-form-item label="DatePicker 日期选择器" prop="date">
-				<t-date-picker style="width:250px" v-model="formValidate.date" type="dateRange" :size="lg" v-on:date-change="onChange" placeholder="范围选择"></t-date-picker>
+				<t-date-picker style="width:250px" v-model="formValidate.date" type="dateRange" size="sm" v-on:date-change="onChange" placeholder="范围选择"></t-date-picker>
 			</t-form-item>
 			<t-form-item label=" ">
 		        <t-button type="primary" @click="handleSubmit('formValidate')">提交</t-button>
@@ -59,12 +59,12 @@ export default{
 			    {
 			      title: '年龄',
 			      key: 'age',
-			      width: 100
+			      width: 200
 			    },
 			    {
 			      title: '省份',
 			      key: 'province',
-			      width: 200
+			      width: 300
 			    },
 			    {
 			      title: '市区',
@@ -79,7 +79,7 @@ export default{
 			    {
 			      title: '邮编',
 			      key: 'zip',
-			      width: 100
+			      width: 200
 			    },
 			    {
 			      title: '操作',
@@ -288,11 +288,10 @@ export default{
 </script>
 <style lang="less" scoped>
 .frozen-table{
-	width:60%;
-	margin:0 auto;
 	padding-bottom: 50px;
 	.table-frozen{
 		width:100%;
+		margin-bottom: 10px;
 		.table-tbody{
 			tr{
 				td{
@@ -305,7 +304,8 @@ export default{
 		}
 	}
 	.text{
-		padding:30px 0 0;
+		margin: 0;
+		line-height: 42px;
 	}
 	.btn {
 		margin-bottom: 10px;
