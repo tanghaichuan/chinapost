@@ -1,15 +1,16 @@
 <template>
-
-    <div class="popupEdit">
-        <div class="task"><p>任务列表</p></div>
+    <div class="popupEdit" >
+        <div class="task"><p class="ml-2">任务列表</p></div>
         <ul class="list">
             <li v-for="(i,index) in data ">
-                <span>{{i.name}}</span>
+                <t-checkbox class="ml-2"><span>{{i.name}}</span></t-checkbox>
+
                 <t-poptip trigger="click" placement="top" v-model=data[index].visible>
-                    <div slot="title" class="title"><p class="innerTask">任务</p></div>
-                    <div slot="content" class="content">
-                        <t-input v-model=data[index].value placeholder="请输入..." style="width: 200px"></t-input>
-                        <div class="mt-2">
+                    <div slot="title" class="title"><p class="innerTask" style="font-size: 14px;font-weight:600 ">任务</p>
+                    </div>
+                    <div slot="content" class="content clearfix">
+                        <t-input v-model=data[index].value placeholder="请输入" style="width: 200px"></t-input>
+                        <div class="mt-2 float-right">
                             <t-button @click="close" type="outline-primary">取消</t-button>
                             <t-button @click="saveData" type="primary">保存</t-button>
                         </div>
@@ -30,23 +31,23 @@
                 data: [
                     {
                         name: '跑步500m',
-                        visible:false,
-                        value:'跑步500m'
+                        visible: false,
+                        value: '跑步500m'
                     },
                     {
                         name: '俯卧撑100个',
-                        visible:false,
-                        value:'俯卧撑100个'
+                        visible: false,
+                        value: '俯卧撑100个'
                     },
                     {
                         name: '俯卧撑100个',
-                        visible:false,
-                        value:'俯卧撑100个'
+                        visible: false,
+                        value: '俯卧撑100个'
                     },
                     {
                         name: '俯卧撑100个',
-                        visible:false,
-                        value:'俯卧撑100个'
+                        visible: false,
+                        value: '俯卧撑100个'
                     },
                 ]
 
@@ -54,15 +55,15 @@
         },
         methods: {
             close() {
-            for(var i=0;i<this.data.length;i++){
-                    this.data[i].visible=false
+                for (var i = 0; i < this.data.length; i++) {
+                    this.data[i].visible = false
                 }
 
             },
             saveData() {
-                for(var i=0;i<this.data.length;i++){
-                    this.data[i].name=this.data[i].value
-                    this.data[i].visible=false
+                for (var i = 0; i < this.data.length; i++) {
+                    this.data[i].name = this.data[i].value
+                    this.data[i].visible = false
                 }
             }
         }
@@ -79,7 +80,6 @@
 
     .popupEdit {
         width: 302px;
-        margin: 0 auto;
         border: 1px solid #2D3E53;
         .task {
             width: 300px;
@@ -95,13 +95,12 @@
         }
         .list {
             width: 300px;
-            margin-top: 10px;
+
             li {
-                padding-top: 5px;
+                margin-top: 5px;
             }
         }
 
     }
-
 
 </style>
