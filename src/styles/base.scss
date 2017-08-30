@@ -375,6 +375,15 @@ danger;
   line-height: 26px;
 }
 
+.input {
+  height: 28px;
+  line-height: calc(28px - 1px * 2);
+}
+
+.dropdown__item {
+  padding: 0.4rem 0.625rem;
+}
+
 
 /* 日期组件*/
 
@@ -422,18 +431,25 @@ danger;
 .date-pick__panel {
   height: auto;
 }
-.date-picker .input-wrap input.input{
+
+.date-picker .input-wrap input.input {
   height: 28px;
 }
-.date-pick__date > a{
+
+.date-pick__date>a {
   border-radius: 0;
 }
-.date-pick table td{
+
+.date-pick table td {
   padding: 0;
 }
-.date-pick__row--start, .date-pick__row--end{
+
+.date-pick__row--start,
+.date-pick__row--end {
   width: 231px;
 }
+
+
 /* 表格组件*/
 
 .table th {
