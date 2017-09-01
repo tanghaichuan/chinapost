@@ -47,7 +47,7 @@ export default {
                                     "OPER_MODE": "014"
                                 },
                                 {
-                                    "VALUE": " ",
+                                    "VALUE": "",
                                     "DISP": "婚姻状况",
                                     "OPER_MODE": "02",
                                     "ENUM": [
@@ -67,7 +67,7 @@ export default {
                                 },
                                 {
                                     "CODE": "SEX",
-                                    "VALUE": "M",
+                                    "VALUE": "男",
                                     "DISP": "性别",
                                     "OPER_MODE": "02",
                                     "ENUM": [
