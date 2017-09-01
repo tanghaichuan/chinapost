@@ -54,10 +54,10 @@
   },
   "dependencies": {
     "aid-elements": "^0.7.44",
-    "aid-taurus-desktop": "^0.8.10",
+    "aid-taurus-desktop": "^0.8.11",
     "axios": "^0.15.3",
     "ipu-cli": "0.0.56",
-    "vue": "^2.1.10",
+    "vue": "^2.4.2",
     "vue-i18n": "^7.0.5",
     "vue-router": "^2.2.1",
     "vuex": "^2.1.2",

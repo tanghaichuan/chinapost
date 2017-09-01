@@ -1,6 +1,6 @@
 <template>
     <div class="wrapper">
-        <t-form :model="list" :rules="listRule" label-position="left" :label-span="3">
+        <t-form :rules="listRule" label-position="left" :label-span="3">
             <div class="wrapper-form" v-for="(item, index) in list" :key="index">
                 <h6>{{item.key}}</h6>
                 <component :is="currentView(item)" :userList="currentList(item)"></component>
@@ -88,6 +88,7 @@ export default {
                                 {
                                     "DISP": "学历",
                                     "OPER_MODE": "02",
+                                    "VALUE": "",
                                     "ENUM": [
                                         {
                                             "key": "primary",
@@ -122,6 +123,7 @@ export default {
                                 {
                                     "DISP": "行业类型",
                                     "OPER_MODE": "02",
+                                    "VALUE": "",
                                     "ENUM": [
                                         {
                                             "key": "primary",
@@ -168,6 +170,7 @@ export default {
                                 {
                                     "DISP": "职业",
                                     "OPER_MODE": "02",
+                                    "VALUE": "",
                                     "ENUM": [
                                         {
                                             "key": "primary",
@@ -256,6 +259,7 @@ export default {
                                 {
                                     "DISP": "证件类型",
                                     "OPER_MODE": "02",
+                                    "VALUE": "",
                                     "ENUM": [
                                         {
                                             "key": "primary",

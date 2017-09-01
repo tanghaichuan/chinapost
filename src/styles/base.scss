@@ -386,7 +386,23 @@ danger;
   padding: 0.4rem 0.625rem;
 }
 
+.select{
+  -webkit-box-flex: 0;
+  -ms-flex: 0 0 100%;
+  flex: 0 0 100%;
+  max-width: 201px;
+  min-width: 10px;
+}
+.form--label-left .form-group__label, .form--label-right .form-group__label{
+  min-width: 75px;
+}
 
+.select .dropdown-selected-value{
+  width: 90px;
+}
+.select .dropdown-selected-value{
+  padding-right: 0;
+}
 /* 日期组件*/
 
 // .date-picker {

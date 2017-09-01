@@ -1,15 +1,14 @@
 <template>
     <t-form-item :label="user.DISP" prop="NAME">
-        
-        <t-select v-if="user.OPER_MODE === '02'">
-            <t-option v-for="item in user.ENUM" :value="item.key" :key="item">{{ item.value }}</t-option>
+        <t-select v-model="user.VALUE" :title="user.VALUE" v-if="user.OPER_MODE === '02'">
+            <t-option v-for="item in user.ENUM" :value="item.value" :key="item">{{ item.value }}</t-option>
         </t-select>
 
-        <t-input v-if="user.OPER_MODE === '010'"></t-input>
+        <t-input v-model="user.VALUE" v-if="user.OPER_MODE === '010'"></t-input>
 
-        <t-input v-if="user.OPER_MODE === '013'" type="textarea"></t-input>
+        <t-input v-model="user.VALUE" v-if="user.OPER_MODE === '013'" type="textarea"></t-input>
 
-        <t-date-picker v-if="user.OPER_MODE === '014'"  placeholder="please select date"></t-date-picker>
+        <t-date-picker v-model="user.VALUE" v-if="user.OPER_MODE === '014'"  placeholder="please select date"></t-date-picker>
     </t-form-item>
 </template>
 <script>

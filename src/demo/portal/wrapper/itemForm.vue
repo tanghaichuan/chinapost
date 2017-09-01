@@ -1,7 +1,7 @@
 <template>
     <div class="item-form">
         <div class="form-block--info col-3"  v-for="(item, index) in userList" :key="index">
-            <render-form :user="item"></render-form>
+            <render-form :user.sync="item"></render-form>
         </div>
     </div>
 </template>

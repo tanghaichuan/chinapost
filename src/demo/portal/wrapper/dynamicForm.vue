@@ -2,7 +2,7 @@
     <div class="dynamic-form">
         <div class="form-custom" v-for="(item, index) in userList" :key="index">
             <h6>{{item.key}}</h6>
-            <item-form :userList="item.formItem"></item-form>
+            <item-form :userList.sync="item.formItem"></item-form>
         </div>
     </div>
 </template>
