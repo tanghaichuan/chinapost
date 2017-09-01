@@ -364,7 +364,9 @@ danger;
 
 
 /* 表单组件*/
-
+.form-group__label{
+  font-size: 0.1rem;
+}
 .form-control {
   height: 28px;
   line-height: 26px;
@@ -387,9 +389,9 @@ danger;
 
 /* 日期组件*/
 
-.date-picker {
-  width: 231px;
-}
+// .date-picker {
+//   width: 231px;
+// }
 
 .dropdown__menu {
   .date-pick__body {
@@ -405,9 +407,9 @@ danger;
   }
 }
 
-.dropdown--open>.date-pick.dropdown__menu {
-  width: 231px;
-}
+// .dropdown--open>.date-pick.dropdown__menu {
+//   width: 231px;
+// }
 
 .date-pick__header {
   height: 34px;
