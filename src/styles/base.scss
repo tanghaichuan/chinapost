@@ -542,3 +542,13 @@ danger;
   border-right: 0;
   color: #009448;
 }
+
+/* 气泡提示 */
+
+.popover-confirm{
+  .popover-inner{
+    .popover-body{
+      padding:0;
+    }
+  }
+}
