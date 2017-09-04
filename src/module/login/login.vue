@@ -1,41 +1,45 @@
 <template>
 <div class="login-wrap">
   <div class="login-header">
-    <h1 class="logo"><a href="javascript:;" title="中国邮政"><img src="../../asset/image/logo.png" /></a></h1>
-    <div class="logo-space"></div>
-    <strong class="seller-name">CRM系统</strong>
+    <div class="layout">
+      <h1 class="logo"><a href="javascript:;" title="中国邮政"><img src="../../asset/image/logo.png" /></a></h1>
+      <div class="logo-space"></div>
+      <strong class="seller-name">CRM系统</strong>     
+    </div>    
   </div>
   <div class="login-box">
-    <div class="form-card">
-      <div class="form-logo"><i class="iconfont">&#xe77d;</i><span>集团</span></div>
-      <div class="card-block pt-0 pb-4">
-        <t-form ref="form" :model="formData" :rules="rules">
-          <t-form-item prop="username">
-             <i class="iconfont">&#xe64b;</i>
-              <t-input v-model="formData.username" :autofocus="true"placeholder="请填写用户名"></t-input>
-          </t-form-item>
-          <t-form-item prop="password">
-             <i class="iconfont">&#xe649;</i>
-            <t-input type="password" v-model="formData.password" placeholder="请填写密码">
-            </t-input>
-          </t-form-item>
-          <t-form-item prop="verify">
-              <div class="verify-code d-flex">
-                <i class="iconfont">&#xe64a;</i>
-                <t-input v-model="formData.verify" placeholder="请填写验证码">
-                </t-input>
-                 <div class="mr-1 mt-1">
-                  <img src="../../asset/image/code.png" style="height:32px" />
+    <div class="layout">
+      <div class="form-card">
+        <div class="form-logo"><i class="iconfont">&#xe77d;</i><span>集团</span></div>
+        <div class="card-block pt-0 pb-4">
+          <t-form ref="form" :model="formData" :rules="rules">
+            <t-form-item prop="username">
+               <i class="iconfont">&#xe64b;</i>
+                <t-input v-model="formData.username" :autofocus="true"placeholder="请填写用户名"></t-input>
+            </t-form-item>
+            <t-form-item prop="password">
+               <i class="iconfont">&#xe649;</i>
+              <t-input type="password" v-model="formData.password" placeholder="请填写密码">
+              </t-input>
+            </t-form-item>
+            <t-form-item prop="verify">
+                <div class="verify-code d-flex">
+                  <i class="iconfont">&#xe64a;</i>
+                  <t-input v-model="formData.verify" placeholder="请填写验证码">
+                  </t-input>
+                   <div class="mr-1 mt-1">
+                    <img src="../../asset/image/code.png" style="height:32px" />
+                  </div>
                 </div>
-              </div>
-          </t-form-item>
-          <t-form-item>
-            <p class="text-right"><a href="javascript:;" class="forget-psd">忘记密码?</a></p> 
-          </t-form-item>
-          <t-form-item class="mb-0">
-            <t-button type="primary" @click="submit" block>登 录</t-button>
-          </t-form-item>
-        </t-form>
+            </t-form-item>
+            <t-form-item>
+              <p class="text-right"><a href="javascript:;" class="forget-psd">忘记密码?</a></p> 
+            </t-form-item>
+            <t-form-item class="mb-0">
+              <t-button type="primary" @click="submit" block>登 录</t-button>
+            </t-form-item>
+          </t-form>
+        </div>
       </div>
     </div>
   </div>
@@ -127,11 +131,20 @@ export default {
 }
 </script>
 <style scoped lang="less">
+.layout {
+  width: 1200px;
+  margin: 0 auto;
+  &:after {
+    height: 0;
+    content: " ";
+    display: block;
+    clear: both;
+  }
+}
 .login-wrap{
   width: 100%;
   .login-header {
     width: 100%;
-    min-width: 1190px;
     position: relative;
     z-index: 100;
     height: 76px;
@@ -171,7 +184,7 @@ export default {
     height: 480px;
     .form-card {
       float: right;
-      margin: 30px 200px 0 0;
+      margin: 30px 80px 0 0;
       width: 315px;
       background: rgba(5,72,99,0.6);
       .form-logo {
