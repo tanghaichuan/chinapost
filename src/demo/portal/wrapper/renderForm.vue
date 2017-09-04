@@ -1,14 +1,15 @@
 <template>
-    <t-form-item :label="user.DISP" prop="NAME">
-        <t-select v-model="user.VALUE" :title="user.VALUE" v-if="user.OPER_MODE === '02'">
+    <t-form-item :label="user.DISP" :prop="user.VALUE">
+        <t-select :disabled="isDisabled" v-model="user.VALUE" :title="user.VALUE" v-if="user.OPER_MODE === '02'">
             <t-option v-for="item in user.ENUM" :value="item.value" :key="item">{{ item.value }}</t-option>
         </t-select>
 
-        <t-input v-model="user.VALUE" v-if="user.OPER_MODE === '010'"></t-input>
+        <t-input :disabled="isDisabled" v-model="user.VALUE" v-if="user.OPER_MODE === '010'"></t-input>
 
-        <t-input v-model="user.VALUE" v-if="user.OPER_MODE === '013'" type="textarea"></t-input>
+        <t-input :disabled="isDisabled" v-model="user.VALUE" v-if="user.OPER_MODE === '013'" type="textarea"></t-input>
 
-        <t-date-picker v-model="user.VALUE" v-if="user.OPER_MODE === '014'"  placeholder="please select date"></t-date-picker>
+        <t-date-picker  v-model="user.VALUE" v-if="user.OPER_MODE === '014'" placeholder="please select date"></t-date-picker>
+
     </t-form-item>
 </template>
 <script>
@@ -43,18 +44,22 @@ export default {
         }
     },
     props: {
-        user: Object
+        user: Object,
+        isDisabled: {
+            type: Boolean,
+            default: false
+        }
     },
     methods: {
 
     },
     created() {
-       
+
     },
     mounted() {
 
     }
-    
+
 }
 </script>
 <style scoped lang="less">
