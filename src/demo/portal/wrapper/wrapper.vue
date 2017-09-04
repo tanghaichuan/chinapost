@@ -45,7 +45,7 @@
             </div>
             <div class="wrapper-table" ref="table">
                 <div class="table-top">
-                    <t-button @click="addTableList" type="outline" class="left sub-btn">新增</t-button>
+                    <t-button @click.native="addTableList" type="outline" class="left sub-btn">新增</t-button>
                     <t-input v-model="searchInfo" icon="magnify" class="right" icon-placement="right" placeholder="请输入搜索内容" style="width: 150px;"></t-input>
                 </div>
                 <edit-table :editColumn.sync="editColumn" :editData.sync="showTableList"></edit-table>
@@ -196,7 +196,7 @@ export default {
                                         on: {
                                             click: () => {
                                                 let inx = params.index
-                                                vm.editData[inx].isEdit = true
+                                                vm.showTableList[inx].isEdit = true
                                             }
                                         }
                                     }, '编辑')
@@ -219,8 +219,8 @@ export default {
                                             click: () => {
                                                 let inx = params.index
                                                 console.log(params.row)
-                                                vm.$set(vm.editData, inx, params.row)
-                                                vm.editData[inx].isEdit = false
+                                                vm.$set(vm.showTableList, inx, params.row)
+                                                vm.showTableList[inx].isEdit = false
                                             }
                                         }
                                     }, '保存'),
@@ -232,7 +232,7 @@ export default {
                                         on: {
                                             'on-ok': function() {
                                                 let inx = params.index
-                                                vm.editData[inx].isEdit = false
+                                                vm.showTableList[inx].isEdit = false
                                             }
                                         }
                                     }, [
