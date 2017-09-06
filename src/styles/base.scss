@@ -409,6 +409,12 @@ danger;
   min-width: 10px;
 }
 
+.select{
+  .dropdown-selection-icon{
+    right:3px;
+  }  
+}
+
 .form--label-left .form-group__label,
 .form--label-right .form-group__label {
   text-align: right;
@@ -438,6 +444,20 @@ danger;
 // .date-picker {
 //   width: 231px;
 // }
+
+.date-picker{
+  .input-wrap{
+    .input-icon{
+      right:6px;
+    }
+    input{
+      &.input{
+        padding-right:24px;
+      }
+    }
+  }
+}
+
 .dropdown__menu {
   .date-pick__body {
     padding: 0 0.6rem 0.595rem !important;

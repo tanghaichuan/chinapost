@@ -826,6 +826,41 @@ export default {
         color: rgb( 51, 51, 51);
         line-height: 2.25;
     }
+    .wrapper-form{
+        .form-custom{
+            &>h6{
+                line-height:45px;
+                color:#474747;
+            }
+            &>.item-form{
+                padding:14px 5px 2px 20px;
+                .form-block--info{
+                    .form-group{
+                        margin-bottom:12px;
+                        .form-group__label{
+                            min-width:86px;
+                            padding:0 8px 0 0;
+                            text-align:right;
+                        }
+                        .form-group__content{
+                            padding-left:0;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    .input-wrapper{
+        .input{
+            padding-right:32px!important;
+        }
+    }
+    .input-group-icon{
+        &.input-group-icon--right{
+            right:-2px;
+            cursor:pointer;
+        }
+    }
 }
 
 .formOptions {
@@ -875,6 +910,12 @@ export default {
     display: flex;
     align-items: center;
     zoom: 1;
+    margin-top:20px;
+    border:1px solid #dfe5e7;
+    border-bottom:0;
+    &.botom{
+        border-bottom:1px solid #dfe5e7;
+    }
     &:after {
         display: table;
         overflow: hidden;
@@ -882,17 +923,27 @@ export default {
         clear: both;
     }
     .left {
+        padding-left:10px;
         display: inline-block;
         cursor: pointer;
         h6 {
+            margin:0;
             display: inline-block;
+            line-height:46px;
+        }
+        i{
+            font-size:22px!important;
+            line-height:46px;
         }
     }
     .right {
         display: inline-block;
         position: absolute;
-        right: 0;
-        top: 0;
+        right: 15px;
+        top: 8px;
+        i{
+            font-size:22px!important;
+        }
     }
 }
 </style>
