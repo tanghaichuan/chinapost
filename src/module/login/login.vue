@@ -32,8 +32,8 @@
                   </div>
                 </div>
             </t-form-item>
-            <t-form-item>
-              <p class="text-right"><a href="javascript:;" class="forget-psd">忘记密码?</a></p> 
+            <t-form-item class="mb-3" style="height:5px">
+              <div class="forget-psd"><a href="javascript:;">忘记密码?</a></div> 
             </t-form-item>
             <t-form-item class="mb-0">
               <t-button type="primary" @click="submit" block>登 录</t-button>
@@ -173,7 +173,7 @@ export default {
     .seller-name {
       line-height: 75px;
       color: #000;
-      font-size: 18px;
+      font-size: 20px;
       font-weight: normal;
       float: left;
     }
@@ -184,7 +184,7 @@ export default {
     height: 480px;
     .form-card {
       float: right;
-      margin: 30px 80px 0 0;
+      margin: 32px 80px 0 0;
       width: 315px;
       background: rgba(5,72,99,0.6);
       .form-logo {
@@ -202,8 +202,7 @@ export default {
         }
       }
       .form-group {
-        margin-bottom: 22px;
-        position: relative;
+        margin-bottom: 28px;
         .iconfont {
           width: 36px;
           height: 40px;
@@ -212,18 +211,18 @@ export default {
           position: absolute;
           top: 1px;
           left: 0;
-          color: rgba(255,255,255,0.7);
+          color: #fff;
           font-size: 22px;
         }
         .input {
-          padding-left: 30px;
+          padding-left: 35px;
           color: #fff;
           height: 40px;
           line-height: 40px;
-          border-color: #fff;
+          border: 1px solid rgba(255,255,255,1);
           background:none;
           &::-webkit-input-placeholder {
-            color: rgba(255,255,255,0.7);
+            color: #fff;
           }
        }
        .verify-code {
@@ -240,12 +239,25 @@ export default {
           }
        }
       }
+      .has-danger {
+        .input {
+          border-color:#FF5F5F;
+        }
+       }
       .forget-psd {
-        color: #fff;
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        a {
+          color: #fff;
+        }
       }
       .btn {
         height: 42px;
         margin-bottom: 20px;
+        span {
+          font-size: 16px;          
+        }
       }
     }
   }
