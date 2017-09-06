@@ -1,25 +1,8 @@
 <template>
     <div class="wrapper">
         <!-- 表单域 -->
-        <t-form :rules.sync="listRule" label-position="left" :label-span="3">
-            <!-- <div class="wrapper-form">
-                    <h6>{{customInfo.name}}</h6>
-                    <dynamic-form :isDisabled="isDisabled" :userList="customInfo.formList"></dynamic-form>
-                </div>
-
-                <div class="wrapper-form">
-                    <div class="form-top">
-                        <div class="left" @click="toggleForm">
-                            <t-icon type="chevron-down" size="26"></t-icon>
-                            <h6>{{item.key}}</h6>
-                        </div>
-                        <div class="right">
-                            <t-icon type="plus-circle-outline" size="26"></t-icon>
-                            <t-icon type="minus-circle-outline" size="26"></t-icon>
-                        </div>
-                    </div>
-                </div> -->
-            <div class="wrapper-form" v-for="(item, index) in list" :key="index">
+        <t-form :model="formData" :rules.sync="listRule" label-position="left" :label-span="4">
+            <div class="wrapper-form" v-for="(item, index) in formData" :key="index">
                 <div class="form-top" v-if="item.isCollapse">
                     <div class="left" @click="toggleForm">
                         <t-icon type="chevron-down" size="26"></t-icon>
@@ -31,7 +14,7 @@
                     </div>
                 </div>
                 <h6 v-else>{{item.name}}</h6>
-                <component :isDisabled="isDisabled" ref="form" :is="currentView(item)" :userList="currentList(item)"></component>
+                <component :getValidatePath="getValidatePath(item, index)" :isDisabled="isDisabled" ref="form" :is="currentView(item)" :userList="currentList(item)"></component>
             </div>
         </t-form>
         <!-- 表格域 -->
@@ -69,10 +52,7 @@ export default {
             searchInfo: "",
             listRule: {
                 NAME: [
-                    { required: true, message: '不能为空', trigger: 'blur' }
-                ],
-                name2: [
-                    { required: true, message: '不能为空', trigger: 'blur' }
+                    { required: true, message: '姓名不能为空', trigger: 'blur' }
                 ]
             },
             addTableItem: [
@@ -250,7 +230,7 @@ export default {
             ],
             addFormItem: [
                 {
-                    "CODE": "1",
+                    "CODE": "",
                     "VALUE": "",
                     "DISP": '联系人姓名',
                     "OPER_MODE": "010"
@@ -341,19 +321,22 @@ export default {
                                 "CODE": "NAME",
                                 "VALUE": "",
                                 "DISP": "客户编码",
-                                "OPER_MODE": "010"
+                                "OPER_MODE": "010",
+                                "REQUIRE": true
                             },
                             {
                                 "CODE": "NAME",
                                 "VALUE": "",
                                 "DISP": "客户名称",
-                                "OPER_MODE": "010"
+                                "OPER_MODE": "010",
+                                "REQUIRE": true
                             },
                             {
                                 "CODE": "BIRTH_DATE",
                                 "VALUE": "",
                                 "DISP": "出生年月",
-                                "OPER_MODE": "014"
+                                "OPER_MODE": "014",
+                                "REQUIRE": true
                             },
                             {
                                 "VALUE": "",
@@ -375,7 +358,7 @@ export default {
                                 ]
                             },
                             {
-                                "CODE": "SEX",
+                                "CODE": "GENDER",
                                 "VALUE": "",
                                 "DISP": "性别",
                                 "OPER_MODE": "02",
@@ -570,6 +553,7 @@ export default {
                                 "DISP": "证件类型",
                                 "OPER_MODE": "02",
                                 "VALUE": "",
+                                "REQUIRE": true,
                                 "ENUM": [
                                     {
                                         "key": "primary",
@@ -617,13 +601,15 @@ export default {
                                 "CODE": "NAME",
                                 "VALUE": "",
                                 "DISP": '证件号码',
-                                "OPER_MODE": "010"
+                                "OPER_MODE": "010",
+                                "REQUIRE": true
                             },
                             {
                                 "CODE": "NAME",
                                 "VALUE": "",
                                 "DISP": '证件地址',
-                                "OPER_MODE": "010"
+                                "OPER_MODE": "010",
+                                "REQUIRE": true,
                             },
                             {
                                 "CODE": "NAME",
@@ -651,12 +637,14 @@ export default {
                         "CODE": "NAME",
                         "VALUE": "",
                         "DISP": '联系人姓名',
-                        "OPER_MODE": "010"
+                        "OPER_MODE": "010",
+                        "REQUIRE": true,
                     },
                     {
                         "DISP": "证件类型",
                         "OPER_MODE": "02",
                         "VALUE": "",
+                        "REQUIRE": true,
                         "ENUM": [
                             {
                                 "key": "primary",
@@ -704,7 +692,8 @@ export default {
                         "CODE": "NAME",
                         "VALUE": "",
                         "DISP": '联系人证件号码',
-                        "OPER_MODE": "010"
+                        "OPER_MODE": "010",
+                        "REQUIRE": true
                     },
                     {
                         "CODE": "BIRTH_DATE",
@@ -716,7 +705,8 @@ export default {
                         "CODE": "NAME",
                         "VALUE": "",
                         "DISP": '联系人电话',
-                        "OPER_MODE": "010"
+                        "OPER_MODE": "010",
+                        "REQUIRE": true
                     },
                     {
                         "CODE": "NAME",
@@ -725,6 +715,9 @@ export default {
                         "OPER_MODE": "010"
                     }
                 ]
+            },
+            formData: {
+
             },
             list: [
 
@@ -759,6 +752,14 @@ export default {
                 return item.formItem
             }
         },
+        getValidatePath(item, index) {
+            let ret = this.currentView(item);
+            if (ret === 'dynamicForm') {
+                return `${index}.formList`
+            } else {
+                return `${index}.formItem`
+            }
+        },
         toggleForm(el) {
             let target = el.target.parentNode.parentNode.nextElementSibling;
             if (!this.tag) {
@@ -782,12 +783,15 @@ export default {
             }
         },
         addTableList() {
-            console.log(1);
             this.editData.push(...this.addTableItem);
         }
     },
     created() {
-        this.list.push(this.customInfo, this.attenInfo)
+        // this.list.push(this.customInfo, this.attenInfo)
+        this.formData = Object.assign({}, this.formData, {
+            customInfo: this.customInfo,
+            attenInfo: this.attenInfo
+        })
     }
 }
 </script>
@@ -873,4 +877,5 @@ export default {
         top: 0;
     }
 }
+
 </style>

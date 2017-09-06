@@ -3,6 +3,7 @@
   height: 100%;
   overflow: auto;
   padding: 24px;
+  padding-top: 0;
   background: #f4f8f9;
 }
 
@@ -34,9 +35,11 @@
 .menu--vertical .menu__submenu .menu .menu__submenu .menu__item {
   padding-left: 77px;
 }
-.menu--folded .menu__submenu .menu .menu__submenu .menu__item{
+
+.menu--folded .menu__submenu .menu .menu__submenu .menu__item {
   padding-left: 16px;
 }
+
 .menu--vertical .menu__submenu .menu .menu__item {
   border-left: 3px solid #fff;
   &:hover {
@@ -65,6 +68,7 @@
   padding-left: 0px;
   display: block;
 }
+
 .sec .menu__submenu-title>span {
   padding-left: 40px;
   display: block;
@@ -84,14 +88,14 @@
       </div>
       <t-menu theme="dark" :open-position="openPosition" :class="[{'menu--folded': isOpen===false}]">
         <!-- <t-submenu :name="x" v-for="(item1, x) in menuList" :key="x">
-            <template slot="title">
-              <i class="iconfont" v-html="item1.icon"></i>
-              <span>{{item1.name}}</span>
-            </template>
-            <t-menu-item :name="`${x}-${y}`" v-for="(item2, y) in item1.children" :key="y" @click.native="getMenu">
-              {{item2.name}}
-            </t-menu-item>
-          </t-submenu> -->
+              <template slot="title">
+                <i class="iconfont" v-html="item1.icon"></i>
+                <span>{{item1.name}}</span>
+              </template>
+              <t-menu-item :name="`${x}-${y}`" v-for="(item2, y) in item1.children" :key="y" @click.native="getMenu">
+                {{item2.name}}
+              </t-menu-item>
+            </t-submenu> -->
         <t-submenu :name="x" v-for="(item1, x) in menuList" :key="x" class="first">
           <template slot="title">
             <i class="iconfont" v-html="item1.icon"></i>
@@ -132,13 +136,13 @@
           </t-dropdown-menu>
         </t-dropdown>
       </nav>
-
-      <t-breadcrumb v-if="currentMenu">
-        <t-breadcrumb-item href="/portal" @click.native="emptyMenu">首页</t-breadcrumb-item>
-        <t-breadcrumb-item href="#">{{$route.name === 'wrapper' ? currentMenu='' : $route.name}}</t-breadcrumb-item>
-        <t-breadcrumb-item>{{currentMenu}}</t-breadcrumb-item>
-      </t-breadcrumb>
-
+      <div style="height: 45px;">
+        <t-breadcrumb v-show="currentMenu">
+          <t-breadcrumb-item href="/portal" @click.native="emptyMenu">首页</t-breadcrumb-item>
+          <t-breadcrumb-item href="#">{{$route.name === 'wrapper' ? currentMenu='' : $route.name}}</t-breadcrumb-item>
+          <t-breadcrumb-item>{{currentMenu}}</t-breadcrumb-item>
+        </t-breadcrumb>
+      </div>
       <div class="main">
         <router-view></router-view>
         <!-- <img src="../../asset/image/view.png" alt="" width="100%;height:100%;" /> -->

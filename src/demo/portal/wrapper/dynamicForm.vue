@@ -3,7 +3,7 @@
         <!-- 二级表单域 -->
         <div class="form-custom" v-for="(item, index) in userList" :key="index">
             <h6>{{item.name}}</h6>
-            <item-form :isDisabled="isDisabled" :userList.sync="item.formItem"></item-form>
+            <item-form :getValidatePath="getValidatePath+'.'+index+'.formItem'" :isDisabled="isDisabled" :userList.sync="item.formItem"></item-form>
         </div>
     </div>
 </template>
@@ -24,7 +24,8 @@ export default {
         isDisabled: {
             type: Boolean,
             default: false
-        }
+        },
+        getValidatePath: String
     },
     components: {
         itemForm

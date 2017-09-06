@@ -364,9 +364,11 @@ danger;
 
 
 /* 表单组件*/
-.form-group__label{
+
+.form-group__label {
   font-size: 0.1rem;
 }
+
 .form-control {
   height: 28px;
   line-height: 26px;
@@ -386,26 +388,39 @@ danger;
   padding: 0.4rem 0.625rem;
 }
 
-.select{
+.select {
   -webkit-box-flex: 0;
   -ms-flex: 0 0 100%;
   flex: 0 0 100%;
   max-width: 201px;
   min-width: 10px;
 }
-.form--label-left .form-group__label, .form--label-right .form-group__label{
+
+.form--label-left .form-group__label,
+.form--label-right .form-group__label {
+  text-align: right;
   min-width: 75px;
 }
 
-.select .dropdown-selected-value{
+.select .dropdown-selected-value {
+  width: 90px;
   padding-right: 0;
 }
+
+.form-group {
+  margin-bottom: 10px;
+}
+
+.form-group__content {
+  padding-left: 5px;
+}
+
+
 /* 日期组件*/
 
 // .date-picker {
 //   width: 231px;
 // }
-
 .dropdown__menu {
   .date-pick__body {
     padding: 0 0.6rem 0.595rem !important;
@@ -423,7 +438,6 @@ danger;
 // .dropdown--open>.date-pick.dropdown__menu {
 //   width: 231px;
 // }
-
 .date-pick__header {
   height: 34px;
   line-height: 34px;
@@ -543,12 +557,13 @@ danger;
   color: #009448;
 }
 
+
 /* 气泡提示 */
 
-.popover-confirm{
-  .popover-inner{
-    .popover-body{
-      padding:0;
+.popover-confirm {
+  .popover-inner {
+    .popover-body {
+      padding: 0;
     }
   }
 }
