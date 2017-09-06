@@ -1,7 +1,7 @@
 <template>
     <div class="item-form">
         <div class="form-block--info col-3" v-for="(item, index) in userList" :key="index">
-            <t-form-item :label="item.DISP+'：'" :prop="getValidatePath+'.'+ index + '.value'" :rules="{required: item.REQUIRE, message: item.DISP+'不能为空', trigger: 'blur'}">
+            <t-form-item :label="item.DISP+':'" :prop="getValidatePath+'.'+ index + '.value'" :rules="{required: item.REQUIRE, message: item.DISP+'不能为空', trigger: 'blur'}">
                 <t-select :disabled="isDisabled" v-model="item.VALUE" :title="item.VALUE" v-if="item.OPER_MODE === '02'">
                     <t-option v-for="item in item.ENUM" :value="item.value" :key="item">{{ item.value }}</t-option>
                 </t-select>
@@ -67,7 +67,6 @@ export default {
 </script>
 <style scoped lang="less">
 .item-form {
-    padding-left: 25px;
     background: #fff;
     padding-top: 25px;
     border: 1px solid #dfe5e7;
