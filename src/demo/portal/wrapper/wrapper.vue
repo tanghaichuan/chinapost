@@ -13,8 +13,8 @@
                         <h6>{{item.name}}</h6>
                     </div>
                     <div class="right" v-if="item.isExtend">
-                        <t-icon @click.native="addFormList(item)" type="plus-circle-outline" style="cursor: pointer;" size="26"></t-icon>
-                        <t-icon @click.native="delFormList(item)" type="minus-circle-outline" style="cursor: pointer;" size="26"></t-icon>
+                        <t-icon @click.native="addFormList(item, index)" type="plus-circle-outline" style="cursor: pointer;" size="26"></t-icon>
+                        <t-icon @click.native="delFormList(item, index)" type="minus-circle-outline" style="cursor: pointer;" size="26"></t-icon>
                     </div>
                 </div>
                 <h6 v-else>{{item.name}}</h6>
@@ -774,16 +774,14 @@ export default {
                 this.tag = false;
             }
         },
-        addFormList(item) {
+        addFormList(item, index) {
             item.formItem.push(...this.addFormItem);
         },
         delFormList(item) {
-            for (let i = 0; i < this.addFormItem.length; i++) {
-                for (let j = 0; j < item.formItem.length; j++) {
-                    if (this.addFormItem[i].CODE === item.formItem[j].CODE) {
-                        item.formItem.splice(j, 1);
-                    }
-                }
+            let len = this.addFormItem.length;
+            while (len) {
+                item.formItem.pop();
+                len--;
             }
         },
         addTableList() {

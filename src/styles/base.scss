@@ -349,6 +349,19 @@ danger;
   }
 }
 
+.form-group--required .form-group__label:before {
+  content: "*";
+  display: inline-block;
+  margin-left: 4px;
+  line-height: 1;
+  font-size: 12px;
+  color: #FF5F5F;
+}
+
+.form-group--required .form-group__label:after {
+  display: none;
+}
+
 
 /* 分页*/
 
@@ -401,9 +414,11 @@ danger;
   text-align: right;
   min-width: 75px;
 }
-.form--label-left .form-group__label{
+
+.form--label-left .form-group__label {
   padding-right: 5px;
 }
+
 .select .dropdown-selected-value {
   width: 90px;
   padding-right: 0;
