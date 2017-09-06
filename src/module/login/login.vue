@@ -247,6 +247,9 @@ export default {
         .input {
           border-color:#FF5F5F;
         }
+        .verify-code {
+          border-color: #FF5F5F;
+        }
        }
       .forget-psd {
         position: absolute;
