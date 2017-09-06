@@ -1,7 +1,11 @@
 <template>
     <div class="wrapper">
+        <div class="formOptions">
+            <t-button type="outline" icon="content-save" class="sub-btn">返回</t-button>
+            <t-button type="outline" icon="content-save" class="sub-btn" @click="handleSubmit('formDynamic')">保存</t-button>
+        </div>
         <!-- 表单域 -->
-        <t-form :model="formData" :rules.sync="listRule" label-position="left" :label-span="4">
+        <t-form :model="formData" ref="formDynamic" :rules.sync="listRule" label-position="left" :label-span="4">
             <div class="wrapper-form" v-for="(item, index) in formData" :key="index">
                 <div class="form-top" v-if="item.isCollapse">
                     <div class="left" @click="toggleForm">
@@ -784,6 +788,15 @@ export default {
         },
         addTableList() {
             this.editData.push(...this.addTableItem);
+        },
+        handleSubmit(name) {
+            this.$refs[name].validate(valid => {
+                if (valid) {
+                    this.$Message.success('保存成功!');
+                } else {
+                    this.$Message.danger('表单验证失败!');
+                }
+            })
         }
     },
     created() {
@@ -807,6 +820,7 @@ export default {
 }
 
 .wrapper {
+    position: relative;
     margin-bottom: 100px;
     h6 {
         font-size: 16px;
@@ -814,6 +828,12 @@ export default {
         color: rgb( 51, 51, 51);
         line-height: 2.25;
     }
+}
+
+.formOptions {
+    position: absolute;
+    right: 0;
+    top: -30px;
 }
 
 .wrapper-table {
@@ -877,5 +897,4 @@ export default {
         top: 0;
     }
 }
-
 </style>
