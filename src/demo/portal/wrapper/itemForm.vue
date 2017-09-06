@@ -1,17 +1,29 @@
 <template>
     <div class="item-form">
-        <div class="form-block--info col-3" v-for="(item, index) in userList" :key="index">
-            <t-form-item :label="item.DISP+':'" :prop="getValidatePath+'.'+ index + '.value'" :rules="{required: item.REQUIRE, message: item.DISP+'不能为空', trigger: 'blur'}">
-                <t-select :disabled="isDisabled" v-model="item.VALUE" :title="item.VALUE" v-if="item.OPER_MODE === '02'">
-                    <t-option v-for="item in item.ENUM" :value="item.value" :key="item">{{ item.value }}</t-option>
-                </t-select>
+        <div class="form-top">
+            <div class="left" @click="showForm = !showForm">
+                <t-icon v-if="isCollapse" type="chevron-down" style="float:left;" size="26"></t-icon>
+                <h6>{{title}}</h6>
+            </div>
+            <div class="right" v-if="isExtend">
+                <t-icon @click.native="addFormList" type="plus-circle-outline" style="cursor: pointer;" size="20"></t-icon>
+                <t-icon @click.native="delFormList" type="minus-circle-outline" style="cursor: pointer;" size="20"></t-icon>
+            </div>
+        </div>
+        <div class="form-item-container" v-show="showForm">
+            <div class="form-block--info col-3" v-for="(item, index) in userList" :key="index">
+                <t-form-item :label="item.DISP+':'" :prop="getValidatePath+'.'+ index + '.value'" :rules="{required: item.REQUIRE, message: item.DISP+'不能为空', trigger: 'blur'}">
+                    <t-select :disabled="isDisabled" v-model="item.VALUE" :title="item.VALUE" v-if="item.OPER_MODE === '02'">
+                        <t-option v-for="item in item.ENUM" :value="item.value" :key="item">{{ item.value }}</t-option>
+                    </t-select>
 
-                <t-input :disabled="isDisabled" v-model="item.VALUE" v-if="item.OPER_MODE === '010'"></t-input>
+                    <t-input :disabled="isDisabled" v-model="item.VALUE" v-if="item.OPER_MODE === '010'"></t-input>
 
-                <t-input :disabled="isDisabled" v-model="item.VALUE" v-if="item.OPER_MODE === '013'" type="textarea"></t-input>
+                    <t-input :disabled="isDisabled" v-model="item.VALUE" v-if="item.OPER_MODE === '013'" type="textarea"></t-input>
 
-                <t-date-picker v-model="item.VALUE" v-if="item.OPER_MODE === '014'"></t-date-picker>
-            </t-form-item>
+                    <t-date-picker v-model="item.VALUE" v-if="item.OPER_MODE === '014'"></t-date-picker>
+                </t-form-item>
+            </div>
         </div>
     </div>
 </template>
@@ -43,7 +55,87 @@ export default {
     name: 'itemForm',
     data() {
         return {
-
+            showForm: true,
+            addFormItem: [
+                {
+                    "CODE": "",
+                    "VALUE": "",
+                    "DISP": '联系人姓名',
+                    "OPER_MODE": "010"
+                },
+                {
+                    "CODE": "2",
+                    "DISP": "证件类型",
+                    "OPER_MODE": "02",
+                    "VALUE": "",
+                    "ENUM": [
+                        {
+                            "key": "primary",
+                            "value": "身份证"
+                        },
+                        {
+                            "key": "middle",
+                            "value": "户口簿"
+                        },
+                        {
+                            "key": "high",
+                            "value": "驾驶证"
+                        },
+                        {
+                            "key": "university",
+                            "value": "出生证"
+                        },
+                        {
+                            "key": "Master",
+                            "value": "护照"
+                        },
+                        {
+                            "key": "Doctor",
+                            "value": "港澳通行证"
+                        },
+                        {
+                            "key": "Post-Doctor",
+                            "value": "港澳身份证"
+                        },
+                        {
+                            "key": "Post-Doctor",
+                            "value": "台胞证"
+                        },
+                        {
+                            "key": "Post-Doctor",
+                            "value": "雇员证（单位证明）"
+                        },
+                        {
+                            "key": "Post-Doctor",
+                            "value": "军官证"
+                        }
+                    ]
+                },
+                {
+                    "CODE": "3",
+                    "VALUE": "",
+                    "DISP": '联系人证件号码',
+                    "OPER_MODE": "010"
+                },
+                {
+                    "CODE": "4",
+                    "VALUE": "",
+                    "DISP": "联系人证件有效期",
+                    "OPER_MODE": "014"
+                },
+                {
+                    "CODE": "5",
+                    "VALUE": "",
+                    "DISP": '联系人电话',
+                    "OPER_MODE": "010"
+                },
+                {
+                    "CODE": "6",
+                    "VALUE": "",
+                    "DISP": '联系人地址',
+                    "OPER_MODE": "010"
+                }
+            ],
         }
     },
     props: {
@@ -55,10 +147,33 @@ export default {
             type: Boolean,
             default: false
         },
+        isExtend: {
+            type: Boolean,
+            default: false
+        },
+        isCollapse: {
+            type: Boolean,
+            default: false
+        },
+        id: String,         // 表单标识
+        title: String,
         getValidatePath: String
     },
     components: {
 
+    },
+    methods: {
+        addFormList() {
+            console.log(this.id); // 获取表单标识
+            this.userList.push(...this.addFormItem);
+        },
+        delFormList() {
+            let len = this.addFormItem.length;
+            while (len) {
+                this.userList.pop();
+                len--;
+            }
+        },
     },
     created() {
 
@@ -66,11 +181,45 @@ export default {
 }
 </script>
 <style scoped lang="less">
-.item-form {
-    background: #fff;
+.form-item-container{
     padding-top: 25px;
-    border: 1px solid #dfe5e7;
+    padding-bottom: 20px;
+    zoom: 1;
+    &:after{
+        content:'';
+        display: table;
+        clear: both;
+        overflow: hidden;
+    }
 }
+.item-form {
+    margin-top: -1px;
+    background: #fff;
+    border: 1px solid #dfe5e7;
+    .form-top {
+        padding-left: 10px;
+        height: 47px;
+        line-height: 47px;
+        background: #f4f8f9;
+        border-bottom: 1px solid #dfe5e7;
+        .left {
+            display: inline-block;
+            cursor: pointer;
+            h6 {
+                display: inline-block;
+                border: 0;
+                padding: 0;
+                font-size: 1rem;
+            }
+        }
+        .right {
+            padding-right: 15px;
+            display: inline-block;
+            float: right;
+        }
+    }
+}
+
 
 .form-block--info {
     float: left;

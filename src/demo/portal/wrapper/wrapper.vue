@@ -5,38 +5,42 @@
             <t-button type="outline" icon="content-save" class="sub-btn" @click="handleSubmit('formDynamic')">保存</t-button>
         </div>
         <!-- 表单域 -->
-        <t-form :model="formData" ref="formDynamic" :rules.sync="listRule" label-position="left" :label-span="4">
+        <t-form 
+        :model="formData" 
+        ref="formDynamic" 
+        :rules.sync="listRule" 
+        label-position="left" 
+        :label-span="4">
             <div class="wrapper-form" v-for="(item, index) in formData" :key="index">
-                <div class="form-top" v-if="item.isCollapse">
-                    <div class="left" @click="toggleForm">
-                        <t-icon type="chevron-down" size="26"></t-icon>
-                        <h6>{{item.name}}</h6>
-                    </div>
-                    <div class="right" v-if="item.isExtend">
-                        <t-icon @click.native="addFormList(item, index)" type="plus-circle-outline" style="cursor: pointer;" size="26"></t-icon>
-                        <t-icon @click.native="delFormList(item, index)" type="minus-circle-outline" style="cursor: pointer;" size="26"></t-icon>
-                    </div>
-                </div>
-                <h6 v-else>{{item.name}}</h6>
-                <component :getValidatePath="getValidatePath(item, index)" :isDisabled="isDisabled" ref="form" :is="currentView(item)" :userList="currentList(item)"></component>
+                <component 
+                :id="item.id"
+                :isExtend="item.isExtend" 
+                :isCollapse="item.isCollapse" 
+                :title="item.name" 
+                :getValidatePath="getValidatePath(item, index)" 
+                :isDisabled="isDisabled" ref="form" 
+                :is="currentView(item)" 
+                :userList="currentList(item)"></component>
             </div>
         </t-form>
         <!-- 表格域 -->
         <div class="extend-attr">
             <div class="form-top">
-                <div class="left" @click="toggleForm">
+                <div class="left" @click="showTable = !showTable">
                     <t-icon type="chevron-down" size="26"></t-icon>
                     <h6>客户扩展属性</h6>
                 </div>
                 <div class="right"></div>
             </div>
-            <div class="wrapper-table" ref="table">
+
+            <div v-show="showTable" class="wrapper-table" ref="table">
                 <div class="table-top">
                     <t-button @click.native="addTableList" type="outline" class="left sub-btn">新增</t-button>
                     <t-input v-model="searchInfo" icon="magnify" class="right" icon-placement="right" placeholder="请输入搜索内容" style="width: 150px;"></t-input>
                 </div>
                 <edit-table :editColumn.sync="editColumn" :editData.sync="showTableList"></edit-table>
             </div>
+
         </div>
     </div>
 </template>
@@ -45,13 +49,12 @@ import dynamicForm from './dynamicForm'
 import itemForm from './itemForm'
 import editTable from './editTable'
 export default {
-
     name: 'wrapper',
     data() {
         return {
-            isCollapse: false,  // 表单折叠
-            isExtend: false,    // 表单可增加信息
             isDisabled: false,  // 表单只读
+            showForm: true,
+            showTable: true,
             userList: [],
             searchInfo: "",
             listRule: {
@@ -232,86 +235,6 @@ export default {
                     }
                 }
             ],
-            addFormItem: [
-                {
-                    "CODE": "",
-                    "VALUE": "",
-                    "DISP": '联系人姓名',
-                    "OPER_MODE": "010"
-                },
-                {
-                    "CODE": "2",
-                    "DISP": "证件类型",
-                    "OPER_MODE": "02",
-                    "VALUE": "",
-                    "ENUM": [
-                        {
-                            "key": "primary",
-                            "value": "身份证"
-                        },
-                        {
-                            "key": "middle",
-                            "value": "户口簿"
-                        },
-                        {
-                            "key": "high",
-                            "value": "驾驶证"
-                        },
-                        {
-                            "key": "university",
-                            "value": "出生证"
-                        },
-                        {
-                            "key": "Master",
-                            "value": "护照"
-                        },
-                        {
-                            "key": "Doctor",
-                            "value": "港澳通行证"
-                        },
-                        {
-                            "key": "Post-Doctor",
-                            "value": "港澳身份证"
-                        },
-                        {
-                            "key": "Post-Doctor",
-                            "value": "台胞证"
-                        },
-                        {
-                            "key": "Post-Doctor",
-                            "value": "雇员证（单位证明）"
-                        },
-                        {
-                            "key": "Post-Doctor",
-                            "value": "军官证"
-                        }
-                    ]
-                },
-                {
-                    "CODE": "3",
-                    "VALUE": "",
-                    "DISP": '联系人证件号码',
-                    "OPER_MODE": "010"
-                },
-                {
-                    "CODE": "4",
-                    "VALUE": "",
-                    "DISP": "联系人证件有效期",
-                    "OPER_MODE": "014"
-                },
-                {
-                    "CODE": "5",
-                    "VALUE": "",
-                    "DISP": '联系人电话',
-                    "OPER_MODE": "010"
-                },
-                {
-                    "CODE": "6",
-                    "VALUE": "",
-                    "DISP": '联系人地址',
-                    "OPER_MODE": "010"
-                }
-            ],
             // 客户基本信息
             customInfo: {
                 "name": "客户基本信息",
@@ -320,6 +243,9 @@ export default {
                     {
                         "name": "基本信息",
                         "key": "basicInfo",
+                        "id": "1",
+                        "isExtend": false,
+                        "isCollapse": true,
                         "formItem": [
                             {
                                 "CODE": "NAME",
@@ -552,6 +478,9 @@ export default {
                     {
                         "name": "证件信息",
                         "key": "credentInfo",
+                        "id": "2",
+                        "isExtend": true,
+                        "isCollapse": true,
                         "formItem": [
                             {
                                 "DISP": "证件类型",
@@ -636,6 +565,7 @@ export default {
                 "isExtend": true,
                 "name": "联系人信息",
                 "key": "attenInfo",
+                "id": "3",
                 "formItem": [
                     {
                         "CODE": "NAME",
@@ -764,26 +694,6 @@ export default {
                 return `${index}.formItem`
             }
         },
-        toggleForm(el) {
-            let target = el.target.parentNode.parentNode.nextElementSibling;
-            if (!this.tag) {
-                target.style.display = "none";
-                this.tag = true;
-            } else {
-                target.style.display = "block";
-                this.tag = false;
-            }
-        },
-        addFormList(item, index) {
-            item.formItem.push(...this.addFormItem);
-        },
-        delFormList(item) {
-            let len = this.addFormItem.length;
-            while (len) {
-                item.formItem.pop();
-                len--;
-            }
-        },
         addTableList() {
             this.editData.push(...this.addTableItem);
         },
@@ -817,52 +727,28 @@ export default {
     }
 }
 
+.collapse {
+    display: none;
+}
+
 .wrapper {
     position: relative;
     margin-bottom: 100px;
-    h6 {
-        font-size: 16px;
-        font-family: "Microsoft YaHei";
-        color: rgb( 51, 51, 51);
-        line-height: 2.25;
-    }
-    .wrapper-form{
-        .form-custom{
-            &>h6{
-                line-height:45px;
-                color:#474747;
-            }
-            &>.item-form{
-                padding:14px 5px 2px 20px;
-                .form-block--info{
-                    .form-group{
-                        margin-bottom:12px;
-                        .form-group__label{
-                            min-width:86px;
-                            padding:0 8px 0 0;
-                            text-align:right;
-                        }
-                        .form-group__content{
-                            padding-left:0;
-                        }
-                    }
-                }
-            }
+    .input-wrapper {
+        .input {
+            padding-right: 32px!important;
         }
     }
-    .input-wrapper{
-        .input{
-            padding-right:32px!important;
-        }
-    }
-    .input-group-icon{
-        &.input-group-icon--right{
-            right:-2px;
-            cursor:pointer;
+    .input-group-icon {
+        &.input-group-icon--right {
+            right: -2px;
+            cursor: pointer;
         }
     }
 }
-
+.wrapper-form {
+    padding: 10px 0;
+}
 .formOptions {
     position: absolute;
     right: 0;
@@ -910,11 +796,11 @@ export default {
     display: flex;
     align-items: center;
     zoom: 1;
-    margin-top:20px;
-    border:1px solid #dfe5e7;
-    border-bottom:0;
-    &.botom{
-        border-bottom:1px solid #dfe5e7;
+    margin-top: 20px;
+    border: 1px solid #dfe5e7;
+    border-bottom: 0;
+    &.botom {
+        border-bottom: 1px solid #dfe5e7;
     }
     &:after {
         display: table;
@@ -923,17 +809,17 @@ export default {
         clear: both;
     }
     .left {
-        padding-left:10px;
+        padding-left: 10px;
         display: inline-block;
         cursor: pointer;
         h6 {
-            margin:0;
+            margin: 0;
             display: inline-block;
-            line-height:46px;
+            line-height: 46px;
         }
-        i{
-            font-size:22px!important;
-            line-height:46px;
+        i {
+            font-size: 22px!important;
+            line-height: 46px;
         }
     }
     .right {
@@ -941,8 +827,8 @@ export default {
         position: absolute;
         right: 15px;
         top: 8px;
-        i{
-            font-size:22px!important;
+        i {
+            font-size: 22px!important;
         }
     }
 }

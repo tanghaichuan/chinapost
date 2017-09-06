@@ -1,9 +1,15 @@
 <template>
     <div class="dynamic-form">
-        <!-- 二级表单域 -->
+        <h5>{{title}}</h5>
         <div class="form-custom" v-for="(item, index) in userList" :key="index">
-            <h6>{{item.name}}</h6>
-            <item-form :getValidatePath="getValidatePath+'.'+index+'.formItem'" :isDisabled="isDisabled" :userList.sync="item.formItem"></item-form>
+            <item-form 
+            :id="id ? id : item.id"
+            :isExtend="item.isExtend" 
+            :isCollapse="item.isCollapse" 
+            :title="item.name" 
+            :getValidatePath="getValidatePath+'.'+index+'.formItem'" 
+            :isDisabled="isDisabled" 
+            :userList.sync="item.formItem"></item-form>
         </div>
     </div>
 </template>
@@ -25,6 +31,16 @@ export default {
             type: Boolean,
             default: false
         },
+        isExtend: {
+            type: Boolean,
+            default: false
+        },
+        isCollapse: {
+            type: Boolean,
+            default: false
+        },
+        id: String,     // 表单标识
+        title: String,
         getValidatePath: String
     },
     components: {
@@ -33,21 +49,36 @@ export default {
     computed: {
 
     },
+    methods:{
+        addFormList(){}
+    },
     created() {
 
     }
 }
 </script>
 <style scoped lang="less">
+.dynamic-form {
+    h5 {
+        font-size: 16px;
+        margin-bottom: 15px;
+    }
+}
+.form-top {
+    width: 100%;
+    height: 47px;
+    display: flex;
+    align-items: center;
+}
 .form-custom {
     h6 {
         margin: 0;
         margin-top: -1px;
         padding-left: 18px;
-        font-size: 14px;
-        font-family: "Microsoft YaHei";
-        color: rgb( 51, 51, 51);
-        line-height: 2.571;
+        font-size: 14px !important;
+        font-family: "NotoSansSC-Regular";
+        font-weight: 400;
+        color: inherit;
         background: #f6f8f8;
         border: 1px solid #dfe5e7;
         border-bottom: transparent;
