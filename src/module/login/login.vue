@@ -221,6 +221,10 @@ export default {
           line-height: 40px;
           border: 1px solid rgba(255,255,255,1);
           background:none;
+          &:focus {
+          border-color:#fff!important;
+          box-shadow:none!important;
+          }
           &::-webkit-input-placeholder {
             color: #fff;
           }
