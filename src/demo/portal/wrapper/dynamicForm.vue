@@ -4,6 +4,7 @@
         <div class="form-custom" v-for="(item, index) in userList" :key="index">
             <item-form 
             :id="id ? id : item.id"
+            :isAsync="item.isAsync"
             :isExtend="item.isExtend" 
             :isCollapse="item.isCollapse" 
             :title="item.name" 
@@ -26,6 +27,10 @@ export default {
         userList: {
             type: Array,
             default: []
+        },
+        isAsync: {
+            type: Boolean,
+            default: false
         },
         isDisabled: {
             type: Boolean,

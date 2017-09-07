@@ -16,6 +16,7 @@
             <div class="wrapper-form" v-for="(item, index) in formData" :key="index">
                 <component 
                 :id="item.id"
+                :isAsync="item.isAsync"
                 :isExtend="item.isExtend" 
                 :isCollapse="item.isCollapse" 
                 :title="item.name" 
@@ -29,7 +30,7 @@
         <div class="extend-attr">
             <div class="form-top">
                 <div class="left" @click="showTable = !showTable">
-                    <t-icon type="chevron-down" size="26"></t-icon>
+                    <t-icon :type="showTable ? 'chevron-down' : 'chevron-up'" size="26"></t-icon>
                     <h6>客户扩展属性</h6>
                 </div>
                 <div class="right"></div>
@@ -246,6 +247,7 @@ export default {
                         "name": "基本信息",
                         "key": "basicInfo",
                         "id": "1",
+                        "isAsync":true, 
                         "isExtend": false,
                         "isCollapse": true,
                         "formItem": [
@@ -565,6 +567,7 @@ export default {
             attenInfo: {
                 "isCollapse": true,
                 "isExtend": true,
+                "isAsync":true, 
                 "name": "联系人信息",
                 "key": "attenInfo",
                 "id": "3",

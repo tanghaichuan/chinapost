@@ -10,9 +10,9 @@
                 <t-icon @click.native="delFormList" type="minus-circle-outline" style="cursor: pointer;" size="20"></t-icon>
             </div>
         </div>
-        <transition name="silde">
-            <div class="form-item-container" v-show="showForm">
-                <div class="form-block--info col-3" v-for="(item, index) in userList" :key="index">
+        <div class="form-item-container" v-show="showForm">
+            <div class="form-item-wrap">
+                <div class="form-block--info col-3" v-for="(item, index) in list[0]" :key="index">
                     <t-form-item :label="item.DISP+':'" :prop="getValidatePath+'.'+ index + '.value'" :rules="{required: item.REQUIRE, message: item.DISP+'不能为空', trigger: 'blur'}">
                         <t-select :disabled="isDisabled" v-model="item.VALUE" :title="item.VALUE" v-if="item.OPER_MODE === '02'">
                             <t-option v-for="item in item.ENUM" :value="item.value" :key="item">{{ item.value }}</t-option>
@@ -26,7 +26,27 @@
                     </t-form-item>
                 </div>
             </div>
-        </transition>
+            <div class="form-item-wrap" v-show="flod">
+                <div class="form-block--info col-3" v-for="(item, index) in list[1]" :key="index">
+                    <t-form-item :label="item.DISP+':'" :prop="getValidatePath+'.'+ index + '.value'" :rules="{required: item.REQUIRE, message: item.DISP+'不能为空', trigger: 'blur'}">
+                        <t-select :disabled="isDisabled" v-model="item.VALUE" :title="item.VALUE" v-if="item.OPER_MODE === '02'">
+                            <t-option v-for="item in item.ENUM" :value="item.value" :key="item">{{ item.value }}</t-option>
+                        </t-select>
+
+                        <t-input :disabled="isDisabled" v-model="item.VALUE" v-if="item.OPER_MODE === '010'"></t-input>
+
+                        <t-input :disabled="isDisabled" v-model="item.VALUE" v-if="item.OPER_MODE === '013'" type="textarea"></t-input>
+
+                        <t-date-picker v-model="item.VALUE" v-if="item.OPER_MODE === '014'"></t-date-picker>
+                    </t-form-item>
+                </div>
+            </div>
+            <a href="javascript:;" v-if="isAsync" class="more" @click="getMore">
+                <span v-text="flod ? '收起' : '更多'"></span>
+                <t-icon :type="flod ? 'chevron-up' : 'chevron-down'" style="margin-left: -5px;margin-top: 2px;" size="26"></t-icon>
+            </a>
+        </div>
+
     </div>
 </template>
 <script>
@@ -57,6 +77,8 @@ export default {
     name: 'itemForm',
     data() {
         return {
+            flod: false,
+            list: [],
             showForm: true,
             addFormItem: [
                 {
@@ -145,19 +167,23 @@ export default {
             type: Array,
             default: []
         },
-        isDisabled: {
+        isAsync: {              // 表单异步加载
             type: Boolean,
             default: false
         },
-        isExtend: {
+        isDisabled: {           // 表单只读
             type: Boolean,
             default: false
         },
-        isCollapse: {
+        isExtend: {             // 表单可添加重复信息
             type: Boolean,
             default: false
         },
-        id: String,         // 表单标识
+        isCollapse: {           // 表单折叠
+            type: Boolean,
+            default: false
+        },
+        id: String,             // 表单标识
         title: String,
         getValidatePath: String
     },
@@ -165,6 +191,15 @@ export default {
 
     },
     methods: {
+        getMore() {
+            console.log(this.id);
+            if (this.flod) {
+                this.flod = false;
+            } else {
+                this.list.push(this.addFormItem)
+                this.flod = true;
+            }
+        },
         addFormList() {
             console.log(this.id); // 获取表单标识
             this.userList.push(...this.addFormItem);
@@ -178,13 +213,13 @@ export default {
         },
     },
     created() {
-
+        this.list.push(this.userList)
     }
 }
 </script>
 <style scoped lang="less">
 .form-item-container {
-    padding:14px 5px 3px;
+    padding: 14px 5px 4px;
     zoom: 1;
     border-top: 1px solid #dfe5e7;
     &:after {
@@ -195,8 +230,33 @@ export default {
     }
 }
 
+.more {
+    margin-bottom: 10px;
+    margin-right: 14px;
+    display: inline-block;
+    line-height: 6px;
+    text-align: right;
+    display: block;
+    span {
+        font-size: 12px;
+        font-family: "Microsoft YaHei";
+        color: rgb( 0, 146, 65);
+    }
+}
+
+.form-item-wrap {
+    zoom: 1;
+    &:after {
+        content: '';
+        display: table;
+        clear: both;
+        overflow: hidden;
+    }
+}
+
 .item-form {
     margin-top: -1px;
+
     background: #fff;
     border: 1px solid #dfe5e7;
     .form-top {
@@ -222,6 +282,10 @@ export default {
     }
 }
 
+.clearfix {
+    float: left;
+    width: 100%;
+}
 
 .form-block--info {
     float: left;
@@ -236,11 +300,15 @@ export default {
         clear: both;
     }
 }
-.silde-enter-active,.slide-leave-active{
+
+.silde-enter-active,
+.slide-leave-active {
     transition: all .3s ease;
 }
-.slide-enter,.slide-leave-to{
-    transform:translateY(-100px);
+
+.slide-enter,
+.slide-leave-to {
+    transform: translateY(-100px);
     opacity: 0;
 }
 </style>
