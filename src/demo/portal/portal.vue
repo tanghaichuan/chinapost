@@ -112,6 +112,10 @@ export default {
 }
 </script>
 <style scoped lang="scss">
+.layout--one-screen .layout-content footer{
+  position: relative;
+  background: #f4f8f9;
+}
 .main {
   position: relative;
   padding: 24px;

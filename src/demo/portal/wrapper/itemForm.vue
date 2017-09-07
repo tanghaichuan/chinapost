@@ -43,7 +43,7 @@
             </div>
             <a href="javascript:;" v-if="isAsync" class="more" @click="getMore">
                 <span v-text="flod ? '收起' : '更多'"></span>
-                <t-icon :type="flod ? 'chevron-up' : 'chevron-down'" style="margin-left: -5px;margin-top: 2px;" size="26"></t-icon>
+                <t-icon :type="flod ? 'chevron-up' : 'chevron-down'" style="margin-left: -5px;margin-top: 2px;" size="18"></t-icon>
             </a>
         </div>
 
@@ -238,6 +238,7 @@ export default {
     text-align: right;
     display: block;
     span {
+        padding-right: 2px;
         font-size: 12px;
         font-family: "Microsoft YaHei";
         color: rgb( 0, 146, 65);
