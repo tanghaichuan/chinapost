@@ -1,8 +1,10 @@
 <template>
     <div class="wrapper">
         <div class="formOptions">
-            <t-button type="outline" icon="content-save" class="sub-btn">返回</t-button>
-            <t-button type="outline" icon="content-save" class="sub-btn" @click="handleSubmit('formDynamic')">保存</t-button>
+         <p class="btnIcon">
+            <t-button type="outline" class="sub-btn sub-btn1"><i class="iconfont">&#xe639;</i>返回</t-button>
+            <t-button type="outline" class="sub-btn" @click="handleSubmit('formDynamic')"><i class="iconfont">&#xe624;</i>保存</t-button>
+          </p>  
         </div>
         <!-- 表单域 -->
         <t-form 
@@ -753,8 +755,31 @@ export default {
     position: absolute;
     right: 0;
     top: -30px;
+    .btnIcon{
+    i{
+      margin-right:6px;
+      font-size:14px;
+      color:#666;
+    }
+    .sub-btn{
+      color:#666;
+      &:hover{
+        color:#3DAC6E;
+        i{
+          color:#3DAC6E;
+        }
+      }
+    }
+    .sub-btn1{
+      margin-right:9px;
+    }
+  }
 }
-
+.extend-attr{
+  .form-top{
+    border-bottom:1px solid #dfe5e7;
+  }
+}
 .wrapper-table {
     padding: 25px;
     width: 100%;
@@ -767,6 +792,7 @@ export default {
     }
     background: #fff;
     border: 1px solid #dfe5e7;
+    border-top:0;
 }
 
 .table-top {

@@ -184,9 +184,9 @@ export default {
 </script>
 <style scoped lang="less">
 .form-item-container {
-    padding-top: 25px;
-    padding-bottom: 20px;
+    padding:14px 5px 3px;
     zoom: 1;
+    border-top: 1px solid #dfe5e7;
     &:after {
         content: '';
         display: table;
@@ -204,7 +204,6 @@ export default {
         height: 47px;
         line-height: 47px;
         background: #f4f8f9;
-        border-bottom: 1px solid #dfe5e7;
         .left {
             display: inline-block;
             cursor: pointer;
