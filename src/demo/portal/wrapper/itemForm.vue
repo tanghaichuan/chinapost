@@ -13,7 +13,9 @@
         <div class="form-item-container" v-show="showForm">
             <div class="form-item-wrap">
                 <div class="form-block--info col-3" v-for="(item, index) in list[0]" :key="index">
-                    <t-form-item :label="item.DISP+':'" :prop="getValidatePath+'.'+ index + '.value'" :rules="{required: item.REQUIRE, message: item.DISP+'不能为空', trigger: 'blur'}">
+                    <t-form-item :label="item.DISP+':'" 
+                    :prop="getValidatePath+'.'+ index + '.VALUE'" 
+                    :rules="{required: item.REQUIRE, message: item.DISP+'不能为空', trigger: 'blur'}">
                         <t-select :disabled="isDisabled" v-model="item.VALUE" :title="item.VALUE" v-if="item.OPER_MODE === '02'">
                             <t-option v-for="item in item.ENUM" :value="item.value" :key="item">{{ item.value }}</t-option>
                         </t-select>
