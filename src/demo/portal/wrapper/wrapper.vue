@@ -767,7 +767,6 @@ export default {
     }
     background: #fff;
     border: 1px solid #dfe5e7;
-    transition: all .2s ease-in-out;
 }
 
 .table-top {

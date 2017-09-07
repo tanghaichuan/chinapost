@@ -2,7 +2,7 @@
     <div class="item-form">
         <div class="form-top">
             <div class="left" @click="showForm = !showForm">
-                <t-icon v-if="isCollapse" type="chevron-down" style="float:left;" size="26"></t-icon>
+                <t-icon v-if="isCollapse" :type="showForm ? 'chevron-down' : 'chevron-up'" style="float:left;" size="26"></t-icon>
                 <h6>{{title}}</h6>
             </div>
             <div class="right" v-if="isExtend">
@@ -10,21 +10,23 @@
                 <t-icon @click.native="delFormList" type="minus-circle-outline" style="cursor: pointer;" size="20"></t-icon>
             </div>
         </div>
-        <div class="form-item-container" v-show="showForm">
-            <div class="form-block--info col-3" v-for="(item, index) in userList" :key="index">
-                <t-form-item :label="item.DISP+':'" :prop="getValidatePath+'.'+ index + '.value'" :rules="{required: item.REQUIRE, message: item.DISP+'不能为空', trigger: 'blur'}">
-                    <t-select :disabled="isDisabled" v-model="item.VALUE" :title="item.VALUE" v-if="item.OPER_MODE === '02'">
-                        <t-option v-for="item in item.ENUM" :value="item.value" :key="item">{{ item.value }}</t-option>
-                    </t-select>
+        <transition name="silde">
+            <div class="form-item-container" v-show="showForm">
+                <div class="form-block--info col-3" v-for="(item, index) in userList" :key="index">
+                    <t-form-item :label="item.DISP+':'" :prop="getValidatePath+'.'+ index + '.value'" :rules="{required: item.REQUIRE, message: item.DISP+'不能为空', trigger: 'blur'}">
+                        <t-select :disabled="isDisabled" v-model="item.VALUE" :title="item.VALUE" v-if="item.OPER_MODE === '02'">
+                            <t-option v-for="item in item.ENUM" :value="item.value" :key="item">{{ item.value }}</t-option>
+                        </t-select>
 
-                    <t-input :disabled="isDisabled" v-model="item.VALUE" v-if="item.OPER_MODE === '010'"></t-input>
+                        <t-input :disabled="isDisabled" v-model="item.VALUE" v-if="item.OPER_MODE === '010'"></t-input>
 
-                    <t-input :disabled="isDisabled" v-model="item.VALUE" v-if="item.OPER_MODE === '013'" type="textarea"></t-input>
+                        <t-input :disabled="isDisabled" v-model="item.VALUE" v-if="item.OPER_MODE === '013'" type="textarea"></t-input>
 
-                    <t-date-picker v-model="item.VALUE" v-if="item.OPER_MODE === '014'"></t-date-picker>
-                </t-form-item>
+                        <t-date-picker v-model="item.VALUE" v-if="item.OPER_MODE === '014'"></t-date-picker>
+                    </t-form-item>
+                </div>
             </div>
-        </div>
+        </transition>
     </div>
 </template>
 <script>
@@ -181,17 +183,18 @@ export default {
 }
 </script>
 <style scoped lang="less">
-.form-item-container{
+.form-item-container {
     padding-top: 25px;
     padding-bottom: 20px;
     zoom: 1;
-    &:after{
-        content:'';
+    &:after {
+        content: '';
         display: table;
         clear: both;
         overflow: hidden;
     }
 }
+
 .item-form {
     margin-top: -1px;
     background: #fff;
@@ -226,7 +229,6 @@ export default {
 }
 
 .item-form {
-    transition: all .2s ease-in-out;
     zoom: 1;
     &:after {
         display: table;
@@ -234,5 +236,12 @@ export default {
         content: '';
         clear: both;
     }
+}
+.silde-enter-active,.slide-leave-active{
+    transition: all .3s ease;
+}
+.slide-enter,.slide-leave-to{
+    transform:translateY(-100px);
+    opacity: 0;
 }
 </style>
