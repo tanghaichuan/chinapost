@@ -173,7 +173,7 @@ danger;
   /*}*/
   height: 28px;
   line-height: 25px;
-  padding: 0 16px;
+  padding: 0 15px;
   background-image: none;
   /* 默认按钮样式*/
   &.btn-secondary {
@@ -412,6 +412,10 @@ danger;
 .select{
   .dropdown-selection-icon{
     right:3px;
+    .aid-chevron-down{
+      font-size:16px;
+      color:#a0a0a0;
+    }
   }  
 }
 
