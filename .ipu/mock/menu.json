@@ -144,8 +144,11 @@
           "name": "客户管理",
           "icon": "&#xe783;",
           "children": [{
-            "name": "客户主数据管理",
-            "url": "/customer/1"
+            "name": "客户信息管理",
+            "children": [{
+              "name": "创建个人客户信息",
+              "url": "/customer/1"
+            }]
           }, {
             "name": "客户分级",
             "url": "/customer/2"
