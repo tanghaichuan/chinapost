@@ -67,6 +67,7 @@ export default {
     h5 {
         font-size: 16px;
         margin-bottom: 15px;
+        color:#333;
     }
 }
 .form-top {
@@ -83,7 +84,7 @@ export default {
         font-size: 14px !important;
         font-family: "NotoSansSC-Regular";
         font-weight: 400;
-        color: inherit;
+        color: #333;
         background: #f6f8f8;
         border: 1px solid #dfe5e7;
         border-bottom: transparent;

@@ -2,13 +2,13 @@
     <div class="item-form">
         <div class="form-top">
             <div class="left" @click="showForm = !showForm">
-                <t-icon v-if="isCollapse" :type="showForm ? 'chevron-down' : 'chevron-up'" style="float:left;" size="26"></t-icon>
+                <t-icon v-if="isCollapse" :type="showForm ? 'chevron-down' : 'chevron-up'" style="float:left;"></t-icon>
                 <h6>{{title}}</h6>
             </div>
-            <div class="right" v-if="isExtend">
+            <!-- <div class="right" v-if="isExtend">
                 <t-icon @click.native="addFormList" type="plus-circle-outline" style="cursor: pointer;" size="20"></t-icon>
                 <t-icon @click.native="delFormList" type="minus-circle-outline" style="cursor: pointer;" size="20"></t-icon>
-            </div>
+            </div> -->
         </div>
         <div class="form-item-container" v-show="showForm">
             <div class="form-item-wrap">
@@ -221,7 +221,7 @@ export default {
 </script>
 <style scoped lang="less">
 .form-item-container {
-    padding: 14px 5px 4px;
+    padding: 19px 10px 9px;
     zoom: 1;
     border-top: 1px solid #dfe5e7;
     &:after {
@@ -233,14 +233,14 @@ export default {
 }
 
 .more {
-    margin-bottom: 10px;
     margin-right: 14px;
+    padding-bottom:14px;
     display: inline-block;
-    line-height: 6px;
+    line-height: 15px;
     text-align: right;
     display: block;
     span {
-        padding-right: 2px;
+        padding-right: 5px;
         font-size: 12px;
         font-family: "Microsoft YaHei";
         color: rgb( 0, 146, 65);
@@ -263,10 +263,9 @@ export default {
     background: #fff;
     border: 1px solid #dfe5e7;
     .form-top {
-        padding-left: 10px;
-        height: 47px;
-        line-height: 47px;
-        background: #f4f8f9;
+        padding-left: 13px;
+        line-height: 45px;
+        background: #f6f8f8;
         .left {
             display: inline-block;
             cursor: pointer;
@@ -274,7 +273,15 @@ export default {
                 display: inline-block;
                 border: 0;
                 padding: 0;
-                font-size: 1rem;
+                font-size:16px;
+                color:#333;
+            }
+            i{
+                &.aid{
+                    margin-right:3px;
+                    font-size:18px;
+                    color:#898989;
+                }
             }
         }
         .right {

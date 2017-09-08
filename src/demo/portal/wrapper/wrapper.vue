@@ -2,8 +2,8 @@
     <div class="wrapper">
         <div class="formOptions">
          <p class="btnIcon">
-            <t-button type="outline" class="sub-btn sub-btn1"><i class="iconfont">&#xe639;</i>返回</t-button>
-            <t-button type="outline" class="sub-btn" @click="handleSubmit('formDynamic')"><i class="iconfont">&#xe624;</i>保存</t-button>
+            <t-button type="outline" class="sub-btn"><i class="iconfont">&#xe639;</i>返回</t-button>
+            <!-- <t-button type="outline" class="sub-btn" @click="handleSubmit('formDynamic')"><i class="iconfont">&#xe624;</i>保存</t-button> -->
           </p>  
         </div>
         <!-- 表单域 -->
@@ -30,7 +30,7 @@
         <div class="extend-attr">
             <div class="form-top">
                 <div class="left" @click="showTable = !showTable">
-                    <t-icon :type="showTable ? 'chevron-down' : 'chevron-up'" size="26"></t-icon>
+                    <t-icon :type="showTable ? 'chevron-down' : 'chevron-up'"></t-icon>
                     <h6>客户扩展属性</h6>
                 </div>
                 <div class="right"></div>
@@ -750,6 +750,13 @@ export default {
             cursor: pointer;
         }
     }
+    .form-group__label{
+        color:#000;
+        font-size:12px;
+        opacity:0.8;
+        filter:alpha(opacity=80);
+        min-width:93px;
+    }
 }
 .wrapper-form {
     padding: 10px 0;
@@ -757,7 +764,7 @@ export default {
 .formOptions {
     position: absolute;
     right: 0;
-    top: -30px;
+    top: 7px;
     .btnIcon{
     i{
       margin-right:6px;
@@ -773,14 +780,21 @@ export default {
         }
       }
     }
-    .sub-btn1{
-      margin-right:9px;
-    }
   }
 }
 .extend-attr{
   .form-top{
     border-bottom:1px solid #dfe5e7;
+    height:45px;
+    line-height:45px;
+    .left{
+        i{
+            &.aid{
+                font-size:18px;
+                color:#898989;
+            }
+        }
+    }
   }
 }
 .wrapper-table {
@@ -837,16 +851,17 @@ export default {
         clear: both;
     }
     .left {
-        padding-left: 10px;
+        padding-left: 14px;
         display: inline-block;
         cursor: pointer;
         h6 {
             margin: 0;
             display: inline-block;
             line-height: 46px;
+            color:#333;
         }
         i {
-            font-size: 22px!important;
+            font-size: 22px;
             line-height: 46px;
         }
     }
@@ -856,7 +871,7 @@ export default {
         right: 15px;
         top: 8px;
         i {
-            font-size: 22px!important;
+            font-size: 22px;
         }
     }
 }

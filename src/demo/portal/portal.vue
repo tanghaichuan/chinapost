@@ -51,7 +51,7 @@
           </t-dropdown-menu>
         </t-dropdown>
       </nav>
-      <div style="height: 45px;">
+      <div>
         <t-breadcrumb v-show="currentMenu">
           <t-breadcrumb-item href="/portal" @click.native="emptyMenu">首页</t-breadcrumb-item>
           <t-breadcrumb-item href="#">{{$route.name === 'wrapper' ? currentMenu='' : $route.name}}</t-breadcrumb-item>
@@ -114,13 +114,13 @@ export default {
 <style scoped lang="scss">
 .layout--one-screen .layout-content footer{
   position: relative;
-  background: #f4f8f9;
+  background: #f2f6f7;
 }
 .main {
   position: relative;
   padding: 24px;
   padding-top: 0;
-  background: #f4f8f9;
+  background: #f2f6f7;
 }
 
 //左侧菜单
@@ -177,7 +177,12 @@ export default {
 }
 
 .breadcrumb {
-  background: #f4f8f9;
+  line-height:25px;
+  background: #f6f8f8;
+  border-radius:0;
+  border-bottom:1px solid #dfe5e7;
+  padding:14px 0 14px 15px;
+  font-size:14px;
 }
 
 .menu--folded .sec .menu__submenu-title>span {
