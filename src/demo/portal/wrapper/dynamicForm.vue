@@ -44,7 +44,6 @@ export default {
             type: Boolean,
             default: false
         },
-        id: String,     // 表单标识
         title: String,
         getValidatePath: String
     },

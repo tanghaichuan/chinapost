@@ -21,7 +21,7 @@
               <t-alert v-show="errMsg" type="danger" show-icon>{{errMsg}}</t-alert>
             </div>
             <t-form ref="loginForm" :show-message="false" :model="formData" :rules="rules">
-              <t-form-item prop="username">
+              <t-form-item prop="username" error="请输入用户名" :required="true" :show-message="true">
                 <i class="iconfont">&#xe64b;</i>
                 <t-input v-model="formData.username" :autofocus="true" placeholder="请填写用户名"></t-input>
               </t-form-item>
@@ -74,24 +74,24 @@ export default {
         password: '',
         verify: '',
         rememberMe: false
-      },
-      rules: {
-        username: [{
-          required: true,
-          message: '用户名不能为空',
-          trigger: 'blur'
-        }],
-        password: [{
-          required: true,
-          message: '密码不能为空',
-          trigger: 'blur'
-        }],
-        verify: [{
-          required: true,
-          message: '验证码不能为空',
-          trigger: 'blur'
-        }]
       }
+      // rules: {
+      //   username: [{
+      //     required: true,
+      //     message: '用户名不能为空',
+      //     trigger: 'change'
+      //   }],
+      //   password: [{
+      //     required: true,
+      //     message: '密码不能为空',
+      //     trigger: 'change'
+      //   }],
+      //   verify: [{
+      //     required: true,
+      //     message: '验证码不能为空',
+      //     trigger: 'change'
+      //   }]
+      // }
     }
   },
   computed: {

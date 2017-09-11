@@ -2,23 +2,17 @@
     <div class="item-form">
         <div class="form-top">
             <div class="left" @click="showForm = !showForm">
-                <span v-if="isCollapse" class="info-icon">
+                <span v-if="userList.isCollapse" class="info-icon">
                     <i class="iconfont" v-if="showForm">&#xe78e;</i>
                     <i class="iconfont" v-else>&#xe78d;</i>
                 </span>
-                <h6>{{title}}</h6>
+                <h6>{{userList.title}}</h6>
             </div>
-            <!-- <div class="right" v-if="isExtend">
-                <t-icon @click.native="addFormList" type="plus-circle-outline" style="cursor: pointer;" size="20"></t-icon>
-                <t-icon @click.native="delFormList" type="minus-circle-outline" style="cursor: pointer;" size="20"></t-icon>
-            </div> -->
         </div>
         <div class="form-item-container" v-show="showForm">
             <div class="form-item-wrap">
-                <div class="form-block--info col-3" v-for="(item, index) in list[0]" :key="index">
-                    <t-form-item :label="item.DISP+':'" 
-                    :prop="getValidatePath+'.'+ index + '.VALUE'" 
-                    :rules="{required: item.REQUIRE, message: item.DISP+'不能为空', trigger: 'blur'}">
+                <div class="form-block--info col-3" v-for="(item, index) in userList.formItem" :key="index">
+                    <t-form-item :label="item.DISP+':'" :prop="getValidatePath+'.'+'formItem.'+ index + '.VALUE'" :rules="{required: item.REQUIRE, message: item.DISP+'不能为空', trigger: 'blur'}">
                         <t-select :disabled="isDisabled" v-model="item.VALUE" :title="item.VALUE" v-if="item.OPER_MODE === '02'">
                             <t-option v-for="item in item.ENUM" :value="item.value" :key="item">{{ item.value }}</t-option>
                         </t-select>
@@ -31,9 +25,9 @@
                     </t-form-item>
                 </div>
             </div>
-            <div class="form-item-wrap" v-show="flod">
-                <div class="form-block--info col-3" v-for="(item, index) in list[1]" :key="index">
-                    <t-form-item :label="item.DISP+':'" :prop="getValidatePath+'.'+ index + '.value'" :rules="{required: item.REQUIRE, message: item.DISP+'不能为空', trigger: 'blur'}">
+            <div class="form-item-wrap" v-if="flod">
+                <div class="form-block--info col-3" v-for="(item, index) in userList.addFormItem" :key="index">
+                    <t-form-item :label="item.DISP+':'" :prop="getValidatePath+'.'+'addFormItem.'+ index + '.VALUE'" :rules="{required: item.REQUIRE, message: item.DISP+'不能为空', trigger: 'blur'}">
                         <t-select :disabled="isDisabled" v-model="item.VALUE" :title="item.VALUE" v-if="item.OPER_MODE === '02'">
                             <t-option v-for="item in item.ENUM" :value="item.value" :key="item">{{ item.value }}</t-option>
                         </t-select>
@@ -46,7 +40,7 @@
                     </t-form-item>
                 </div>
             </div>
-            <a href="javascript:;" v-if="isAsync" class="more" @click="getMore">
+            <a href="javascript:;" v-if="userList.isAsync" class="more" @click="getMore">
                 <span v-text="flod ? '收起' : '更多'"></span>
                 <t-icon :type="flod ? 'chevron-up' : 'chevron-down'" style="margin-left: -5px;margin-top: 2px;" size="18"></t-icon>
             </a>
@@ -83,94 +77,120 @@ export default {
     data() {
         return {
             flod: false,
-            list: [],
             showForm: true,
             addFormItem: [
                 {
-                    "CODE": "",
-                    "VALUE": "",
-                    "DISP": '联系人姓名',
-                    "OPER_MODE": "010"
-                },
-                {
-                    "CODE": "2",
-                    "DISP": "证件类型",
+                    "DISP": "HAVECHILDFLAG",
+                    "DISP": "是否有子女",
                     "OPER_MODE": "02",
                     "VALUE": "",
                     "ENUM": [
                         {
-                            "key": "primary",
-                            "value": "身份证"
+                            "key": "Y",
+                            "value": "有"
                         },
                         {
-                            "key": "middle",
-                            "value": "户口簿"
-                        },
-                        {
-                            "key": "high",
-                            "value": "驾驶证"
-                        },
-                        {
-                            "key": "university",
-                            "value": "出生证"
-                        },
-                        {
-                            "key": "Master",
-                            "value": "护照"
-                        },
-                        {
-                            "key": "Doctor",
-                            "value": "港澳通行证"
-                        },
-                        {
-                            "key": "Post-Doctor",
-                            "value": "港澳身份证"
-                        },
-                        {
-                            "key": "Post-Doctor",
-                            "value": "台胞证"
-                        },
-                        {
-                            "key": "Post-Doctor",
-                            "value": "雇员证（单位证明）"
-                        },
-                        {
-                            "key": "Post-Doctor",
-                            "value": "军官证"
+                            "key": "N",
+                            "value": "无"
                         }
                     ]
                 },
                 {
-                    "CODE": "3",
+                    "CODE": "INDUSTRY",
                     "VALUE": "",
-                    "DISP": '联系人证件号码',
+                    "DISP": "行业",
                     "OPER_MODE": "010"
                 },
                 {
-                    "CODE": "4",
+                    "CODE": "PERSONALITY",
                     "VALUE": "",
-                    "DISP": "联系人证件有效期",
+                    "DISP": "个性特征",
+                    "OPER_MODE": "010"
+                },
+                {
+                    "CODE": "INTEREST",
+                    "VALUE": "",
+                    "DISP": "兴趣和避讳",
+                    "OPER_MODE": "010"
+                },
+                {
+                    "CODE": "HONOR_AWARD",
+                    "VALUE": "",
+                    "DISP": "荣誉奖励",
+                    "OPER_MODE": "010"
+                },
+                {
+                    "CODE": "START_JOB_DATE",
+                    "VALUE": "",
+                    "DISP": "参加工作时间",
                     "OPER_MODE": "014"
                 },
                 {
-                    "CODE": "5",
+                    "CODE": "SHORT_NAME",
                     "VALUE": "",
-                    "DISP": '联系人电话',
+                    "DISP": "简称",
                     "OPER_MODE": "010"
                 },
+                // {
+                //     "DISP": "证件类型",
+                //     "OPER_MODE": "02",
+                //     "VALUE": "",
+                //     "ENUM": [
+                //         {
+                //             "key": "primary",
+                //             "value": "身份证"
+                //         },
+                //         {
+                //             "key": "middle",
+                //             "value": "户口簿"
+                //         },
+                //         {
+                //             "key": "high",
+                //             "value": "驾驶证"
+                //         },
+                //         {
+                //             "key": "university",
+                //             "value": "出生证"
+                //         },
+                //         {
+                //             "key": "Master",
+                //             "value": "护照"
+                //         },
+                //         {
+                //             "key": "Doctor",
+                //             "value": "港澳通行证"
+                //         },
+                //         {
+                //             "key": "Post-Doctor",
+                //             "value": "港澳身份证"
+                //         },
+                //         {
+                //             "key": "Post-Doctor",
+                //             "value": "台胞证"
+                //         },
+                //         {
+                //             "key": "Post-Doctor",
+                //             "value": "雇员证（单位证明）"
+                //         },
+                //         {
+                //             "key": "Post-Doctor",
+                //             "value": "军官证"
+                //         }
+                //     ]
+                // },
                 {
-                    "CODE": "6",
+                    "CODE": "NAME",
                     "VALUE": "",
-                    "DISP": '联系人地址',
+                    "DISP": '联系人证件号码',
                     "OPER_MODE": "010"
                 }
-            ],
+            ]
         }
     },
     props: {
         userList: {
-            type: Array,
-            default: []
+            type: Object,
+            default: {}
         },
         isAsync: {              // 表单异步加载
             type: Boolean,
@@ -188,7 +208,6 @@ export default {
             type: Boolean,
             default: false
         },
-        id: String,             // 表单标识
         title: String,
         getValidatePath: String
     },
@@ -197,17 +216,15 @@ export default {
     },
     methods: {
         getMore() {
-            console.log(this.id);
             if (this.flod) {
                 this.flod = false;
             } else {
-                this.list.push(this.addFormItem)
+                this.$set(this.userList, "addFormItem", this.addFormItem)
                 this.flod = true;
             }
         },
         addFormList() {
-            console.log(this.id); // 获取表单标识
-            this.userList.push(...this.addFormItem);
+
         },
         delFormList() {
             let len = this.addFormItem.length;
@@ -218,18 +235,22 @@ export default {
         },
     },
     created() {
-        this.list.push(this.userList)
+
+        // this.list.push(this.userList.formItem)
+        // console.log(this.userList);
     }
 }
 </script>
 <style scoped lang="less">
-.info-icon{
-    i{
-        font-size:6px;
+.info-icon {
+    i {
+        font-size: 6px;
     }
 }
+
 .form-item-container {
-    padding: 19px 10px 9px;
+    position: relative;
+    padding: 19px 10px 29px;
     zoom: 1;
     border-top: 1px solid #dfe5e7;
     &:after {
@@ -242,11 +263,11 @@ export default {
 
 .more {
     margin-right: 14px;
-    padding-bottom:14px;
-    display: inline-block;
+    padding-bottom: 14px;
+    display: inline-block !important;
     line-height: 15px;
-    text-align: right;
-    display: block;
+    position: absolute;
+    right: 0;
     span {
         padding-right: 5px;
         font-size: 12px;
@@ -281,14 +302,14 @@ export default {
                 display: inline-block;
                 border: 0;
                 padding: 0;
-                font-size:16px;
-                color:#333;
+                font-size: 16px;
+                color: #333;
             }
-            i{
-                &.aid{
-                    margin-right:3px;
-                    font-size:18px;
-                    color:#898989;
+            i {
+                &.aid {
+                    margin-right: 3px;
+                    font-size: 18px;
+                    color: #898989;
                 }
             }
         }

@@ -1,37 +1,25 @@
 <template>
     <div class="wrapper">
+        <h5>
+            <i class="iconfont tit-icon">&#xe78b;</i>创建个人客户信息</h5>
         <div class="formOptions">
-         <p class="btnIcon">
-            <t-button type="outline" class="sub-btn"><i class="iconfont">&#xe639;</i>返回</t-button>
-            <!-- <t-button type="outline" class="sub-btn" @click="handleSubmit('formDynamic')"><i class="iconfont">&#xe624;</i>保存</t-button> -->
-          </p>  
+            <p class="btnIcon">
+                <t-button type="outline" class="sub-btn">
+                    <i class="iconfont">&#xe639;</i>返回</t-button>
+                <!-- <t-button type="outline" class="sub-btn" @click="handleSubmit('formDynamic')"><i class="iconfont">&#xe624;</i>保存</t-button> -->
+            </p>
         </div>
         <!-- 表单域 -->
-        <t-form 
-        :model="formData" 
-        ref="formDynamic" 
-        :rules.sync="listRule" 
-        label-position="left" 
-        :label-span="6">
+        <t-form :model="formData" ref="formDynamic" :rules.sync="listRule" label-position="left" :label-span="4">
             <div class="wrapper-form" v-for="(item, index) in formData" :key="index">
-                <component 
-                :id="item.id"
-                :isAsync="item.isAsync"
-                :isExtend="item.isExtend" 
-                :isCollapse="item.isCollapse" 
-                :title="item.name" 
-                :getValidatePath="getValidatePath(item, index)" 
-                :isDisabled="isDisabled" ref="form" 
-                :is="currentView(item)" 
-                :userList="currentList(item)"></component>
+                <item-form :getValidatePath="getValidatePath(item, index)" :isDisabled="isDisabled" ref="form" :userList="item"></item-form>
             </div>
         </t-form>
         <!-- 表格域 -->
-        <div class="extend-attr">
+        <!-- <div class="extend-attr">
             <div class="form-top">
                 <div class="left" @click="showTable = !showTable">
-                   <!--  <t-icon :type="showTable ? 'chevron-down' : 'chevron-up'"></t-icon> -->
-                     <span class="info-icon">
+                    <span class="info-icon">
                         <i class="iconfont" v-if="showTable">&#xe78e;</i>
                         <i class="iconfont" v-else>&#xe78d;</i>
                     </span>
@@ -39,7 +27,6 @@
                 </div>
                 <div class="right"></div>
             </div>
-
             <div v-show="showTable" class="wrapper-table" ref="table">
                 <div class="table-top">
                     <t-button @click.native="addTableList" type="outline" class="left sub-btn">新增</t-button>
@@ -47,8 +34,7 @@
                 </div>
                 <edit-table :editColumn.sync="editColumn" :editData.sync="showTableList"></edit-table>
             </div>
-
-        </div>
+        </div> -->
     </div>
 </template>
 <script>
@@ -242,419 +228,383 @@ export default {
                     }
                 }
             ],
-            // 客户基本信息
-            customInfo: {
-                "name": "创建个人客户信息",
-                "key": "customInfo",
-                "formList": [
-                    {
-                        "name": "基本信息",
-                        "key": "basicInfo",
-                        "id": "1",
-                        "isAsync":true, 
-                        "isExtend": false,
-                        "isCollapse": true,
-                        "formItem": [
-                            {
-                                "CODE": "NAME",
-                                "VALUE": "",
-                                "DISP": "客户编码",
-                                "OPER_MODE": "010",
-                                "REQUIRE": true
-                            },
-                            {
-                                "CODE": "NAME",
-                                "VALUE": "",
-                                "DISP": "客户名称",
-                                "OPER_MODE": "010",
-                                "REQUIRE": true
-                            },
-                            {
-                                "CODE": "BIRTH_DATE",
-                                "VALUE": "",
-                                "DISP": "出生年月",
-                                "OPER_MODE": "014",
-                                "REQUIRE": true
-                            },
-                            {
-                                "VALUE": "",
-                                "DISP": "婚姻状况",
-                                "OPER_MODE": "02",
-                                "ENUM": [
-                                    {
-                                        "key": "Y",
-                                        "value": "已婚"
-                                    },
-                                    {
-                                        "key": "N",
-                                        "value": "未婚"
-                                    },
-                                    {
-                                        "key": "O",
-                                        "value": "离异"
-                                    }
-                                ]
-                            },
-                            {
-                                "CODE": "GENDER",
-                                "VALUE": "",
-                                "DISP": "性别",
-                                "OPER_MODE": "02",
-                                "ENUM": [
-                                    {
-                                        "key": "M",
-                                        "value": "男"
-                                    },
-                                    {
-                                        "key": "F",
-                                        "value": "女"
-                                    },
-                                    {
-                                        "key": "U",
-                                        "value": "其他"
-                                    }
-                                ]
-                            },
-                            {
-                                "DISP": "学历",
-                                "OPER_MODE": "02",
-                                "VALUE": "",
-                                "ENUM": [
-                                    {
-                                        "key": "primary",
-                                        "value": "小学"
-                                    },
-                                    {
-                                        "key": "middle",
-                                        "value": "初中"
-                                    },
-                                    {
-                                        "key": "high",
-                                        "value": "高中"
-                                    },
-                                    {
-                                        "key": "university",
-                                        "value": "本科"
-                                    },
-                                    {
-                                        "key": "Master",
-                                        "value": "硕士"
-                                    },
-                                    {
-                                        "key": "Doctor",
-                                        "value": "博士"
-                                    },
-                                    {
-                                        "key": "Post-Doctor",
-                                        "value": "博士后"
-                                    }
-                                ]
-                            },
-                            {
-                                "DISP": "行业类型",
-                                "OPER_MODE": "02",
-                                "VALUE": "",
-                                "ENUM": [
-                                    {
-                                        "key": "primary",
-                                        "value": "农林畜牧业"
-                                    },
-                                    {
-                                        "key": "middle",
-                                        "value": "采矿业"
-                                    },
-                                    {
-                                        "key": "high",
-                                        "value": "制造业"
-                                    },
-                                    {
-                                        "key": "university",
-                                        "value": "电力，燃气及水生产和供应业"
-                                    },
-                                    {
-                                        "key": "Master",
-                                        "value": "建筑业"
-                                    },
-                                    {
-                                        "key": "Doctor",
-                                        "value": "交通运输，仓储和邮储业"
-                                    },
-                                    {
-                                        "key": "Post-Doctor",
-                                        "value": "住宿和餐饮业"
-                                    },
-                                    {
-                                        "key": "Post-Doctor",
-                                        "value": "金融业"
-                                    },
-                                    {
-                                        "key": "Post-Doctor",
-                                        "value": "房地产业"
-                                    },
-                                    {
-                                        "key": "Post-Doctor",
-                                        "value": "租凭和商务服务业"
-                                    }
-                                ]
-                            },
-                            {
-                                "DISP": "职业",
-                                "OPER_MODE": "02",
-                                "VALUE": "",
-                                "ENUM": [
-                                    {
-                                        "key": "primary",
-                                        "value": "教育/研究"
-                                    },
-                                    {
-                                        "key": "middle",
-                                        "value": "艺术/设计"
-                                    },
-                                    {
-                                        "key": "high",
-                                        "value": "法律相关专业"
-                                    },
-                                    {
-                                        "key": "university",
-                                        "value": "行政管理"
-                                    },
-                                    {
-                                        "key": "Master",
-                                        "value": "传播/媒体"
-                                    },
-                                    {
-                                        "key": "Doctor",
-                                        "value": "顾问/分析员"
-                                    },
-                                    {
-                                        "key": "Post-Doctor",
-                                        "value": "服务/后勤"
-                                    },
-                                    {
-                                        "key": "Post-Doctor",
-                                        "value": "工程师"
-                                    },
-                                    {
-                                        "key": "Post-Doctor",
-                                        "value": "政府机关/团体"
-                                    },
-                                    {
-                                        "key": "Post-Doctor",
-                                        "value": "人力资源及训练"
-                                    }
-                                ]
-                            },
-                            {
-                                "CODE": "NAME",
-                                "VALUE": "",
-                                "DISP": "工作单位",
-                                "OPER_MODE": "010"
-                            },
-                            {
-                                "CODE": "NAME",
-                                "VALUE": "",
-                                "DISP": "联系电话",
-                                "OPER_MODE": "010"
-                            },
-                            {
-                                "CODE": "NAME",
-                                "VALUE": "",
-                                "DISP": "联系地址",
-                                "OPER_MODE": "010"
-                            }
-                            // {
-                            //     "CODE": "IS_CONTRACT_USER",
-                            //     "VALUE": "T",
-                            //     "DISP": 1,
-                            //     "OPER_MODE": "016"
-                            // },
-                            // {
-                            //     "CODE": "REMARKS",//唯一 id
-                            //     "VALUE": "需要特殊照顾。\n非常重要！",// 值
-                            //     "DISP": '客户编码',
-                            //     "OPER_MODE": "013" //控件类型
-                            // },
-
-                            // {
-                            //     "CODE": "联系地址",
-                            //     "VALUE": "北京中关村南路125号",
-                            //     "DISP": 2,
-                            //     "OPER_MODE": "015"
-                            // }
-                        ]
-                    },
-                    {
-                        "name": "证件信息",
-                        "key": "credentInfo",
-                        "id": "2",
-                        "isExtend": true,
-                        "isCollapse": true,
-                        "formItem": [
-                            {
-                                "DISP": "证件类型",
-                                "OPER_MODE": "02",
-                                "VALUE": "",
-                                "REQUIRE": true,
-                                "ENUM": [
-                                    {
-                                        "key": "primary",
-                                        "value": "身份证"
-                                    },
-                                    {
-                                        "key": "middle",
-                                        "value": "户口簿"
-                                    },
-                                    {
-                                        "key": "high",
-                                        "value": "驾驶证"
-                                    },
-                                    {
-                                        "key": "university",
-                                        "value": "出生证"
-                                    },
-                                    {
-                                        "key": "Master",
-                                        "value": "护照"
-                                    },
-                                    {
-                                        "key": "Doctor",
-                                        "value": "港澳通行证"
-                                    },
-                                    {
-                                        "key": "Post-Doctor",
-                                        "value": "港澳身份证"
-                                    },
-                                    {
-                                        "key": "Post-Doctor",
-                                        "value": "台胞证"
-                                    },
-                                    {
-                                        "key": "Post-Doctor",
-                                        "value": "雇员证（单位证明）"
-                                    },
-                                    {
-                                        "key": "Post-Doctor",
-                                        "value": "军官证"
-                                    }
-                                ]
-                            },
-                            {
-                                "CODE": "NAME",
-                                "VALUE": "",
-                                "DISP": '证件号码',
-                                "OPER_MODE": "010",
-                                "REQUIRE": true
-                            },
-                            {
-                                "CODE": "NAME",
-                                "VALUE": "",
-                                "DISP": '证件地址',
-                                "OPER_MODE": "010",
-                                "REQUIRE": true,
-                            },
-                            {
-                                "CODE": "NAME",
-                                "VALUE": "",
-                                "DISP": '签发机关',
-                                "OPER_MODE": "010"
-                            },
-                            {
-                                "CODE": "BIRTH_DATE",
-                                "VALUE": "",
-                                "DISP": "证件有效期",
-                                "OPER_MODE": "014"
-                            }
-                        ]
-                    }
-                ]
-            },
-            attenInfo: {
+            baseInfo: {
                 "isCollapse": true,
-                "isExtend": true,
-                "isAsync":true, 
-                "name": "联系人信息",
-                "key": "attenInfo",
-                "id": "3",
+                "isAsync": true,
+                "title": "基本信息",
                 "formItem": [
                     {
-                        "CODE": "NAME",
+                        "CODE": "INDIVIDUAL_NAME",
                         "VALUE": "",
-                        "DISP": '联系人姓名',
-                        "OPER_MODE": "010",
-                        "REQUIRE": true,
-                    },
-                    {
-                        "DISP": "证件类型",
-                        "OPER_MODE": "02",
-                        "VALUE": "",
-                        "REQUIRE": true,
-                        "ENUM": [
-                            {
-                                "key": "primary",
-                                "value": "身份证"
-                            },
-                            {
-                                "key": "middle",
-                                "value": "户口簿"
-                            },
-                            {
-                                "key": "high",
-                                "value": "驾驶证"
-                            },
-                            {
-                                "key": "university",
-                                "value": "出生证"
-                            },
-                            {
-                                "key": "Master",
-                                "value": "护照"
-                            },
-                            {
-                                "key": "Doctor",
-                                "value": "港澳通行证"
-                            },
-                            {
-                                "key": "Post-Doctor",
-                                "value": "港澳身份证"
-                            },
-                            {
-                                "key": "Post-Doctor",
-                                "value": "台胞证"
-                            },
-                            {
-                                "key": "Post-Doctor",
-                                "value": "雇员证（单位证明）"
-                            },
-                            {
-                                "key": "Post-Doctor",
-                                "value": "军官证"
-                            }
-                        ]
-                    },
-                    {
-                        "CODE": "NAME",
-                        "VALUE": "",
-                        "DISP": '联系人证件号码',
+                        "DISP": "名称",
                         "OPER_MODE": "010",
                         "REQUIRE": true
+                    },
+                    {
+                        "CODE": "SIMPLE_SPELL",
+                        "VALUE": "",
+                        "DISP": '名称简拼',
+                        "OPER_MODE": "010"
+                    },
+                    {
+                        "CODE": "FORMER_NAME",
+                        "VALUE": "",
+                        "DISP": '曾用名',
+                        "OPER_MODE": "010"
+                    },
+                    {
+                        "CODE": "GENDER",
+                        "VALUE": "",
+                        "DISP": "性别",
+                        "OPER_MODE": "02",
+                        "ENUM": [
+                            {
+                                "key": "M",
+                                "value": "男"
+                            },
+                            {
+                                "key": "W",
+                                "value": "女"
+                            }
+                        ]
                     },
                     {
                         "CODE": "BIRTH_DATE",
                         "VALUE": "",
-                        "DISP": "联系人证件有效期",
+                        "DISP": "出生日期",
                         "OPER_MODE": "014"
                     },
                     {
-                        "CODE": "NAME",
+                        "CODE": "MARITAL_STATUS",
                         "VALUE": "",
-                        "DISP": '联系人电话',
-                        "OPER_MODE": "010",
-                        "REQUIRE": true
+                        "DISP": "婚姻状况",
+                        "OPER_MODE": "02",
+                        "ENUM": [
+                            {
+                                "key": "single",
+                                "value": "未婚"
+                            },
+                            {
+                                "key": "married",
+                                "value": "已婚"
+                            },
+                            {
+                                "key": "divorced",
+                                "value": "离异"
+                            }
+                        ]
                     },
                     {
-                        "CODE": "NAME",
+                        "CODE": "NATIONALITY",
                         "VALUE": "",
-                        "DISP": '联系人地址',
+                        "DISP": "国籍",
+                        "OPER_MODE": "02",
+                        "ENUM": [
+                            {
+                                "key": "China",
+                                "value": "中国"
+                            }
+                        ]
+                    },
+                    {
+                        "CODE": "NATIONAL_TYPE",
+                        "VALUE": "",
+                        "DISP": "民族",
+                        "OPER_MODE": "02",
+                        "ENUM": [
+                            {
+                                "key": "Han",
+                                "value": "汉族"
+                            }
+                        ]
+                    },
+                    {
+                        "CODE": "EDUCATION",
+                        "VALUE": "",
+                        "DISP": "学历",
+                        "OPER_MODE": "02",
+                        "ENUM": [
+                            {
+                                "key": "primary",
+                                "value": "小学"
+                            }
+                        ]
+                    },
+                    {
+                        "CODE": "GRADUATE_SCHOOL",
+                        "VALUE": "",
+                        "DISP": "毕业院校",
+                        "OPER_MODE": "010"
+                    },
+                    {
+                        "CODE": "SPECIALITY",
+                        "VALUE": "",
+                        "DISP": "专业",
+                        "OPER_MODE": "010"
+                    },
+                    {
+                        "CODE": "JOB_COMPANY",
+                        "VALUE": "",
+                        "DISP": "工作单位",
+                        "OPER_MODE": "010"
+                    },
+                    {
+                        "CODE": "JOB_POSTION",
+                        "VALUE": "",
+                        "DISP": "工作职位",
+                        "OPER_MODE": "010"
+                    },
+                    {
+                        "CODE": "PROFESSION",
+                        "VALUE": "",
+                        "DISP": "职业",
+                        "OPER_MODE": "02",
+                        "ENUM": [
+                            {
+                                "key": "edu",
+                                "value": "教育/研究"
+                            }
+                        ]
+                    },
+                    {
+                        "CODE": "INCOME_RANGE",
+                        "VALUE": "",
+                        "DISP": "收入范围",
+                        "OPER_MODE": "010"
+                    },
+                    {
+                        "CODE": "REMARKS",
+                        "VALUE": "",
+                        "DISP": "备注",
+                        "OPER_MODE": "010"
+                    }
+                    // {
+                    //     "DISP": "证件类型",
+                    //     "OPER_MODE": "02",
+                    //     "VALUE": "",
+                    //     "REQUIRE": true,
+                    //     "ENUM": [
+                    //         {
+                    //             "key": "primary",
+                    //             "value": "身份证"
+                    //         },
+                    //         {
+                    //             "key": "middle",
+                    //             "value": "户口簿"
+                    //         },
+                    //         {
+                    //             "key": "high",
+                    //             "value": "驾驶证"
+                    //         },
+                    //         {
+                    //             "key": "university",
+                    //             "value": "出生证"
+                    //         },
+                    //         {
+                    //             "key": "Master",
+                    //             "value": "护照"
+                    //         },
+                    //         {
+                    //             "key": "Doctor",
+                    //             "value": "港澳通行证"
+                    //         },
+                    //         {
+                    //             "key": "Post-Doctor",
+                    //             "value": "港澳身份证"
+                    //         },
+                    //         {
+                    //             "key": "Post-Doctor",
+                    //             "value": "台胞证"
+                    //         },
+                    //         {
+                    //             "key": "Post-Doctor",
+                    //             "value": "雇员证（单位证明）"
+                    //         },
+                    //         {
+                    //             "key": "Post-Doctor",
+                    //             "value": "军官证"
+                    //         }
+                    //     ]
+                    // },
+                    // {
+                    //     "CODE": "NAME",
+                    //     "VALUE": "",
+                    //     "DISP": '联系人证件号码',
+                    //     "OPER_MODE": "010",
+                    //     "REQUIRE": true
+                    // }
+                ]
+            },
+            idenInfo: {
+                "isCollapse": true,
+                "title": "认证识别信息",
+                "formItem": [
+                    {
+                        "CODE": "IDEN_TYPE_ID",
+                        "VALUE": "",
+                        "DISP": '识别类型',
+                        "OPER_MODE": "02",
+                        "ENUM": [
+
+                        ]
+                    },
+                    {
+                        "CODE": "IDEN_NR",
+                        "VALUE": "",
+                        "DISP": '识别号码',
+                        "OPER_MODE": "010",
+                    },
+                    {
+                        "CODE": "IDEN_ADDRESS",
+                        "VALUE": "",
+                        "DISP": '识别信息地址',
+                        "OPER_MODE": "010",
+                    },
+                    {
+                        "CODE": "IDEN_COUNTRY",
+                        "VALUE": "",
+                        "DISP": '识别信息签发国家',
+                        "OPER_MODE": "02",
+                        "ENUM": [
+
+                        ]
+                    },
+                    {
+                        "CODE": "IDEN_EFF_DATE",
+                        "VALUE": "",
+                        "DISP": '识别信息签发时间',
+                        "OPER_MODE": "014"
+                    },
+                    {
+                        "CODE": "IDEN_EXP_DATE",
+                        "VALUE": "",
+                        "DISP": '识别信息失效时间',
+                        "OPER_MODE": "014"
+                    }
+                ]
+            },
+            contactInfo: {
+                "isCollapse": true,
+                "title": "联系媒介信息",
+                "formItem": [
+                    {
+                        "CODE": "Privacy_Preferences",
+                        "VALUE": "",
+                        "DISP": "隐私偏好",
+                        "OPER_MODE": "010"
+                    },
+                    {
+                        "CODE": "USE",
+                        "VALUE": "",
+                        "DISP": "用途",
+                        "OPER_MODE": "010"
+                    },
+                    {
+                        "CODE": "BestContact_Way",
+                        "VALUE": "",
+                        "DISP": "最佳联系方式",
+                        "OPER_MODE": "010"
+                    },
+                    {
+                        "CODE": "BestContact_Date",
+                        "VALUE": "",
+                        "DISP": "最佳联系时间",
+                        "OPER_MODE": "014"
+                    },
+                    {
+                        "CODE": "Contact_FirstSelectDate",
+                        "VALUE": "",
+                        "DISP": "可联系首选日期",
+                        "OPER_MODE": "014"
+                    },
+                    {
+                        "CODE": "Cycle_Max_ContaxtNum",
+                        "VALUE": "",
+                        "DISP": "周期内最多联系次数",
+                        "OPER_MODE": "010"
+                    }
+                ]
+            },
+            address: {
+                "isCollapse": true,
+                "title": "地址信息",
+                "formItem": [
+                    {
+                        "CODE": "COUNTRY",
+                        "VALUE": "",
+                        "DISP": "国家",
+                        "OPER_MODE": "02",
+                        "ENUM": [
+                            {
+                                "key": "China",
+                                "value": "中国"
+                            }
+                        ]
+                    },
+                    {
+                        "CODE": "PROVINCE",
+                        "VALUE": "",
+                        "DISP": "省",
+                        "OPER_MODE": "02",
+                        "ENUM": [
+                            {
+                                "key": "China",
+                                "value": "中国"
+                            }
+                        ]
+                    },
+                    {
+                        "CODE": "CITY",
+                        "VALUE": "",
+                        "DISP": "市县",
+                        "OPER_MODE": "02",
+                        "ENUM": [
+                            {
+                                "key": "China",
+                                "value": "中国"
+                            }
+                        ]
+                    },
+                    {
+                        "CODE": "DISTRICT",
+                        "VALUE": "",
+                        "DISP": "区镇",
+                        "OPER_MODE": "02",
+                        "ENUM": [
+                            {
+                                "key": "China",
+                                "value": "中国"
+                            }
+                        ]
+                    },
+                    {
+                        "CODE": "STREET",
+                        "VALUE": "",
+                        "DISP": "街道",
+                        "OPER_MODE": "010"
+                    },
+                    {
+                        "CODE": "REGION",
+                        "VALUE": "",
+                        "DISP": "园区",
+                        "OPER_MODE": "010"
+                    },
+                    {
+                        "CODE": "DOOR_NUMBER",
+                        "VALUE": "",
+                        "DISP": "门牌室号",
+                        "OPER_MODE": "010"
+                    },
+                    {
+                        "CODE": "ADDR_DETAIL_NAME",
+                        "VALUE": "",
+                        "DISP": "地址实例详细名称",
+                        "OPER_MODE": "010"
+                    },
+                    {
+                        "CODE": "POSTAL_CODE",
+                        "VALUE": "",
+                        "DISP": "邮政编码",
                         "OPER_MODE": "010"
                     }
                 ]
@@ -696,12 +646,13 @@ export default {
             }
         },
         getValidatePath(item, index) {
-            let ret = this.currentView(item);
-            if (ret === 'dynamicForm') {
-                return `${index}.formList`
-            } else {
-                return `${index}.formItem`
-            }
+            return `${index}`
+            // let ret = this.currentView(item);
+            // if (ret === 'dynamicForm') {
+            //     return `${index}.formList`
+            // } else {
+            //     return `${index}.formItem`
+            // }
         },
         addTableList() {
             this.editData.push(...this.addTableItem);
@@ -719,8 +670,10 @@ export default {
     created() {
         // this.list.push(this.customInfo, this.attenInfo)
         this.formData = Object.assign({}, this.formData, {
-            customInfo: this.customInfo,
-            attenInfo: this.attenInfo
+            baseInfo: this.baseInfo,
+            idenInfo: this.idenInfo,
+            contactInfo: this.contactInfo,
+            address: this.address
         })
     }
 }
@@ -735,6 +688,7 @@ export default {
         clear: both;
     }
 }
+
 .collapse {
     display: none;
 }
@@ -742,6 +696,15 @@ export default {
 .wrapper {
     position: relative;
     margin-bottom: 100px;
+    h5 {
+        margin-top: 5px;
+        margin-bottom: 0;
+        height: 33px;
+        line-height: 30px;
+        display: inline-block;
+        font-size: 16px;
+        color: #333;
+    }
     .input-wrapper {
         .input {
             padding-right: 32px!important;
@@ -753,53 +716,57 @@ export default {
             cursor: pointer;
         }
     }
-    .form-group__label{
-        color:#000;
-        font-size:12px;
-        opacity:0.8;
-        filter:alpha(opacity=80);
-        min-width:115px;
+    .form-group__label {
+        color: #000;
+        font-size: 12px;
+        opacity: 0.8;
+        filter: alpha(opacity=80);
+        min-width: 115px;
     }
 }
+
 .wrapper-form {
     padding: 10px 0;
 }
+
 .formOptions {
     position: absolute;
     right: 0;
     top: 7px;
-    .btnIcon{
-    i{
-      margin-right:6px;
-      font-size:14px;
-      color:#666;
-    }
-    .sub-btn{
-      color:#666;
-      &:hover{
-        color:#3DAC6E;
-        i{
-          color:#3DAC6E;
+    .btnIcon {
+        i {
+            margin-right: 6px;
+            font-size: 14px;
+            color: #666;
         }
-      }
-    }
-  }
-}
-.extend-attr{
-  .form-top{
-    border-bottom:1px solid #dfe5e7;
-    height:45px;
-    line-height:45px;
-    .left{
-        i{
-            &.aid{
-                font-size:18px;
-                color:#898989;
+        .sub-btn {
+            color: #666;
+            &:hover {
+                color: #3DAC6E;
+                i {
+                    color: #3DAC6E;
+                }
             }
         }
     }
-  }
 }
+
+.extend-attr {
+    .form-top {
+        border-bottom: 1px solid #dfe5e7;
+        height: 45px;
+        line-height: 45px;
+        .left {
+            i {
+                &.aid {
+                    font-size: 18px;
+                    color: #898989;
+                }
+            }
+        }
+    }
+}
+
 .wrapper-table {
     padding: 25px;
     width: 100%;
@@ -861,16 +828,16 @@ export default {
             margin: 0;
             display: inline-block;
             line-height: 46px;
-            color:#333;
+            color: #333;
         }
         i {
             font-size: 22px;
             line-height: 46px;
         }
-        .info-icon{
-          i{
-            font-size:6px;
-          }
+        .info-icon {
+            i {
+                font-size: 6px;
+            }
         }
     }
     .right {
