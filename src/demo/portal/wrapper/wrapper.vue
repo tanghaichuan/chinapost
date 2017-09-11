@@ -758,7 +758,7 @@ export default {
         font-size:12px;
         opacity:0.8;
         filter:alpha(opacity=80);
-        min-width:93px;
+        min-width:115px;
     }
 }
 .wrapper-form {
