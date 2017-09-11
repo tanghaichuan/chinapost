@@ -27,10 +27,18 @@
             </div>
             <div class="form-item-wrap" v-if="flod">
                 <div class="form-block--info col-4" v-for="(item, index) in userList.addFormItem" :key="index">
-                    <t-form-item :label="item.DISP+':'" :prop="getValidatePath+'.'+'addFormItem.'+ index + '.VALUE'" :rules="{required: item.REQUIRE, message: item.DISP+'不能为空', trigger: 'blur'}">
+                    <t-form-item 
+                    :label="item.DISP+':'" 
+                    :prop="getValidatePath+'.'+'addFormItem.'+ index + '.VALUE'" 
+                    :rules="{required: item.REQUIRE, message: item.DISP+'不能为空', trigger: 'blur'}">
                         <t-select :disabled="isDisabled" v-model="item.VALUE" :title="item.VALUE" v-if="item.OPER_MODE === '02'">
                             <t-option v-for="item in item.ENUM" :value="item.value" :key="item">{{ item.value }}</t-option>
                         </t-select>
+
+                        <div v-if="item.OPER_MODE === '017'" class="cas">
+                            <!--级联-->
+                            <t-cascader :data="item.ENUM" v-model="item.VALUE"></t-cascader>
+                        </div>
 
                         <t-input :disabled="isDisabled" v-model="item.VALUE" v-if="item.OPER_MODE === '010'"></t-input>
 
@@ -62,6 +70,7 @@
 // 014--手工录入日期：录入日期
 // 015--手工录入纯数字：
 // 016--手工录入逻辑值：录入只有真假两种选择的值（即check box）
+// 017--级联 
 // 02--枚举值选择：录入枚举值
 
 // 3. CODE希望能作为界面控件的id或name，以便作为选择器定位控件的凭据。因为前台针对这些控件还是有些代码要写的
@@ -99,7 +108,33 @@ export default {
                     "CODE": "INDUSTRY",
                     "VALUE": "",
                     "DISP": "行业",
-                    "OPER_MODE": "010"
+                    "OPER_MODE": "017",
+                    "ENUM": [
+                        {
+                            "value": "Agriculture",
+                            "label": "农业",
+                            "children": [
+                                {
+                                    "value": "guwu",
+                                    "label": "谷物种植",
+                                    "children": [
+                                        {
+                                            "value": "daogu",
+                                            "label": "稻谷种植"
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "value": "Forestry",
+                            "label": "林业"
+                        },
+                        {
+                            "value": "Fisheries",
+                            "label": "渔业"
+                        }
+                    ]
                 },
                 {
                     "CODE": "PERSONALITY",
@@ -220,6 +255,7 @@ export default {
                 this.flod = false;
             } else {
                 this.$set(this.userList, "addFormItem", this.addFormItem)
+                console.log(this.userList);
                 this.flod = true;
             }
         },
@@ -263,7 +299,7 @@ export default {
 
 .more {
     margin-right: 14px;
-    padding-bottom:14px;
+    padding-bottom: 14px;
     display: inline-block;
     line-height: 15px;
     text-align: right;
