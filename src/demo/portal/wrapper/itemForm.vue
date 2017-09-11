@@ -314,6 +314,7 @@ export default {
 }
 
 .form-item-wrap {
+    padding-left: 25px;
     zoom: 1;
     &:after {
         content: '';

@@ -2,44 +2,45 @@
     <div class="wrapper">
         <h5>
             <i class="iconfont tit-icon">&#xe78b;</i>创建个人客户信息</h5>
-        <div class="formOptions">
-            <p class="btnIcon">
+        <div class="back-options">
+            <p class="btn-icon">
                 <t-button type="outline" class="sub-btn">
                     <i class="iconfont">&#xe639;</i>返回</t-button>
                 <!-- <t-button type="outline" class="sub-btn" @click="handleSubmit('formDynamic')"><i class="iconfont">&#xe624;</i>保存</t-button> -->
             </p>
         </div>
         <!-- 表单域 -->
-        <t-form 
-        :model="formData" 
-        ref="formDynamic" 
-        :rules.sync="listRule" 
-        label-position="left" 
-        :label-span="5">
+        <t-form :model="formData" ref="formDynamic" :rules.sync="listRule" label-position="left" :label-span="5">
             <div class="wrapper-form" v-for="(item, index) in formData" :key="index">
                 <item-form :getValidatePath="getValidatePath(item, index)" :isDisabled="isDisabled" ref="form" :userList="item"></item-form>
             </div>
         </t-form>
         <!-- 表格域 -->
         <!-- <div class="extend-attr">
-            <div class="form-top">
-                <div class="left" @click="showTable = !showTable">
-                    <span class="info-icon">
-                        <i class="iconfont" v-if="showTable">&#xe78e;</i>
-                        <i class="iconfont" v-else>&#xe78d;</i>
-                    </span>
-                    <h6>客户扩展属性</h6>
+                <div class="form-top">
+                    <div class="left" @click="showTable = !showTable">
+                        <span class="info-icon">
+                            <i class="iconfont" v-if="showTable">&#xe78e;</i>
+                            <i class="iconfont" v-else>&#xe78d;</i>
+                        </span>
+                        <h6>客户扩展属性</h6>
+                    </div>
+                    <div class="right"></div>
                 </div>
-                <div class="right"></div>
-            </div>
-            <div v-show="showTable" class="wrapper-table" ref="table">
-                <div class="table-top">
-                    <t-button @click.native="addTableList" type="outline" class="left sub-btn">新增</t-button>
-                    <t-input v-model="searchInfo" icon="magnify" class="right" icon-placement="right" placeholder="请输入搜索内容" style="width: 150px;"></t-input>
+                <div v-show="showTable" class="wrapper-table" ref="table">
+                    <div class="table-top">
+                        <t-button @click.native="addTableList" type="outline" class="left sub-btn">新增</t-button>
+                        <t-input v-model="searchInfo" icon="magnify" class="right" icon-placement="right" placeholder="请输入搜索内容" style="width: 150px;"></t-input>
+                    </div>
+                    <edit-table :editColumn.sync="editColumn" :editData.sync="showTableList"></edit-table>
                 </div>
-                <edit-table :editColumn.sync="editColumn" :editData.sync="showTableList"></edit-table>
-            </div>
-        </div> -->
+            </div> -->
+        <div class="form-options">
+            <t-button type="primary" class="save" @click.native="handleSubmit('formDynamic')">
+                <i class="iconfont">&#xe624;</i>保存</t-button>
+            <t-button type="outline" class="sub-btn approval">
+                <i class="iconfont">&#xe65f;</i>审批</t-button>
+        </div>
     </div>
 </template>
 <script>
@@ -814,7 +815,7 @@ export default {
 }
 
 .wrapper {
-    padding-top: 11px;  
+    padding-top: 18px;
     position: relative;
     margin-bottom: 100px;
     h5 {
@@ -822,8 +823,8 @@ export default {
         display: inline-block;
         font-size: 16px;
         color: #333;
-        .tit-icon{
-            margin:0 5px 0 8px;
+        .tit-icon {
+            margin: 0 5px 0 8px;
         }
     }
     .input-wrapper {
@@ -843,10 +844,10 @@ export default {
         opacity: 0.8;
         filter: alpha(opacity=80);
         max-width: 125px;
-        padding-left:0;
+        padding-left: 0;
     }
-    .col{
-        padding-right:25px;
+    .col {
+        padding-right: 25px;
     }
 }
 
@@ -854,11 +855,11 @@ export default {
     padding: 11px 0;
 }
 
-.formOptions {
+.back-options {
     position: absolute;
     right: 0;
-    top: 8px;
-    .btnIcon {
+    top: 11px;
+    .btn-icon {
         margin: 0;
         i {
             margin-right: 6px;
@@ -874,6 +875,23 @@ export default {
                 }
             }
         }
+    }
+}
+
+.form-options {
+    margin-top: 7px;
+    .save {
+        margin-right: 15px;
+        width: 88px;
+        height: 36px;
+    }
+    .approval {
+        width: 88px;
+        height: 36px;
+        border-color: #42ab6f;
+    }
+    .iconfont{
+        margin-right: 8px;
     }
 }
 
