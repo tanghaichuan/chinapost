@@ -225,7 +225,7 @@ export default {
         }
       }
       .form-group {
-        margin-bottom: 28px;
+        margin-bottom: 25px;
         .iconfont {
           width: 36px;
           height: 40px;
@@ -303,26 +303,14 @@ export default {
 }
 
 .form-alert {
-  height: 37px;
-  .alert--danger {
-    margin-left: 5px;
-    width: 270px;
-    padding: 0px 40px;
-    min-height: 24px;
-    line-height: 24px;
-    background: #fff0ef;
+  height: 35px;
+  .alert {
+    padding-top: 5px;
+    padding-bottom: 5px;
+    min-height: 20px;
+    .alert__icon, .alert__close-icon {
+      top: 4px; 
+    }
   }
-  .alert__icon,
-  .alert__close-icon {
-    position: absolute;
-    top: 3px;
-  }
-}
-
-.alert {
-  min-height: 22px;
-  font-size: 12px;
-  margin-bottom: 8px;
-  border-radius: 3px;
 }
 </style>
