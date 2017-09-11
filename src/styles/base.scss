@@ -173,7 +173,7 @@ danger;
   /*}*/
   height: 28px;
   line-height: 25px;
-  padding: 0 16px;
+  padding: 0 15px;
   background-image: none;
   /* 默认按钮样式*/
   &.btn-secondary {
@@ -349,6 +349,19 @@ danger;
   }
 }
 
+.form-group--required .form-group__label:before {
+  content: "*";
+  display: inline-block;
+  margin-left: 4px;
+  line-height: 1;
+  font-size: 12px;
+  color: #FF5F5F;
+}
+
+.form-group--required .form-group__label:after {
+  display: none;
+}
+
 
 /* 分页*/
 
@@ -364,9 +377,11 @@ danger;
 
 
 /* 表单组件*/
-.form-group__label{
+
+.form-group__label {
   font-size: 0.1rem;
 }
+
 .form-control {
   height: 28px;
   line-height: 26px;
@@ -380,31 +395,73 @@ danger;
 .input {
   height: 28px;
   line-height: calc(28px - 1px * 2);
+  border:1px solid #d9d9d9;
 }
 
 .dropdown__item {
   padding: 0.4rem 0.625rem;
 }
 
-.select{
+.select {
   -webkit-box-flex: 0;
   -ms-flex: 0 0 100%;
   flex: 0 0 100%;
-  max-width: 201px;
   min-width: 10px;
 }
-.form--label-left .form-group__label, .form--label-right .form-group__label{
+
+.select{
+  .dropdown-selection-icon{
+    right:3px;
+    .aid-chevron-down{
+      font-size:16px;
+      color:#dadada;
+    }
+  }  
+}
+
+.form--label-left .form-group__label,
+.form--label-right .form-group__label {
+  text-align: right;
   min-width: 75px;
 }
 
-.select .dropdown-selected-value{
+.form--label-left .form-group__label {
+  padding-right: 5px;
+}
+
+.select .dropdown-selected-value {
+  width: 90px;
   padding-right: 0;
 }
+
+.form-group {
+  margin-bottom: 10px;
+}
+
+.form-group__content {
+  padding-left: 5px;
+}
+
+
 /* 日期组件*/
 
 // .date-picker {
 //   width: 231px;
 // }
+
+.date-picker{
+  .input-wrap{
+    .input-icon{
+      right:6px;
+      color:#dadada;
+    }
+    input{
+      &.input{
+        padding-right:24px;
+      }
+    }
+  }
+}
 
 .dropdown__menu {
   .date-pick__body {
@@ -423,7 +480,6 @@ danger;
 // .dropdown--open>.date-pick.dropdown__menu {
 //   width: 231px;
 // }
-
 .date-pick__header {
   height: 34px;
   line-height: 34px;
@@ -480,21 +536,21 @@ danger;
 
 
 /*.nav-cards .nav-link{
-	height: 30px;
-	line-height: 30px;
-	margin-right: 2px;
-	border: 1px solid;
-	border-color:#ccc #ccc transparent #ccc;
-	border-radius: 4px;
-	.aid-close{
-		position: absolute;
-	    right: 1rem;
-	    top: 15px;
-	}
+  height: 30px;
+  line-height: 30px;
+  margin-right: 2px;
+  border: 1px solid;
+  border-color:#ccc #ccc transparent #ccc;
+  border-radius: 4px;
+  .aid-close{
+    position: absolute;
+      right: 1rem;
+      top: 15px;
+  }
 }
 .nav-cards .nav-link.active{
-	color: #009241;
-	border-color:#ccc #ccc transparent #ccc;
+  color: #009241;
+  border-color:#ccc #ccc transparent #ccc;
 }  */
 
 .tabs .nav-tabs .nav-link {
@@ -543,71 +599,13 @@ danger;
   color: #009448;
 }
 
+
 /* 气泡提示 */
 
-.popover-confirm{
-  .popover-inner{
-    .popover-body{
-      padding:0;
+.popover-confirm {
+  .popover-inner {
+    .popover-body {
+      padding: 0;
     }
   }
-}
-
-/* alert提示 */
-.alert {
-  min-height: 32px;
-  color: #000;
-}
-.alert--success {
-  background-color: #EBF8F2;
-  border-color: #CFEFDF;
-  .icon-gradient-success:before, 
-  .progress-circle--success .progress-circle__text .aid:before, 
-  .alert--success .alert__icon:before {
-    color: #00A854;
-    background-color: #00A854;
-    background-image: none;
-  }
-}
-.alert--danger {
-  background-color: #FEF0EF;
-  border-color: #FCDBD9;
-  .icon-gradient-danger:before, 
-  .progress-circle--danger .progress-circle__text .aid:before, 
-  .alert--danger .alert__icon:before {
-    color: #F04134;
-    background-color: #F04134;
-    background-image: none;
-  }
-}
-.alert--warning {
-  background-color: #FFFAEB;
-  border-color: #FFF3CF;
-  .icon-gradient-warning:before, 
-  .progress-circle--warning .progress-circle__text .aid:before, 
-  .alert--warning .alert__icon:before {
-    color: #FFBF00;
-    background-color: #FFBF00;
-    background-image: none;
-  }
-}
-.alert--info {
-  background-color: #ECF6FD;
-  border-color: #D2EAFB;
-  .icon-gradient-info:before, 
-  .progress-circle--info .progress-circle__text .aid:before, 
-  .alert--info .alert__icon:before {
-    color: #108EE9;
-    background-color: #108EE9;
-    background-image: none;
-  }
-}
-.alert__close-icon {
-  i {
-    font-size: 16px;
-    color: #999;
-  }
-  .text-primary {
-    color: #999!important;
-  } 
 }

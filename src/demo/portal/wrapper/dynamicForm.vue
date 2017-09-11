@@ -62,9 +62,6 @@ export default {
 }
 </script>
 <style scoped lang="less">
-.tit-icon{
-    margin:0 5px 0 8px;
-}
 .dynamic-form {
     h5 {
         font-size: 16px;

@@ -11,7 +11,7 @@
         </div>
         <div class="form-item-container" v-show="showForm">
             <div class="form-item-wrap">
-                <div class="form-block--info col-3" v-for="(item, index) in userList.formItem" :key="index">
+                <div class="form-block--info col-4" v-for="(item, index) in userList.formItem" :key="index">
                     <t-form-item :label="item.DISP+':'" :prop="getValidatePath+'.'+'formItem.'+ index + '.VALUE'" :rules="{required: item.REQUIRE, message: item.DISP+'不能为空', trigger: 'blur'}">
                         <t-select :disabled="isDisabled" v-model="item.VALUE" :title="item.VALUE" v-if="item.OPER_MODE === '02'">
                             <t-option v-for="item in item.ENUM" :value="item.value" :key="item">{{ item.value }}</t-option>
@@ -26,7 +26,7 @@
                 </div>
             </div>
             <div class="form-item-wrap" v-if="flod">
-                <div class="form-block--info col-3" v-for="(item, index) in userList.addFormItem" :key="index">
+                <div class="form-block--info col-4" v-for="(item, index) in userList.addFormItem" :key="index">
                     <t-form-item :label="item.DISP+':'" :prop="getValidatePath+'.'+'addFormItem.'+ index + '.VALUE'" :rules="{required: item.REQUIRE, message: item.DISP+'不能为空', trigger: 'blur'}">
                         <t-select :disabled="isDisabled" v-model="item.VALUE" :title="item.VALUE" v-if="item.OPER_MODE === '02'">
                             <t-option v-for="item in item.ENUM" :value="item.value" :key="item">{{ item.value }}</t-option>
@@ -244,13 +244,13 @@ export default {
 <style scoped lang="less">
 .info-icon {
     i {
-        font-size: 6px;
+        font-size: 8px;
     }
 }
 
 .form-item-container {
     position: relative;
-    padding: 19px 10px 29px;
+    padding: 19px 10px 9px;
     zoom: 1;
     border-top: 1px solid #dfe5e7;
     &:after {
@@ -263,11 +263,11 @@ export default {
 
 .more {
     margin-right: 14px;
-    padding-bottom: 14px;
-    display: inline-block !important;
+    padding-bottom:14px;
+    display: inline-block;
     line-height: 15px;
-    position: absolute;
-    right: 0;
+    text-align: right;
+    display: block;
     span {
         padding-right: 5px;
         font-size: 12px;

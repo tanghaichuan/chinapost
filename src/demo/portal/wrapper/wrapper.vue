@@ -10,7 +10,7 @@
             </p>
         </div>
         <!-- 表单域 -->
-        <t-form :model="formData" ref="formDynamic" :rules.sync="listRule" label-position="left" :label-span="4">
+        <t-form :model="formData" ref="formDynamic" :rules.sync="listRule" label-position="left" :label-span="5">
             <div class="wrapper-form" v-for="(item, index) in formData" :key="index">
                 <item-form :getValidatePath="getValidatePath(item, index)" :isDisabled="isDisabled" ref="form" :userList="item"></item-form>
             </div>
@@ -704,6 +704,9 @@ export default {
         display: inline-block;
         font-size: 16px;
         color: #333;
+        .tit-icon{
+            margin:0 5px 0 8px;
+        }
     }
     .input-wrapper {
         .input {
