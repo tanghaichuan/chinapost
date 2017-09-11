@@ -30,7 +30,11 @@
         <div class="extend-attr">
             <div class="form-top">
                 <div class="left" @click="showTable = !showTable">
-                    <t-icon :type="showTable ? 'chevron-down' : 'chevron-up'"></t-icon>
+                   <!--  <t-icon :type="showTable ? 'chevron-down' : 'chevron-up'"></t-icon> -->
+                     <span class="info-icon">
+                        <i class="iconfont" v-if="showTable">&#xe78e;</i>
+                        <i class="iconfont" v-else>&#xe78d;</i>
+                    </span>
                     <h6>客户扩展属性</h6>
                 </div>
                 <div class="right"></div>
@@ -240,7 +244,7 @@ export default {
             ],
             // 客户基本信息
             customInfo: {
-                "name": "客户基本信息",
+                "name": "创建个人客户信息",
                 "key": "customInfo",
                 "formList": [
                     {
@@ -731,7 +735,6 @@ export default {
         clear: both;
     }
 }
-
 .collapse {
     display: none;
 }
@@ -755,7 +758,7 @@ export default {
         font-size:12px;
         opacity:0.8;
         filter:alpha(opacity=80);
-        min-width:93px;
+        min-width:115px;
     }
 }
 .wrapper-form {
@@ -863,6 +866,11 @@ export default {
         i {
             font-size: 22px;
             line-height: 46px;
+        }
+        .info-icon{
+          i{
+            font-size:6px;
+          }
         }
     }
     .right {

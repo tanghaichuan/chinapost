@@ -1,6 +1,6 @@
 <template>
     <div class="dynamic-form">
-        <h5>{{title}}</h5>
+        <h5><i class="iconfont tit-icon">&#xe78b;</i>{{title}}</h5>
         <div class="form-custom" v-for="(item, index) in userList" :key="index">
             <item-form 
             :id="id ? id : item.id"
@@ -63,6 +63,9 @@ export default {
 }
 </script>
 <style scoped lang="less">
+.tit-icon{
+    margin:0 5px 0 8px;
+}
 .dynamic-form {
     h5 {
         font-size: 16px;
