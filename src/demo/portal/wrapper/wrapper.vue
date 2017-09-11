@@ -724,7 +724,11 @@ export default {
         font-size: 12px;
         opacity: 0.8;
         filter: alpha(opacity=80);
-        min-width: 115px;
+        max-width: 125px;
+        padding-left:0;
+    }
+    .col{
+        padding-right:25px;
     }
 }
 

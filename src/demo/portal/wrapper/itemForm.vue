@@ -250,7 +250,7 @@ export default {
 
 .form-item-container {
     position: relative;
-    padding: 19px 10px 9px;
+    padding: 19px 0 9px;
     zoom: 1;
     border-top: 1px solid #dfe5e7;
     &:after {
@@ -293,7 +293,7 @@ export default {
     border: 1px solid #dfe5e7;
     .form-top {
         padding-left: 13px;
-        line-height: 45px;
+        line-height: 43px;
         background: #f6f8f8;
         .left {
             display: inline-block;
