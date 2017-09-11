@@ -1,7 +1,5 @@
 <template>
 	<div class="test">
-		<h5>alert类</h5>
-		
 		<h5>按钮类</h5>
 		<t-button type="primary" class="actives" :disabled="true">disabled</t-button>
 	    <t-button type="primary">主按钮</t-button>
@@ -196,6 +194,17 @@
         <div class="text-sm mt-2 text-gray" slot="tip">支持扩展名：.rar .zip .doc .docx .pdf .jpg...</div>
         </t-upload>
 	    <br><br>
+        <h5>基础警告提示</h5>
+        <t-alert type="success" show-icon closable>success提示信息</t-alert>
+        <t-alert type="danger" show-icon closable>danger提示信息</t-alert>
+		<t-alert type="warning" show-icon closable>warning提示信息</t-alert>
+        <t-alert type="info" show-icon closable>info提示信息</t-alert>
+        <h5>自定义关闭提示</h5>
+        <t-alert type="success" show-icon closable>success提示信息<span class="text-primary" slot="close">不再提示</span></t-alert>
+        <t-alert type="danger" show-icon closable>danger提示信息<span class="text-primary" slot="close">不再提示</span></t-alert>
+		<t-alert type="warning" show-icon closable>warning提示信息<span class="text-primary" slot="close">不再提示</span></t-alert>
+        <t-alert type="info" show-icon closable>info提示信息<span class="text-primary" slot="close">不再提示</span></t-alert>	    
+        <br><br>
 	    <h5>表格</h5>
 	    
 	<br><br>
