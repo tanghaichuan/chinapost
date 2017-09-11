@@ -1,15 +1,15 @@
 <template>
     <div class="item-form">
         <div class="form-top">
-            <div class="left" @click="showForm = !showForm">
-                <span v-if="userList.isCollapse" class="info-icon">
-                    <i class="iconfont" v-if="showForm">&#xe78e;</i>
+            <div class="left" @click="userList.isCollapse = !userList.isCollapse">
+                <span class="info-icon">
+                    <i class="iconfont" v-if="userList.isCollapse">&#xe78e;</i>
                     <i class="iconfont" v-else>&#xe78d;</i>
                 </span>
                 <h6>{{userList.title}}</h6>
             </div>
         </div>
-        <div class="form-item-container" v-show="showForm">
+        <div class="form-item-container" v-show="userList.isCollapse">
             <div class="form-item-wrap">
                 <div class="form-block--info col-4" v-for="(item, index) in userList.formItem" :key="index">
                     <t-form-item :label="item.DISP+':'" :prop="getValidatePath+'.'+'formItem.'+ index + '.VALUE'" :rules="{required: item.REQUIRE, message: item.DISP+'不能为空', trigger: 'blur'}">
@@ -26,7 +26,8 @@
                 </div>
             </div>
             <div class="form-item-wrap" v-if="flod">
-                <div class="form-block--info col-4" v-for="(item, index) in userList.addFormItem" :key="index">
+                <div :class="['form-block--info col-4',item.OPER_MODE === '017'? 'col-12':'']" 
+                v-for="(item, index) in userList.addFormItem" :key="index">
                     <t-form-item 
                     :label="item.DISP+':'" 
                     :prop="getValidatePath+'.'+'addFormItem.'+ index + '.VALUE'" 
@@ -35,7 +36,7 @@
                             <t-option v-for="item in item.ENUM" :value="item.value" :key="item">{{ item.value }}</t-option>
                         </t-select>
 
-                        <div v-if="item.OPER_MODE === '017'" class="cas">
+                        <div v-if="item.OPER_MODE === '017'" class="cas col-3">
                             <!--级联-->
                             <t-cascader :data="item.ENUM" v-model="item.VALUE"></t-cascader>
                         </div>
@@ -108,7 +109,7 @@ export default {
                     "CODE": "INDUSTRY",
                     "VALUE": "",
                     "DISP": "行业",
-                    "OPER_MODE": "017",
+                    "OPER_MODE": "010",
                     "ENUM": [
                         {
                             "value": "Agriculture",
@@ -298,7 +299,7 @@ export default {
 }
 
 .more {
-    margin-right: 14px;
+    margin-right: 24px;
     padding-bottom: 14px;
     display: inline-block;
     line-height: 15px;
@@ -385,5 +386,12 @@ export default {
 .slide-leave-to {
     transform: translateY(-100px);
     opacity: 0;
+}
+.cas{
+    padding: 0;
+    width: 197px;
+    .select{
+        width: 100%;
+    }
 }
 </style>

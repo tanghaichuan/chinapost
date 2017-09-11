@@ -10,7 +10,12 @@
             </p>
         </div>
         <!-- 表单域 -->
-        <t-form :model="formData" ref="formDynamic" :rules.sync="listRule" label-position="left" :label-span="5">
+        <t-form 
+        :model="formData" 
+        ref="formDynamic" 
+        :rules.sync="listRule" 
+        label-position="left" 
+        :label-span="5">
             <div class="wrapper-form" v-for="(item, index) in formData" :key="index">
                 <item-form :getValidatePath="getValidatePath(item, index)" :isDisabled="isDisabled" ref="form" :userList="item"></item-form>
             </div>
@@ -609,6 +614,120 @@ export default {
                     }
                 ]
             },
+            customInfo: {
+                "isCollapse": false,
+                "title": "客户扩展信息",
+                "formItem": [
+                    {
+                        "CODE": "MAJOR_LOGISTICS_REQCONT",
+                        "VALUE": "",
+                        "DISP": "主要物流需求内容",
+                        "OPER_MODE": "010"
+                    },
+                    {
+                        "CODE": "INDUSTYR_TYPE_PARENT",
+                        "VALUE": "",
+                        "DISP": "行业类型",
+                        "OPER_MODE": "010"
+                    },
+                    {
+                        "CODE": "PAYMENT_TERM",
+                        "VALUE": "",
+                        "DISP": "账期",
+                        "OPER_MODE": "010"
+                    },
+                    {
+                        "CODE": "APPROVAL_FLAG",
+                        "VALUE": "",
+                        "DISP": "审批标志",
+                        "OPER_MODE": "010"
+                    },
+                    {
+                        "CODE": "POSTAGE_CONFIDENCE",
+                        "VALUE": "",
+                        "DISP": "客户对邮资信度",
+                        "OPER_MODE": "010"
+                    },
+                    {
+                        "CODE": "ACCOUNTING_FLAG",
+                        "VALUE": "",
+                        "DISP": "允许记账标志",
+                        "OPER_MODE": "02"
+                    },
+                    {
+                        "CODE": "ARREARS_LIMIT",
+                        "VALUE": "",
+                        "DISP": "欠费金额限制",
+                        "OPER_MODE": "010"
+                    },
+                    {
+                        "CODE": "ARREARS_TIME_LIMIT",
+                        "VALUE": "",
+                        "DISP": "欠费时间限制",
+                        "OPER_MODE": "010"
+                    },
+                    {
+                        "CODE": "IF_DEVELOPECUST",
+                        "VALUE": "",
+                        "DISP": "是否开发用户",
+                        "OPER_MODE": "02"
+                    },
+                    {
+                        "CODE": "IF_AGREEMENTCUST",
+                        "VALUE": "",
+                        "DISP": "是否合同用户",
+                        "OPER_MODE": "02"
+                    },
+                    {
+                        "CODE": "IF_COMPOSITECUST",
+                        "VALUE": "",
+                        "DISP": "是否综合用户",
+                        "OPER_MODE": "02"
+                    },
+                    {
+                        "CODE": "VIP_CARD_NUMBER",
+                        "VALUE": "",
+                        "DISP": "贵宾卡号",
+                        "OPER_MODE": "010"
+                    },
+                    {
+                        "CODE": "PAYER_NUMBER",
+                        "VALUE": "",
+                        "DISP": "付款人客户编码",
+                        "OPER_MODE": "010"
+                    },
+                    {
+                        "CODE": "CUSTOMER_NUMBER",
+                        "VALUE": "",
+                        "DISP": "大客户号",
+                        "OPER_MODE": "010"
+                    },
+                    {
+                        "CODE": "TOUCHWAY",
+                        "VALUE": "",
+                        "DISP": "客户触达方式",
+                        "OPER_MODE": "010"
+                    },
+                    {
+                        "CODE": "COMPANY_CODE",
+                        "VALUE": "",
+                        "DISP": "客户办理业务机构编号",
+                        "OPER_MODE": "010"
+                    },
+                    {
+                        "CODE": "SOURCE_MANNER",
+                        "VALUE": "",
+                        "DISP": "客户来源方式",
+                        "OPER_MODE": "02"
+                    },
+                    {
+                        "CODE": "RESOURCE_SYSTEM",
+                        "VALUE": "",
+                        "DISP": "来源系统",
+                        "OPER_MODE": "02"
+                    }
+                ]
+            },
             formData: {
 
             },
@@ -673,7 +792,8 @@ export default {
             baseInfo: this.baseInfo,
             idenInfo: this.idenInfo,
             contactInfo: this.contactInfo,
-            address: this.address
+            address: this.address,
+            customInfo: this.customInfo
         })
     }
 }
@@ -694,13 +814,11 @@ export default {
 }
 
 .wrapper {
+    padding-top: 11px;  
     position: relative;
     margin-bottom: 100px;
     h5 {
-        margin-top: 5px;
         margin-bottom: 0;
-        height: 33px;
-        line-height: 30px;
         display: inline-block;
         font-size: 16px;
         color: #333;
@@ -733,14 +851,15 @@ export default {
 }
 
 .wrapper-form {
-    padding: 10px 0;
+    padding: 11px 0;
 }
 
 .formOptions {
     position: absolute;
     right: 0;
-    top: 7px;
+    top: 8px;
     .btnIcon {
+        margin: 0;
         i {
             margin-right: 6px;
             font-size: 14px;
