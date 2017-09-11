@@ -12,7 +12,7 @@
         ref="formDynamic" 
         :rules.sync="listRule" 
         label-position="left" 
-        :label-span="4">
+        :label-span="6">
             <div class="wrapper-form" v-for="(item, index) in formData" :key="index">
                 <component 
                 :id="item.id"

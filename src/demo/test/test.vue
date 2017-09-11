@@ -1,5 +1,7 @@
 <template>
 	<div class="test">
+		<h5>alert类</h5>
+		
 		<h5>按钮类</h5>
 		<t-button type="primary" class="actives" :disabled="true">disabled</t-button>
 	    <t-button type="primary">主按钮</t-button>
