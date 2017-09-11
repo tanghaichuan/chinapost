@@ -2,7 +2,10 @@
     <div class="item-form">
         <div class="form-top">
             <div class="left" @click="showForm = !showForm">
-                <t-icon v-if="isCollapse" :type="showForm ? 'chevron-down' : 'chevron-up'" style="float:left;"></t-icon>
+                <span v-if="isCollapse" class="info-icon">
+                    <i class="iconfont" v-if="showForm">&#xe78e;</i>
+                    <i class="iconfont" v-else>&#xe78d;</i>
+                </span>
                 <h6>{{title}}</h6>
             </div>
             <!-- <div class="right" v-if="isExtend">
@@ -220,6 +223,11 @@ export default {
 }
 </script>
 <style scoped lang="less">
+.info-icon{
+    i{
+        font-size:6px;
+    }
+}
 .form-item-container {
     padding: 19px 10px 9px;
     zoom: 1;
