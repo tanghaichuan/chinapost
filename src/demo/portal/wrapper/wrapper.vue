@@ -629,7 +629,7 @@ export default {
                         "CODE": "INDUSTYR_TYPE_PARENT",
                         "VALUE": "",
                         "DISP": "行业类型",
-                        "OPER_MODE": "010"
+                        "OPER_MODE": "02"
                     },
                     {
                         "CODE": "PAYMENT_TERM",

@@ -9,10 +9,17 @@
                 <h6>{{userList.title}}</h6>
             </div>
         </div>
-        <div class="form-item-container" v-show="userList.isCollapse">
+        <div 
+        class="form-item-container" 
+        :class="userList.title === '基本信息' ? 'base-style' : ''" 
+        v-show="userList.isCollapse">
             <div class="form-item-wrap">
-                <div class="form-block--info col-4" v-for="(item, index) in userList.formItem" :key="index">
-                    <t-form-item :label="item.DISP+':'" :prop="getValidatePath+'.'+'formItem.'+ index + '.VALUE'" :rules="{required: item.REQUIRE, message: item.DISP+'不能为空', trigger: 'blur'}">
+                <div class="form-block--info col-4" 
+                v-for="(item, index) in userList.formItem" :key="index">
+                    <t-form-item 
+                    :label="item.DISP+':'" 
+                    :prop="getValidatePath+'.'+'formItem.'+ index + '.VALUE'" 
+                    :rules="{required: item.REQUIRE, message: item.DISP+'不能为空', trigger: 'blur'}" :label-span="userList.title === '基本信息' ? 1 : 5">
                         <t-select :disabled="isDisabled" v-model="item.VALUE" :title="item.VALUE" v-if="item.OPER_MODE === '02'">
                             <t-option v-for="item in item.ENUM" :value="item.value" :key="item">{{ item.value }}</t-option>
                         </t-select>
@@ -26,12 +33,8 @@
                 </div>
             </div>
             <div class="form-item-wrap" v-if="flod">
-                <div :class="['form-block--info col-4',item.OPER_MODE === '017'? 'col-12':'']" 
-                v-for="(item, index) in userList.addFormItem" :key="index">
-                    <t-form-item 
-                    :label="item.DISP+':'" 
-                    :prop="getValidatePath+'.'+'addFormItem.'+ index + '.VALUE'" 
-                    :rules="{required: item.REQUIRE, message: item.DISP+'不能为空', trigger: 'blur'}">
+                <div :class="['form-block--info col-4',item.OPER_MODE === '017'? 'col-12':'']" v-for="(item, index) in userList.addFormItem" :key="index">
+                    <t-form-item :label="item.DISP+':'" :prop="getValidatePath+'.'+'addFormItem.'+ index + '.VALUE'" :rules="{required: item.REQUIRE, message: item.DISP+'不能为空', trigger: 'blur'}">
                         <t-select :disabled="isDisabled" v-model="item.VALUE" :title="item.VALUE" v-if="item.OPER_MODE === '02'">
                             <t-option v-for="item in item.ENUM" :value="item.value" :key="item">{{ item.value }}</t-option>
                         </t-select>
@@ -109,7 +112,7 @@ export default {
                     "CODE": "INDUSTRY",
                     "VALUE": "",
                     "DISP": "行业",
-                    "OPER_MODE": "010",
+                    "OPER_MODE": "02",
                     "ENUM": [
                         {
                             "value": "Agriculture",
@@ -388,11 +391,18 @@ export default {
     transform: translateY(-100px);
     opacity: 0;
 }
-.cas{
+
+.cas {
     padding: 0;
     width: 197px;
-    .select{
+    .select {
         width: 100%;
+    }
+}
+
+.base-style {
+    .form-item-wrap {
+        padding-left: 5px;
     }
 }
 </style>
