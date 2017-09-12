@@ -397,8 +397,9 @@ danger;
 }
 
 .input {
+  padding: 0 10px;
   height: 28px;
-  line-height: calc(28px - 1px * 2);
+  line-height: calc(27px - 1px * 2);
   border:1px solid #d9d9d9;
 }
 
@@ -415,7 +416,7 @@ danger;
 
 .select{
   .dropdown-selection-icon{
-    right:3px;
+    right:4px;
     .aid-chevron-down{
       font-size:16px;
       color:#dadada;
