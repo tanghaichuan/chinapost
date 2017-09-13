@@ -9,17 +9,17 @@
                 <h6>{{userList.title}}</h6>
             </div>
         </div>
-        <div 
-        class="form-item-container" 
-        :class="userList.title === '基本信息' ? 'base-style' : ''" 
-        v-show="userList.isCollapse">
+        <div class="form-item-container" v-show="userList.isCollapse" :class="userList.title === '基本信息' ? 'base-style' : ''">
             <div class="form-item-wrap">
-                <div class="form-block--info col-4" 
-                v-for="(item, index) in userList.formItem" :key="index">
+                <div class="form-block--info" 
+                :class="['col-'+row]" 
+                v-for="(item, index) in userList.formItem" 
+                :key="index">
                     <t-form-item 
                     :label="item.DISP+':'" 
                     :prop="getValidatePath+'.'+'formItem.'+ index + '.VALUE'" 
-                    :rules="{required: item.REQUIRE, message: item.DISP+'不能为空', trigger: 'blur'}" :label-span="userList.title === '基本信息' ? 1 : 5">
+                    :rules="{required: item.REQUIRE, message: item.DISP+'不能为空', trigger: 'blur'}" 
+                    :label-span="userList.title === '基本信息' ? 1 : 5">
                         <t-select :disabled="isDisabled" v-model="item.VALUE" :title="item.VALUE" v-if="item.OPER_MODE === '02'">
                             <t-option v-for="item in item.ENUM" :value="item.value" :key="item">{{ item.value }}</t-option>
                         </t-select>
@@ -32,7 +32,8 @@
                     </t-form-item>
                 </div>
             </div>
-            <div class="form-item-wrap" v-if="flod">
+
+            <div class="form-item-wrap" v-show="flod">
                 <div :class="['form-block--info col-4',item.OPER_MODE === '017'? 'col-12':'']" v-for="(item, index) in userList.addFormItem" :key="index">
                     <t-form-item :label="item.DISP+':'" :prop="getValidatePath+'.'+'addFormItem.'+ index + '.VALUE'" :rules="{required: item.REQUIRE, message: item.DISP+'不能为空', trigger: 'blur'}">
                         <t-select :disabled="isDisabled" v-model="item.VALUE" :title="item.VALUE" v-if="item.OPER_MODE === '02'">
@@ -40,8 +41,8 @@
                         </t-select>
 
                         <div v-if="item.OPER_MODE === '017'" class="cas col-3">
-                            <!--级联-->
-                            <t-cascader :data="item.ENUM" v-model="item.VALUE"></t-cascader>
+                            <!--行业-->
+
                         </div>
 
                         <t-input :disabled="isDisabled" v-model="item.VALUE" v-if="item.OPER_MODE === '010'"></t-input>
@@ -52,6 +53,7 @@
                     </t-form-item>
                 </div>
             </div>
+
             <a href="javascript:;" v-if="userList.isAsync" class="more" @click="getMore">
                 <span v-text="flod ? '收起' : '更多'"></span>
                 <t-icon :type="flod ? 'chevron-up' : 'chevron-down'" style="margin-left: -5px;margin-top: 2px;" size="18"></t-icon>
@@ -231,7 +233,7 @@ export default {
             type: Object,
             default: {}
         },
-        isAsync: {              // 表单异步加载
+        isAsync: {              // 表单异步加载（更多）
             type: Boolean,
             default: false
         },
@@ -239,7 +241,7 @@ export default {
             type: Boolean,
             default: false
         },
-        isExtend: {             // 表单可添加重复信息
+        isExtend: {             // 表单添加扩展信息（加减）
             type: Boolean,
             default: false
         },
@@ -247,6 +249,7 @@ export default {
             type: Boolean,
             default: false
         },
+        row: Number,
         title: String,
         getValidatePath: String
     },
