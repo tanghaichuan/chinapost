@@ -197,7 +197,6 @@ export default {
             } else {
                 if (!obj.addFormItem) {
                     this.$set(obj, 'addFormItem', this.addFormItem)
-                    console.log(this.userList);
                 }
                 this.flod = true
             }
