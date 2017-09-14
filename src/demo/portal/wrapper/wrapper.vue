@@ -390,7 +390,7 @@ export default {
             }
         },
         getValidatePath(item, index) {
-            return `${index}`
+            return `${index}.`
             // let ret = this.currentView(item);
             // if (ret === 'dynamicForm') {
             //     return `${index}.formList`
@@ -412,14 +412,8 @@ export default {
         }
     },
     created() {
+        // console.log(this.formData);
         // this.list.push(this.customInfo, this.attenInfo)
-        this.formData = Object.assign({}, this.formData, {
-            baseInfo: this.baseInfo,
-            idenInfo: this.idenInfo,
-            contactInfo: this.contactInfo,
-            address: this.address,
-            customInfo: this.customInfo
-        })
     }
 }
 </script>

@@ -8,65 +8,48 @@
                 </span>
                 <h6>{{userList.title}}</h6>
             </div>
-            <div class="right">
-
+            <div class="right" v-if="userList.isExtend">
+                <i class="iconfont" @click="addFormList">&#xe632;</i>
             </div>
         </div>
-        <div class="form-item-container" v-show="userList.isCollapse" :class="userList.title === '基本信息' ? 'base-style' : ''">
-            <div class="form-item-wrap">
-                <div class="form-block--block" 
-                :class="['col-'+row]" 
-                v-for="(item, index) in userList.formItem" 
-                :key="index">
-                    <t-form-item 
-                    :label="item.DISP+':'" 
-                    :prop="getValidatePath+'.'+'formItem.'+ index + '.VALUE'" 
-                    :rules="{required: item.REQUIRE, message: item.DISP+'不能为空', trigger: 'blur'}" 
-                    :label-span="userList.title === '基本信息' ? 1 : 5">
-                        <t-select :disabled="isDisabled" v-model="item.VALUE" :title="item.VALUE" v-if="item.OPER_MODE === '02'">
-                            <t-option v-for="item in item.ENUM" :value="item.value" :key="item">{{ item.value }}</t-option>
-                        </t-select>
-
-                        <t-input :disabled="isDisabled" v-model="item.VALUE" v-if="item.OPER_MODE === '010'"></t-input>
-
-                        <t-input :disabled="isDisabled" v-model="item.VALUE" v-if="item.OPER_MODE === '013'" type="textarea"></t-input>
-
-                        <t-date-picker v-model="item.VALUE" v-if="item.OPER_MODE === '014'"></t-date-picker>
-                    </t-form-item>
+        <div class="form-container" v-show="userList.isCollapse">
+            <div class="form-item-container" :class="userList.title === '基本信息' ? 'base-style' : ''">
+                <div class="form-item-wrap">
+                    <div class="form-block--block" :class="['col-'+row]" v-for="(item, y) in userList.formItem[0].formList" :key="y">
+                        <t-form-item :label="item.DISP+':'" :prop="getValidatePath+'formItem.0.formList.'+y+'.'+VALUE" :rules="{required: item.REQUIRE, message: item.DISP+'不能为空', trigger: 'blur'}" :label-span="userList.title === '基本信息' ? 1 : 5">
+                            <t-select :disabled="isDisabled" v-model="item.VALUE" :title="item.VALUE" v-if="item.OPER_MODE === '02'">
+                                <t-option v-for="(item1, z) in item.ENUM" :value="item1.value" :key="z">{{ item1.value }}</t-option>
+                            </t-select>
+                            <t-input :disabled="isDisabled" v-model="item.VALUE" v-if="item.OPER_MODE === '010'"></t-input>
+                            <t-input :disabled="isDisabled" v-model="item.VALUE" v-if="item.OPER_MODE === '013'" type="textarea"></t-input>
+                            <t-date-picker v-model="item.VALUE" v-if="item.OPER_MODE === '014'"></t-date-picker>
+                        </t-form-item>
+                    </div>
                 </div>
+                <dynamic-from :getValidatePath="getValidatePath" :row="row" :id="0" :isAsync="userList.isAsync" :userList.sync="userList"></dynamic-from>
             </div>
-
-            <!--扩展信息（暂废除）-->
-            <div class="form-item-wrap" v-if="flod">
-                <div :class="['form-block--block col-4',item.OPER_MODE === '017'? 'col-12':'']" v-for="(item, index) in userList.addFormItem" :key="index">
-                    <t-form-item :label="item.DISP+':'" :prop="getValidatePath+'.'+'addFormItem.'+ index + '.VALUE'" :rules="{required: item.REQUIRE, message: item.DISP+'不能为空', trigger: 'blur'}">
-                        <t-select :disabled="isDisabled" v-model="item.VALUE" :title="item.VALUE" v-if="item.OPER_MODE === '02'">
-                            <t-option v-for="item in item.ENUM" :value="item.value" :key="item">{{ item.value }}</t-option>
-                        </t-select>
-
-                        <div v-if="item.OPER_MODE === '017'" class="cas col-3">
-                            <!--行业-->
-
-                        </div>
-
-                        <t-input :disabled="isDisabled" v-model="item.VALUE" v-if="item.OPER_MODE === '010'"></t-input>
-
-                        <t-input :disabled="isDisabled" v-model="item.VALUE" v-if="item.OPER_MODE === '013'" type="textarea"></t-input>
-
-                        <t-date-picker v-model="item.VALUE" v-if="item.OPER_MODE === '014'"></t-date-picker>
-                    </t-form-item>
+            <div class="form-item-container" v-for="(item1, x) in userList.formItem" v-if="x > 0" :key="x" :class="userList.title === '基本信息' ? 'base-style' : ''">
+                <i class="iconfont del" @click="delFormList(userList.formItem, x)">&#xe61b;</i>
+                <div class="form-item-wrap">
+                    <div class="form-block--block" :class="['col-'+row]" v-for="(item2, y) in item1.formList" :key="y">
+                        <t-form-item :label="item2.DISP+':'" :prop="getValidatePath+'formItem.'+x+'.formList.'+y+'.'+VALUE" :rules="{required: item2.REQUIRE, message: item2.DISP+'不能为空', trigger: 'blur'}" :label-span="userList.title === '基本信息' ? 1 : 5">
+                            <t-select :disabled="isDisabled" v-model="item2.VALUE" :title="item2.VALUE" v-if="item2.OPER_MODE === '02'">
+                                <t-option v-for="(item3, z) in item2.ENUM" :value="item3.value" :key="z">{{ item3.value }}</t-option>
+                            </t-select>
+                            <t-input :disabled="isDisabled" v-model="item2.VALUE" v-if="item2.OPER_MODE === '010'"></t-input>
+                            <t-input :disabled="isDisabled" v-model="item2.VALUE" v-if="item2.OPER_MODE === '013'" type="textarea"></t-input>
+                            <t-date-picker v-model="item2.VALUE" v-if="item2.OPER_MODE === '014'"></t-date-picker>
+                        </t-form-item>
+                    </div>
                 </div>
+                <dynamic-from :getValidatePath="getValidatePath" :row="row" :id="0" :isAsync="userList.isAsync" :userList.sync="userList"></dynamic-from>
             </div>
-
-            <a href="javascript:;" v-if="userList.isAsync" class="more" @click="getMore">
-                <span v-text="flod ? '收起' : '更多'"></span>
-                <t-icon :type="flod ? 'chevron-up' : 'chevron-down'" style="margin-left: -5px;margin-top: 2px;" size="18"></t-icon>
-            </a>
         </div>
 
     </div>
 </template>
 <script>
+import dynamicFrom from './dynamicForm'
 // 说明：
 // 1.  特征值数据类型目前定义如下：
 // 01--文本
@@ -96,140 +79,7 @@ export default {
     data() {
         return {
             flod: false,
-            showForm: true,
-            addFormItem: [
-                {
-                    "DISP": "HAVECHILDFLAG",
-                    "DISP": "是否有子女",
-                    "OPER_MODE": "02",
-                    "VALUE": "",
-                    "ENUM": [
-                        {
-                            "key": "Y",
-                            "value": "有"
-                        },
-                        {
-                            "key": "N",
-                            "value": "无"
-                        }
-                    ]
-                },
-                {
-                    "CODE": "INDUSTRY",
-                    "VALUE": "",
-                    "DISP": "行业",
-                    "OPER_MODE": "02",
-                    "ENUM": [
-                        {
-                            "value": "Agriculture",
-                            "label": "农业",
-                            "children": [
-                                {
-                                    "value": "guwu",
-                                    "label": "谷物种植",
-                                    "children": [
-                                        {
-                                            "value": "daogu",
-                                            "label": "稻谷种植"
-                                        }
-                                    ]
-                                }
-                            ]
-                        },
-                        {
-                            "value": "Forestry",
-                            "label": "林业"
-                        },
-                        {
-                            "value": "Fisheries",
-                            "label": "渔业"
-                        }
-                    ]
-                },
-                {
-                    "CODE": "PERSONALITY",
-                    "VALUE": "",
-                    "DISP": "个性特征",
-                    "OPER_MODE": "010"
-                },
-                {
-                    "CODE": "INTEREST",
-                    "VALUE": "",
-                    "DISP": "兴趣和避讳",
-                    "OPER_MODE": "010"
-                },
-                {
-                    "CODE": "HONOR_AWARD",
-                    "VALUE": "",
-                    "DISP": "荣誉奖励",
-                    "OPER_MODE": "010"
-                },
-                {
-                    "CODE": "START_JOB_DATE",
-                    "VALUE": "",
-                    "DISP": "参加工作时间",
-                    "OPER_MODE": "014"
-                },
-                {
-                    "CODE": "SHORT_NAME",
-                    "VALUE": "",
-                    "DISP": "简称",
-                    "OPER_MODE": "010"
-                },
-                // {
-                //     "DISP": "证件类型",
-                //     "OPER_MODE": "02",
-                //     "VALUE": "",
-                //     "ENUM": [
-                //         {
-                //             "key": "primary",
-                //             "value": "身份证"
-                //         },
-                //         {
-                //             "key": "middle",
-                //             "value": "户口簿"
-                //         },
-                //         {
-                //             "key": "high",
-                //             "value": "驾驶证"
-                //         },
-                //         {
-                //             "key": "university",
-                //             "value": "出生证"
-                //         },
-                //         {
-                //             "key": "Master",
-                //             "value": "护照"
-                //         },
-                //         {
-                //             "key": "Doctor",
-                //             "value": "港澳通行证"
-                //         },
-                //         {
-                //             "key": "Post-Doctor",
-                //             "value": "港澳身份证"
-                //         },
-                //         {
-                //             "key": "Post-Doctor",
-                //             "value": "台胞证"
-                //         },
-                //         {
-                //             "key": "Post-Doctor",
-                //             "value": "雇员证（单位证明）"
-                //         },
-                //         {
-                //             "key": "Post-Doctor",
-                //             "value": "军官证"
-                //         }
-                //     ]
-                // },
-                {
-                    "CODE": "NAME",
-                    "VALUE": "",
-                    "DISP": '联系人证件号码',
-                    "OPER_MODE": "010"
-                }
-            ]
+            showForm: true
         }
     },
     props: {
@@ -258,33 +108,30 @@ export default {
         getValidatePath: String
     },
     components: {
-
+        dynamicFrom
     },
     methods: {
-        getMore() {
-            if (this.flod) {
-                this.flod = false;
-            } else {
-                this.$set(this.userList, "addFormItem", this.addFormItem)
-                console.log(this.userList);
-                this.flod = true;
-            }
-        },
         addFormList() {
-
+            let arr = [];
+            arr = _.cloneDeep(this.userList.formItem[0])
+            arr = this.emptyList(arr);  // 置空表单元素
+            this.userList.formItem.push(arr)
         },
-        delFormList() {
-            let len = this.addFormItem.length;
-            while (len) {
-                this.userList.pop();
-                len--;
-            }
+        emptyList(arr) {
+            _.forEach(arr, x => {
+                _.forEach(x, y => {
+                    y.VALUE = '';
+                })
+            })
+            return arr
         },
+        delFormList(obj, index) {
+            obj.splice(index, 1)
+        }
     },
     created() {
-
-        // this.list.push(this.userList.formItem)
         // console.log(this.userList);
+        // console.log(this.getValidatePath);
     }
 }
 </script>
@@ -295,31 +142,40 @@ export default {
     }
 }
 
+.del {
+    cursor: pointer;
+    position: absolute;
+    right: 15px;
+    top: -13px;
+}
+
 .form-item-container {
     position: relative;
     padding: 19px 0 9px;
     zoom: 1;
-    border-top: 1px solid #dfe5e7;
+    &::before {
+        margin-top: -19px;
+        padding-bottom: 19px;
+        display: block;
+        content: '';
+        border-top: 1px solid #dfe5e7;
+    }
+    &:not(:first-child) {
+        &::before {
+            margin-left: 20px;
+            margin-right: 45px;
+            margin-top: -19px;
+            padding-bottom: 19px;
+            display: block;
+            content: '';
+            border-top: 1px dashed #dfe5e7;
+        }
+    }
     &:after {
         content: '';
         display: table;
         clear: both;
         overflow: hidden;
-    }
-}
-
-.more {
-    margin-right: 24px;
-    padding-bottom: 14px;
-    display: inline-block;
-    line-height: 15px;
-    text-align: right;
-    display: block;
-    span {
-        padding-right: 5px;
-        font-size: 12px;
-        font-family: "Microsoft YaHei";
-        color: rgb( 0, 146, 65);
     }
 }
 
@@ -362,9 +218,12 @@ export default {
             }
         }
         .right {
-            padding-right: 15px;
+            margin-right: 15px;
             display: inline-block;
             float: right;
+            i {
+                cursor: pointer;
+            }
         }
     }
 }
