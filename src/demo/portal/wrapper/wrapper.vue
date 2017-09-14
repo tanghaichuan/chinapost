@@ -1,7 +1,7 @@
 <template>
     <div class="wrapper">
         <h5>
-            <i class="iconfont tit-icon">&#xe78b;</i>{{title}}</h5>
+            <i class="iconfont tit-icon" v-html="icon"></i>{{title}}</h5>
         <div class="back-options">
             <p class="btn-icon">
                 <t-button type="outline" class="sub-btn">
@@ -350,6 +350,7 @@ export default {
         }
     },
     props: {
+        icon: String,
         title: String,
         row: {                      // 表单区域栅格
             type: Number,

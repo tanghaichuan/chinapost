@@ -2,7 +2,7 @@
     <div class="customer">
 
         <!--表单区域-->
-        <wrapper title="创建个人客户信息" :row="4" :formData="formData"></wrapper>
+        <wrapper icon="&#xe78b;" title="创建个人客户信息" :row="4" :formData="formData"></wrapper>
     </div>
 </template>
 <script>
