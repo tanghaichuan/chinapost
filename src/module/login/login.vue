@@ -74,24 +74,24 @@ export default {
         password: '',
         verify: '',
         rememberMe: false
+      },
+      rules: {
+        username: [{
+          required: true,
+          message: '用户名不能为空',
+          trigger: 'change'
+        }],
+        password: [{
+          required: true,
+          message: '密码不能为空',
+          trigger: 'change'
+        }],
+        verify: [{
+          required: true,
+          message: '验证码不能为空',
+          trigger: 'change'
+        }]
       }
-      // rules: {
-      //   username: [{
-      //     required: true,
-      //     message: '用户名不能为空',
-      //     trigger: 'change'
-      //   }],
-      //   password: [{
-      //     required: true,
-      //     message: '密码不能为空',
-      //     trigger: 'change'
-      //   }],
-      //   verify: [{
-      //     required: true,
-      //     message: '验证码不能为空',
-      //     trigger: 'change'
-      //   }]
-      // }
     }
   },
   computed: {
@@ -303,13 +303,14 @@ export default {
 }
 
 .form-alert {
+  padding-left: 5px;
   height: 35px;
   .alert {
-    padding-top: 5px;
-    padding-bottom: 5px;
+    padding: 5px 38px;
     min-height: 20px;
     .alert__icon, .alert__close-icon {
-      top: 4px; 
+      top: 4px;
+      left: 15px; 
     }
   }
 }
