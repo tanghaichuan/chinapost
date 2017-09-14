@@ -37,7 +37,7 @@
                         </div> -->
         <div class="form-options">
             <t-button type="primary" class="save" @click.native="handleSubmit('formDynamic')">
-                <i class="iconfont">&#xe624;</i>保存</t-button>
+                <i class="iconfont">&#xe643;</i>提交</t-button>
             <t-button type="outline" class="sub-btn approval">
                 <i class="iconfont">&#xe65f;</i>审批</t-button>
         </div>
