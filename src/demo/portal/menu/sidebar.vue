@@ -33,11 +33,6 @@
           <t-breadcrumb-item href="#">{{$route.name}}</t-breadcrumb-item>
           <t-breadcrumb-item>{{currentMenu}}</t-breadcrumb-item>
         </t-breadcrumb>
-        <div class="bg-white ml-3 mr-3 layout-main" style="min-height: 550px">
-          <keep-alive>
-            <router-view></router-view>
-          </keep-alive>
-        </div>
       </div>
     </div>
   </div>
