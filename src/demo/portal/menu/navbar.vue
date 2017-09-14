@@ -1,22 +1,8 @@
 <template>
 	<nav class="navbar  navbar-expand-lg bg-white layout-nav--top">
-		<a href="javascript:;">
+		<a href="javascript:;" class="mr-auto">
 			<i class="iconfont iconfont-fold" @click="openOrClose">&#xe609;</i>
 		</a>
-		<t-dropdown trigger="click" placement="bottom-end" class="mr-auto">
-		  <a href="javascript:void(0)" class="text-muted ml-4 text-white">
-		    <t-icon type="plus-circle-outline" size="20" class="align-middle text-white"></t-icon>
-		    新建
-		  </a>
-		  <t-dropdown-menu slot="list">
-		    <t-dropdown-item>
-		      <t-icon type="checkbox-marked-outline" class="text-muted mr-1 text"></t-icon>任务</t-dropdown-item>
-		    <t-dropdown-item>
-		      <t-icon type="file" class="text-muted mr-1 text"></t-icon>文件</t-dropdown-item>
-		    <t-dropdown-item>
-		      <t-icon type="calendar-today" class="text-muted mr-1 text"></t-icon>日程</t-dropdown-item>
-		  </t-dropdown-menu>
-		</t-dropdown>
 		<div class="d-inline">
 		  <t-input icon="magnify" size="sm" placeholder="搜索..."></t-input>
 		</div>
@@ -59,33 +45,6 @@
 		        </div>
 		      </div>
 		    </t-dropdown-item>
-		    <t-dropdown-item>
-		      <div class="d-flex align-items-center">
-		        <t-avatar img-src="http://flatfull.com/themes/angulr/angular/img/a0.jpg"></t-avatar>
-		        <div class="ml-3">
-		          <p class="text-gray mb-0 text-truncate">我是标题文字标题</p>
-		          <small class="text-muted text-sm text-truncate">2017年7月16日 09:15</small>
-		        </div>
-		      </div>
-		    </t-dropdown-item>
-		    <t-dropdown-item>
-		      <div class="d-flex align-items-center">
-		        <t-avatar img-src="http://flatfull.com/themes/angulr/angular/img/a0.jpg"></t-avatar>
-		        <div class="ml-3">
-		          <p class="text-gray mb-0 text-truncate">我是标题文字标题</p>
-		          <small class="text-muted text-sm text-truncate">2017年7月16日 09:15</small>
-		        </div>
-		      </div>
-		    </t-dropdown-item>
-		    <t-dropdown-item>
-		      <div class="d-flex align-items-center">
-		        <t-avatar img-src="http://flatfull.com/themes/angulr/angular/img/a0.jpg"></t-avatar>
-		        <div class="ml-3">
-		          <p class="text-gray mb-0 text-truncate">我是标题文字标题</p>
-		          <small class="text-muted text-sm text-truncate">2017年7月16日 09:15</small>
-		        </div>
-		      </div>
-		    </t-dropdown-item>
 		  </t-dropdown-menu>
 		</t-dropdown>
 	</nav>
@@ -109,14 +68,25 @@ export default{
 	},
 	methods:{
 		 openOrClose() {
-      this.isOpen = !this.isOpen
-      this.openPosition = this.openPosition === 'down' ? 'right' : 'down'
-      this.$emit('update:isOpen',this.isOpen)
-      this.$emit('update:openPosition',this.openPosition)
+      this.$emit('toggleSideBar')
     }
 	}
 }	
 </script>
 <style lang="less" scoped>
-	
+.navbar.bg-white {
+  background-color: #3ca358!important;
+}
+.iconfont-fold {
+  font-size: 15px;
+  color: #fff;
+}
+.admin-img {
+  width: 35px;
+  background-color: transparent;
+  cursor: pointer;
+  .avatar__dot {
+      display: none;
+  }
+}
 </style>
