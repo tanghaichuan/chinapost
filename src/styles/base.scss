@@ -614,3 +614,62 @@ danger;
     }
   }
 }
+
+/* alert提示 */
+.alert {
+  min-height: 32px;
+  color: #000;
+}
+.alert--success {
+  background-color: #EBF8F2;
+  border-color: #CFEFDF;
+  .icon-gradient-success:before, 
+  .progress-circle--success .progress-circle__text .aid:before, 
+  .alert--success .alert__icon:before {
+    color: #00A854;
+    background-color: #00A854;
+    background-image: none;
+  }
+}
+.alert--danger {
+  background-color: #FEF0EF;
+  border-color: #FCDBD9;
+  .icon-gradient-danger:before, 
+  .progress-circle--danger .progress-circle__text .aid:before, 
+  .alert--danger .alert__icon:before {
+    color: #F04134;
+    background-color: #F04134;
+    background-image: none;
+  }
+}
+.alert--warning {
+  background-color: #FFFAEB;
+  border-color: #FFF3CF;
+  .icon-gradient-warning:before, 
+  .progress-circle--warning .progress-circle__text .aid:before, 
+  .alert--warning .alert__icon:before {
+    color: #FFBF00;
+    background-color: #FFBF00;
+    background-image: none;
+  }
+}
+.alert--info {
+  background-color: #ECF6FD;
+  border-color: #D2EAFB;
+  .icon-gradient-info:before, 
+  .progress-circle--info .progress-circle__text .aid:before, 
+  .alert--info .alert__icon:before {
+    color: #108EE9;
+    background-color: #108EE9;
+    background-image: none;
+  }
+}
+.alert__close-icon {
+  i {
+    font-size: 16px;
+    color: #999;
+  }
+  .text-primary {
+    color: #999!important;
+  } 
+ }
