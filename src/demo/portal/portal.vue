@@ -1,56 +1,9 @@
 <template>
   <div class="layout layout--one-screen bg-gray-lightest-5">
-    <div :class="['layout-sidebar bg-gray-darker',{'layout-sidebar--folded': isOpen===false}]">
-      <div href="#" class="layout-logo-left">
-        <!-- logo  -->
-        <t-tooltip content="主页" placement="bottom">
-          <a href="/portal" class="layout-logo mr-4">
-            <img src="../../asset/image/logo.png" width="130" alt="" v-if="isOpen">
-            <img src="../../asset/image/logo2.png" width="130" alt="" v-if="!isOpen" style="width: 32px; position:relative;left:-3px;">
-          </a>
-        </t-tooltip>
-      </div>
-      <t-menu theme="dark" :open-position="openPosition" :class="[{'menu--folded': isOpen===false}]">
-        <t-submenu :name="x" v-for="(item1, x) in menuList" :key="x" class="first">
-          <template slot="title">
-            <i class="iconfont" v-html="item1.icon"></i>
-            <span ref="parMenu">{{item1.name}}</span>
-          </template>
-          <t-submenu v-if="item2.children" :name="`${x}-${y}`" v-for="(item2, y) in item1.children" :key="y" class="sec">
-            <template slot="title">
-              <span>{{item2.name}}</span>
-            </template>
-            <t-menu-item :name="`${x}-${y}-${z}`" v-for="(item3, z) in item2.children" :key="z" @click.native="getMenu(item3)">{{item3.name}}</t-menu-item>
-          </t-submenu>
-          <t-menu-item :name="`${x}-${y}`" v-if="!item2.children" v-for="(item2, y) in item1.children" :key="y" @click.native="getMenu(item2)">
-            {{item2.name}}
-          </t-menu-item>
-        </t-submenu>
-      </t-menu>
-    </div>
+    <!--侧边菜单栏-->
+    <white-side-bar :isOpen="isOpen" @changeCurrentMenu="changeBreadCrumb" :menuList="menuList" :openPosition="openPosition"></white-side-bar>
     <div class="layout-content">
-      <nav class="navbar  navbar-expand-lg bg-white layout-nav--top">
-        <a href="javascript:;" class="mr-auto">
-          <i class="aid aid-menu text-xxl text-gray" @click="openOrClose"></i>
-        </a>
-        <form class="form-inline">
-          <t-input icon="magnify" size="sm" placeholder="搜索..."></t-input>
-        </form>
-        <a class="nav-link" href="#">
-          <i class="aid aid-help-circle-outline"></i>
-          <span>帮助</span>
-        </a>
-        <t-dropdown trigger="click">
-          <t-badge>
-            <t-avatar dot-state="danger" text="HC" size="sm"></t-avatar>
-          </t-badge>
-          <t-dropdown-menu slot="list">
-            <t-dropdown-item>Action</t-dropdown-item>
-            <t-dropdown-item>Another action</t-dropdown-item>
-            <t-dropdown-item>Something else here</t-dropdown-item>
-          </t-dropdown-menu>
-        </t-dropdown>
-      </nav>
+      <white-nav-bar :isOpen="isOpen" @toggleSideBar="toggleSide" :openPosition="openPosition"></white-nav-bar>
       <div>
         <t-breadcrumb v-show="currentMenu">
           <t-breadcrumb-item href="/portal" @click.native="emptyMenu">首页</t-breadcrumb-item>
@@ -70,6 +23,8 @@
   </div>
 </template>
 <script>
+import whiteSideBar from './menu/whitesidebar'
+import whiteNavBar from './menu/whiteNavBar'
 export default {
   data() {  // store data
     return {
@@ -85,20 +40,22 @@ export default {
   },
   computed: {
   },
+  components: {
+    whiteSideBar,
+    whiteNavBar
+  },
   methods: { // methods
-    openOrClose() {
-      this.isOpen = !this.isOpen
-      this.accordion = !this.accordion
-      this.openPosition = this.openPosition === 'down' ? 'right' : 'down'
-    },
-    getMenu(item) {
-      this.$router.push({ path: `/portal${item.url}` });
-      this.currentMenu = item.name;
-      //this.parMenu = e.target.parentNode.parentNode.querySelector("span").innerHTML
-    },
     emptyMenu() {
       this.currentMenu = ""
       this.parMenu = ""
+    },
+    changeBreadCrumb(item) {
+      this.currentMenu = item;
+    },
+    toggleSide(isOpen, pos) {
+      this.isOpen = !this.isOpen
+      // this.accordion = !this.accordion
+      this.openPosition = this.openPosition === 'down' ? 'right' : 'down'
     }
   },
   created() { // init entry
@@ -112,10 +69,11 @@ export default {
 }
 </script>
 <style scoped lang="scss">
-.layout--one-screen .layout-content footer{
+.layout--one-screen .layout-content footer {
   position: relative;
   background: #f2f6f7;
 }
+
 .main {
   position: relative;
   padding: 24px;
@@ -177,12 +135,12 @@ export default {
 }
 
 .breadcrumb {
-  line-height:25px;
+  line-height: 25px;
   background: #f6f8f8;
-  border-radius:0;
-  border-bottom:1px solid #dfe5e7;
-  padding:14px 0 14px 15px;
-  font-size:14px;
+  border-radius: 0;
+  border-bottom: 1px solid #dfe5e7;
+  padding: 14px 0 14px 15px;
+  font-size: 14px;
 }
 
 .menu--folded .sec .menu__submenu-title>span {

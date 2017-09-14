@@ -9,7 +9,7 @@
                 <h6>{{userList.title}}</h6>
             </div>
             <div class="right">
-                
+
             </div>
         </div>
         <div class="form-item-container" v-show="userList.isCollapse" :class="userList.title === '基本信息' ? 'base-style' : ''">
