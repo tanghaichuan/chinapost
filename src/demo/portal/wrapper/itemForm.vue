@@ -8,10 +8,13 @@
                 </span>
                 <h6>{{userList.title}}</h6>
             </div>
+            <div class="right">
+                
+            </div>
         </div>
         <div class="form-item-container" v-show="userList.isCollapse" :class="userList.title === '基本信息' ? 'base-style' : ''">
             <div class="form-item-wrap">
-                <div class="form-block--info" 
+                <div class="form-block--block" 
                 :class="['col-'+row]" 
                 v-for="(item, index) in userList.formItem" 
                 :key="index">
@@ -33,8 +36,9 @@
                 </div>
             </div>
 
-            <div class="form-item-wrap" v-show="flod">
-                <div :class="['form-block--info col-4',item.OPER_MODE === '017'? 'col-12':'']" v-for="(item, index) in userList.addFormItem" :key="index">
+            <!--扩展信息（暂废除）-->
+            <div class="form-item-wrap" v-if="flod">
+                <div :class="['form-block--block col-4',item.OPER_MODE === '017'? 'col-12':'']" v-for="(item, index) in userList.addFormItem" :key="index">
                     <t-form-item :label="item.DISP+':'" :prop="getValidatePath+'.'+'addFormItem.'+ index + '.VALUE'" :rules="{required: item.REQUIRE, message: item.DISP+'不能为空', trigger: 'blur'}">
                         <t-select :disabled="isDisabled" v-model="item.VALUE" :title="item.VALUE" v-if="item.OPER_MODE === '02'">
                             <t-option v-for="item in item.ENUM" :value="item.value" :key="item">{{ item.value }}</t-option>
@@ -370,7 +374,7 @@ export default {
     width: 100%;
 }
 
-.form-block--info {
+.form-block--block {
     float: left;
 }
 

@@ -1,8 +1,8 @@
 {
-    "js":{
-        "base":[
-            "vuex","vue-router","axios",
-            "aid-taurus-desktop"
+    "js": {
+        "base": [
+            "vuex", "vue-router", "axios",
+            "aid-taurus-desktop", "lodash"
         ]
     }
 }
