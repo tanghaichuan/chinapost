@@ -128,8 +128,13 @@ export default[
     component : menu,
     children : [
       {
-        name: 'comperhenTable',
+        name: '客户管理',
         path: '',
+        component: require('demo/portal/wrapper/wrapper.vue')
+      },
+      {
+        name: 'comperhenTable',
+        path: 'comperhenTable',
         component: comTable
       }, {
         name: 'frozeTable',
@@ -143,6 +148,14 @@ export default[
         name: 'mergeTable',
         path: 'mergeTable',
         component: merge
+      }, {
+        name: '客户管理',
+        path: 'clientInfo',
+        component: require('./demo/portal/customer.vue')
+      },{
+        name: '客户管理',
+        path: 'customer',
+        component: require('./demo/portal/company.vue')
       }
     ]
   }, {
