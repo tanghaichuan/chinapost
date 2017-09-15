@@ -2,10 +2,13 @@
     <div class="dynamic-load">
         <div class="form-item-wrap" v-if="flod">
             <div class="form-block--block" :class="['col-'+row]" v-for="(item, y) in userList.formItem[id].addFormItem" :key="y">
-                <t-form-item :label="item.DISP+':'" :prop="getValidatePath+'formItem.'+id+'.addFormItem.'+y+'.'+VALUE" :rules="{required: item.REQUIRE, message: item.DISP+'不能为空', trigger: 'blur'}" :label-span="userList.title === '基本信息' ? 4 : 5">
+                <t-form-item :label="item.DISP+':'" :prop="getValidatePath+'formItem.'+id+'.addFormItem.'+y+'.'+VALUE" :rules="{required: item.REQUIRE, message: item.DISP+'不能为空', trigger: 'blur'}" :label-span="userList.title === '基本信息' ? 3 : 5">
                     <t-select :disabled="isDisabled" v-model="item.VALUE" :title="item.VALUE" v-if="item.OPER_MODE === '02'">
                         <t-option v-for="(item1, z) in item.ENUM" :value="item1.value" :key="z">{{ item1.value }}</t-option>
                     </t-select>
+                    <div v-if="item.OPER_MODE === '017'" class="tree-select">
+                        <select-container :openSelect.sync="openSelect" :item="item"></select-container>
+                    </div>
                     <t-input :disabled="isDisabled" v-model="item.VALUE" v-if="item.OPER_MODE === '010'"></t-input>
                     <t-input :disabled="isDisabled" v-model="item.VALUE" v-if="item.OPER_MODE === '013'" type="textarea"></t-input>
                     <t-date-picker v-model="item.VALUE" v-if="item.OPER_MODE === '014'"></t-date-picker>
@@ -21,10 +24,12 @@
     </div>
 </template>
 <script>
+import selectContainer from './selectContainer'
 export default {
     name: 'dynamicForm',
     data() {
         return {
+            openSelect: false,
             flod: false,
             customFormItem: [
                 {
@@ -37,7 +42,7 @@ export default {
                     "CODE": "INDUSTYR_TYPE_PARENT",
                     "VALUE": "",
                     "DISP": "行业类型",
-                    "OPER_MODE": "02"
+                    "OPER_MODE": "017"
                 },
                 {
                     "CODE": "PAYMENT_TERM",
@@ -304,7 +309,240 @@ export default {
                 }
             ],
             companyFromItem: [
-
+                {
+                    "CODE": "EBUSINESS_WEBSITE",
+                    "VALUE": "",
+                    "DISP": "跨境电商平台",
+                    "OPER_MODE": "010"
+                },
+                {
+                    "CODE": "EBUSINESS_WEBSITE",
+                    "VALUE": "",
+                    "DISP": "电商平台店铺网址",
+                    "OPER_MODE": "010"
+                },
+                {
+                    "CODE": "EBUSINESS_WEBSITE",
+                    "VALUE": "",
+                    "DISP": "快递电商平台",
+                    "OPER_MODE": "010"
+                },
+                {
+                    "CODE": "EBUSINESS_WEBSITE",
+                    "VALUE": "",
+                    "DISP": "快递电商平台店铺网址",
+                    "OPER_MODE": "010"
+                },
+                {
+                    "CODE": "EBUSINESS_WEBSITE",
+                    "VALUE": "",
+                    "DISP": "电子商务网址",
+                    "OPER_MODE": "010"
+                },
+                {
+                    "CODE": "COMPANY_TYPE",
+                    "VALUE": "",
+                    "DISP": "组织机构类型",
+                    "OPER_MODE": "02",
+                    "ENUM": [
+                        {
+                            "key": "t1",
+                            "value": "手工录入"
+                        },
+                        {
+                            "key": "t2",
+                            "value": "枚举值选择"
+                        },
+                        {
+                            "key": "t3",
+                            "value": "树形菜单选择"
+                        },
+                        {
+                            "key": "t4",
+                            "value": "上传文件"
+                        },
+                        {
+                            "key": "t5",
+                            "value": "内部动态表选择"
+                        },
+                        {
+                            "key": "t6",
+                            "value": "外部动态表选择"
+                        }
+                    ]
+                },
+                {
+                    "CODE": "Economic_Nature",
+                    "VALUE": "",
+                    "DISP": "经济性质",
+                    "OPER_MODE": "010"
+                },
+                {
+                    "CODE": "IS_MARKET",
+                    "VALUE": "",
+                    "DISP": "上市标志",
+                    "OPER_MODE": "010"
+                },
+                {
+                    "CODE": "Operation_Mode",
+                    "VALUE": "",
+                    "DISP": "经营方式",
+                    "OPER_MODE": "010"
+                },
+                {
+                    "CODE": "PRODUCT_FLOW",
+                    "VALUE": "",
+                    "DISP": "产品流向",
+                    "OPER_MODE": "010"
+                },
+                {
+                    "CODE": "SERVICE_OBJECT",
+                    "VALUE": "",
+                    "DISP": "服务对象",
+                    "OPER_MODE": "010"
+                },
+                {
+                    "CODE": "PROFIT_LOSS",
+                    "VALUE": "",
+                    "DISP": "盈亏状况",
+                    "OPER_MODE": "010"
+                },
+                {
+                    "CODE": "CAPITAL_STATUS",
+                    "VALUE": "",
+                    "DISP": "资金状况",
+                    "OPER_MODE": "010"
+                },
+                {
+                    "CODE": "Development_Potential",
+                    "VALUE": "",
+                    "DISP": "发展潜力",
+                    "OPER_MODE": "010"
+                },
+                {
+                    "CODE": "Bank_Credit_Degree",
+                    "VALUE": "",
+                    "DISP": "客户银行资信度",
+                    "OPER_MODE": "010"
+                },
+                {
+                    "CODE": "Company_Degree",
+                    "VALUE": "",
+                    "DISP": "用户等级）",
+                    "OPER_MODE": "02",
+                    "ENUM": [
+                        {
+                            "key": "t1",
+                            "value": "国家级"
+                        },
+                        {
+                            "key": "t2",
+                            "value": "省级"
+                        },
+                        {
+                            "key": "t3",
+                            "value": "地市级"
+                        }
+                    ]
+                },
+                {
+                    "CODE": "Relationship_With_Rivals",
+                    "VALUE": "",
+                    "DISP": "与竞争对手关系",
+                    "OPER_MODE": "010"
+                },
+                {
+                    "CODE": "Belong_Region",
+                    "VALUE": "",
+                    "DISP": "所属区域",
+                    "OPER_MODE": "02",
+                    "ENUM": [
+                        {
+                            "key": "t1",
+                            "value": "城区"
+                        },
+                        {
+                            "key": "t2",
+                            "value": "郊区"
+                        },
+                        {
+                            "key": "t3",
+                            "value": "郊县"
+                        }
+                    ]
+                },
+                {
+                    "CODE": "SIMPLE_SPELL",
+                    "VALUE": "",
+                    "DISP": "输入简码输入简码",
+                    "OPER_MODE": "010"
+                },
+                {
+                    "CODE": "Unified_Organization_Code",
+                    "VALUE": "",
+                    "DISP": "专业系统机构代码",
+                    "OPER_MODE": "010"
+                },
+                {
+                    "CODE": "Unified_Organization_Code1",
+                    "VALUE": "",
+                    "DISP": "基本帐户开户行",
+                    "OPER_MODE": "010"
+                },
+                {
+                    "CODE": "Organization_form",
+                    "VALUE": "",
+                    "DISP": "组织形式",
+                    "OPER_MODE": "010"
+                },
+                {
+                    "CODE": "Enterprise_GBType",
+                    "VALUE": "",
+                    "DISP": "国标企业类型",
+                    "OPER_MODE": "010"
+                },
+                {
+                    "CODE": "Inline_business_type",
+                    "VALUE": "",
+                    "DISP": "行内企业类型",
+                    "OPER_MODE": "010"
+                },
+                {
+                    "CODE": "Enterprise_scale",
+                    "VALUE": "",
+                    "DISP": "企业规模",
+                    "OPER_MODE": "010"
+                },
+                {
+                    "CODE": "Offshore_signs",
+                    "VALUE": "",
+                    "DISP": "离岸标志",
+                    "OPER_MODE": "010"
+                },
+                {
+                    "CODE": "average_age",
+                    "VALUE": "",
+                    "DISP": "平均年龄",
+                    "OPER_MODE": "010"
+                },
+                {
+                    "CODE": "ImportExport_Rrights",
+                    "VALUE": "",
+                    "DISP": "进出口权标志",
+                    "OPER_MODE": "010"
+                },
+                {
+                    "CODE": "Registration_Type",
+                    "VALUE": "",
+                    "DISP": "注册类型",
+                    "OPER_MODE": "010"
+                },
+                {
+                    "CODE": "BusinessOutletsAttr",
+                    "VALUE": "",
+                    "DISP": "网点属性",
+                    "OPER_MODE": "010"
+                }
             ]
         }
     },
@@ -325,7 +563,7 @@ export default {
         getValidatePath: String
     },
     components: {
-
+        selectContainer
     },
     computed: {
 
@@ -335,21 +573,21 @@ export default {
             if (this.flod) {
                 this.flod = false
             } else {
-                if (!obj.addFormItem) {
-                    if (this.$route.name === 'customer') {
-                        this.getCustomerForm(obj)
-                    } else {
-                        this.getCompany(obj)
-                    }
+                if (this.$route.name === '客户管理') {
+                    this.getCustomerForm(obj)
+                } else {
+                    this.getCompany(obj)
                 }
                 this.flod = true
             }
         },
         getCustomerForm(obj) {
+            console.log(obj);
             this.$set(obj, "addFormItem", this.customFormItem)
         },
         getCompany(obj) {
-            this.$set(obj, "addFormItem", this.addFormItem)
+            console.log(obj);
+            this.$set(obj, "addFormItem", this.companyFromItem)
         }
     },
     created() {
@@ -359,6 +597,7 @@ export default {
 </script>
 <style scoped lang="less">
 .form-item-wrap {
+    padding-left: 25px;
     padding-top: 20px;
     border-top: 1px dashed #dfe5e7;
     zoom: 1;

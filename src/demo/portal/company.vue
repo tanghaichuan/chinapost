@@ -1,25 +1,32 @@
 <template>
     <div class="company">
 
-        <!--右侧表单区域-->
         <wrapper @addItem="loadMore" icon="&#xe64c;" title="创建机构客户信息" :row="4" :formData="formData"></wrapper>
+
+        <!--右侧表单区域-->
     </div>
 </template>
 <script>
 import wrapper from './wrapper/wrapper'
 import bus from './bus'
+import dropTree from './components/droptree'
 export default {
     name: "company",
     data() {
         return {
             baseInfo: {
                 "isCollapse": true,
-                "isExtend": true,
                 "isAsync": true,
-                "title": "政企客户基本信息",
+                "title": "机构客户基本信息",
                 "formItem": [
                     {
                         "formList": [
+                            {
+                                "CODE": "COMPANY_NAME",
+                                "VALUE": "",
+                                "DISP": "选择机构",
+                                "OPER_MODE": "018"
+                            },
                             {
                                 "CODE": "COMPANY_NAME",
                                 "VALUE": "",
@@ -112,7 +119,7 @@ export default {
             idenInfo: {
                 "isExtend": true,
                 "isCollapse": true,
-                "title": "政企客户识别信息",
+                "title": "机构客户识别信息",
                 "formItem": [
                     {
                         "formList": [
@@ -165,7 +172,7 @@ export default {
             address: {
                 "isExtend": true,
                 "isCollapse": true,
-                "title": "政企客户地址信息",
+                "title": "机构客户地址信息",
                 "formItem": [
                     {
                         "formList": [
@@ -204,7 +211,7 @@ export default {
             contactInfo: {
                 "isExtend": true,
                 "isCollapse": true,
-                "title": "政企客户联系信息",
+                "title": "机构客户联系信息",
                 "formItem": [
                     {
                         "formList": [
@@ -259,7 +266,7 @@ export default {
             partyInfo: {
                 "isExtend": true,
                 "isCollapse": true,
-                "title": "政企客户其他关系人信息",
+                "title": "机构客户其他关系人信息",
                 "formItem": [
                     {
                         "formList": [
@@ -305,7 +312,8 @@ export default {
         }
     },
     components: {
-        wrapper
+        wrapper,
+        dropTree
     },
     methods: {
         loadMore(id) {
@@ -325,5 +333,54 @@ export default {
 }
 </script>
 <style scoped lang="less">
+.company {
+    position: relative;
+}
 
+h5 {
+    position: absolute;
+    top: 20px;
+    margin-bottom: 0;
+    display: inline-block;
+    font-size: 16px;
+    color: #333;
+    .tit-icon {
+        margin: 0 5px 0 8px;
+    }
+}
+
+.middle {
+    zoom: 1;
+    &:after {
+        content: '';
+        display: table;
+        clear: both;
+        overflow: hidden;
+    }
+    .con-left {
+        position: relative;
+        top: 49px;
+        float: left;
+        height: auto;
+        border: 1px solid #dfe5e7;
+        .droptree {
+            padding-top: 54px;
+            margin-left: -17px;
+        }
+        h5 {
+            position: absolute;
+            left: 0;
+            border-bottom: 1px solid #dfe5e7;
+            height: 45px;
+            line-height: 45px;
+            width: 100%;
+            display: block;
+            margin-top: -20px;
+            padding-left: 27px;
+        }
+    }
+    .con-right {
+        float: left;
+    }
+}
 </style>

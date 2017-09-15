@@ -13,7 +13,7 @@
             </div>
         </div>
         <div class="form-container" v-show="userList.isCollapse">
-            <div class="form-item-container" :class="userList.title === '基本信息' ? 'base-style' : ''">
+            <div class="form-item-container" :class="userList.title === '基本信息' || userList.title === '机构客户基本信息' ? 'base-style' : ''">
                 <div class="form-item-wrap">
                     <div class="form-block--block" :class="['col-'+row]" v-for="(item, y) in userList.formItem[0].formList" :key="y">
                         <t-form-item :label="item.DISP+':'" :prop="getValidatePath+'formItem.0.formList.'+y+'.'+VALUE" :rules="{required: item.REQUIRE, message: item.DISP+'不能为空', trigger: 'blur'}" :label-span="userList.title === '基本信息' ? 1 : 5">
@@ -23,6 +23,7 @@
                             <t-input :disabled="isDisabled" v-model="item.VALUE" v-if="item.OPER_MODE === '010'"></t-input>
                             <t-input :disabled="isDisabled" v-model="item.VALUE" v-if="item.OPER_MODE === '013'" type="textarea"></t-input>
                             <t-date-picker v-model="item.VALUE" v-if="item.OPER_MODE === '014'"></t-date-picker>
+                            <drop-tree v-if="item.OPER_MODE === '018'"></drop-tree>
                         </t-form-item>
                     </div>
                 </div>
@@ -50,6 +51,7 @@
 </template>
 <script>
 import dynamicFrom from './dynamicForm'
+import dropTree from '../components/droptree'
 // 说明：
 // 1.  特征值数据类型目前定义如下：
 // 01--文本
@@ -108,7 +110,8 @@ export default {
         getValidatePath: String
     },
     components: {
-        dynamicFrom
+        dynamicFrom,
+        dropTree
     },
     methods: {
         addFormList() {

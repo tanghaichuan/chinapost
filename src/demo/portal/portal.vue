@@ -1,7 +1,7 @@
 <template>
   <div class="layout layout--one-screen bg-gray-lightest-5">
     <!--侧边菜单栏-->
-    <white-side-bar :isOpen="isOpen" @changeCurrentMenu="changeBreadCrumb" :menuList="menuList" :openPosition="openPosition"></white-side-bar>
+    <side-bar :isOpen="isOpen" @changeCurrentMenu="changeBreadCrumb" :menuList="menuList" :openPosition="openPosition"></side-bar>
     <div class="layout-content">
       <white-nav-bar :isOpen="isOpen" @toggleSideBar="toggleSide" :openPosition="openPosition"></white-nav-bar>
       <div>
@@ -25,6 +25,8 @@
 <script>
 import whiteSideBar from './menu/whitesidebar'
 import whiteNavBar from './menu/whiteNavBar'
+import sideBar from './menu/sidebar'
+import navBar from './menu/navbar'
 export default {
   data() {  // store data
     return {
@@ -42,7 +44,9 @@ export default {
   },
   components: {
     whiteSideBar,
-    whiteNavBar
+    whiteNavBar,
+    sideBar,
+    navBar
   },
   methods: { // methods
     emptyMenu() {
