@@ -2,11 +2,12 @@
     <div class="company">
 
         <!--右侧表单区域-->
-        <wrapper icon="&#xe64c;" title="创建机构客户信息" :row="4" :formData="formData"></wrapper>
+        <wrapper @addItem="loadMore" icon="&#xe64c;" title="创建机构客户信息" :row="4" :formData="formData"></wrapper>
     </div>
 </template>
 <script>
 import wrapper from './wrapper/wrapper'
+import bus from './bus'
 export default {
     name: "company",
     data() {
@@ -305,6 +306,11 @@ export default {
     },
     components: {
         wrapper
+    },
+    methods: {
+        loadMore(id) {
+            console.log(id);
+        }
     },
     created() {
         // 逐块获取数据时可以用$set

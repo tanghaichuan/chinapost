@@ -2,7 +2,7 @@
     <div class="dynamic-load">
         <div class="form-item-wrap" v-if="flod">
             <div class="form-block--block" :class="['col-'+row]" v-for="(item, y) in userList.formItem[id].addFormItem" :key="y">
-                <t-form-item :label="item.DISP+':'" :prop="getValidatePath+'formItem.'+id+'.addFormItem.'+y+'.'+VALUE" :rules="{required: item.REQUIRE, message: item.DISP+'不能为空', trigger: 'blur'}" :label-span="userList.title === '基本信息' ? 1 : 5">
+                <t-form-item :label="item.DISP+':'" :prop="getValidatePath+'formItem.'+id+'.addFormItem.'+y+'.'+VALUE" :rules="{required: item.REQUIRE, message: item.DISP+'不能为空', trigger: 'blur'}" :label-span="userList.title === '基本信息' ? 4 : 5">
                     <t-select :disabled="isDisabled" v-model="item.VALUE" :title="item.VALUE" v-if="item.OPER_MODE === '02'">
                         <t-option v-for="(item1, z) in item.ENUM" :value="item1.value" :key="z">{{ item1.value }}</t-option>
                     </t-select>
@@ -21,13 +21,150 @@
     </div>
 </template>
 <script>
-
 export default {
     name: 'dynamicForm',
     data() {
         return {
             flod: false,
-            addFormItem: [
+            customFormItem: [
+                {
+                    "CODE": "MAJOR_LOGISTICS_REQCONT",
+                    "VALUE": "",
+                    "DISP": "主要物流需求",
+                    "OPER_MODE": "010"
+                },
+                {
+                    "CODE": "INDUSTYR_TYPE_PARENT",
+                    "VALUE": "",
+                    "DISP": "行业类型",
+                    "OPER_MODE": "02"
+                },
+                {
+                    "CODE": "PAYMENT_TERM",
+                    "VALUE": "",
+                    "DISP": "账期",
+                    "OPER_MODE": "010"
+                },
+                {
+                    "CODE": "APPROVAL_FLAG",
+                    "VALUE": "",
+                    "DISP": "审批标志",
+                    "OPER_MODE": "010"
+                },
+                {
+                    "CODE": "POSTAGE_CONFIDENCE",
+                    "VALUE": "",
+                    "DISP": "客户对邮资信度",
+                    "OPER_MODE": "010"
+                },
+                {
+                    "CODE": "ACCOUNTING_FLAG",
+                    "VALUE": "",
+                    "DISP": "允许记账标志",
+                    "OPER_MODE": "02"
+                },
+                {
+                    "CODE": "ARREARS_LIMIT",
+                    "VALUE": "",
+                    "DISP": "欠费金额限制",
+                    "OPER_MODE": "010"
+                },
+                {
+                    "CODE": "ARREARS_TIME_LIMIT",
+                    "VALUE": "",
+                    "DISP": "欠费时间限制",
+                    "OPER_MODE": "010"
+                },
+                {
+                    "CODE": "IF_DEVELOPECUST",
+                    "VALUE": "",
+                    "DISP": "是否开发用户",
+                    "OPER_MODE": "02",
+                    "ENUM": [
+                        {
+                            "key": "Y",
+                            "value": "有"
+                        },
+                        {
+                            "key": "N",
+                            "value": "无"
+                        }
+                    ]
+                },
+                {
+                    "CODE": "IF_AGREEMENTCUST",
+                    "VALUE": "",
+                    "DISP": "是否合同用户",
+                    "OPER_MODE": "02",
+                    "ENUM": [
+                        {
+                            "key": "Y",
+                            "value": "有"
+                        },
+                        {
+                            "key": "N",
+                            "value": "无"
+                        }
+                    ]
+                },
+                {
+                    "CODE": "IF_COMPOSITECUST",
+                    "VALUE": "",
+                    "DISP": "是否综合用户",
+                    "OPER_MODE": "02",
+                    "ENUM": [
+                        {
+                            "key": "Y",
+                            "value": "有"
+                        },
+                        {
+                            "key": "N",
+                            "value": "无"
+                        }
+                    ]
+                },
+                {
+                    "CODE": "VIP_CARD_NUMBER",
+                    "VALUE": "",
+                    "DISP": "贵宾卡号",
+                    "OPER_MODE": "010",
+                },
+                {
+                    "CODE": "PAYER_NUMBER",
+                    "VALUE": "",
+                    "DISP": "付款人客户编码",
+                    "OPER_MODE": "010",
+                },
+                {
+                    "CODE": "CUSTOMER_NUMBER",
+                    "VALUE": "",
+                    "DISP": "大客户号",
+                    "OPER_MODE": "010",
+                },
+                {
+                    "CODE": "TOUCHWAY",
+                    "VALUE": "",
+                    "DISP": "客户触达方式",
+                    "OPER_MODE": "010",
+                },
+                {
+                    "CODE": "COMPANY_CODE",
+                    "VALUE": "",
+                    "DISP": "客户办理业务机构编号",
+                    "OPER_MODE": "010",
+                },
+                {
+                    "CODE": "SOURCE_MANNER",
+                    "VALUE": "",
+                    "DISP": "客户来源方式",
+                    "OPER_MODE": "02",
+                },
+                {
+                    "CODE": "RESOURCE_SYSTEM",
+                    "VALUE": "",
+                    "DISP": "来源系统",
+                    "OPER_MODE": "02",
+                },
                 {
                     "DISP": "HAVECHILDFLAG",
                     "DISP": "是否有子女",
@@ -165,6 +302,9 @@ export default {
                     "DISP": "重要日期",
                     "OPER_MODE": "014"
                 }
+            ],
+            companyFromItem: [
+
             ]
         }
     },
@@ -196,10 +336,20 @@ export default {
                 this.flod = false
             } else {
                 if (!obj.addFormItem) {
-                    this.$set(obj, 'addFormItem', this.addFormItem)
+                    if (this.$route.name === 'customer') {
+                        this.getCustomerForm(obj)
+                    } else {
+                        this.getCompany(obj)
+                    }
                 }
                 this.flod = true
             }
+        },
+        getCustomerForm(obj) {
+            this.$set(obj, "addFormItem", this.customFormItem)
+        },
+        getCompany(obj) {
+            this.$set(obj, "addFormItem", this.addFormItem)
         }
     },
     created() {
@@ -208,6 +358,18 @@ export default {
 }
 </script>
 <style scoped lang="less">
+.form-item-wrap {
+    padding-top: 20px;
+    border-top: 1px dashed #dfe5e7;
+    zoom: 1;
+    &:after {
+        content: '';
+        display: table;
+        clear: both;
+        overflow: hidden;
+    }
+}
+
 .load-more {
     text-align: right;
 }
