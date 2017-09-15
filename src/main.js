@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import {sync} from 'vuex-router-sync'
 import taurus from 'aid-taurus-desktop'
-import * as _ from 'lodash/core' // lodash依赖库 _.func 调用
+import _ from 'lodash'
 // import VueI18n from 'vue-i18n'
 /* locale for aid-taurus-desktop */
 // import aidzhLocale from 'aid-taurus-desktop/src/locale/lang/zh-CN' import
@@ -19,7 +19,6 @@ import './invokers'
 // ...aidenLocale   },   'zh-CN': {     ...zhLocale,     ...aidzhLocale   } }
 // const i18n = new VueI18n({   locale: bus.lang, // 设置当前语言   messages //
 // 设置本地化资源 })
-
 Vue.use(taurus, {
   // i18n: (path, options) => {   let value = i18n.t(path, options)   if (value
   // !== null && value !== undefined) return value   return '' }

@@ -107,6 +107,7 @@ export default {
     submit() {
       this.$refs.loginForm.validate((valid) => {
         if (valid) {
+          console.log(this.formData);
           this.$router.push({
             path: '/'
           })
