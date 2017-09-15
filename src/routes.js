@@ -19,6 +19,7 @@ const highquery = r => require.ensure([], () => r(require('demo/owns/formlist/hi
 const alignment = r => require.ensure([], () => r(require('demo/owns/formlist/alignment')), 'test')
 const popupEdit = r => require.ensure([], () => r(require('demo/owns/formlist/popupEdit')), 'test')
 const dynamicForm = r => require.ensure([], () => r(require('demo/test/dynamicForm')), 'test')
+const droptree = r => require.ensure([], () => r(require('demo/portal/components/droptree.vue')), 'test')
 
 export default[
   {
@@ -183,7 +184,13 @@ export default[
     path : '/dynamicForm',
     component : dynamicForm
   },
-  ...cloud,
+    {
+        name : 'droptree',
+        path : '/droptree',
+        component : droptree
+    },
+
+    ...cloud,
   ...osp, {
     path : '*',
     component : {
