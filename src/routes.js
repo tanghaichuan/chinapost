@@ -20,6 +20,7 @@ const alignment = r => require.ensure([], () => r(require('demo/owns/formlist/al
 const popupEdit = r => require.ensure([], () => r(require('demo/owns/formlist/popupEdit')), 'test')
 const dynamicForm = r => require.ensure([], () => r(require('demo/test/dynamicForm')), 'test')
 const droptree = r => require.ensure([], () => r(require('demo/portal/components/droptree.vue')), 'test')
+const checkBoxTree = r => require.ensure([], () => r(require('demo/portal/components/checkBoxTree.vue')), 'test')
 
 export default[
   {
@@ -199,6 +200,11 @@ export default[
     name : 'droptree',
     path : '/droptree',
     component : droptree
+  },
+  {
+    name : 'checkBoxTree',
+    path : '/checkBoxTree',
+    component : checkBoxTree
   },
 
   ...cloud,
