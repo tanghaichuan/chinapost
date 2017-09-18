@@ -162,7 +162,8 @@ export default {
                                 "VALUE": "",
                                 "DISP": "名称",
                                 "OPER_MODE": "010",
-                                "REQUIRE": true
+                                "REQUIRE": true,
+                                "REG": '/^1\d{7}$/'
                             },
                             {
                                 "CODE": "SIMPLE_SPELL",

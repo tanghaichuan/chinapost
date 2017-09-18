@@ -573,7 +573,7 @@ export default {
             if (this.flod) {
                 this.flod = false
             } else {
-                if (this.$route.name === '客户管理') {
+                if (this.$route.name === '个人客户管理') {
                     this.getCustomerForm(obj)
                 } else {
                     this.getCompany(obj)
