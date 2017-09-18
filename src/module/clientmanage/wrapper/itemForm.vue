@@ -16,7 +16,11 @@
             <div class="form-item-container" :class="userList.title === '基本信息' || userList.title === '机构客户基本信息' ? 'base-style' : ''">
                 <div class="form-item-wrap">
                     <div class="form-block--block" :class="['col-'+row]" v-for="(item, y) in userList.formItem[0].formList" :key="y">
-                        <t-form-item :label="item.DISP+':'" :prop="getValidatePath+'formItem.0.formList.'+y+'.'+VALUE" :rules="{validator: valida(item.REG), required: item.REQUIRE, message: item.DISP+'不能为空', trigger: 'blur'}" :label-span="userList.title === '基本信息' ? 1 : 5">
+                        <t-form-item 
+                        :label="item.DISP+':'" 
+                        :prop="getValidatePath+'formItem.0.formList.'+ y +'.VALUE'" 
+                        :rules="{ required: true, message: '不合法', trigger: 'blur' }" 
+                        :label-span="userList.title === '基本信息' ? 1 : 5">
                             <t-select :disabled="isDisabled" v-model="item.VALUE" :title="item.VALUE" v-if="item.OPER_MODE === '02'">
                                 <t-option v-for="(item1, z) in item.ENUM" :value="item1.value" :key="z">{{ item1.value }}</t-option>
                             </t-select>
@@ -27,14 +31,15 @@
                         </t-form-item>
                     </div>
                 </div>
+                <!--异步加载更多-->
                 <dynamic-from :getValidatePath="getValidatePath" :row="row" :id="0" :isAsync="userList.isAsync" :userList.sync="userList"></dynamic-from>
             </div>
-            <!--增加一条-->
+            <!--增加扩展-->
             <div class="form-item-container" v-for="(item1, x) in userList.formItem" v-if="x > 0" :key="x" :class="userList.title === '基本信息' ? 'base-style' : ''">
                 <i class="iconfont del" @click="delFormList(userList.formItem, x)">&#xe61b;</i>
                 <div class="form-item-wrap">
                     <div class="form-block--block" :class="['col-'+row]" v-for="(item2, y) in item1.formList" :key="y">
-                        <t-form-item :label="item2.DISP+':'" :prop="getValidatePath+'formItem.'+x+'.formList.'+y+'.'+VALUE" :rules="{required: item2.REQUIRE, message: item2.DISP+'不能为空', trigger: 'blur'}" :label-span="userList.title === '基本信息' ? 1 : 5">
+                        <t-form-item :label="item2.DISP+':'" :prop="getValidatePath+'formItem.'+x+'.formList.'+y+'.+VALUE'" :rules="{required: item2.REQUIRE, message: item2.DISP+'不能为空', trigger: 'blur'}" :label-span="userList.title === '基本信息' ? 1 : 5">
                             <t-select :disabled="isDisabled" v-model="item2.VALUE" :title="item2.VALUE" v-if="item2.OPER_MODE === '02'">
                                 <t-option v-for="(item3, z) in item2.ENUM" :value="item3.value" :key="z">{{ item3.value }}</t-option>
                             </t-select>
@@ -115,8 +120,9 @@ export default {
         dropTree
     },
     methods: {
-        valida(reg, rule, value, callFunc) {
-            console.log(`${reg},${rule},${value},${callFunc}`);
+        // 动态验证规则
+        validate() {
+            return `不能为空`
         },
         addFormList() {
             let arr = [];
@@ -138,7 +144,7 @@ export default {
     },
     created() {
         //console.log(this.userList);
-        // console.log(this.getValidatePath);
+        console.log(this.getValidatePath);
     }
 }
 </script>

@@ -1,5 +1,6 @@
 <template>
 	<div class="test">
+		<dynamic-form></dynamic-form>
 		<h5>按钮类</h5>
 		<t-button type="primary" class="actives" :disabled="true">disabled</t-button>
 	    <t-button type="primary">主按钮</t-button>
@@ -221,10 +222,12 @@
 </template>
 <script>
 import tableTest from './table1.vue'
+import dynamicForm from './dynamicForm'
 export default {
 	name: 'test',
 	components:{
-		tableTest
+		tableTest,
+		dynamicForm
 	},
 	data() {
 		return {

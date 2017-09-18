@@ -2,7 +2,9 @@
     <div class="dynamic-load">
         <div class="form-item-wrap" v-if="flod">
             <div class="form-block--block" :class="['col-'+row]" v-for="(item, y) in userList.formItem[id].addFormItem" :key="y">
-                <t-form-item :label="item.DISP+':'" :prop="getValidatePath+'formItem.'+id+'.addFormItem.'+y+'.'+VALUE" :rules="{required: item.REQUIRE, message: item.DISP+'不能为空', trigger: 'blur'}" :label-span="userList.title === '基本信息' ? 3 : 5">
+                <t-form-item :label="item.DISP+':'" 
+                :prop="getValidatePath+'formItem.'+id+'.addFormItem.'+y+'.+VALUE'" 
+                :rules="{required: item.REQUIRE, message: item.DISP+'不能为空', trigger: 'blur'}" :label-span="userList.title === '基本信息' ? 3 : 5">
                     <t-select :disabled="isDisabled" v-model="item.VALUE" :title="item.VALUE" v-if="item.OPER_MODE === '02'">
                         <t-option v-for="(item1, z) in item.ENUM" :value="item1.value" :key="z">{{ item1.value }}</t-option>
                     </t-select>

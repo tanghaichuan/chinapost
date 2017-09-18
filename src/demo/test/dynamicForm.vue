@@ -1,103 +1,67 @@
 <template>
-    <div class="dynamic-form">
-        <t-form :model="userList" :rules="listRule" label-position="left" :label-span="3">
-            <item-form v-for="(item, index) in userList" :key="index" :userInfo="item"></item-form>
-        </t-form>
-    </div>
+    <t-form ref="formDynamic" :model="formDynamic" :label-width="80">
+      <t-form-item
+        v-for="(item, index) in formDynamic.items"
+        :key="item"
+        :label="'表单项' + (index + 1)"
+        :prop="'items.' + index + '.value'"
+        :rules="{type: 'string', message: '类型不对', trigger: 'blur'}">
+        <div class="row">
+          <div class="col-10">
+            <t-input type="text" v-model="item.value" placeholder="请输入..."></t-input>
+          </div>
+          <div>
+            <t-button type="outline-danger" @click="handleRemove(index)">删除</t-button>
+          </div>
+        </div>
+      </t-form-item>
+      <t-form-item>
+        <div class="row">
+          <div class="col-12">
+            <t-button type="outline-info" block @click="handleAdd" icon="plus-round">新增</t-button>
+          </div>
+        </div>
+      </t-form-item>
+      <t-form-item>
+        <t-button type="primary" @click="handleSubmit('formDynamic')">提交</t-button>
+        <t-button @click="handleReset('formDynamic')" class="ml-2">重置</t-button>
+      </t-form-item>
+    </t-form>
 </template>
 <script>
-
-
-import itemForm from './itemForm'
-export default {
-    name: 'dynamicForm',
-    data() {
-        return {
-            userList: [],
-            listRule: {
-                NAME: [
-                    { required: true, message: '姓名不能为空', trigger: 'blur' }
-                ]
+    export default {
+        data () {
+            return {
+                formDynamic: {
+                    items: [
+                        {
+                            value: ''
+                        }
+                    ]
+                }
+            }
+        },
+        methods: {
+            handleSubmit (name) {
+                this.$refs[name].validate((valid) => {
+                    if (valid) {
+                        this.$Message.success('提交成功!');
+                    } else {
+                        this.$Message.danger('表单验证失败!');
+                    }
+                })
             },
-            userInfo: {
-                "CHA": [
-                    {
-                        "CODE": "NAME",
-                        "VALUE": "1",
-                        "DISP": '客户编码',
-                        "OPER_MODE": "010"
-                    },
-                    {
-                        "CODE": "NAME",
-                        "VALUE": "爱因斯坦",
-                        "DISP": '客户名称',
-                        "OPER_MODE": "010"
-                    },
-                    {
-                        "CODE": "SEX",
-                        "VALUE": "M",
-                        "DISP": "性别",
-                        "OPER_MODE": "02",
-                        "ENUM": [
-                            {
-                                "key": "M",
-                                "value": "男"
-                            },
-                            {
-                                "key": "F",
-                                "value": "女"
-                            },
-                            {
-                                "key": "U",
-                                "value": "其他"
-                            }
-                        ]
-                    },
-                    // {
-                    //     "CODE": "BIRTH_DATE",
-                    //     "VALUE": "1975-09-20",
-                    //     "DISP": 3,
-                    //     "OPER_MODE": "014"
-                    // },
-                    // {
-                    //     "CODE": "IS_CONTRACT_USER",
-                    //     "VALUE": "T",
-                    //     "DISP": 1,
-                    //     "OPER_MODE": "016"
-                    // },
-                    {
-                        "CODE": "REMARKS",//唯一 id
-                        "VALUE": "需要特殊照顾。\n非常重要！",// 值
-                        "DISP": '客户编码',
-                        "OPER_MODE": "013" //控件类型
-                    },
-                    // {
-                    //     "CODE": "联系地址",
-                    //     "VALUE": "北京中关村南路125号",
-                    //     "DISP": 2,
-                    //     "OPER_MODE": "015"
-                    // }
-                ]
+            handleReset (name) {
+                this.$refs[name].resetFields();
             },
-            form: [
-
-            ]
+            handleAdd () {
+                this.formDynamic.items.push({
+                    value: ''
+                });
+            },
+            handleRemove (index) {
+                this.formDynamic.items.splice(index, 1);
+            }
         }
-    },
-    components: {
-        itemForm
-    },
-    computed: {
-
-    },
-    created() {
-        Object.keys(this.userInfo).forEach(item => {
-            this.userList.push(this.userInfo[item]);
-        })
-        console.log(this.userList);
     }
-}
 </script>
-<style scoped lang="less">
-
-</style>

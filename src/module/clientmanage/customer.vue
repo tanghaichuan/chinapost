@@ -565,7 +565,6 @@ export default {
         
     },
     created() {
-   
         // 逐块获取数据时可以用$set
         this.formData = Object.assign({}, this.formData, {
             baseInfo: this.baseInfo,
