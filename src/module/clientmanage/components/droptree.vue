@@ -23,6 +23,7 @@
 </template>
 <script>
 export default {
+    name: 'dropTree',
     data() {
         return {
             value4: '',

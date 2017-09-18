@@ -10,7 +10,6 @@
     </div>
 </template>
 <script>
-import selectContainer from './selectContainer'
 import itemWrap from './itemWrap'
 export default {
     name: 'dynamicForm',
@@ -550,7 +549,6 @@ export default {
         getValidatePath: String
     },
     components: {
-        selectContainer,
         itemWrap
     },
     computed: {

@@ -1,7 +1,5 @@
 import {proxyLoad} from './common/js/proxyLoad'
 
-import cloud from './demo/cloud/route'
-import osp from './demo/osp/route'
 import client from './module/clientmanage/route'
 
 const menu = r => require.ensure([], () => r(require('module/clientmanage/menu')), 'menu')
@@ -61,9 +59,7 @@ export default[
     ]
   },
   // {   name : 'query',   path : '/query',   component : query },
-  ...client,
-  ...cloud,
-  ...osp, {
+  ...client, {
     path : '*',
     component : {
       template: '<div>not found</div>'
