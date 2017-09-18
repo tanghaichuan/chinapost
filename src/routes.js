@@ -33,6 +33,10 @@ export default[
       }
     ]
   }, {
+    name : 'test',
+    path : '/test',
+    component : test
+  }, {
     name : 'Login',
     path : '/login',
     component : require('./module/login/login.vue')
@@ -55,7 +59,7 @@ export default[
         component: require('module/clientmanage/company.vue')
       }
     ]
-  }, 
+  },
   // {   name : 'query',   path : '/query',   component : query },
   ...client,
   ...cloud,

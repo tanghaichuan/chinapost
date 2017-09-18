@@ -13,11 +13,13 @@
                 <t-input :disabled="isDisabled" v-model="item.VALUE" v-if="item.OPER_MODE === '013'" type="textarea"></t-input>
                 <t-date-picker v-model="item.VALUE" v-if="item.OPER_MODE === '014'"></t-date-picker>
                 <drop-tree v-if="item.OPER_MODE === '018'"></drop-tree>
+                <industry v-if="item.OPER_MODE === '017'"></industry>
             </t-form-item>
         </div>
     </div>
 </template>
 <script>
+import industry from './industry'
 export default {
     name: "itemWrap",
     data() {
@@ -40,6 +42,9 @@ export default {
             type: Boolean,
             default: false
         }
+    },
+    comments: {
+        industry
     },
     created(){
     

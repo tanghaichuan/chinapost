@@ -1,11 +1,11 @@
 <template>
-    <div class="pop-industry">
+    <div class="industry">
 
     </div>
 </template>
 <script>
 export default {
-    name: "popIndustry",
+    name: "Industry",
     data() {
         return {
             
