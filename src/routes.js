@@ -20,8 +20,8 @@ const formStandard = r => require.ensure([], () => r(require('demo/owns/formlist
 const highquery = r => require.ensure([], () => r(require('demo/owns/formlist/highquery')), 'test')
 const alignment = r => require.ensure([], () => r(require('demo/owns/formlist/alignment')), 'test')
 const popupEdit = r => require.ensure([], () => r(require('demo/owns/formlist/popupEdit')), 'test')
-const dynamicForm = r => require.ensure([], () => r(require('demo/test/dynamicForm')), 'test') <<<<<<< HEAD ======= const droptree = r => require.ensure([], () => r(require('demo/portal/components/droptree.vue')), 'test')
-const checkBoxTree = r => require.ensure([], () => r(require('demo/portal/components/checkBoxTree.vue')), 'test') >>>>>>> 7 f88fc72c3cc15caacec04d77181cc59693f7f3e
+const dynamicForm = r => require.ensure([], () => r(require('demo/test/dynamicForm')), 'test')
+const checkBoxTree = r => require.ensure([], () => r(require('demo/portal/components/checkBoxTree.vue')), 'test')
 
 export default[
   {
