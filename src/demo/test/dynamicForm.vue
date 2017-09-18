@@ -5,7 +5,7 @@
         :key="item"
         :label="'表单项' + (index + 1)"
         :prop="'items.' + index + '.value'"
-        :rules="{type: 'string', message: '类型不对', trigger: 'blur'}">
+        :rules="{type: 'number', message: '类型不对', trigger: 'blur'}">
         <div class="row">
           <div class="col-10">
             <t-input type="text" v-model="item.value" placeholder="请输入..."></t-input>

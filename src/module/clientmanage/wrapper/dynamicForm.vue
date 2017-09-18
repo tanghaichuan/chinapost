@@ -1,22 +1,6 @@
 <template>
     <div class="dynamic-load">
-        <div class="form-item-wrap" v-if="flod">
-            <div class="form-block--block" :class="['col-'+row]" v-for="(item, y) in userList.formItem[id].addFormItem" :key="y">
-                <t-form-item :label="item.DISP+':'" 
-                :prop="getValidatePath+'formItem.'+id+'.addFormItem.'+y+'.+VALUE'" 
-                :rules="{required: item.REQUIRE, message: item.DISP+'不能为空', trigger: 'blur'}" :label-span="userList.title === '基本信息' ? 3 : 5">
-                    <t-select :disabled="isDisabled" v-model="item.VALUE" :title="item.VALUE" v-if="item.OPER_MODE === '02'">
-                        <t-option v-for="(item1, z) in item.ENUM" :value="item1.value" :key="z">{{ item1.value }}</t-option>
-                    </t-select>
-                    <div v-if="item.OPER_MODE === '017'" class="tree-select">
-                        <select-container :openSelect.sync="openSelect" :item="item"></select-container>
-                    </div>
-                    <t-input :disabled="isDisabled" v-model="item.VALUE" v-if="item.OPER_MODE === '010'"></t-input>
-                    <t-input :disabled="isDisabled" v-model="item.VALUE" v-if="item.OPER_MODE === '013'" type="textarea"></t-input>
-                    <t-date-picker v-model="item.VALUE" v-if="item.OPER_MODE === '014'"></t-date-picker>
-                </t-form-item>
-            </div>
-        </div>
+        <item-wrap v-if="flod" :row="row" :path="getValidatePath+'formItem.'+id+'.addFormItem.'" :userList="userList" :formList="userList.formItem[id].addFormItem"></item-wrap>
         <div class="load-more">
             <a href="javascript:;" v-if="userList.isAsync" class="more" @click="getMore(userList.title,userList.formItem[id])">
                 <span v-text="flod ? '收起' : '更多'"></span>
@@ -27,6 +11,7 @@
 </template>
 <script>
 import selectContainer from './selectContainer'
+import itemWrap from './itemWrap'
 export default {
     name: 'dynamicForm',
     data() {
@@ -565,7 +550,8 @@ export default {
         getValidatePath: String
     },
     components: {
-        selectContainer
+        selectContainer,
+        itemWrap
     },
     computed: {
 

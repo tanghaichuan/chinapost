@@ -50,7 +50,7 @@
     "stylelint": "^7.8.0",
     "stylelint-config-standard": "^16.0.0",
     "vue-loader": "^11.1.3",
-    "vue-template-compiler": "^2.2.1"
+    "vue-template-compiler": "^2.4.4"
   },
   "dependencies": {
     "aid-elements": "^0.7.48",
@@ -58,7 +58,7 @@
     "axios": "^0.15.3",
     "ipu-cli": "0.0.56",
     "lodash": "^4.17.4",
-    "vue": "^2.4.2",
+    "vue": "^2.4.4",
     "vue-i18n": "^7.0.5",
     "vue-router": "^2.2.1",
     "vuex": "^2.1.2",
