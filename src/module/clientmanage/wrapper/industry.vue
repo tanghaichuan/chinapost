@@ -8,6 +8,7 @@
     </div>
 </template>
 <script>
+import checkBoxTree from 'module/clientmanage/components/checkBoxTree'
 export default {
     name: "Industry",
     data() {
@@ -17,6 +18,9 @@ export default {
     },
     props: {
         item: Object
+    },
+    components: {
+        checkBoxTree
     }
 }
 </script>
