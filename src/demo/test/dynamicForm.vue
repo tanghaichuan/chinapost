@@ -8,8 +8,7 @@
         :rules="{type: 'number', message: '类型不对', trigger: 'change'}">
             <div class="row">
                 <div class="col-10">
-                    <input type="number" v-model.number="item.value" name="points"  min="1" max="10" />
-                    
+                    <t-input type="number"  v-model="item.value" placeholder="请输入..."></t-input>
                 </div>
                 <div>
                     <t-button type="outline-danger" @click="handleRemove(index)">删除</t-button>
@@ -46,7 +45,7 @@ export default {
         handleSubmit(name) {
             this.$refs[name].validate((valid) => {
                 if (valid) {
-                    console.log(typeof(this.formDynamic.items[0].value));
+                     console.log(typeof(this.formDynamic.items[0].value));
                     this.$Message.success('提交成功!');
                 } else {
                     console.log(typeof(this.formDynamic.items[0].value));
