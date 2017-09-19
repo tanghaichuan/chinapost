@@ -20,6 +20,7 @@ const alignment = r => require.ensure([], () => r(require('demo/owns/formlist/al
 const popupEdit = r => require.ensure([], () => r(require('demo/owns/formlist/popupEdit')), 'test')
 const dynamicForm = r => require.ensure([], () => r(require('demo/test/dynamicForm')), 'test')
 const droptree = r => require.ensure([], () => r(require('demo/portal/components/droptree.vue')), 'test')
+const agentView = r => require.ensure([], () => r(require('module/agentView/index.vue')), 'agentView')
 
 export default[
   {
@@ -32,8 +33,8 @@ export default[
         component: require('./module/index/home.vue')
       }, {
         name: 'Agentview',
-        path: '/agentview/:id',
-        component: require('./module/index/home.vue')
+        path: '/agentview',
+        component: agentView
       }, {
         name: 'Permission',
         path: '/permissionview',

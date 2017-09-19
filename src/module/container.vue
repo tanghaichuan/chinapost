@@ -8,6 +8,7 @@
 </template>
 <script>
 import cheader from 'components/header.vue'
+// console.log(bus);
 export default {
   data() {
     return {
