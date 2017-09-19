@@ -17,24 +17,24 @@
         </t-form>
         <!-- 表格域 -->
         <!-- <div class="extend-attr">
-                            <div class="form-top">
-                                <div class="left" @click="showTable = !showTable">
-                                    <span class="info-icon">
-                                        <i class="iconfont" v-if="showTable">&#xe78e;</i>
-                                        <i class="iconfont" v-else>&#xe78d;</i>
-                                    </span>
-                                    <h6>客户扩展属性</h6>
-                                </div>
-                                <div class="right"></div>
-                            </div>
-                            <div v-show="showTable" class="wrapper-table" ref="table">
-                                <div class="table-top">
-                                    <t-button @click.native="addTableList" type="outline" class="left sub-btn">新增</t-button>
-                                    <t-input v-model="searchInfo" icon="magnify" class="right" icon-placement="right" placeholder="请输入搜索内容" style="width: 150px;"></t-input>
-                                </div>
-                                <edit-table :editColumn.sync="editColumn" :editData.sync="showTableList"></edit-table>
-                            </div>
-                        </div> -->
+            <div class="form-top">
+                <div class="left" @click="showTable = !showTable">
+                    <span class="info-icon">
+                        <i class="iconfont" v-if="showTable">&#xe78e;</i>
+                        <i class="iconfont" v-else>&#xe78d;</i>
+                    </span>
+                    <h6>客户扩展属性</h6>
+                </div>
+                <div class="right"></div>
+            </div>
+            <div v-show="showTable" class="wrapper-table" ref="table">
+                <div class="table-top">
+                    <t-button @click.native="addTableList" type="outline" class="left sub-btn">新增</t-button>
+                    <t-input v-model="searchInfo" icon="magnify" class="right" icon-placement="right" placeholder="请输入搜索内容" style="width: 150px;"></t-input>
+                </div>
+                <edit-table :editColumn.sync="editColumn" :editData.sync="showTableList"></edit-table>
+            </div>
+        </div> -->
         <div class="form-options">
             <t-button type="primary" class="save" @click.native="handleSubmit('formDynamic')">
                 <i class="iconfont">&#xe643;</i>提交</t-button>

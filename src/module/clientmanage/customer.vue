@@ -162,7 +162,8 @@ export default {
                                 "VALUE": "",
                                 "DISP": "名称",
                                 "OPER_MODE": "010",
-                                "REQUIRE": true
+                                "REQUIRE": true,
+                                "REG": '/^1\d{7}$/'
                             },
                             {
                                 "CODE": "SIMPLE_SPELL",
@@ -564,7 +565,6 @@ export default {
         
     },
     created() {
-   
         // 逐块获取数据时可以用$set
         this.formData = Object.assign({}, this.formData, {
             baseInfo: this.baseInfo,
