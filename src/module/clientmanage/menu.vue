@@ -251,11 +251,14 @@ export default {
           children: [{
             name: "客户信息管理",
             children: [{
-              name: "客户",
-              url: "/menu/client"
+              name: "个人客户",
+              url: "/client/customer"
             }, {
-              name: "潜在客户",
-              url: "/menu/company"
+              name: "机构客户",
+              url: "/client/company"
+            }, {
+              name: "查询列表",
+              url: "/client/querylist"
             }, {
               name: "可信度打分",
               url: "/menu/clientInfo"

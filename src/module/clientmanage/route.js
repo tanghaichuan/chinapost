@@ -16,6 +16,10 @@ const routes = [
                 path: 'company',
                 name: '机构客户管理',
                 component: require('module/clientmanage/company.vue')
+            }, {
+                path: 'querylist',
+                name: '查询列表',
+                component: require('module/clientmanage/querylist.vue')
             }
         ]
     }

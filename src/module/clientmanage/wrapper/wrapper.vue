@@ -37,9 +37,9 @@
         </div> -->
         <div class="form-options">
             <t-button type="primary" class="save" @click.native="handleSubmit('formDynamic')">
-                <i class="iconfont">&#xe643;</i>提交</t-button>
+                <i class="iconfont">&#xe624;</i>保存</t-button>
             <t-button type="outline" class="sub-btn approval">
-                <i class="iconfont">&#xe65f;</i>审批</t-button>
+                <i class="iconfont">&#xe65f;</i>提交审核</t-button>
         </div>
     </div>
 </template>
@@ -507,7 +507,7 @@ export default {
         height: 36px;
     }
     .approval {
-        width: 88px;
+        width: 120px;
         height: 36px;
         border-color: #42ab6f;
     }
