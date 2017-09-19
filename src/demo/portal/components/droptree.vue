@@ -123,21 +123,29 @@
                         h('span', {
                             style: {
                                 'display': 'inline-block',
-                                'width': '100px',
+                                'width': '160px',
                                 'overflow': 'hidden',
                                 'text-overflow': 'ellipsis',
                                 'white-space': 'nowrap'
                             }
                         }, data.label),
-                        h('t-icon', {
+                        h('t-tooltip',{
+                            props:{
+                                content:'点击编辑文字内容',
+                                placement:"top-start"
+                            },
+                            style:{
+                                'margin-left': '10px'
+                            }
+                        },[  h('t-icon', {
                             props: {
                                 type: 'lead-pencil',
-                                size: 'sm',
+
                                 gradient: 'primary',
                             },
                             style: {
                                 'cursor': 'pointer',
-                                'margin-left': '70px'
+                                'margin-top': '-4px'
                             },
                             'class': {
                                 'hidden': !data.isEdit
@@ -148,7 +156,8 @@
                                 },
                             },
 
-                        }),
+                        }),]),
+
                     ]),
                     h('span', {
                         'class': {
@@ -163,7 +172,6 @@
                             style: {
                                 width: '150px',
                                 display: 'inline-block',
-                                'margin-right': '15px',
                                 'margin-left': '5px'
                             },
                             on: {
@@ -173,7 +181,15 @@
                             }
 
                         }),
-                        h('t-icon', {
+                        h('t-tooltip',{
+                            props:{
+                                content:'点击保存已编辑内容',
+                                placement:"top-start"
+                            },
+                            style:{
+                                'margin-left': '10px'
+                            }
+                        },[  h('t-icon', {
                             props: {
                                 type: 'check',
                                 gradient: 'primary',
@@ -182,7 +198,7 @@
                             },
                             style: {
                                 'cursor': 'pointer',
-                                'margin-top': '5px'
+                                'margin-top': '0px'
                             },
                             nativeOn: {
                                 click: function () {
@@ -191,7 +207,8 @@
                             },
 
 
-                        })
+                        })]),
+
                     ])
 
                 ])
@@ -208,9 +225,9 @@
 }
 
 .dropdownTree {
-    width: 252px;
+    width: 248px;
     padding: 6px 7px !important;
-    background: #FFFFFF;
+    background: #fff;
     box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.20);
     border-radius: 4px;
     .search {
@@ -246,7 +263,7 @@
     display: none !important;
 }
 
-.tree__node-title:hover {
+.tree__node-content:hover {
     background: #EEFEF3 !important;
     .aid-lead-pencil {
         display: inline-block !important;
@@ -255,5 +272,8 @@
 
 .input {
     font-size: 12px !important;
+}
+.dropdown__menu {
+    box-shadow: none !important;
 }
 </style>
