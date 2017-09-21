@@ -52,7 +52,7 @@
 				</div>
 			</t-tab-panel>
 			<t-tab-panel label="客户组织" name="tab-4">
-				<div class="content">
+				<div class="content cons">
 					<t-form :model="organise" label-position="left" :label-span="3">
 						<t-form-item label="组织机构:">
 							<t-input v-model="organise.organiseName" placeholder="请输入">
@@ -187,6 +187,11 @@ export default{
 				.form-group__label{
 					min-width:105px;
 				}
+			}
+		}
+		&.cons{
+			.select{
+				width:246px!important;
 			}
 		}
 	}

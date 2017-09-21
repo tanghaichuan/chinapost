@@ -1,5 +1,8 @@
 <template>
-<div>
+<div class="client-wrapper">
+  <p class="btn-icon"><t-button type="outline" class="sub-btn">
+    <i class="iconfont">&#xe639;</i>返回</t-button>
+  </p>
 	<div class="client-select">
 		<h3 class="tit">多客户选择</h3>
 		<div class="query-list">
@@ -104,8 +107,32 @@ export default{
 }	
 </script>
 <style lang="less" scoped>
+.client-wrapper{
+  margin:0 20px;
+  position:relative;
+}
+.btn-icon {
+  margin: 0;
+  text-align:right;
+  position:absolute;
+  top:-35px;
+  right:0;
+  i {
+    margin-right: 6px;
+    font-size: 14px;
+    color: #666;
+  }
+  .sub-btn {
+    color: #666;
+    &:hover {
+        color: #3DAC6E;
+        i {
+            color: #3DAC6E;
+        }
+    }
+  }
+}
 .client-select{
-  margin:0 20px 0 20px;
 	background:#fff;
 	border:1px solid #d9d9d9;
 	border-radius:4px;
@@ -178,6 +205,9 @@ export default{
   			&:last-child{
   				border-bottom:0;
   			}
+        &:hover{
+          background:#F3FAF6; 
+        }
   		}
     }
 	}
