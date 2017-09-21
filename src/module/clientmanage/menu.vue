@@ -115,7 +115,7 @@
             <t-breadcrumb-item href="#">{{$route.name}}</t-breadcrumb-item>
             <t-breadcrumb-item>{{$route.meta}}</t-breadcrumb-item>
           </t-breadcrumb>
-          <div class="bg-white ml-3 mr-3 layout-main" style="min-height: 600px">
+          <div class="bg-white layout-main" style="min-height: 600px">
             <keep-alive>
               <router-view></router-view>
             </keep-alive>

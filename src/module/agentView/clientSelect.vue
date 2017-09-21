@@ -105,6 +105,7 @@ export default{
 </script>
 <style lang="less" scoped>
 .client-select{
+  margin:0 20px 0 20px;
 	background:#fff;
 	border:1px solid #d9d9d9;
 	border-radius:4px;
