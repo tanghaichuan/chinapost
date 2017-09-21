@@ -35,10 +35,10 @@
             </a>
 
             <t-dropdown trigger="click" placement="bottom-end" class="mr-auto">
-              <a href="javascript:void(0)" class="text-muted ml-4 text-white">
+              <!-- <a href="javascript:void(0)" class="text-muted ml-4 text-white">
                 <t-icon type="plus-circle-outline" size="20" class="align-middle text-white"></t-icon>
                 新建
-              </a>
+              </a> -->
               <t-dropdown-menu slot="list">
                 <t-dropdown-item>
                   <t-icon type="checkbox-marked-outline" class="text-muted mr-1 text"></t-icon>任务</t-dropdown-item>
@@ -126,10 +126,10 @@
 
           </nav>
 
-          <t-breadcrumb v-if="currentMenu">
+          <t-breadcrumb v-if="$route.name != '查询列表'">
             <t-breadcrumb-item href="#">首页</t-breadcrumb-item>
             <t-breadcrumb-item href="#">{{$route.name}}</t-breadcrumb-item>
-            <t-breadcrumb-item>{{currentMenu}}</t-breadcrumb-item>
+            <t-breadcrumb-item>{{$route.meta}}</t-breadcrumb-item>
           </t-breadcrumb>
           <div class="bg-white ml-3 mr-3 layout-main" style="min-height: 500px">
             <keep-alive>
@@ -137,7 +137,7 @@
             </keep-alive>
           </div>
           <footer class="p-3 text-center text-gray-light text-sm">
-            2011-2016 © AI design
+            2017 © 中国邮政
           </footer>
         </div>
       </div>

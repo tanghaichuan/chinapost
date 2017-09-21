@@ -568,11 +568,11 @@ export default {
             }
         },
         getCustomerForm(obj) {
-            console.log(obj);
+            //console.log(obj);
             this.$set(obj, "addFormItem", this.customFormItem)
         },
         getCompany(obj) {
-            console.log(obj);
+            //console.log(obj);
             this.$set(obj, "addFormItem", this.companyFromItem)
         }
     },
@@ -585,8 +585,15 @@ export default {
 .form-item-wrap {
     padding-left: 25px;
     padding-top: 20px;
-    border-top: 1px dashed #dfe5e7;
     zoom: 1;
+    &:before {
+        margin-right: 25px;
+        margin-top: -19px;
+        padding-bottom: 19px;
+        display: block;
+        content: '';
+        border-top: 1px dashed #dfe5e7;
+    }
     &:after {
         content: '';
         display: table;

@@ -1,18 +1,28 @@
 <template>
     <div class="droptree">
         <t-dropdown trigger="custom" :visible="visible" placement="bottom-start">
-            <a href="javascript:void(0)" @click="handleOpen" class="clicked">
-                <t-input v-model="value4" icon="arrow-down-drop" icon-placement="right" placeholder="请选择"></t-input>
+            <a href="javascript:void(0)" @click="handleOpen" class="choose">
+                <t-input v-model="value4" icon="arrow-down-drop" icon-placement="right" placeholder="请选择"
+                         class="m"></t-input>
             </a>
             <t-dropdown-menu slot="list" class="dropdownTree">
                 <div @mouseleave="handleClose">
                     <span>
-                        <t-input placeholder="搜索" v-model="filterText" icon="magnify" icon-placement="right" @on-focus="onFocus" class="search">
-
+                        <t-input placeholder="搜索" v-model="filterText" icon="magnify" icon-placement="right"
+                                 @on-focus="onFocus" class="search">
                         </t-input>
                     </span>
                     <span>
-                        <t-tree class="filter-tree" :data="data2" :props="defaultProps" all-expandable="false" :filter-node-method="filterNode" ref="tree2" is-select @on-select="handleNodeSelect">
+                        <t-tree
+                                class="filter-tree"
+                                :data="data2"
+                                :props="defaultProps"
+                                all-expandable="true"
+                                :filter-node-method="filterNode"
+                                ref="tree2"
+                                is-select
+                                @on-select="handleNodeSelect"
+                                :render-content="renderContent">
 
                         </t-tree>
                     </span>
@@ -22,91 +32,201 @@
     </div>
 </template>
 <script>
-export default {
-    name: 'dropTree',
-    data() {
-        return {
-            value4: '',
-            visible: false,
-            filterText: '',
-            data2: [{
-                id: 1,
-                label: '北京市',
-                children: [{
-                    id: 2,
-                    label: '支撑中心',
+
+    export default {
+        data() {
+            return {
+                value4: '',
+                visible: false,
+                filterText: '',
+                data2: [{
+                    id: 1,
+                    label: '北京市',
+                    isEdit: false,
                     children: [{
-                        id: 4,
+                        id: 2,
+                        label: '支撑中心',
+                        isEdit: false,
+                        children: [{
+                            id: 4,
+                            isEdit: false,
+                            label: '市场组'
+                        }, {
+                            id: 5,
+                            isEdit: false,
+                            label: '非市场组'
+                        }, {
+                            id: 6,
+                            isEdit: false,
+                            label: '总体组'
+                        }]
+                    }]
+                }, {
+                    id: 3,
+                    label: '网络部',
+                    isEdit: false,
+                    children: [{
+                        id: 7,
+                        isEdit: false,
                         label: '市场组'
                     }, {
-                        id: 5,
+                        id: 8,
+                        isEdit: false,
                         label: '非市场组'
                     }, {
-                        id: 6,
+                        id: 9,
+                        isEdit: false,
                         label: '总体组'
                     }]
-                }]
-            }, {
-                id: 3,
-                label: '网络部',
-                children: [{
-                    id: 7,
-                    label: '市场组'
-                }, {
-                    id: 8,
-                    label: '非市场组'
-                }, {
-                    id: 9,
-                    label: '总体组'
-                }]
-            }],
-            defaultProps: {
-                children: 'children',
-                label: 'label'
+                }],
+                defaultProps: {
+                    children: 'children',
+                    label: 'label'
+                }
             }
-        }
-    },
-    watch: {
-        filterText(val) {
-            this.$refs.tree2.filter(val);
-        }
-    },
+        },
+        watch: {
+            filterText(val) {
+                this.$refs.tree2.filter(val);
+            }
+        },
+        methods: {
+            handleOpen() {
+                this.visible = true
+            },
+            handleClose() {
+                this.visible = false
+            },
+            filterNode(value, data) {
+                if (!value) return true;
+                return data.label.indexOf(value) !== -1;
+            },
+            handleNodeSelect(data) {
+                this.value4 = data.label
+            },
+            onFocus() {
+                this.value4 = ''
+            },
+            renderContent(h, {node, data}) {
+                return h('span', [
+                    h('span', {
+                        'class': {
+                            'hidden': data.isEdit
+                        },
+                        style:{
+                            'display':'inline-block',
+                            'width': '200px',
+                        }
+                    }, [
+                        h('span', {
+                            style: {
+                                'display': 'inline-block',
+                                'width': '160px',
+                                'overflow': 'hidden',
+                                'text-overflow': 'ellipsis',
+                                'white-space': 'nowrap'
+                            }
+                        }, data.label),
+                        h('t-tooltip',{
+                            props:{
+                                content:'点击编辑文字内容',
+                                placement:"top-start"
+                            },
+                            style:{
+                                'margin-left': '10px'
+                            }
+                        },[  h('t-icon', {
+                            props: {
+                                type: 'lead-pencil',
 
-    methods: {
-        handleOpen() {
-            this.visible = true
-        },
-        handleClose() {
-            this.visible = false
-        },
-        filterNode(value, data) {
-            if (!value) return true;
-            return data.label.indexOf(value) !== -1;
-        },
-        handleNodeSelect(data) {
-            console.log(data)
-            this.value4 = data.label
-        },
-        onFocus() {
-            this.value4 = ''
+                                gradient: 'primary',
+                            },
+                            style: {
+                                'cursor': 'pointer',
+                                'margin-top': '-4px'
+                            },
+                            'class': {
+                                'hidden': !data.isEdit
+                            },
+                            nativeOn: {
+                                click: function () {
+                                    data.isEdit = true
+                                },
+                            },
+
+                        }),]),
+
+                    ]),
+                    h('span', {
+                        'class': {
+                            'hidden': !data.isEdit
+                        }
+                    }, [
+                        h('t-input', {
+                            props: {
+                                placeholder: '请输入..',
+                                value: data.label
+                            },
+                            style: {
+                                width: '150px',
+                                display: 'inline-block',
+                                'margin-left': '5px'
+                            },
+                            on: {
+                                input: function (value) {
+                                    data.label = value
+                                }
+                            }
+
+                        }),
+                        h('t-tooltip',{
+                            props:{
+                                content:'点击保存已编辑内容',
+                                placement:"top-start"
+                            },
+                            style:{
+                                'margin-left': '10px'
+                            }
+                        },[  h('t-icon', {
+                            props: {
+                                type: 'check',
+                                gradient: 'primary',
+                                size: 20,
+
+                            },
+                            style: {
+                                'cursor': 'pointer',
+                                'margin-top': '0px'
+                            },
+                            nativeOn: {
+                                click: function () {
+                                    data.isEdit = false
+                                }
+                            },
+
+
+                        })]),
+
+                    ])
+
+                ])
+
+            },
         }
     }
-}
 </script>
-<style lang="less">
+<style lang="less"> 
 .dropdownTree {
     padding: 6px 7px !important;
-    background: #FFFFFF;
+    background: #fff;
     box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.20);
     border-radius: 4px;
-    .input,
-    .select .dropdown-input {}
     .search {
         width: 236px;
         background: #FFFFFF;
         height: 26px !important;
     }
-    .input-wrapper>input {
+    .input-wrapper > input {
         height: 26px !important;
         font-size: 12px;
     }
@@ -124,9 +244,30 @@ export default {
     .tree li {
         padding: 3px 0;
     }
-    .input,
-    .select .dropdown-input {
-        font-size: 12px!important;
+    .input, .select .dropdown-input {
+        font-size: 12px !important;
     }
+
+}
+
+.hidden {
+    display: none !important;
+}
+
+.tree__node-content:hover {
+    background: #EEFEF3 !important;
+    .aid-lead-pencil {
+        display: inline-block !important;
+    }
+}
+
+.input {
+    font-size: 12px !important;
+}
+.dropdown__menu {
+    box-shadow: none !important;
+}
+.input-group-icon.input-group-icon--right + .input-wrapper .input,{
+    padding-left: 0;
 }
 </style>

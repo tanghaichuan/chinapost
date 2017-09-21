@@ -21,7 +21,7 @@
             <!--增加扩展-->
             <div class="form-item-container" v-for="(item1, x) in userList.formItem" v-if="x > 0" :key="x" :class="userList.title === '基本信息' ? 'base-style' : ''">
                 <i class="iconfont del" @click="delFormList(userList.formItem, x)">&#xe61b;</i>
-                <item-wrap :row="row" :path="getValidatePath+'formItem.'+x+'.formList.'" :userList="userList" :formList="item1.formList" ></item-wrap>
+                <item-wrap :row="row" :path="getValidatePath+'formItem.'+x+'.formList.'" :userList="userList" :formList="item1.formList"></item-wrap>
                 <dynamic-from :getValidatePath="getValidatePath" :row="row" :id="0" :isAsync="userList.isAsync" :userList.sync="userList"></dynamic-from>
             </div>
         </div>
@@ -29,9 +29,10 @@
     </div>
 </template>
 <script>
-import itemWrap from './itemWrap'
-import dynamicFrom from './dynamicForm'
-import dropTree from '../components/droptree'
+const itemWrap = () => import('./itemWrap')
+const dynamicFrom = () => import('./dynamicForm')
+const dropTree = () => import('../components/droptree')
+
 // 说明：
 // 1.  特征值数据类型目前定义如下：
 // 01--文本
