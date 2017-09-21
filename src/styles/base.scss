@@ -601,7 +601,7 @@ danger;
 
 .tree__node-content {
   &:hover {
-    background: #fff;
+    background: #fff !important;
     color: #009448;
   }
 }
@@ -611,8 +611,10 @@ danger;
   border-left: 3px solid #009549;
   border-right: 0;
   color: #009448;
+  &:hover {
+    background: #eefff4 !important;
+  }
 }
-
 
 /* 气泡提示 */
 
@@ -740,7 +742,4 @@ danger;
       min-width:28px;
     }
   }
-}
-.tree__node-content--checked:hover {
-    background: #eefff4;
 }
