@@ -13,7 +13,7 @@
 							<span>客户查询</span>
 						</p>
 						<div>
-								<client-query></client-query>
+								<client-query @hide-dialog ="hide" @show-dialog ="show"></client-query>
 						</div>
 						<div slot="footer">
 							<t-button type="outline" class="sub-btn" @click="cancel">取消</t-button>
@@ -40,6 +40,12 @@ export default{
 		},
 		cancel(){
 			this.modal = false
+		},
+		hide(){
+			this.modal = false
+		},
+		show(){
+			this.modal = true
 		}
 	}
 }	

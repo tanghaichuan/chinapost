@@ -54,13 +54,15 @@
 			<t-tab-panel label="客户组织" name="tab-4">
 				<div class="content cons">
 					<t-form :model="organise" label-position="left" :label-span="3">
-						<t-form-item label="组织机构:">
-							<t-input v-model="organise.organiseName" placeholder="请输入">
-								<span slot="append">
-				            <i class="iconfont icon-search">&#xe62c;</i>
-				        </span>
-							</t-input>
-						</t-form-item>
+						<div @click="hide">
+							<t-form-item label="组织机构:">
+								<t-input v-model="organise.organiseName" placeholder="请输入">
+									<span slot="append">
+					            <i class="iconfont icon-search">&#xe62c;</i>
+					        </span>
+								</t-input>
+							</t-form-item>
+						</div>
 						<t-form-item label="客户经理:">
 							<t-select v-model="organise.organiseManager" placeholder="请选择客户经理">
 									<t-option value="无">无</t-option>
@@ -70,11 +72,27 @@
 				</div>
 			</t-tab-panel>
 		</t-tabs>
+		<t-modal v-model="modals" width="440">
+			<p slot="header">
+				<span>选择组织机构</span>
+			</p>
+			<div>
+					<select-organize @show-data="showData"></select-organize>
+			</div>
+			<div slot="footer">
+				<t-button type="outline" class="sub-btn" @click="cancels">取消</t-button>
+				<t-button type="primary"  @click="oks">确定</t-button>
+			</div>
+		</t-modal>
 	</div>
 </div>	
 </template>
 <script>
+import selectOrganize from './selectOrganize.vue'
 export default{
+	components:{
+		selectOrganize
+	},
 	data(){
 		return{
 			personal:{
@@ -93,7 +111,29 @@ export default{
 			organise:{
 				organiseName:'',
 				organiseManager:''
-			}
+			},
+			modals:false,
+			oData:''
+		}
+	},
+	methods:{
+		cancels(){
+			this.organise.organiseName = ''
+			this.modals = false
+			this.$emit('show-dialog')
+		},
+		oks(){
+			this.organise.organiseName = this.oData
+			this.modals = false
+			this.$emit('show-dialog')
+		},
+		hide(){
+			this.$emit('hide-dialog')
+			this.modals = true
+		},
+		showData(data){
+			this.oData = data
+			this.organise.organiseName = data
 		}
 	}
 }	
