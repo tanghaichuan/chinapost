@@ -26,6 +26,7 @@
 export default{
 	data(){
 		return{
+			labels:'',
 			show:false,
 		 	data: [
         {
@@ -98,6 +99,8 @@ export default{
         }
       }
       this.result1 = data.label
+      this.result2 = ''
+      this.labels = data.label
     },
     compulete(item){
     	this.show = true;
@@ -106,6 +109,7 @@ export default{
       }
       item.isSelect = !item.isSelect
       this.result2 = '('+item.name+')'
+      this.result1 = this.labels
     },
     handleClose(){
     	for(let i=0;i<this.list.length;i++){
