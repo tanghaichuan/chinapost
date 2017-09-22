@@ -53,7 +53,7 @@ export default {
     }
   },
   created() { // init entry
-    console.log(this.$route);
+    //console.log(this.$route);
     this.$domains.cnpost.get(this.$services.SYSTEM_MENU).then((res) => {
       this.menuList = res.data.list;
     })
