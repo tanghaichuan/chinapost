@@ -1,19 +1,4 @@
-<!--<template>
-    <div style="width: 500px;" class="">
-        <t-input placeholder="输入关键字进行过滤" v-model="filterText"></t-input>
-        <t-tree
-                :data="dataList"
-                :props="defaultProps"
-                node-key="id"
-                class="filter-tree"
-                :filter-node-method="filterNode"
-                ref="tree"
-                all-expandable
-                :expand-on-click-node="false"
-                :render-content="renderContent">
-        </t-tree>
-    </div>
-</template>-->
+
 <template>
     <div>
         <t-button type="primary" @click="modal = true">点击显示模态框</t-button>
@@ -32,6 +17,7 @@
                         :filter-node-method="filterNode"
                         ref="tree"
                         all-expandable
+                        is-select
                         :expand-on-click-node="false"
                         :render-content="renderContent">
                 </t-tree>
@@ -106,7 +92,8 @@
                     props: {
                         nodeName: node.label,
                         newStore: store,
-                        newData: data
+                        newData: data,
+
                     }
                 })
             }
@@ -120,6 +107,9 @@
     .modal-footer{
         padding: 10px 10px;
         border-top: 1px solid #eaeaea;
+    }
+    .tree__node-content--checked{
+        border-left: none;
     }
 
 

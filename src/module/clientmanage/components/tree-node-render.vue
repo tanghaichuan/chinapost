@@ -1,7 +1,7 @@
 <template>
     <span>
         <span class="float-right">
-          <t-dropdown placement="bottom-end">
+          <t-dropdown placement="bottom-end" trigger="click">
             <a href="javascript:void(0)">
               操作
               <t-icon type="arrow-down-drop"></t-icon>
@@ -9,19 +9,19 @@
             <t-dropdown-menu slot="list" class="downbox">
               <t-dropdown-item>
                   <span @click="add">
-                      <i class="iconfont float-left mr-3">&#xe61a;</i>
+                      <i class="iconfont float-left mr-3 top-3">&#xe61a;</i>
                       <span style="font-size: 12px"> 增加</span>
                   </span>
               </t-dropdown-item>
               <t-dropdown-item class="edit">
                   <span @click="edit">
                       <span style="font-size: 12px"> 编辑</span>
-                      <i class="iconfont float-left mr-3">&#xe7a1;</i>
+                      <i class="iconfont float-left mr-3 top-3">&#xe7a1;</i>
                   </span>
               </t-dropdown-item>
               <t-dropdown-item class="cut">
                   <span @click="cut">
-                     <i class="iconfont float-left mr-3">&#xe626;</i>
+                     <i class="iconfont float-left mr-3 top-3">&#xe626;</i>
                       <span style="font-size: 12px"> 删除</span>
                   </span>
               </t-dropdown-item>
@@ -33,7 +33,7 @@
               <span v-show="!show">  {{nodeName}} </span>
                 <span v-show="show">
                     <t-input style="display: inline-block" v-model='value' placeholder="请输入..."></t-input>
-                  <span @click="sure">  <t-icon type="check" gradient="primary" size="20" class="mt-1"></t-icon></span>
+                  <span @click="sure">  <t-icon type="check" gradient="primary" size="20" class="mt-1 mr-2"></t-icon></span>
                 </span>
             </span>
         </span>
@@ -65,6 +65,7 @@
         },
         methods: {
             add() {
+                //console.log(this.newStore.data[0].$treeNodeId)
                 this.newStore.append({id: id++, label: '新增内容', children: []}, this.newData);
             },
             cut() {
@@ -93,6 +94,16 @@
         border: 1px solid #eaeaea;
         border-radius: 5px;
         margin-top: -5px;
+    }
+    .top-3{
+        font-size: 12px;
+        margin-top: 3px;
+    }
+    .dropdown__item{
+        padding: 2px 8px;
+    }
+    .tree__node-title:hover , .downbox >li:hover{
+        background: #ecfefc;
     }
 
 </style>
