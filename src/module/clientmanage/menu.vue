@@ -30,24 +30,9 @@
         </div>
         <div class="col layout-content">
           <nav class="navbar  navbar-expand-lg bg-white layout-nav--top">
-            <a href="javascript:;">
+            <a href="javascript:;" class="mr-auto">
               <i class="iconfont iconfont-fold" @click="openOrClose">&#xe609;</i>
             </a>
-
-            <t-dropdown trigger="click" placement="bottom-end" class="mr-auto">
-              <a href="javascript:void(0)" class="text-muted ml-4 text-white">
-                <t-icon type="plus-circle-outline" size="20" class="align-middle text-white"></t-icon>
-                新建
-              </a>
-              <t-dropdown-menu slot="list">
-                <t-dropdown-item>
-                  <t-icon type="checkbox-marked-outline" class="text-muted mr-1 text"></t-icon>任务</t-dropdown-item>
-                <t-dropdown-item>
-                  <t-icon type="file" class="text-muted mr-1 text"></t-icon>文件</t-dropdown-item>
-                <t-dropdown-item>
-                  <t-icon type="calendar-today" class="text-muted mr-1 text"></t-icon>日程</t-dropdown-item>
-              </t-dropdown-menu>
-            </t-dropdown>
 
             <div class="d-inline">
               <t-input icon="magnify" size="sm" placeholder="搜索..."></t-input>
@@ -131,14 +116,14 @@
             <t-breadcrumb-item href="#">{{$route.name}}</t-breadcrumb-item>
             <t-breadcrumb-item>{{currentMenu}}</t-breadcrumb-item>
           </t-breadcrumb>
-          <div class="bg-white ml-3 mr-3 layout-main" style="min-height: 500px">
+          <div class="bg-white layout-main" style="min-height: 500px">
             <keep-alive>
               <router-view></router-view>
             </keep-alive>
           </div>
-          <footer class="p-3 text-center text-gray-light text-sm">
+          <!-- <footer class="p-3 text-center text-gray-light text-sm">
             2011-2016 © AI design
-          </footer>
+          </footer> -->
         </div>
       </div>
     </div>
@@ -259,6 +244,12 @@ export default {
             }, {
               name: "查询列表",
               url: "/client/querylist"
+            }, {
+              name: "个人客户详细信息",
+              url: "/client/customerDtl"
+            }, {
+              name: "机构客户信息详情",
+              url: "/client/companyDtl"
             }, {
               name: "可信度打分",
               url: "/menu/clientInfo"
@@ -402,6 +393,7 @@ export default {
   }
   .navbar.bg-white {
     background-color: #3ca358!important;
+    box-shadow:0 5px 10px rgba(0,0,0,0.2);
   }
   .layout-main {
     background: #f2f6f7!important;
@@ -620,10 +612,21 @@ export default {
     padding: 20px 30px !important;
   }
   .breadcrumb {
-    padding: 14px 0 14px 20px;
-    line-height: 25px;
-    background: #f6f8f8!important;
-    border-bottom: 1px solid #dfe5e7;
+    padding: 10px 0 10px 20px;
+    line-height: 26px;
+    background: #f2f6f7!important;
+    .breadcrumb__item{
+      font-size:12px;
+      color:#999999;
+      opacity:1;
+      &.active{
+        color:#666666;
+      }
+    }
+    .breadcrumb__separator{
+      padding-left:2px;
+      padding-right:2px;
+    }
   }
   .second-submenu {
     .menu__submenu-title {

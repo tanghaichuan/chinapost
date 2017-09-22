@@ -1,10 +1,10 @@
 <template>
     <div class="customer">
         <!--表单区域-->
-        <img :src="imgUrl1" height="822" width="1180" alt="" v-on:click="changeImg" v-show="showImg">
+        <img :src="imgUrl1" height="822" width="1180" alt="" v-on:click="changeImg" v-show="!showImg">
 
         <a :href="link" v-on:click="changePage">
-            <img :src="imgUrl2" height="822" width="1180" alt="" v-on:click="changeImg">
+            <img v-show="showImg" :src="imgUrl2" height="822" width="1180" alt="" v-on:click="changeImg">
         </a>
     </div>
 </template>
@@ -16,22 +16,28 @@ export default {
         return {
             imgUrl1: require('../../asset/image/query1.png'),
             imgUrl2: require('../../asset/image/query2.png'),
-            link:'',
-            showImg: true
+            link: '',
+            showImg: false
         }
     },
-    methods:{
-        changeImg(){
-            this.showImg = false
+    methods: {
+        changeImg() {
+            this.showImg = !this.showImg
         },
-        changePage(){
-            this.link = '/client/customer'
+        changePage() {
+            this.$router.push('/client/customer');
+            // this.link = '/client/customer'
         }
     }
 }
 </script>
 <style scoped lang="less">
-a{
-    display: block;
+.customer {
+    a {
+        display: block;
+    }
+    img {
+        width: 100%;
+    }
 }
 </style>

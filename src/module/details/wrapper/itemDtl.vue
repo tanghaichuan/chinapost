@@ -8,31 +8,19 @@
                 </span>
                 <h6>{{userList.title}}</h6>
             </div>
-            <div class="right" v-if="userList.isExtend">
-                <i class="iconfont" @click="addFormList">&#xe632;</i>
-            </div>
         </div>
         <div class="form-container" v-show="userList.isCollapse">
             <div class="form-item-container">
-                <item-wrap :row="row" :path="getValidatePath+'formItem.0.formList.'" :userList="userList" :formList="userList.formItem[0].formList"></item-wrap>
+                <item-wrap :row="row" :userList="userList" :formList="userList.formItem[0].formList"></item-wrap>
                 <!--异步加载更多-->
                 <dynamic-from :getValidatePath="getValidatePath" :row="row" :id="0" :isAsync="userList.isAsync" :userList.sync="userList"></dynamic-from>
             </div>
-            <!--增加扩展-->
-            <div class="form-item-container" v-for="(item1, x) in userList.formItem" v-if="x > 0" :key="x" :class="userList.title === '基本信息' ? 'base-style' : ''">
-                <i class="iconfont del" @click="delFormList(userList.formItem, x)">&#xe61b;</i>
-                <item-wrap :row="row" :path="getValidatePath+'formItem.'+x+'.formList.'" :userList="userList" :formList="item1.formList"></item-wrap>
-                <dynamic-from :getValidatePath="getValidatePath" :row="row" :id="0" :isAsync="userList.isAsync" :userList.sync="userList"></dynamic-from>
-            </div>
         </div>
-
     </div>
 </template>
 <script>
-const itemWrap = () => import('./itemWrap')
-const dynamicFrom = () => import('./dynamicForm')
-const dropTree = () => import('../components/droptree')
-
+import itemWrap from './itemWrap'
+import dynamicFrom from './dynamicForm'
 // 说明：
 // 1.  特征值数据类型目前定义如下：
 // 01--文本
@@ -87,19 +75,13 @@ export default {
             default: false
         },
         row: Number,
-        title: String,
-        getValidatePath: String
+        title: String
     },
     components: {
         dynamicFrom,
-        dropTree,
         itemWrap
     },
     methods: {
-        // 动态验证规则
-        validate() {
-            return `不能为空`
-        },
         addFormList() {
             let arr = [];
             arr = _.cloneDeep(this.userList.formItem[0])

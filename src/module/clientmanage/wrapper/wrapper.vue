@@ -406,7 +406,7 @@ export default {
                 if (valid) {
                     this.$Message.success('保存成功!');
                 } else {
-                    this.$Message.danger('表单验证失败!');
+                    this.$Message.danger('保存失败!');
                 }
             })
         }
@@ -433,6 +433,7 @@ export default {
 }
 
 .wrapper {
+    margin: 0 21px;
     padding-top: 18px;
     position: relative;
     margin-bottom: 100px;
@@ -446,9 +447,7 @@ export default {
         }
     }
     .input-wrapper {
-        .input {
-            padding-right: 32px!important;
-        }
+        
     }
     .input-group-icon {
         &.input-group-icon--right {

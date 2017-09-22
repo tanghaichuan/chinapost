@@ -4,7 +4,7 @@
             <t-form-item 
             :label="item.DISP+':'" 
             :prop="path+ y +'.VALUE'" 
-            :rules="{ required: true, message: '不合法', trigger: 'blur' }" 
+            :rules="{ required: item.REQUIRE, message: '请输入'+item.DISP, trigger: 'blur' }" 
             :label-span="userList.title === '基本信息' ? 1 : 5">
                 <t-select :disabled="isDisabled" v-model="item.VALUE" :title="item.VALUE" v-if="item.OPER_MODE === '02'">
                     <t-option v-for="(item1, z) in item.ENUM" :value="item1.value" :key="z">{{ item1.value }}</t-option>
@@ -19,8 +19,8 @@
     </div>
 </template>
 <script>
-import industry from './industry'
-import dropTree from '../components/droptree'
+const industry = () => import('./industry')
+const dropTree = () => import('../components/droptree')
 export default {
     name: "itemWrap",
     data() {

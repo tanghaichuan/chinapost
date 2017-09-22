@@ -11,10 +11,12 @@ const routes = [
             }, {
                 path: 'customer',
                 name: '个人客户管理',
+                meta: "个人客户",
                 component: require('module/clientmanage/customer.vue')
             }, {
                 path: 'company',
                 name: '机构客户管理',
+                meta: "机构客户",
                 component: require('module/clientmanage/company.vue')
             }, {
                 path: 'querylist',
