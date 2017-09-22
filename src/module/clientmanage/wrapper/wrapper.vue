@@ -433,6 +433,7 @@ export default {
 }
 
 .wrapper {
+    margin: 0 21px;
     padding-top: 18px;
     position: relative;
     margin-bottom: 100px;
