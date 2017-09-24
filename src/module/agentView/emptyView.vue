@@ -20,9 +20,9 @@
 									<t-form :model="personal" label-position="left" :label-span="3">
 											<t-form-item label="证件类型:">
 												<t-select v-model="personal.type" placeholder="请选择">
-														<t-option value="身份证">身份证</t-option>
-			                      <t-option value="护照">护照</t-option>
-			                      <t-option value="军官证">军官证</t-option>
+														<t-option v-for="(item,index) in personal.cardType" :value="item.value" :key="index">
+															{{item.label}}
+														</t-option>
 												</t-select>
 											</t-form-item>
 											<t-form-item label="身份证号:">
@@ -78,7 +78,7 @@
 									</div>
 									<t-form-item label="客户经理:">
 										<t-select v-model="organise.organiseManager" placeholder="请选择客户经理">
-												<t-option value="无">无</t-option>
+												<t-option v-for="(item,index) in organise.managerPerson" :value="item.value" :key="index">{{item.label}}</t-option>
 										</t-select>
 									</t-form-item>
 								</t-form>
@@ -89,7 +89,7 @@
 			</div>
 			<div slot="footer">
 				<t-button type="outline" class="sub-btn" @click="cancel">取消</t-button>
-				<t-button type="primary">查询</t-button>
+				<t-button type="primary" @click="queryDataList">查询</t-button>
 			</div>
 		</t-modal>
 
@@ -97,7 +97,9 @@
 </div>	
 </template>
 <script>
+import { mapMutations, mapGetters } from 'vuex'
 import selectOrganize from './components/selectOrganize.vue'
+import invokers from '@/invokers'
 export default{
 	components:{
 		selectOrganize
@@ -109,7 +111,21 @@ export default{
 			personal:{
 				type:'',
 				personNum:'',
-				personName:''
+				personName:'',
+				cardType:[
+					{
+						value:'IDCard',
+						label:'身份证'
+					},
+					{
+						value:'HDCard',
+						label:'护照'
+					},
+					{
+						value:'JDCard',
+						label:'军官证'
+					}
+				]
 			},
 			construction:{
 				code:'',
@@ -121,7 +137,13 @@ export default{
 			},
 			organise:{
 				organiseName:'',
-				organiseManager:''
+				organiseManager:'',
+				managerPerson:[
+					{
+						value:'1',
+						label:'无'
+					}
+				]
 			},
 			treeData: [
         {
@@ -175,10 +197,26 @@ export default{
       defaultProps: {
         children: 'children',
         label: 'label'
+      },
+      paramsData:{
+      	"systemParams":{
+      		"pageInfo": {
+            "CURRENT_PAGE": "-1",
+            "PAGE_SIZE": "-1"
+        	}
+      	},
+      	"businessParams":{
+      		"queryCondition":[
+
+      		]
+      	}
       }
 		}
 	},
 	methods:{
+		 ...mapMutations({
+      addQueryCustomerList: 'addQueryCustomerList'
+    }),
 		showModal(){
 			this.modal = true
 		},
@@ -195,8 +233,63 @@ export default{
 		closeTree(){
 			this.modals = false
 			this.modal = true
+		},
+		queryDataList(){
+			//页面返回时，清空之前参数
+			this.paramsData.businessParams.queryCondition=[]
+			//按证件类型+证件号码查询
+			let identifyNr = {"condType":"identifyNr","condValue":[]}
+			identifyNr.condValue.push(this.personal.type)
+			identifyNr.condValue.push(this.personal.personNum)
+			//按名称查询
+			let name ={"condType":"name","condValue":[]}
+			name.condValue.push(this.construction.name)
+			//按名称模糊查询
+			let nameAndFuzzy ={"condType":"nameAndFuzzy","condValue":[]}
+			nameAndFuzzy.condValue.push(this.construction.simpleName)
+			//按协议单号(如面单号，保险单号等)查询
+			let agreementCode ={"condType":"agreementCode","condValue":[]}
+			agreementCode.condValue.push(this.business.ticket)
+
+			//判断查询条件
+			if((this.personal.type =='' || this.personal.personNum=='') && (this.construction.name == '') && (this.construction.simpleName =='' ) && (this.business.ticket == '') ){
+				alert('请填写完整信息')
+			}else{
+				//将条件放入参数数组
+				this.paramsData.businessParams.queryCondition.push(identifyNr,name,nameAndFuzzy,agreementCode)
+				//获取mock数据
+				this.$domains.cnpost.post(this.$services.AGENTVIEW.GET_CUSTOMER_LIST,{
+					params:this.paramsData
+				})
+				.then((res) => {
+					let sucCode = res.data.systemParams.responseInfos.responseCode
+					if(sucCode == '0'){
+
+						//成功返回回调数据
+						let dataList = res.data.businessParams.customerList
+						
+						//将数据存入vuex中
+						for(let i =0;i<dataList.length;i++){
+							this.addQueryCustomerList(dataList[i])
+						}
+						
+						//弹窗关闭，切换路由，显示列表页面
+						this.modal = false
+						this.modals = false
+						this.$router.push({path:'/agentview/clientSelect'})
+					}else{
+						alert('无此数据')
+					}
+					
+		    })
+			}
 		}
-	}
+	},
+	computed: {
+    ...mapGetters([
+      'getQueryCustomerList'
+    ])
+  }
 }	
 </script>
 <style lang="less" >

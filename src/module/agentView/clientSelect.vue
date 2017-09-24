@@ -11,12 +11,12 @@
 				</ul>
 				<ul class="list-result">
 		      <li v-for="(items,index) in list" :key="index">
-		       	<p><i class="iconfont iconClient" v-if="items.sign ==1">&#xe7ab;</i>
-		       		 <i class="iconfont iconPerson" v-if="items.sign ==2">&#xe7ac;</i>
+		       	<p><i class="iconfont iconClient" v-if="items.partyType ==1001">&#xe7ab;</i>
+		       		 <i class="iconfont iconPerson" v-if="items.partyType ==1002">&#xe7ac;</i>
 		       		 <span>{{items.name}}</span></p>
-		       	<p><span>{{items.companyCode}}</span></p>
-		       	<p><span>{{items.organizeCode}}</span></p>
-		       	<p><span>{{items.clientStatus}}</span></p>
+		       	<p><span>{{items.customerCode}}</span></p>
+		       	<p><span>{{items.idenNr}}</span></p>
+		       	<p><span>{{items.custmerStatusName}}</span></p>
 		      </li>
 	    	</ul>
 		</div>
@@ -27,83 +27,31 @@
 </div>
 </template>
 <script>
+import { mapMutations, mapGetters } from 'vuex'
+import invokers from '@/invokers'
 export default{
 	data(){
 		return{
-			list: [
-      	{
-      		"sign":"1",
-      		"name":'中国邮政',
-      		"companyCode":"123987098-YZ",
-      		"organizeCode":"cust112313XL",
-      		"clientStatus":"正常"
-      	},
-      	{
-      		"sign":"2",
-      		"name":'唐小阳',
-      		"companyCode":"123987098-YZ",
-      		"organizeCode":"cust112313XL",
-      		"clientStatus":"正常"
-      	},
-      	{
-      		"sign":"1",
-      		"name":'亚信科技（中国）有限公司',
-      		"companyCode":"123987098-YZ",
-      		"organizeCode":"cust112313XL",
-      		"clientStatus":"正常"
-      	},
-      	{
-      		"sign":"2",
-      		"name":'唐小阳',
-      		"companyCode":"123987098-YZ",
-      		"organizeCode":"cust112313XL",
-      		"clientStatus":"正常"
-      	},
-      	{
-      		"sign":"2",
-      		"name":'唐小阳',
-      		"companyCode":"123987098-YZ",
-      		"organizeCode":"cust112313XL",
-      		"clientStatus":"正常"
-      	},
-      	{
-      		"sign":"1",
-      		"name":'中国建设银行',
-      		"companyCode":"123987098-YZ",
-      		"organizeCode":"cust112313XL",
-      		"clientStatus":"正常"
-      	},
-      	{
-      		"sign":"1",
-      		"name":'中国工商银行',
-      		"companyCode":"123987098-YZ",
-      		"organizeCode":"cust112313XL",
-      		"clientStatus":"正常"
-      	},
-      	{
-      		"sign":"1",
-      		"name":'中国移动',
-      		"companyCode":"123987098-YZ",
-      		"organizeCode":"cust112313XL",
-      		"clientStatus":"正常"
-      	},
-      	{
-      		"sign":"1",
-      		"name":'中国联通',
-      		"companyCode":"123987098-YZ",
-      		"organizeCode":"cust112313XL",
-      		"clientStatus":"正常"
-      	},
-      	{
-      		"sign":"2",
-      		"name":'唐小阳',
-      		"companyCode":"123987098-YZ",
-      		"organizeCode":"cust112313XL",
-      		"clientStatus":"正常"
-      	}
-      ]
+			list: []
 		}
-	}
+	},
+  methods:{
+
+  },
+  computed: {
+    ...mapGetters([
+      'getQueryCustomerList'
+    ])
+  },
+  mounted(){
+    let vm =this
+    let queryList  = this.getQueryCustomerList
+    for(let i=0;i<queryList.length;i++){
+      this.list.push(queryList[i])
+    }
+    // console.log(queryList)
+    // console.log(this.list)
+  }
 }	
 </script>
 <style lang="less" scoped>
