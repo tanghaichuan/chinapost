@@ -1,15 +1,15 @@
 <template>
     <div class="industry">
-        <t-select :title="item.VALUE" @click.native="openBox">
-        </t-select>
-        <div class="mask" v-if="toggle" @click="closeBox"></div>
+        <drop-select :values.sync="item.VALUE" @openToggle="openBox"></drop-select>
+        <div class="mask" v-if="toggle"></div>
         <div class="industry-container" v-if="toggle">
             <!-- <img src="../../../asset/image/extra.png" alt=""> -->
-            <check-box-tree></check-box-tree>
+            <check-box-tree :toggle.sync="toggle"></check-box-tree>
         </div>
     </div>
 </template>
 <script>
+import dropSelect from 'module/clientmanage/components/dropSelect'
 import checkBoxTree from 'module/clientmanage/components/checkBoxTree'
 export default {
     name: "Industry",
@@ -19,23 +19,23 @@ export default {
         }
     },
     props: {
-        item: Object
+        item: Array
     },
     components: {
-        checkBoxTree
+        checkBoxTree,
+        dropSelect
     },
     methods: {
         openBox() {
             this.toggle = true
-        },
-        closeBox() {
-            this.toggle = false
         }
+    },
+    created() {
+ 
     }
 }
 </script>
 <style scoped lang="less">
-
 .mask {
     position: fixed;
     left: 0;
@@ -49,7 +49,8 @@ export default {
         left: 30%;
     }
 }
-.industry-container{
+
+.industry-container {
     position: fixed;
     top: 10%;
     left: 33%;

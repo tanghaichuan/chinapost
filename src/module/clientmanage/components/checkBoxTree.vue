@@ -19,9 +19,14 @@
             is-check 
             ref="tree"></t-tree>
         </div>
+        <div class="box-footer">
+            <t-button type="outline" @click.native="cancel" class="sub-btn">取消</t-button>
+            <t-button type="primary" @click.native="submitBox">确定</t-button>
+        </div>
     </div>
 </template>
 <script>
+import bus from '../bus'
 export default {
     name: 'checkBoxTree',
     data() {
@@ -70,28 +75,37 @@ export default {
             }
         };
     },
+    props: {
+        toggle: Boolean
+    },
     computed: {
 
     },
     watch: {
         filterText(val) {
-            console.log(val);
-            this.$refs.tree.filter(val);
+            this.$refs.tree.filter(val)
         }
     },
 
     methods: {
         filterNode(value, data) {
             if (!value) return true;
-            return data.label.indexOf(value) !== -1;
+            return data.label.indexOf(value) !== -1
+        },
+        cancel() {
+            this.$emit('update:toggle', false)
+        },
+        submitBox() {
+            let res = [];
+            _.forEach(this.$refs.tree.getCheckedNodes(), val => {
+                res.push(val.label)
+            })
+            this.$emit('update:toggle', false)
+            bus.$emit("getCheckBoxSel", res)
         }
     },
     created() {
-        // axios.get('/mock/tree').then(function (response) {
-        //     console.log(response);
-        // }).catch(function (error) {
 
-        // });
     }
 };
 </script>
@@ -120,13 +134,29 @@ export default {
             position: absolute;
             right: 25px;
             display: inline-block;
-            font-size: 8px;
+            font-size: 20px;
             color: #999999;
             float: right;
         }
     }
+    .box-footer {
+        padding: 10px 22px 10px 0;
+        text-align: right;
+        border-top: 1px solid #eeeeee;
+        .sub-btn {
+            margin-right: 4px;
+            color: #666;
+            &:hover {
+                color: #3DAC6E;
+                i {
+                    color: #3DAC6E;
+                }
+            }
+        }
+    }
     .box-container {
         padding: 25px;
+        padding-bottom: 0px;
     }
     .filter-tree {
         padding-top: 15px;

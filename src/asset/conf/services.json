@@ -8,6 +8,14 @@
     "APP_LIST": "/mock/osp/appList",
     "APP_DETAILS": "/mock/osp/appDetails"
   },
+  "clientmanage": {
+    "queryCharacterSpec": "/mock/queryCharacterSpec",
+    "queryCustomerCharacterById": "/mock/queryCustomerCharacterById",
+    "queryCustomerIdenCharacterById": "/mock/queryCustomerIdenCharacterById",
+    "queryCustomerContMediumCharacterById": "/mock/queryCustomerContMediumCharacterById",
+    "queryCustomerAddressCharacterById": "/mock/queryCustomerAddressCharacterById",
+    "queryCustomerRelPersonCharacterById":"/mock/queryCustomerRelPersonCharacterById"
+  },
   "GET_HISTORY": "/mock/historymenu",
   "SYSTEM_MENU": "/mock/getsysmenu",
   "GET_MEMO": "/mock/memomenu",

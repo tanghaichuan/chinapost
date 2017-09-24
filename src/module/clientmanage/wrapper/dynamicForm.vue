@@ -10,289 +10,37 @@
     </div>
 </template>
 <script>
+import { mapActions } from 'vuex'
+import { mapState } from 'vuex'
 import itemWrap from './itemWrap'
 export default {
     name: 'dynamicForm',
     data() {
         return {
+            cusData: {
+                "systemParams": {
+
+                },
+                "businessParams": {
+                    "customerId": "-1",  //客户ID
+                    "specCode": "IDN_CUST_BASE_CHA",
+                    "queryPurpose": "forUpdate"  //查询用于更新(forUpdate)或只是用于展示详情(forBrowse)，目前只有这两种选择。
+                }
+            },
+            comData: {
+               "systemParams": {
+
+                },
+                "businessParams": {
+                    "customerId": "-1",  //客户ID
+                    "specCode": "COMPANY_CUST_BASE_CHA",
+                    "queryPurpose": "forUpdate"  //查询用于更新(forUpdate)或只是用于展示详情(forBrowse)，目前只有这两种选择。
+                } 
+            },
             openSelect: false,
             flod: false,
             customFormItem: [
-                {
-                    "CODE": "MAJOR_LOGISTICS_REQCONT",
-                    "VALUE": "",
-                    "DISP": "主要物流需求",
-                    "OPER_MODE": "010"
-                },
-                {
-                    "CODE": "INDUSTYR_TYPE_PARENT",
-                    "VALUE": "",
-                    "DISP": "行业类型",
-                    "OPER_MODE": "017"
-                },
-                {
-                    "CODE": "PAYMENT_TERM",
-                    "VALUE": "",
-                    "DISP": "账期",
-                    "OPER_MODE": "010"
-                },
-                {
-                    "CODE": "APPROVAL_FLAG",
-                    "VALUE": "",
-                    "DISP": "审批标志",
-                    "OPER_MODE": "010"
-                },
-                {
-                    "CODE": "POSTAGE_CONFIDENCE",
-                    "VALUE": "",
-                    "DISP": "客户对邮资信度",
-                    "OPER_MODE": "010"
-                },
-                {
-                    "CODE": "ACCOUNTING_FLAG",
-                    "VALUE": "",
-                    "DISP": "允许记账标志",
-                    "OPER_MODE": "02"
-                },
-                {
-                    "CODE": "ARREARS_LIMIT",
-                    "VALUE": "",
-                    "DISP": "欠费金额限制",
-                    "OPER_MODE": "010"
-                },
-                {
-                    "CODE": "ARREARS_TIME_LIMIT",
-                    "VALUE": "",
-                    "DISP": "欠费时间限制",
-                    "OPER_MODE": "010"
-                },
-                {
-                    "CODE": "IF_DEVELOPECUST",
-                    "VALUE": "",
-                    "DISP": "是否开发用户",
-                    "OPER_MODE": "02",
-                    "ENUM": [
-                        {
-                            "key": "Y",
-                            "value": "有"
-                        },
-                        {
-                            "key": "N",
-                            "value": "无"
-                        }
-                    ]
-                },
-                {
-                    "CODE": "IF_AGREEMENTCUST",
-                    "VALUE": "",
-                    "DISP": "是否合同用户",
-                    "OPER_MODE": "02",
-                    "ENUM": [
-                        {
-                            "key": "Y",
-                            "value": "有"
-                        },
-                        {
-                            "key": "N",
-                            "value": "无"
-                        }
-                    ]
-                },
-                {
-                    "CODE": "IF_COMPOSITECUST",
-                    "VALUE": "",
-                    "DISP": "是否综合用户",
-                    "OPER_MODE": "02",
-                    "ENUM": [
-                        {
-                            "key": "Y",
-                            "value": "有"
-                        },
-                        {
-                            "key": "N",
-                            "value": "无"
-                        }
-                    ]
-                },
-                {
-                    "CODE": "VIP_CARD_NUMBER",
-                    "VALUE": "",
-                    "DISP": "贵宾卡号",
-                    "OPER_MODE": "010",
-                },
-                {
-                    "CODE": "PAYER_NUMBER",
-                    "VALUE": "",
-                    "DISP": "付款人客户编码",
-                    "OPER_MODE": "010",
-                },
-                {
-                    "CODE": "CUSTOMER_NUMBER",
-                    "VALUE": "",
-                    "DISP": "大客户号",
-                    "OPER_MODE": "010",
-                },
-                {
-                    "CODE": "TOUCHWAY",
-                    "VALUE": "",
-                    "DISP": "客户触达方式",
-                    "OPER_MODE": "010",
-                },
-                {
-                    "CODE": "COMPANY_CODE",
-                    "VALUE": "",
-                    "DISP": "客户办理业务机构编号",
-                    "OPER_MODE": "010",
-                },
-                {
-                    "CODE": "SOURCE_MANNER",
-                    "VALUE": "",
-                    "DISP": "客户来源方式",
-                    "OPER_MODE": "02",
-                },
-                {
-                    "CODE": "RESOURCE_SYSTEM",
-                    "VALUE": "",
-                    "DISP": "来源系统",
-                    "OPER_MODE": "02",
-                },
-                {
-                    "DISP": "HAVECHILDFLAG",
-                    "DISP": "是否有子女",
-                    "OPER_MODE": "02",
-                    "VALUE": "",
-                    "ENUM": [
-                        {
-                            "key": "Y",
-                            "value": "有"
-                        },
-                        {
-                            "key": "N",
-                            "value": "无"
-                        }
-                    ]
-                },
-                {
-                    "CODE": "INDUSTRY",
-                    "VALUE": "",
-                    "DISP": "行业",
-                    "OPER_MODE": "02",
-                    "ENUM": [
-                        {
-                            "value": "Agriculture",
-                            "label": "农业",
-                            "children": [
-                                {
-                                    "value": "guwu",
-                                    "label": "谷物种植",
-                                    "children": [
-                                        {
-                                            "value": "daogu",
-                                            "label": "稻谷种植"
-                                        }
-                                    ]
-                                }
-                            ]
-                        },
-                        {
-                            "value": "Forestry",
-                            "label": "林业"
-                        },
-                        {
-                            "value": "Fisheries",
-                            "label": "渔业"
-                        }
-                    ]
-                },
-                {
-                    "CODE": "PERSONALITY",
-                    "VALUE": "",
-                    "DISP": "个性特征",
-                    "OPER_MODE": "010"
-                },
-                {
-                    "CODE": "INTEREST",
-                    "VALUE": "",
-                    "DISP": "兴趣和避讳",
-                    "OPER_MODE": "010"
-                },
-                {
-                    "CODE": "HONOR_AWARD",
-                    "VALUE": "",
-                    "DISP": "荣誉奖励",
-                    "OPER_MODE": "010"
-                },
-                {
-                    "CODE": "START_JOB_DATE",
-                    "VALUE": "",
-                    "DISP": "参加工作时间",
-                    "OPER_MODE": "014"
-                },
-                {
-                    "CODE": "SHORT_NAME",
-                    "VALUE": "",
-                    "DISP": "简称",
-                    "OPER_MODE": "010"
-                },
-                // {
-                //     "DISP": "证件类型",
-                //     "OPER_MODE": "02",
-                //     "VALUE": "",
-                //     "ENUM": [
-                //         {
-                //             "key": "primary",
-                //             "value": "身份证"
-                //         },
-                //         {
-                //             "key": "middle",
-                //             "value": "户口簿"
-                //         },
-                //         {
-                //             "key": "high",
-                //             "value": "驾驶证"
-                //         },
-                //         {
-                //             "key": "university",
-                //             "value": "出生证"
-                //         },
-                //         {
-                //             "key": "Master",
-                //             "value": "护照"
-                //         },
-                //         {
-                //             "key": "Doctor",
-                //             "value": "港澳通行证"
-                //         },
-                //         {
-                //             "key": "Post-Doctor",
-                //             "value": "港澳身份证"
-                //         },
-                //         {
-                //             "key": "Post-Doctor",
-                //             "value": "台胞证"
-                //         },
-                //         {
-                //             "key": "Post-Doctor",
-                //             "value": "雇员证（单位证明）"
-                //         },
-                //         {
-                //             "key": "Post-Doctor",
-                //             "value": "军官证"
-                //         }
-                //     ]
-                // },
-                {
-                    "CODE": "NAME",
-                    "VALUE": "",
-                    "DISP": "重要日期名称",
-                    "OPER_MODE": "010"
-                },
-                {
-                    "CODE": "NAME",
-                    "VALUE": "",
-                    "DISP": "重要日期",
-                    "OPER_MODE": "014"
-                }
+
             ],
             companyFromItem: [
                 {
@@ -552,9 +300,14 @@ export default {
         itemWrap
     },
     computed: {
-
+        ...mapState({
+            extFormList: state => state.clientManage.extFormList,
+        })
     },
     methods: {
+        ...mapActions({
+            loadExtFormItem: 'clientManage/loadExtFormItem'
+        }),
         getMore(id, obj) {
             if (this.flod) {
                 this.flod = false
@@ -564,19 +317,26 @@ export default {
                 } else {
                     this.getCompany(obj)
                 }
-                this.flod = true
             }
         },
-        getCustomerForm(obj) {
-            //console.log(obj);
+        async getCustomerForm(obj) {
+            try {
+                await this.loadExtFormItem(this.cusData)
+                this.flod = true
+            } catch (error) {
+                console.error(error);
+            }
+            this.customFormItem = this.extFormList.chaValue
             this.$set(obj, "addFormItem", this.customFormItem)
+            //console.log(obj)
         },
-        getCompany(obj) {
+        async getCompany(obj) {
             //console.log(obj);
+            this.flod = true
             this.$set(obj, "addFormItem", this.companyFromItem)
         }
     },
-    created() {
+    async created() {
 
     }
 }
@@ -604,6 +364,20 @@ export default {
 
 .load-more {
     text-align: right;
+    a {
+        &:hover {
+            span,
+            i {
+                color: #3DAC6E;
+            }
+        }
+        &:active {
+            span,
+            i {
+                color: #007f3b;
+            }
+        }
+    }
 }
 
 .form-block--block {
