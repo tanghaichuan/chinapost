@@ -1,6 +1,7 @@
 export default {
-	
-  getQueryCustomerList(state){
-		return state.queryCustomerList
-	}
+  getQueryCustomerList(state) {
+    return state.queryCustomerList
+  }
+  
 }
+

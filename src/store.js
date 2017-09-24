@@ -2,14 +2,12 @@ import Vuex from 'vuex'
 import Vue from 'vue'
 import index from './module/index/store'
 import agentView from './module/agentView/store'
-import agent from './module/agentView/store/agent'
 
 Vue.use(Vuex)
 
 const modules = {
     index,
-    agentView,
-    agent
+    agentView
 }
 
 const store = new Vuex.Store({state: {}, modules})

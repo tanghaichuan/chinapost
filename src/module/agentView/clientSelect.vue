@@ -28,7 +28,6 @@
 </template>
 <script>
 import { mapMutations, mapGetters } from 'vuex'
-import invokers from '@/invokers'
 export default{
 	data(){
 		return{

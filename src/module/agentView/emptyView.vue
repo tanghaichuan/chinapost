@@ -99,7 +99,6 @@
 <script>
 import { mapMutations, mapGetters } from 'vuex'
 import selectOrganize from './components/selectOrganize.vue'
-import invokers from '@/invokers'
 export default{
 	components:{
 		selectOrganize
@@ -214,8 +213,8 @@ export default{
 		}
 	},
 	methods:{
-		 ...mapMutations({
-      addQueryCustomerList: 'addQueryCustomerList'
+		...mapMutations({
+      addQueryCustomerList: 'QUERY_CUSTOMER_LIST'
     }),
 		showModal(){
 			this.modal = true
@@ -284,12 +283,7 @@ export default{
 		    })
 			}
 		}
-	},
-	computed: {
-    ...mapGetters([
-      'getQueryCustomerList'
-    ])
-  }
+	}
 }	
 </script>
 <style lang="less" >
