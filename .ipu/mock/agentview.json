@@ -1,103 +1,200 @@
 [{
-    "url": "/mock/queryCustomerListByParams",
-    "method": "post",
-    "response":{
-        "systemParams": {
-            "responseInfos": {
-                "responseCode": "0",
-                "responseMsg": "OK"
-            }
-        },
-        "businessParams": {
-            "amount" :2,
-            "customerList": [
-                {
-                    "customerId": "2", 
-                    "partyId": "123", 
-                    "partyType": "1001", 
-                    "partyTypeName": "个人客户", 
-                    "customerCode": "P0989", 
-                    "name": "亚信科技集团", 
-                    "idenCode": "USCI", 
-                    "idenCodeName": "统一社会信用编码", 
-                    "idenNr": "91430111MA4L16JQ9B",  
-                    "contNumberType":"CP", 
-                    "contNumberTypeName":"手机", 
-                    "contNumber":"13901009876",  
-                    "addressDetailName":"北京海淀区中关村二期B5-201",
-                    "custmerStatusId":"1",
-                    "custmerStatusName":"正常"
-                },
-                {
-                    "customerId": "2", 
-                    "partyId": "123", 
-                    "partyType": "1001", 
-                    "partyTypeName": "个人客户", 
-                    "customerCode": "P0989", 
-                    "name": "亚信科技集团", 
-                    "idenCode": "USCI", 
-                    "idenCodeName": "统一社会信用编码", 
-                    "idenNr": "91430111MA4L16JQ9B",  
-                    "contNumberType":"CP", 
-                    "contNumberTypeName":"手机", 
-                    "contNumber":"13901009876",  
-                    "addressDetailName":"北京海淀区中关村二期B5-201",
-                    "custmerStatusId":"1",
-                    "custmerStatusName":"正常"
-                },
-                {
-                    "customerId": "2", 
-                    "partyId": "123", 
-                    "partyType": "1002", 
-                    "partyTypeName": "个人客户", 
-                    "customerCode": "P0989", 
-                    "name": "唐小阳", 
-                    "idenCode": "USCI", 
-                    "idenCodeName": "统一社会信用编码", 
-                    "idenNr": "91430111MA4L16JQ9B",  
-                    "contNumberType":"CP", 
-                    "contNumberTypeName":"手机", 
-                    "contNumber":"13901009876",  
-                    "addressDetailName":"北京海淀区中关村二期B5-201",
-                    "custmerStatusId":"1",
-                    "custmerStatusName":"正常"
-                },
-                {
-                    "customerId": "2", 
-                    "partyId": "123", 
-                    "partyType": "1001", 
-                    "partyTypeName": "个人客户", 
-                    "customerCode": "P0989", 
-                    "name": "亚信科技集团", 
-                    "idenCode": "USCI", 
-                    "idenCodeName": "统一社会信用编码", 
-                    "idenNr": "91430111MA4L16JQ9B",  
-                    "contNumberType":"CP", 
-                    "contNumberTypeName":"手机", 
-                    "contNumber":"13901009876",  
-                    "addressDetailName":"北京海淀区中关村二期B5-201",
-                    "custmerStatusId":"1",
-                    "custmerStatusName":"正常"
-                },
-                {
-                    "customerId": "2", 
-                    "partyId": "123", 
-                    "partyType": "1001", 
-                    "partyTypeName": "个人客户", 
-                    "customerCode": "P0989", 
-                    "name": "亚信科技集团", 
-                    "idenCode": "USCI", 
-                    "idenCodeName": "统一社会信用编码", 
-                    "idenNr": "91430111MA4L16JQ9B",  
-                    "contNumberType":"CP", 
-                    "contNumberTypeName":"手机", 
-                    "contNumber":"13901009876",  
-                    "addressDetailName":"北京海淀区中关村二期B5-201",
-                    "custmerStatusId":"1",
-                    "custmerStatusName":"正常"
-                }
-            ]
-        }
-       
+  "url": "/mock/queryCustomerListByParams",
+  "method": "post",
+  "response": {
+    "systemParams": {
+      "responseInfos": {
+        "responseCode": "0",
+        "responseMsg": "OK"
+      }
+    },
+    "businessParams": {
+      "amount": 2,
+      "customerList": [{
+        "customerId": "2",
+        "partyId": "123",
+        "partyType": "1001",
+        "partyTypeName": "个人客户",
+        "customerCode": "P0989",
+        "name": "亚信科技集团",
+        "idenCode": "USCI",
+        "idenCodeName": "统一社会信用编码",
+        "idenNr": "91430111MA4L16JQ9B",
+        "contNumberType": "CP",
+        "contNumberTypeName": "手机",
+        "contNumber": "13901009876",
+        "addressDetailName": "北京海淀区中关村二期B5-201",
+        "custmerStatusId": "1",
+        "custmerStatusName": "正常"
+      }, {
+        "customerId": "2",
+        "partyId": "123",
+        "partyType": "1001",
+        "partyTypeName": "个人客户",
+        "customerCode": "P0989",
+        "name": "亚信科技集团",
+        "idenCode": "USCI",
+        "idenCodeName": "统一社会信用编码",
+        "idenNr": "91430111MA4L16JQ9B2",
+        "contNumberType": "CP",
+        "contNumberTypeName": "手机",
+        "contNumber": "13901009876",
+        "addressDetailName": "北京海淀区中关村二期B5-201",
+        "custmerStatusId": "1",
+        "custmerStatusName": "正常"
+      }, {
+        "customerId": "2",
+        "partyId": "123",
+        "partyType": "1002",
+        "partyTypeName": "个人客户",
+        "customerCode": "P0989",
+        "name": "唐小阳",
+        "idenCode": "USCI",
+        "idenCodeName": "统一社会信用编码",
+        "idenNr": "91430111MA4L16JQ9B",
+        "contNumberType": "CP",
+        "contNumberTypeName": "手机",
+        "contNumber": "13901009876",
+        "addressDetailName": "北京海淀区中关村二期B5-201",
+        "custmerStatusId": "1",
+        "custmerStatusName": "正常"
+      }, {
+        "customerId": "2",
+        "partyId": "123",
+        "partyType": "1001",
+        "partyTypeName": "个人客户",
+        "customerCode": "P0989",
+        "name": "亚信科技集团",
+        "idenCode": "USCI",
+        "idenCodeName": "统一社会信用编码",
+        "idenNr": "91430111MA4L16JQ9B",
+        "contNumberType": "CP",
+        "contNumberTypeName": "手机",
+        "contNumber": "13901009876",
+        "addressDetailName": "北京海淀区中关村二期B5-201",
+        "custmerStatusId": "1",
+        "custmerStatusName": "正常"
+      }, {
+        "customerId": "2",
+        "partyId": "123",
+        "partyType": "1001",
+        "partyTypeName": "个人客户",
+        "customerCode": "P0989",
+        "name": "亚信科技集团",
+        "idenCode": "USCI",
+        "idenCodeName": "统一社会信用编码",
+        "idenNr": "91430111MA4L16JQ9B",
+        "contNumberType": "CP",
+        "contNumberTypeName": "手机",
+        "contNumber": "13901009876",
+        "addressDetailName": "北京海淀区中关村二期B5-201",
+        "custmerStatusId": "1",
+        "custmerStatusName": "正常"
+      }]
     }
+
+  }
+}, {
+  "url": "/mock/queryChaSpecCatalog",
+  "method": "post",
+  "response": {
+    "systemParams": {
+      "responseInfos": {
+        "responseCode": "0",
+        "responseMsg": "OK"
+      }
+    },
+    "businessParams": {
+      "amount": 2,
+      "responseList": [{
+          "chaSpecCatalogId": "1",
+          "upChaSpecCatalogId": "0",
+          "catalogCode": "XXX",
+          "catalogName": "XXX",
+          "isLeaf": "XXX",
+          "subChaSpecCataLog": [{
+              "chaSpecCatalogId": "2",
+              "upChaSpecCatalogId": "0",
+              "catalogCode": "XXX",
+              "catalogName": "XXX",
+              "isLeaf": "XXX",
+              "subChaSpecCataLog": [{
+                "chaSpecCatalogId": "3",
+                "upChaSpecCatalogId": "0",
+                "catalogCode": "XXX",
+                "catalogName": "XXX",
+                "isLeaf": "XXX",
+                "subChaSpecCataLog": [{
+                    "chaSpecCatalogId": "1",
+                    "upChaSpecCatalogId": "0",
+                    "catalogCode": "XXX",
+                    "catalogName": "XXX",
+                    "isLeaf": "XXX"
+                  },
+                  {
+                    "chaSpecCatalogId": "2",
+                    "upChaSpecCatalogId": "0",
+                    "catalogCode": "XXX",
+                    "catalogName": "XXX",
+                    "isLeaf": "XXX"
+                  }
+                ]
+              }]
+            },
+            {
+              "chaSpecCatalogId": "4",
+              "upChaSpecCatalogId": "0",
+              "catalogCode": "XXX",
+              "catalogName": "XXX",
+              "isLeaf": "XXX"
+            }
+          ]
+        },
+        {
+          "chaSpecCatalogId": "2",
+          "upChaSpecCatalogId": "0",
+          "catalogCode": "XXX",
+          "catalogName": "XXX",
+          "isLeaf": "XXX",
+          "subChaSpecCataLog": [{
+              "chaSpecCatalogId": "1",
+              "upChaSpecCatalogId": "0",
+              "catalogCode": "XXX",
+              "catalogName": "XXX",
+              "isLeaf": "XXX",
+              "subChaSpecCataLog": [{
+                  "chaSpecCatalogId": "1",
+                  "upChaSpecCatalogId": "0",
+                  "catalogCode": "XXX",
+                  "catalogName": "XXX",
+                  "isLeaf": "XXX"
+                },
+                {
+                  "chaSpecCatalogId": "2",
+                  "upChaSpecCatalogId": "0",
+                  "catalogCode": "XXX",
+                  "catalogName": "XXX",
+                  "isLeaf": "XXX",
+                  "subChaSpecCataLog": [{
+                    "chaSpecCatalogId": "1",
+                    "upChaSpecCatalogId": "0",
+                    "catalogCode": "XXX",
+                    "catalogName": "XXX",
+                    "isLeaf": "XXX"
+                  }]
+                }
+              ]
+            },
+            {
+              "chaSpecCatalogId": "2",
+              "upChaSpecCatalogId": "0",
+              "catalogCode": "XXX",
+              "catalogName": "XXX",
+              "isLeaf": "XXX"
+            }
+          ]
+        }
+      ]
+    }
+  }
 }]
