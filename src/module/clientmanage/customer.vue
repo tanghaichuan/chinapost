@@ -155,7 +155,7 @@ export default {
             baseInfo: {
                 "isCollapse": true,
                 "isAsync": true,
-                "title": "基本信息",
+                "title": "个人客户基本信息",
                 "formItem": [
                     {
                         "formList": [
@@ -166,7 +166,7 @@ export default {
             idenInfo: {
                 "isExtend": true,
                 "isCollapse": true,
-                "title": "认证识别信息",
+                "title": "个人客户识别信息",
                 "formItem": [
                     {
                         "formList": [
@@ -177,7 +177,7 @@ export default {
             contactInfo: {
                 "isExtend": true,
                 "isCollapse": true,
-                "title": "联系媒介信息",
+                "title": "个人客户联系信息",
                 "formItem": [
                     {
                         "formList": [
@@ -190,7 +190,7 @@ export default {
             address: {
                 "isExtend": true,
                 "isCollapse": true,
-                "title": "地址信息",
+                "title": "个人客户地址信息",
                 "formItem": [
                     {
                         "formList": [
@@ -199,7 +199,66 @@ export default {
                     }
                 ]
             },
-            formData: {}
+            partyInfo: {
+                "isExtend": true,
+                "isCollapse": true,
+                "isAsync": true,
+                "title": "个人客户其他关系人信息",
+                "formItem": [
+                    {
+                        "formList": [
+                        ]
+                    }
+                ]
+            },
+            formData: {},
+            data: [
+                {   // 基本信息
+                    "systemParams": {
+                    },
+                    "businessParams": {
+                        "customerId": "-1",  //客户ID
+                        "specCode": "IND_CUST_BASE_CHA",
+                        "queryPurpose": "forUpdate"  //查询用于更新(forUpdate)或只是用于展示详情(forBrowse),目前只有这两种选择。
+                    }
+                },
+                {   // 识别信息
+                    "systemParams": {
+                    },
+                    "businessParams": {
+                        "customerId": "-1",  //客户ID
+                        "specCode": "CUST_IDEN_BASE_CHA",
+                        "queryPurpose": "forUpdate"  //查询用于更新(forUpdate)或只是用于展示详情(forBrowse),目前只有这两种选择。
+                    }
+                },
+                {   // 地址信息
+                    "systemParams": {
+                    },
+                    "businessParams": {
+                        "customerId": "-1",  //客户ID
+                        "specCode": "CUST_ADDR_BASE_CHA",
+                        "queryPurpose": "forUpdate"  
+                    }
+                },
+                {   // 联系媒介信息
+                    "systemParams": {
+                    },
+                    "businessParams": {
+                        "customerId": "-1",  //客户ID
+                        "specCode": "CUST_CONT_MEDIUM_CHA",
+                        "queryPurpose": "forUpdate"  
+                    }
+                },
+                {   // 客户关系人信息
+                    "systemParams": {
+                    },
+                    "businessParams": {
+                        "customerId": "-1",  //客户ID
+                        "specCode": "CUST_REL_PERSON_CHA",
+                        "queryPurpose": "forUpdate"  
+                    }
+                }
+            ]
         }
     },
     components: {
@@ -216,47 +275,22 @@ export default {
         })
     },
     async created() {
-        let arr = []
-        let baseData = {
-            "systemParams": {
-
-            },
-            "businessParams": {
-                "customerId": "-1",  //客户ID
-                "specCode": "IND_CUST_BASE_CHA",
-                "queryPurpose": "forUpdate"  //查询用于更新(forUpdate)或只是用于展示详情(forBrowse),目前只有这两种选择。
-            }
-        }
-        let data = {
-            "systemParams": {
-
-            },
-            "businessParams": {
-                "customerId": "-1",  //客户ID
-                "specCode": "CUST_ADDR_BASE_CHA",
-                "queryPurpose": "forUpdate"  //查询用于更新(forUpdate)或只是用于展示详情(forBrowse),目前只有这两种选择。
-            }
-        }
-        // 这里的每个specCode暂时不做区分
-        arr.push(baseData)
-        for (let i = 1; i < 4; i++) {
-            arr.push(data)
-        }
         try {
-            await this.loadFormItem(arr)
-            console.log(this.cusFormList)
+            await this.loadFormItem(this.data)
             this.baseInfo.formItem[0].formList.push(...this.cusFormList[0].chaValue)
             this.idenInfo.formItem[0].formList.push(...this.cusFormList[1].chaValue)
             this.contactInfo.formItem[0].formList.push(...this.cusFormList[2].chaValue)
             this.address.formItem[0].formList.push(...this.cusFormList[3].chaValue)
+            this.partyInfo.formItem[0].formList.push(...this.cusFormList[4].chaValue)
         } catch (error) {
             console.error(error);
         }
         this.formData = Object.assign({}, this.formData, {
             baseInfo: this.baseInfo,
             idenInfo: this.idenInfo,
+            address: this.address,
             contactInfo: this.contactInfo,
-            address: this.address
+            partyInfo:this.partyInfo
         })
     }
 

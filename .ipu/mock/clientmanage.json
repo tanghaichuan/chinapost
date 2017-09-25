@@ -546,73 +546,36 @@
         "businessParams": {
             "specCode": "XXX",
             "chaValue": [{
-                    "CODE": "COUNTRY",
+                    "CODE": "PARTY_TYPE_ID",
                     "VALUE": "",
-                    "DISP": "国家",
+                    "DISP": "关系类型",
                     "OPER_MODE": "02",
                     "ENUM": [{
-                        "key": "China",
-                        "value": "中国"
-                    }]
+                            "key": "PARTY1",
+                            "value": "联系人"
+                        },
+                        {
+                            "key": "PARTY2",
+                            "value": "客户经理"
+                        }
+                    ]
                 },
                 {
-                    "CODE": "PROVINCE",
+                    "CODE": "CONTACT2_INFO",
                     "VALUE": "",
-                    "DISP": "省",
-                    "OPER_MODE": "02",
-                    "ENUM": [{
-                        "key": "China",
-                        "value": "中国"
-                    }]
-                },
-                {
-                    "CODE": "CITY",
-                    "VALUE": "",
-                    "DISP": "市县",
-                    "OPER_MODE": "02",
-                    "ENUM": [{
-                        "key": "China",
-                        "value": "中国"
-                    }]
-                },
-                {
-                    "CODE": "DISTRICT",
-                    "VALUE": "",
-                    "DISP": "区镇",
-                    "OPER_MODE": "02",
-                    "ENUM": [{
-                        "key": "China",
-                        "value": "中国"
-                    }]
-                },
-                {
-                    "CODE": "STREET",
-                    "VALUE": "",
-                    "DISP": "街道",
+                    "DISP": "姓名",
                     "OPER_MODE": "010"
                 },
                 {
-                    "CODE": "REGION",
+                    "CODE": "BestContact_Date",
                     "VALUE": "",
-                    "DISP": "园区",
+                    "DISP": "联系电话",
                     "OPER_MODE": "010"
                 },
                 {
-                    "CODE": "DOOR_NUMBER",
+                    "CODE": "Contact_FirstSelectDate",
                     "VALUE": "",
-                    "DISP": "门牌室号",
-                    "OPER_MODE": "010"
-                },
-                {
-                    "CODE": "ADDR_DETAIL_NAME",
-                    "VALUE": "",
-                    "DISP": "地址实例详细名称",
-                    "OPER_MODE": "010"
-                },
-                {
-                    "CODE": "POSTAL_CODE",
-                    "VALUE": "",
-                    "DISP": "邮政编码",
+                    "DISP": "邮箱",
                     "OPER_MODE": "010"
                 }
             ]

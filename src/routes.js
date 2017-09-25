@@ -6,14 +6,9 @@ import details from './module/details/route'
 // 360路由
 import agentview from './module/agentView/route'
 
-// const menu = r => require.ensure([], () => r(require('module/clientmanage/menu')), 'menu')
 
 // const test = proxyLoad('demo/test/test', 'test')
 
-// const tabel = r => require.ensure([], () => r(require('demo/test/table1')), 'test')
-// const dynamicForm = r => require.ensure([], () => r(require('demo/test/dynamicForm')), 'test')
-// const droptree = r => require.ensure([], () => r(require('demo/portal/components/droptree.vue')), 'test')
-// const checkBoxTree = r => require.ensure([], () => r(require('demo/portal/components/checkBoxTree.vue')), 'test')
 export default[
   {
     path : '/',

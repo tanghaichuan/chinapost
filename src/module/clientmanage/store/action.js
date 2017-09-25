@@ -47,7 +47,6 @@ export async function loadFormItem({
             }
             // 这里将个人客户和机构客户的表单元素分开存储
             if (array[0].businessParams.specCode === "IND_CUST_BASE_CHA") {
-                console.log(res);
                 commit(constants.LOAD_CUS_FORM_LIST, res)
             } else {
                 commit(constants.LOAD_COM_FORM_LIST, res)

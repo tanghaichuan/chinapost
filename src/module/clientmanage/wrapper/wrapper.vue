@@ -404,6 +404,7 @@ export default {
         handleSubmit(name) {
             this.$refs[name].validate(valid => {
                 if (valid) {
+                    console.log(this.formData);
                     this.$Message.success('保存成功!');
                 } else {
                     this.$Message.danger('保存失败!');

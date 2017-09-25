@@ -13,7 +13,6 @@
             <t-tree 
             class="filter-tree" 
             :data="industryData" 
-            :props="defaultProps" 
             all-expandable 
             :filter-node-method="filterNode" 
             is-check 

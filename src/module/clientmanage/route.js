@@ -24,6 +24,11 @@ const routes = [
                 component: require('module/clientmanage/querylist.vue')
             }
         ]
+    },
+    {
+        name: '客户管理',
+        path: '/test',
+        component: require('demo/test/test.vue')
     }
 ]
 

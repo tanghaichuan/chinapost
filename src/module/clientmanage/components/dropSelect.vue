@@ -1,6 +1,6 @@
 <template>
     <div class="drop-select">
-        <div class="input" @click="openToggle">
+        <div class="input"  @click="openToggle">
             <span class="dropdown-placeholder" v-show="isEmpty">请选择</span>
             <span class="dropdown-selection-icon">
                 <i class="aid aid-chevron-down aid-select-arrow"></i>
@@ -26,10 +26,7 @@ export default {
         }
     },
     props: {
-        values: {
-            type: Array,
-            default: []
-        }
+        value: Array
     },
     computed: {
         isEmpty() {
@@ -48,9 +45,9 @@ export default {
         }
     },
     watch: {
-        values(val) {
-            this.$emit('update:values', val)
-        },
+        data(val) {
+            this.$emit('input', val)
+        }
     },
     created() {
         bus.$on('getCheckBoxSel', res => {

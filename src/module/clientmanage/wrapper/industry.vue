@@ -1,6 +1,6 @@
 <template>
     <div class="industry">
-        <drop-select :values.sync="item.VALUE" @openToggle="openBox"></drop-select>
+        <drop-select v-model="data" @openToggle="openBox"></drop-select>
         <div class="mask" v-if="toggle"></div>
         <div class="industry-container" v-if="toggle">
             <!-- <img src="../../../asset/image/extra.png" alt=""> -->
@@ -15,15 +15,24 @@ export default {
     name: "Industry",
     data() {
         return {
-            toggle: false
+            toggle: false,
+            data: []
         }
     },
     props: {
-        item: Array
+        value: Array
     },
     components: {
         checkBoxTree,
         dropSelect
+    },
+    watch: {
+        value(val) {
+            this.data = val
+        },
+        data(val) {
+            this.$emit('input', val.toString()) // 这里直接传数组会触发表单验证error(未解决)
+        }
     },
     methods: {
         openBox() {
@@ -31,7 +40,7 @@ export default {
         }
     },
     created() {
- 
+
     }
 }
 </script>

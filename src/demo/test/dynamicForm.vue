@@ -4,8 +4,7 @@
         v-for="(item, index) in formDynamic.items" 
         :key="item" :label="'表单项' + (index + 1)" 
         :prop="'items.' + index + '.value'" 
-        :required="true"
-        :rules="{type: 'number', message: '类型不对', trigger: 'change'}">
+        :rules="{ required: true, message: '必填', trigger: 'blur' }" >
             <div class="row">
                 <div class="col-10">
                     <t-input type="number"  v-model="item.value" placeholder="请输入..."></t-input>
@@ -35,7 +34,7 @@ export default {
             formDynamic: {
                 items: [
                     {
-                        value: ''
+                        value: ['1','2']
                     }
                 ]
             }
