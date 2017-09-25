@@ -252,7 +252,8 @@ export default{
 
 			//判断查询条件
 			if((this.personal.type =='' || this.personal.personNum=='') && (this.construction.name == '') && (this.construction.simpleName =='' ) && (this.business.ticket == '') ){
-				alert('请填写完整信息')
+				
+				this.$Message.info('请填写完整信息')
 			}else{
 				//将条件放入参数数组
 				this.paramsData.businessParams.queryCondition.push(identifyNr,name,nameAndFuzzy,agreementCode)
@@ -277,7 +278,7 @@ export default{
 						this.modals = false
 						this.$router.push({path:'/agentview/clientSelect'})
 					}else{
-						alert('无此数据')
+						this.$Message.info('无此数据')
 					}
 					
 		    })
