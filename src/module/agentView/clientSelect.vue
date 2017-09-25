@@ -20,7 +20,7 @@
 		      </li>
 	    	</ul>
 		</div>
-	</div>	
+	</div>
 	<div class="client-pager">
 		<t-pager :total="100" :show-elevator="true" :show-sizer="true"></t-pager>
 	</div>
@@ -35,9 +35,11 @@ export default{
 		}
 	},
   methods:{
-  	linkDetail(items){
-  		// console.log(items)
-  		this.$router.push({path:'/agentview/detail',params:items})
+  	linkDetail({customerId}){
+
+  		this.$router.push({
+        path:`/agentview/detail/${customerId}`
+      })
   	}
   },
   computed: {
@@ -54,7 +56,7 @@ export default{
     // console.log(queryList)
     // console.log(this.list)
   }
-}	
+}
 </script>
 <style lang="less" scoped>
 .client-wrapper{
@@ -156,7 +158,7 @@ export default{
   				border-bottom:0;
   			}
         &:hover{
-          background:#F3FAF6; 
+          background:#F3FAF6;
         }
   		}
     }
