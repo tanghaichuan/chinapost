@@ -14,7 +14,7 @@
 			</p>
 			<div>
 				<div class="query-tab">
-					<t-tabs>
+					<t-tabs @input="selectTab">
 						<t-tab-panel label="个人客户" name="tab-1">
 							<div class="content">
 									<t-form :model="personal" label-position="left" :label-span="3">
@@ -105,6 +105,7 @@ export default{
 	},
 	data(){
 		return{
+			tabValue:0,
 			modal:false,
 			modals:false,
 			personal:{
@@ -233,6 +234,35 @@ export default{
 			this.modals = false
 			this.modal = true
 		},
+		selectTab(value){
+			this.tabValue = value
+		},
+		fetchMock(){
+			//获取mock数据
+			this.$domains.cnpost.post(this.$services.AGENTVIEW.GET_CUSTOMER_LIST,{
+				params:this.paramsData
+			})
+			.then((res) => {
+				let sucCode = res.data.systemParams.responseInfos.responseCode
+				if(sucCode == '0'){
+
+					//成功返回回调数据
+					let dataList = res.data.businessParams.customerList
+					
+					//将数据存入vuex中
+					for(let i =0;i<dataList.length;i++){
+						this.addQueryCustomerList(dataList[i])
+					}
+					//弹窗关闭，切换路由，显示列表页面
+					this.modal = false
+					this.modals = false
+					this.$router.push({path:'/agentview/clientSelect'})
+				}else{
+					this.$Message.info('无此数据')
+				}
+				
+	    })
+		},
 		queryDataList(){
 			//页面返回时，清空之前参数
 			this.paramsData.businessParams.queryCondition=[]
@@ -250,39 +280,31 @@ export default{
 			let agreementCode ={"condType":"agreementCode","condValue":[]}
 			agreementCode.condValue.push(this.business.ticket)
 
-			//判断查询条件
-			if((this.personal.type =='' || this.personal.personNum=='') && (this.construction.name == '') && (this.construction.simpleName =='' ) && (this.business.ticket == '') ){
-				
-				this.$Message.info('请填写完整信息')
+			if(this.tabValue == 0){
+				if(this.personal.type =='' || this.personal.personNum==''){
+					this.$Message.info('请填写完整信息')
+				}else{
+					this.paramsData.businessParams.queryCondition.push(identifyNr)
+					this.fetchMock()
+				}
+			}else if(this.tabValue == 1){
+				if(this.construction.name == '' && this.construction.simpleName ==''){
+					this.$Message.info('请填写完整信息')
+				}else{
+					this.paramsData.businessParams.queryCondition.push(name,nameAndFuzzy)
+					this.fetchMock()
+				}
+			}else if(this.tabValue == 2){
+				if(this.business.ticket == ''){
+					this.$Message.info('请填写完整信息')
+				}else{
+					this.paramsData.businessParams.queryCondition.push(agreementCode)
+					this.fetchMock()
+				}
 			}else{
-				//将条件放入参数数组
-				this.paramsData.businessParams.queryCondition.push(identifyNr,name,nameAndFuzzy,agreementCode)
-				//获取mock数据
-				this.$domains.cnpost.post(this.$services.AGENTVIEW.GET_CUSTOMER_LIST,{
-					params:this.paramsData
-				})
-				.then((res) => {
-					let sucCode = res.data.systemParams.responseInfos.responseCode
-					if(sucCode == '0'){
-
-						//成功返回回调数据
-						let dataList = res.data.businessParams.customerList
-						
-						//将数据存入vuex中
-						for(let i =0;i<dataList.length;i++){
-							this.addQueryCustomerList(dataList[i])
-						}
-						
-						//弹窗关闭，切换路由，显示列表页面
-						this.modal = false
-						this.modals = false
-						this.$router.push({path:'/agentview/clientSelect'})
-					}else{
-						this.$Message.info('无此数据')
-					}
-					
-		    })
+				this.$Message.info('请切换选项查询')
 			}
+
 		}
 	}
 }	
