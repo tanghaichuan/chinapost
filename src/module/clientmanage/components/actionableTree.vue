@@ -1,14 +1,15 @@
 
 <template>
     <div>
-        <t-button type="primary" @click="modal = true">点击显示模态框</t-button>
+        <t-button  @click="modal = true">点击显示tree</t-button>
         <t-modal
                 v-model="modal"
                 title="机构选择"
                 @on-ok="ok"
+                style="width: 480px"
                 @on-cancel="cancel">
             <div style="width: 500px;" class="actionableTree">
-                <t-input placeholder="输入关键字进行过滤" v-model="filterText"></t-input>
+                <t-input placeholder="搜索" v-model="filterText" icon="magnify" icon-placement="right"  style="width: 440px"></t-input>
                 <t-tree
                         :data="dataList"
                         :props="defaultProps"
@@ -19,6 +20,7 @@
                         all-expandable
                         is-select
                         :expand-on-click-node="false"
+                        style="width: 440px"
                         :render-content="renderContent">
                 </t-tree>
             </div>
@@ -100,7 +102,7 @@
         }
     };
 </script>
-<style lang="less">
+<style lang="less" >
     .actionableTree{
         padding-right: 15px;
     }
@@ -111,6 +113,23 @@
     .tree__node-content--checked{
         border-left: none;
     }
+    .modal-header{
+        background: #FFFFFF !important;
+        border-bottom: 1px solid  #eaeaea;
+    }
+    .modal-title{
+        font-size: 14px;
+    }
+    .modal-title , .close>span{
+        color: #455a74;
+    }
+    .modal-content{
+        width: 480px;
+    }
+    .modal-body{
+        overflow-x: hidden;
+    }
+
 
 
 </style>
