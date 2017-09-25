@@ -14,49 +14,29 @@
         </div>
         <div class="form-container" v-show="userList.isCollapse">
             <div class="form-item-container">
+                <!--普通表单域-->
                 <item-wrap :row="row" :path="getValidatePath+'formItem.0.formList.'" :userList="userList" :formList="userList.formItem[0].formList"></item-wrap>
-                <!--异步加载更多-->
-                <dynamic-from :getValidatePath="getValidatePath" :row="row" :id="0" :isAsync="userList.isAsync" :userList="userList"></dynamic-from>
+                <!--加载更多表单域-->
+                <dynamic-from v-if="userList.title !== '机构客户其他关系人信息'" :getValidatePath="getValidatePath" :row="row" :id="0" :isAsync="userList.isAsync" :userList="userList"></dynamic-from>
+                <!--创建其他关系人-->
+                <create-rel-per v-if="userList.title === '机构客户其他关系人信息'"></create-rel-per>
             </div>
-            <!--增加扩展-->
+            <!--扩展表单域-->
             <div class="form-item-container" v-for="(item1, x) in userList.formItem" v-if="x > 0" :key="x" :class="userList.title === '基本信息' ? 'base-style' : ''">
                 <i class="iconfont del" @click="delFormList(userList.formItem, x)">&#xe61b;</i>
                 <item-wrap :row="row" :path="getValidatePath+'formItem.'+x+'.formList.'" :userList="userList" :formList="item1.formList"></item-wrap>
-                <dynamic-from :getValidatePath="getValidatePath" :row="row" :id="0" :isAsync="userList.isAsync" :userList="userList"></dynamic-from>
+                <dynamic-from v-if="userList.title !== '机构客户其他关系人信息'" :getValidatePath="getValidatePath" :row="row" :id="0" :isAsync="userList.isAsync" :userList="userList"></dynamic-from>
+                <create-rel-per v-if="userList.title === '机构客户其他关系人信息'"></create-rel-per>
             </div>
         </div>
-
     </div>
 </template>
 <script>
 const itemWrap = () => import('./itemWrap')
 const dynamicFrom = () => import('./dynamicForm')
 const dropTree = () => import('../components/droptree')
+const createRelPer = () => import('./createRelPer')
 
-// 说明：
-// 1.  特征值数据类型目前定义如下：
-// 01--文本
-// 02--数字
-// 03--日期
-
-// 2. 操作方式目前定义如下：
-// 010--手工录入单行：
-// 012--手工录入密码：当用户输入密码时，以特殊字符替代密码字符进行展示；
-// 013--手工录入多行：需要多行录入的文本
-// 014--手工录入日期：录入日期
-// 015--手工录入纯数字：
-// 016--手工录入逻辑值：录入只有真假两种选择的值（即check box）
-// 017--级联 
-// 02--枚举值选择：录入枚举值
-
-// 3. CODE希望能作为界面控件的id或name，以便作为选择器定位控件的凭据。因为前台针对这些控件还是有些代码要写的
-// 4. ENUM_NAME的用处是，将来可能重复的枚举值就重新送了，以节约网络流量。
-// const INPUT = '010',
-//     PASSWORD = '012',
-//     TEXTAREA = '013',
-//     SELECT = '02',
-//     TIME = '014',
-//     CHECKBOX = '016';
 export default {
     name: 'itemForm',
     data() {
@@ -93,7 +73,8 @@ export default {
     components: {
         dynamicFrom,
         dropTree,
-        itemWrap
+        itemWrap,
+        createRelPer
     },
     methods: {
         // 动态验证规则

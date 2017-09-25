@@ -1,8 +1,6 @@
 <template>
     <div class="company">
-
         <wrapper @addItem="loadMore" icon="&#xe64c;" title="创建机构客户信息" :row="4" :formData="formData"></wrapper>
-
         <!--右侧表单区域-->
     </div>
 </template>

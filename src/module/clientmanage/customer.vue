@@ -181,7 +181,7 @@ export default {
                 "formItem": [
                     {
                         "formList": [
-                            
+
                         ]
                     }
 
@@ -194,7 +194,7 @@ export default {
                 "formItem": [
                     {
                         "formList": [
-                            
+
                         ]
                     }
                 ]
@@ -217,6 +217,16 @@ export default {
     },
     async created() {
         let arr = []
+        let baseData = {
+            "systemParams": {
+
+            },
+            "businessParams": {
+                "customerId": "-1",  //客户ID
+                "specCode": "IND_CUST_BASE_CHA",
+                "queryPurpose": "forUpdate"  //查询用于更新(forUpdate)或只是用于展示详情(forBrowse),目前只有这两种选择。
+            }
+        }
         let data = {
             "systemParams": {
 
@@ -228,16 +238,17 @@ export default {
             }
         }
         // 这里的每个specCode暂时不做区分
-        for (let i = 0; i < 4; i++) {
+        arr.push(baseData)
+        for (let i = 1; i < 4; i++) {
             arr.push(data)
         }
-
         try {
             await this.loadFormItem(arr)
+            console.log(this.cusFormList)
             this.baseInfo.formItem[0].formList.push(...this.cusFormList[0].chaValue)
             this.idenInfo.formItem[0].formList.push(...this.cusFormList[1].chaValue)
             this.contactInfo.formItem[0].formList.push(...this.cusFormList[2].chaValue)
-            this.address.formItem[0].formList.push(...this.cusFormList[2].chaValue)
+            this.address.formItem[0].formList.push(...this.cusFormList[3].chaValue)
         } catch (error) {
             console.error(error);
         }

@@ -21,7 +21,7 @@ const queryCustomerRelPersonCharacterByIdUrl = invokers.services.clientmanage.qu
 const urlArr = [queryCharacterSpecUrl, queryCustomerIdenCharacterByIdUrl, queryCustomerContMediumCharacterByIdUrl, queryCustomerAddressCharacterByIdUrl, queryCustomerRelPersonCharacterByIdUrl]
 
 async function postUrlAccount(url, data) {
-    return await invokers
+    return await invokers  
         .domains
         .cnpost
         .post(url, data)
@@ -34,16 +34,24 @@ export async function loadFormItem({
         try {
             let res = [],
                 temp
-
+            // 合并请求
             for (let i = 0; i < array.length; i++) {
+                // 加载请求
                 temp = await postUrlAccount(urlArr[i], array[i])
+                // 请求成功
                 if (temp.data.systemParams.RESPONSE_INFO.responseMsg === 'OK') {
                     res.push(temp.data.businessParams)
                 } else {
                     reject(`加载失败`)
                 }
             }
-            commit(constants.LOAD_CUS_FORM_LIST, res)
+            // 这里将个人客户和机构客户的表单元素分开存储
+            if (array[0].businessParams.specCode === "IND_CUST_BASE_CHA") {
+                console.log(res);
+                commit(constants.LOAD_CUS_FORM_LIST, res)
+            } else {
+                commit(constants.LOAD_COM_FORM_LIST, res)
+            }
             resolve()
         } catch (error) {
             reject(`加载失败${error}`)
@@ -58,7 +66,11 @@ export async function loadExtFormItem({
         try {
             let temp = await postUrlAccount(queryCustomerCharacterByIdUrl, data)
             if (temp.data.systemParams.RESPONSE_INFO.responseMsg === 'OK') {
-                commit(constants.LOAD_EXT_FORM_LIST, temp.data.businessParams)
+                if (data.businessParams.specCode === "IDN_CUST_BASE_CHA") {
+                    commit(constants.LOAD_CUS_EXT_FORM_LIST, temp.data.businessParams)
+                } else {
+                    commit(constants.LOAD_COM_EXT_FORM_LIST, temp.data.businessParams)
+                }
                 resolve()
             } else {
                 reject(`加载失败`)
