@@ -1,13 +1,19 @@
-import {LOAD_FORM_ID, LOAD_CUS_FORM_LIST,LOAD_EXT_FORM_LIST} from './constant'
+import * as constant from './constant'
 
 export default {
-    [LOAD_FORM_ID](state, payload) {
+    [constant.LOAD_FORM_ID](state, payload) {
         state.id = payload
     },
-    [LOAD_CUS_FORM_LIST](state, payload) {
+    [constant.LOAD_CUS_FORM_LIST](state, payload) {
         state.cusFormList.push(...payload)
     },
-    [LOAD_EXT_FORM_LIST](state,payload) {
-        state.extFormList = payload
+    [constant.LOAD_COM_FORM_LIST](state, payload) {
+        state.comFormList.push(...payload)
+    },
+    [constant.LOAD_CUS_EXT_FORM_LIST](state,payload) {
+        state.cusExtFormList = payload
+    },
+    [constant.LOAD_COM_EXT_FORM_LIST](state,payload) {
+        state.comExtFormList = payload
     }
 }

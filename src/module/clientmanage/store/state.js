@@ -1,4 +1,6 @@
 export default {
     cusFormList : [],
-    extFormList : []
+    comFormList : [],
+    cusExtFormList : [],
+    comExtFormList : []
 }

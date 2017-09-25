@@ -301,7 +301,7 @@ export default {
     },
     computed: {
         ...mapState({
-            extFormList: state => state.clientManage.extFormList,
+            cusExtFormList: state => state.clientManage.cusExtFormList,
         })
     },
     methods: {
@@ -313,8 +313,10 @@ export default {
                 this.flod = false
             } else {
                 if (this.$route.name === '个人客户管理') {
+                    // 请求个人客户扩展信息
                     this.getCustomerForm(obj)
                 } else {
+                    // 请求机构客户扩展信息
                     this.getCompany(obj)
                 }
             }
@@ -326,12 +328,10 @@ export default {
             } catch (error) {
                 console.error(error);
             }
-            this.customFormItem = this.extFormList.chaValue
+            this.customFormItem = this.cusExtFormList.chaValue
             this.$set(obj, "addFormItem", this.customFormItem)
-            //console.log(obj)
         },
         async getCompany(obj) {
-            //console.log(obj);
             this.flod = true
             this.$set(obj, "addFormItem", this.companyFromItem)
         }
