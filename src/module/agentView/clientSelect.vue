@@ -10,7 +10,7 @@
 						<li>客户名称</li><li>企业代码</li><li>机构代码</li><li>客户状态</li>
 				</ul>
 				<ul class="list-result">
-		      <li v-for="(items,index) in list" :key="index">
+		      <li v-for="(items,index) in list" :key="index" @click="linkDetail(items)">
 		       	<p><i class="iconfont iconClient" v-if="items.partyType ==1001">&#xe7ab;</i>
 		       		 <i class="iconfont iconPerson" v-if="items.partyType ==1002">&#xe7ac;</i>
 		       		 <span>{{items.name}}</span></p>
@@ -35,7 +35,10 @@ export default{
 		}
 	},
   methods:{
-
+  	linkDetail(items){
+  		// console.log(items)
+  		this.$router.push({path:'/agentview/detail',params:items})
+  	}
   },
   computed: {
     ...mapGetters([
