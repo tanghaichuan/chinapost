@@ -16,13 +16,13 @@
             <div class="form-item-container">
                 <item-wrap :row="row" :path="getValidatePath+'formItem.0.formList.'" :userList="userList" :formList="userList.formItem[0].formList"></item-wrap>
                 <!--异步加载更多-->
-                <dynamic-from :getValidatePath="getValidatePath" :row="row" :id="0" :isAsync="userList.isAsync" :userList.sync="userList"></dynamic-from>
+                <dynamic-from :getValidatePath="getValidatePath" :row="row" :id="0" :isAsync="userList.isAsync" :userList="userList"></dynamic-from>
             </div>
             <!--增加扩展-->
             <div class="form-item-container" v-for="(item1, x) in userList.formItem" v-if="x > 0" :key="x" :class="userList.title === '基本信息' ? 'base-style' : ''">
                 <i class="iconfont del" @click="delFormList(userList.formItem, x)">&#xe61b;</i>
                 <item-wrap :row="row" :path="getValidatePath+'formItem.'+x+'.formList.'" :userList="userList" :formList="item1.formList"></item-wrap>
-                <dynamic-from :getValidatePath="getValidatePath" :row="row" :id="0" :isAsync="userList.isAsync" :userList.sync="userList"></dynamic-from>
+                <dynamic-from :getValidatePath="getValidatePath" :row="row" :id="0" :isAsync="userList.isAsync" :userList="userList"></dynamic-from>
             </div>
         </div>
 

@@ -1,0 +1,70 @@
+// 客户特征值变量 specCode
+const IND_CUST_BASE_CHA = 'IND_CUST_BASE_CHA' // 个人客户基本信息
+const IND_CUST_EXT_CHA = 'IND_CUST_EXT_CHA' // 个人客户扩展信息
+const COMPANY_CUST_BASE_CHA = 'COMPANY_CUST_BASE_CHA' // 政企客户基本信息
+const COMPANY_CUST_EXT_CHA = 'COMPANY_CUST_EXT_CHA' // 政企客户扩展信息
+const CUST_IDEN_BASE_CHA = 'CUST_IDEN_BASE_CHA' // 客户认证信息
+const CUST_ADDR_BASE_CHA = 'CUST_ADDR_BASE_CHA' // 客户地址信息
+const CUST_CONT_MEDIUM_CHA = 'CUST_CONT_MEDIUM_CHA' // 客户联系媒介信息
+const CUST_REL_PERSON_CHA = 'CUST_ REL_PERSON_CHA' // 客户关系人信息
+
+import * as constants from './constant'
+import invokers from '../../../invokers'
+
+// clientmanage模块调用服务接口
+const queryCharacterSpecUrl = invokers.services.clientmanage.queryCharacterSpec
+const queryCustomerCharacterByIdUrl = invokers.services.clientmanage.queryCustomerCharacterById
+const queryCustomerIdenCharacterByIdUrl = invokers.services.clientmanage.queryCustomerIdenCharacterById
+const queryCustomerContMediumCharacterByIdUrl = invokers.services.clientmanage.queryCustomerContMediumCharacterById
+const queryCustomerAddressCharacterByIdUrl = invokers.services.clientmanage.queryCustomerAddressCharacterById
+const queryCustomerRelPersonCharacterByIdUrl = invokers.services.clientmanage.queryCustomerRelPersonCharacterById
+const urlArr = [queryCharacterSpecUrl, queryCustomerIdenCharacterByIdUrl, queryCustomerContMediumCharacterByIdUrl, queryCustomerAddressCharacterByIdUrl, queryCustomerRelPersonCharacterByIdUrl]
+
+async function postUrlAccount(url, data) {
+    return await invokers
+        .domains
+        .cnpost
+        .post(url, data)
+}
+// 加载客户信息特征值列表
+export async function loadFormItem({
+    commit
+}, array) {
+    return new Promise(async(resolve, reject) => {
+        try {
+            let res = [],
+                temp
+
+            for (let i = 0; i < array.length; i++) {
+                temp = await postUrlAccount(urlArr[i], array[i])
+                if (temp.data.systemParams.RESPONSE_INFO.responseMsg === 'OK') {
+                    res.push(temp.data.businessParams)
+                } else {
+                    reject(`加载失败`)
+                }
+            }
+            commit(constants.LOAD_CUS_FORM_LIST, res)
+            resolve()
+        } catch (error) {
+            reject(`加载失败${error}`)
+        }
+    })
+}
+// 加载客户更多信息特征值列表
+export async function loadExtFormItem({
+    commit
+}, data) {
+    return new Promise(async(resolve, reject) => {
+        try {
+            let temp = await postUrlAccount(queryCustomerCharacterByIdUrl, data)
+            if (temp.data.systemParams.RESPONSE_INFO.responseMsg === 'OK') {
+                commit(constants.LOAD_EXT_FORM_LIST, temp.data.businessParams)
+                resolve()
+            } else {
+                reject(`加载失败`)
+            }
+        } catch (error) {
+            reject(`加载失败${error}`)
+        }
+    })
+}

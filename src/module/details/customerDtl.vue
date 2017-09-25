@@ -228,6 +228,7 @@ export default {
 <style scoped lang="less">
 .company {
     position: relative;
+    border-top: 1px solid #dee5e7;
 }
 
 h5 {

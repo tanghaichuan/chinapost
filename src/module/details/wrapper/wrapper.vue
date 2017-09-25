@@ -12,7 +12,7 @@
         <!-- 内容区域 -->
         <div class="clearfix">
             <div class="tree-area" :class="treeFold" v-show="showTree">
-                <div class="tree-con"  v-show="unfoldTree">
+                <div class="tree-con"  v-show="unfoldTree" ref="treeArea">
                    <div class="form-top">
                     <div class="left"><h6>选择组织</h6></div>
                     <div class="unfold" @click="foldTree"><i class="iconfont">&#xe7a3;</i></div>
@@ -23,7 +23,7 @@
                 </div>
                 <div class="fold" v-show="!unfoldTree" @click="hidTree"><i class="iconfont">&#xe7a4;</i></div>  
             </div>            
-            <div :class="[isTree,isFold]">
+            <div :class="[isTree,isFold]" ref="detailsArea">
                 <t-form :model="formData" label-position="left" :label-span="5">
                     <div class="wrapper-form" v-for="(item, index) in formData" :key="index">
                         <item-dtl :row="row" :isDisabled="isDisabled" ref="form" :userList="item"></item-dtl>
@@ -85,11 +85,18 @@ export default {
         hidTree() {
             this.unfoldTree = true;
         }
+    },
+    mounted() {
+        this.$nextTick(() => {
+
+            let dtlDom = this.$refs.detailsArea;
+            //let treeDom = this.$refs.treeArea;
+            let dtlHeight = dtlDom.clientHeight;
+            //let treeHeight = this.$refs.treeArea.clientHeight;
+            this.$refs.treeArea.style.height = dtlHeight - 17 + 'px';  
+            //console.log(this.$refs.treeArea.style.height);
+        })
     }
-    // created() {
-    //     // console.log(this.formData);
-    //     // this.list.push(this.customInfo, this.attenInfo)
-    // }
 }
 </script>
 <style scoped lang="less">
@@ -108,6 +115,7 @@ export default {
 }
 
 .wrapper {
+    margin: 0 21px;
     padding-top: 18px;
     position: relative;
     margin-bottom: 100px;
@@ -302,11 +310,11 @@ export default {
     width: 20%;
     .tree-con {
         border: 1px solid #dfe5e7;
+        background-color: #fff;
     }
     .tree-select {
-        background-color: #fff;
         padding:20px;
-        height: 800px;
+        min-height: 800px;
     }
     .fold {
         width: 20px;
