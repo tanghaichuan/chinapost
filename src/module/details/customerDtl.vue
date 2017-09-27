@@ -68,7 +68,7 @@ export default {
                 ]
             },
             idenInfo: {
-                "isExtend": true,
+                "isAsync": true,
                 "isCollapse": true,
                 "title": "个人客户识别信息",
                 "formItem": [
@@ -177,10 +177,29 @@ export default {
                 ]
             },
             address: {
-                "isExtend": true,
+                "isAsync": true,
                 "isCollapse": true,
                 "title": "个人客户地址信息",
                 "formItem": [
+                    {
+                        "formList": [
+                            {
+                                "CODE": "ADD_TYPE_ID",
+                                "VALUE": "家庭地址",
+                                "DISP": "类型"
+                            },
+                            {
+                                "CODE": "PROVINCE",
+                                "VALUE": "北京市西城区阜成门金融大街1号",
+                                "DISP": "地址信息"
+                            },
+                            {
+                                "CODE": "POSTAL_CODE",
+                                "VALUE": "200001",
+                                "DISP": "邮政编码"
+                            }
+                        ]
+                    },
                     {
                         "formList": [
                             {
@@ -222,7 +241,7 @@ export default {
                 ]
             },
             contactInfo: {
-                "isExtend": true,
+                "isAsync": true,
                 "isCollapse": true,
                 "title": "个人客户联系信息",
                 "formItem": [
@@ -316,9 +335,8 @@ export default {
                 ]
             },
             partyInfo: {
-                "isExtend": true,
-                "isCollapse": true,
                 "isAsync": true,
+                "isCollapse": true,
                 "title": "个人客户其他关系人信息",
                 "formItem": [
                     {

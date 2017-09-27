@@ -69,7 +69,7 @@ export default {
                 ]
             },
             idenInfo: {
-                "isExtend": true,
+                "isAsync": true,
                 "isCollapse": true,
                 "title": "机构客户识别信息",
                 "formItem": [
@@ -178,10 +178,29 @@ export default {
                 ]
             },
             address: {
-                "isExtend": true,
+                "isAsync": true,
                 "isCollapse": true,
                 "title": "机构客户地址信息",
                 "formItem": [
+                    {
+                        "formList": [
+                            {
+                                "CODE": "ADD_TYPE_ID",
+                                "VALUE": "注册地址",
+                                "DISP": "类型"
+                            },
+                            {
+                                "CODE": "PROVINCE",
+                                "VALUE": "北京市西城区阜成门金融大街1号",
+                                "DISP": "地址信息"
+                            },
+                            {
+                                "CODE": "POSTAL_CODE",
+                                "VALUE": "100001",
+                                "DISP": "邮政编码"
+                            }
+                        ]
+                    },
                     {
                         "formList": [
                             {
@@ -223,7 +242,7 @@ export default {
                 ]
             },
             contactInfo: {
-                "isExtend": true,
+                "isAsync": true,
                 "isCollapse": true,
                 "title": "机构客户联系信息",
                 "formItem": [
@@ -317,11 +336,34 @@ export default {
                 ]
             },
             partyInfo: {
-                "isExtend": true,
-                "isCollapse": true,
                 "isAsync": true,
+                "isCollapse": true,
                 "title": "机构客户其他关系人信息",
                 "formItem": [
+                    {
+                        "formList": [
+                            {
+                                "CODE": "PARTY_TYPE_ID",
+                                "VALUE": "联系人",
+                                "DISP": "关系类型"
+                            },
+                            {
+                                "CODE": "CONTACT2_INFO",
+                                "VALUE": "王二",
+                                "DISP": "姓名"
+                            },
+                            {
+                                "CODE": "BestContact_Date",
+                                "VALUE": "1231234567",
+                                "DISP": "联系电话"
+                            },
+                            {
+                                "CODE": "Contact_FirstSelectDate",
+                                "VALUE": "3131@sina.con",
+                                "DISP": "邮箱"
+                            }
+                        ]
+                    },
                     {
                         "formList": [
                             {

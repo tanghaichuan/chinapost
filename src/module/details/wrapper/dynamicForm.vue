@@ -17,53 +17,58 @@ export default {
         return {
             openSelect: false,
             flod: false,
-            customFormItem: [
-                {
-                    "CODE": "MAJOR_LOGISTICS_REQCONT",
-                    "VALUE": "文字内容",
-                    "DISP": "客户类型"
-                },
-                {
-                    "CODE": "INDUSTYR_TYPE_PARENT",
-                    "VALUE": "文字内容",
-                    "DISP": "客户等级"
-                },
-                {
-                    "CODE": "PAYMENT_TERM",
-                    "VALUE": "文字内容",
-                    "DISP": "客户状态"
-                },
-                {
-                    "CODE": "APPROVAL_FLAG",
-                    "VALUE": "文字内容",
-                    "DISP": "客户群"
-                },
-                {
-                    "CODE": "POSTAGE_CONFIDENCE",
-                    "VALUE": "文字内容",
-                    "DISP": "扩展信息"
-                },
-                {
-                    "CODE": "ACCOUNTING_FLAG",
-                    "VALUE": "文字内容",
-                    "DISP": "扩展信息"
-                },
-                {
-                    "CODE": "ARREARS_LIMIT",
-                    "VALUE": "文字内容",
-                    "DISP": "扩展信息"
-                },
-                {
-                    "CODE": "ARREARS_TIME_LIMIT",
-                    "VALUE": "文字内容",
-                    "DISP": "扩展信息"
-                },
-                {
-                    "CODE": "IF_DEVELOPECUST",
-                    "VALUE": "文字内容",
-                    "DISP": "扩展信息"
-                }
-            ],
+            customFormItem: {
+                baseInfo: [
+                    {
+                        "CODE": "MAJOR_LOGISTICS_REQCONT",
+                        "VALUE": "文字内容",
+                        "DISP": "客户类型"
+                    },
+                    {
+                        "CODE": "INDUSTYR_TYPE_PARENT",
+                        "VALUE": "文字内容",
+                        "DISP": "客户等级"
+                    },
+                    {
+                        "CODE": "PAYMENT_TERM",
+                        "VALUE": "文字内容",
+                        "DISP": "客户状态"
+                    },
+                    {
+                        "CODE": "APPROVAL_FLAG",
+                        "VALUE": "文字内容",
+                        "DISP": "客户群"
+                    },
+                    {
+                        "CODE": "POSTAGE_CONFIDENCE",
+                        "VALUE": "文字内容",
+                        "DISP": "扩展信息"
+                    },
+                    {
+                        "CODE": "ACCOUNTING_FLAG",
+                        "VALUE": "文字内容",
+                        "DISP": "扩展信息"
+                    },
+                    {
+                        "CODE": "ARREARS_LIMIT",
+                        "VALUE": "文字内容",
+                        "DISP": "扩展信息"
+                    },
+                    {
+                        "CODE": "ARREARS_TIME_LIMIT",
+                        "VALUE": "文字内容",
+                        "DISP": "扩展信息"
+                    },
+                    {
+                        "CODE": "IF_DEVELOPECUST",
+                        "VALUE": "文字内容",
+                        "DISP": "扩展信息"
+                    }
+                ],
+                idenInfo: [
+
+                ]
+            },
             companyFromItem: [
                 {
                     "CODE": "EBUSINESS_WEBSITE",
@@ -149,7 +154,7 @@ export default {
         },
         getCustomerForm(obj) {
             console.log(obj);
-            this.$set(obj, "addFormItem", this.customFormItem)
+            this.$set(obj, "addFormItem", this.customFormItem.baseInfo)
         },
         getCompany(obj) {
             console.log(obj);
