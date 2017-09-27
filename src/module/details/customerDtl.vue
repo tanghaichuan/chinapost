@@ -105,6 +105,74 @@ export default {
                                 "DISP": '识别信息失效时间'
                             }
                         ]
+                    },
+                    {
+                       "formList": [
+                            {
+                                "CODE": "IDEN_TYPE_ID",
+                                "VALUE": "身份证",
+                                "DISP": '识别类型'
+                            },
+                            {
+                                "CODE": "IDEN_NR",
+                                "VALUE": "1111111",
+                                "DISP": '识别号码'
+                            },
+                            {
+                                "CODE": "IDEN_ADDRESS",
+                                "VALUE": "北京",
+                                "DISP": '识别信息地址'
+                            },
+                            {
+                                "CODE": "IDEN_COUNTRY",
+                                "VALUE": "中国",
+                                "DISP": '识别信息签发国家'
+                            },
+                            {
+                                "CODE": "IDEN_EFF_DATE",
+                                "VALUE": "2017-01-01",
+                                "DISP": '识别信息签发时间'
+                            },
+                            {
+                                "CODE": "IDEN_EXP_DATE",
+                                "VALUE": "2099-01-01",
+                                "DISP": '识别信息失效时间'
+                            }
+                        ]
+                    },
+                    {
+                       "formList": [
+                            {
+                                "CODE": "IDEN_TYPE_ID",
+                                "VALUE": "身份证",
+                                "DISP": '识别类型'
+                            },
+                            {
+                                "CODE": "IDEN_NR",
+                                "VALUE": "1111111",
+                                "DISP": '识别号码'
+                            },
+                            {
+                                "CODE": "IDEN_ADDRESS",
+                                "VALUE": "北京",
+                                "DISP": '识别信息地址'
+                            },
+                            {
+                                "CODE": "IDEN_COUNTRY",
+                                "VALUE": "中国",
+                                "DISP": '识别信息签发国家'
+                            },
+                            {
+                                "CODE": "IDEN_EFF_DATE",
+                                "VALUE": "2017-01-01",
+                                "DISP": '识别信息签发时间'
+                            },
+                            {
+                                "CODE": "IDEN_EXP_DATE",
+                                "VALUE": "2099-01-01",
+                                "DISP": '识别信息失效时间'
+                            }
+                        ]
                     }
                 ]
             },
@@ -113,6 +181,25 @@ export default {
                 "isCollapse": true,
                 "title": "个人客户地址信息",
                 "formItem": [
+                    {
+                        "formList": [
+                            {
+                                "CODE": "ADD_TYPE_ID",
+                                "VALUE": "家庭地址",
+                                "DISP": "类型"
+                            },
+                            {
+                                "CODE": "PROVINCE",
+                                "VALUE": "北京市西城区阜成门金融大街1号",
+                                "DISP": "地址信息"
+                            },
+                            {
+                                "CODE": "POSTAL_CODE",
+                                "VALUE": "200001",
+                                "DISP": "邮政编码"
+                            }
+                        ]
+                    },
                     {
                         "formList": [
                             {
@@ -167,6 +254,64 @@ export default {
                                 "DISP": "周期内最多联系次数"
                             }
                         ]
+                    },
+                    {
+                        "formList": [
+                            {
+                                "CODE": "CONTACT_TYPE_ID",
+                                "VALUE": "移动电话",
+                                "DISP": "类型"
+                            },
+                            {
+                                "CODE": "CONTACT2_INFO",
+                                "VALUE": "13855557888",
+                                "DISP": "联系信息"
+                            },
+                            {
+                                "CODE": "BestContact_Date",
+                                "VALUE": "9:00-17:50",
+                                "DISP": "最佳联系时间"
+                            },
+                            {
+                                "CODE": "Contact_FirstSelectDate",
+                                "VALUE": "2017-12-12",
+                                "DISP": "可联系首选日期"
+                            },
+                            {
+                                "CODE": "Cycle_Max_ContaxtNum",
+                                "VALUE": "3",
+                                "DISP": "周期内最多联系次数"
+                            }
+                        ]
+                    },
+                    {
+                        "formList": [
+                            {
+                                "CODE": "CONTACT_TYPE_ID",
+                                "VALUE": "移动电话",
+                                "DISP": "类型"
+                            },
+                            {
+                                "CODE": "CONTACT2_INFO",
+                                "VALUE": "13855557888",
+                                "DISP": "联系信息"
+                            },
+                            {
+                                "CODE": "BestContact_Date",
+                                "VALUE": "9:00-17:50",
+                                "DISP": "最佳联系时间"
+                            },
+                            {
+                                "CODE": "Contact_FirstSelectDate",
+                                "VALUE": "2017-12-12",
+                                "DISP": "可联系首选日期"
+                            },
+                            {
+                                "CODE": "Cycle_Max_ContaxtNum",
+                                "VALUE": "3",
+                                "DISP": "周期内最多联系次数"
+                            }
+                        ]
                     }
                 ]
             },
@@ -176,6 +321,30 @@ export default {
                 "isAsync": true,
                 "title": "个人客户其他关系人信息",
                 "formItem": [
+                    {
+                        "formList": [
+                            {
+                                "CODE": "PARTY_TYPE_ID",
+                                "VALUE": "联系人",
+                                "DISP": "关系类型"
+                            },
+                            {
+                                "CODE": "CONTACT2_INFO",
+                                "VALUE": "王二",
+                                "DISP": "姓名"
+                            },
+                            {
+                                "CODE": "BestContact_Date",
+                                "VALUE": "1231234567",
+                                "DISP": "联系电话"
+                            },
+                            {
+                                "CODE": "Contact_FirstSelectDate",
+                                "VALUE": "3131@sina.con",
+                                "DISP": "邮箱"
+                            }
+                        ]
+                    },
                     {
                         "formList": [
                             {
