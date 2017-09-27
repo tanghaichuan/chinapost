@@ -2,10 +2,11 @@
     <div class="agent" style="margin-right: 20px">
         <!-- 面包屑导航 -->
         <t-breadcrumb class="breadcrumb">
-            <t-breadcrumb-item href="/">Home</t-breadcrumb-item>
-            <t-breadcrumb-item href="#">Components</t-breadcrumb-item>
-            <t-breadcrumb-item>Breadcrumb</t-breadcrumb-item>
-            <t-breadcrumb-item>ddddddddd</t-breadcrumb-item>
+            <t-breadcrumb-item href="">首页</t-breadcrumb-item>
+            <t-breadcrumb-item href="">悬停</t-breadcrumb-item>
+            <t-breadcrumb-item>三级</t-breadcrumb-item>
+            <t-breadcrumb-item>四级</t-breadcrumb-item>
+            <t-breadcrumb-item>当前页</t-breadcrumb-item>
         </t-breadcrumb>
         <!-- 创建客户/客户选择 tab -->
         <div class="customers clearfix">
@@ -50,45 +51,164 @@
                         class="d-flex justify-content-between">
                     <t-submenu name="1">
                         <template slot="title"><i class="aid aid-chart-bar"></i>基本视图</template>
-                        <t-menu-item name="1-1">新增和启动</t-menu-item>
-                        <t-menu-item name="2-2">活跃分析</t-menu-item>
-                        <t-menu-item name="3-3">时段分析</t-menu-item>
+                        <t-menu open-position="right">
+                            <t-submenu name="1-1">
+                                <template slot="title">开户业务</template>
+                                <t-menu-item name="1-1-1">用户留存</t-menu-item>
+                                <t-menu-item name="1-1-2">流失用户</t-menu-item>
+                                <t-menu-item name="1-1-3">举报管理</t-menu-item>
+                            </t-submenu>
+                            <t-submenu name="1-2">
+                                <template slot="title">换卡换号</template>
+                                <t-menu-item name="1-2-1">用户留存</t-menu-item>
+                                <t-menu-item name="1-2-2">流失用户</t-menu-item>
+                                <t-menu-item name="1-2-3">举报管理</t-menu-item>
+                            </t-submenu>
+                            <t-submenu name="1-3">
+                                <template slot="title">状态变更</template>
+                                <t-menu-item name="1-3-1">用户留存</t-menu-item>
+                                <t-menu-item name="1-3-2">流失用户</t-menu-item>
+                                <t-menu-item name="1-3-3">举报管理</t-menu-item>
+                            </t-submenu>
+                        </t-menu>
                     </t-submenu>
                     <t-submenu name="2">
                         <template slot="title"><i class="aid aid-chart-bar"></i>关系视图</template>
-                        <t-menu-item name="1-1">新增和启动</t-menu-item>
-                        <t-menu-item name="2-2">活跃分析</t-menu-item>
-                        <t-menu-item name="3-3">时段分析</t-menu-item>
+                        <t-menu open-position="right">
+                            <t-submenu name="2-1">
+                                <template slot="title">开户业务</template>
+                                <t-menu-item name="2-1-1">用户留存</t-menu-item>
+                                <t-menu-item name="2-1-2">流失用户</t-menu-item>
+                                <t-menu-item name="2-1-3">举报管理</t-menu-item>
+                            </t-submenu>
+                            <t-submenu name="2-2">
+                                <template slot="title">换卡换号</template>
+                                <t-menu-item name="2-2-1">用户留存</t-menu-item>
+                                <t-menu-item name="2-2-2">流失用户</t-menu-item>
+                                <t-menu-item name="3-2-3">举报管理</t-menu-item>
+                            </t-submenu>
+                            <t-submenu name="2-3">
+                                <template slot="title">状态变更</template>
+                                <t-menu-item name="2-3-1">用户留存</t-menu-item>
+                                <t-menu-item name="2-3-2">流失用户</t-menu-item>
+                                <t-menu-item name="2-3-3">举报管理</t-menu-item>
+                            </t-submenu>
+                        </t-menu>
                     </t-submenu>
                     <t-submenu name="3">
                         <template slot="title"><i class="aid aid-chart-bar"></i>业务视图</template>
-                        <t-menu-item name="1-1">新增和启动</t-menu-item>
-                        <t-menu-item name="2-2">活跃分析</t-menu-item>
-                        <t-menu-item name="3-3">时段分析</t-menu-item>
+                        <t-menu open-position="right">
+                            <t-submenu name="3-1">
+                                <template slot="title">开户业务</template>
+                                <t-menu-item name="3-1-1">用户留存</t-menu-item>
+                                <t-menu-item name="3-1-2">流失用户</t-menu-item>
+                                <t-menu-item name="3-1-3">举报管理</t-menu-item>
+                            </t-submenu>
+                            <t-submenu name="3-2">
+                                <template slot="title">换卡换号</template>
+                                <t-menu-item name="3-2-1">用户留存</t-menu-item>
+                                <t-menu-item name="3-2-2">流失用户</t-menu-item>
+                                <t-menu-item name="3-2-3">举报管理</t-menu-item>
+                            </t-submenu>
+                            <t-submenu name="3-3">
+                                <template slot="title">状态变更</template>
+                                <t-menu-item name="3-3-1">用户留存</t-menu-item>
+                                <t-menu-item name="3-3-2">流失用户</t-menu-item>
+                                <t-menu-item name="3-3-3">举报管理</t-menu-item>
+                            </t-submenu>
+                        </t-menu>
                     </t-submenu>
                     <t-submenu name="4">
                         <template slot="title"><i class="aid aid-chart-bar"></i>洞察视图</template>
-                        <t-menu-item name="1-1">新增和启动</t-menu-item>
-                        <t-menu-item name="2-2">活跃分析</t-menu-item>
-                        <t-menu-item name="3-3">时段分析</t-menu-item>
+                        <t-menu open-position="right">
+                            <t-submenu name="4-1">
+                                <template slot="title">开户业务</template>
+                                <t-menu-item name="4-1-1">用户留存</t-menu-item>
+                                <t-menu-item name="4-1-2">流失用户</t-menu-item>
+                                <t-menu-item name="4-1-3">举报管理</t-menu-item>
+                            </t-submenu>
+                            <t-submenu name="4-2">
+                                <template slot="title">换卡换号</template>
+                                <t-menu-item name="4-2-1">用户留存</t-menu-item>
+                                <t-menu-item name="4-2-2">流失用户</t-menu-item>
+                                <t-menu-item name="4-2-3">举报管理</t-menu-item>
+                            </t-submenu>
+                            <t-submenu name="4-3">
+                                <template slot="title">状态变更</template>
+                                <t-menu-item name="4-3-1">用户留存</t-menu-item>
+                                <t-menu-item name="4-3-2">流失用户</t-menu-item>
+                                <t-menu-item name="4-3-3">举报管理</t-menu-item>
+                            </t-submenu>
+                        </t-menu>
                     </t-submenu>
                     <t-submenu name="5">
                         <template slot="title"><i class="aid aid-chart-bar"></i>价值视图</template>
-                        <t-menu-item name="1-1">新增和启动</t-menu-item>
-                        <t-menu-item name="2-2">活跃分析</t-menu-item>
-                        <t-menu-item name="3-3">时段分析</t-menu-item>
+                        <t-menu open-position="right">
+                            <t-submenu name="5-1">
+                                <template slot="title">开户业务</template>
+                                <t-menu-item name="5-1-1">用户留存</t-menu-item>
+                                <t-menu-item name="5-1-2">流失用户</t-menu-item>
+                                <t-menu-item name="5-1-3">举报管理</t-menu-item>
+                            </t-submenu>
+                            <t-submenu name="5-2">
+                                <template slot="title">换卡换号</template>
+                                <t-menu-item name="5-2-1">用户留存</t-menu-item>
+                                <t-menu-item name="5-2-2">流失用户</t-menu-item>
+                                <t-menu-item name="5-2-3">举报管理</t-menu-item>
+                            </t-submenu>
+                            <t-submenu name="5-3">
+                                <template slot="title">状态变更</template>
+                                <t-menu-item name="1-3-1">用户留存</t-menu-item>
+                                <t-menu-item name="1-3-2">流失用户</t-menu-item>
+                                <t-menu-item name="1-3-3">举报管理</t-menu-item>
+                            </t-submenu>
+                        </t-menu>
                     </t-submenu>
                     <t-submenu name="6">
                         <template slot="title"><i class="aid aid-chart-bar"></i>风险示图</template>
-                        <t-menu-item name="1-1">新增和启动</t-menu-item>
-                        <t-menu-item name="2-2">活跃分析</t-menu-item>
-                        <t-menu-item name="3-3">时段分析</t-menu-item>
+                        <t-menu open-position="right">
+                            <t-submenu name="6-1">
+                                <template slot="title">开户业务</template>
+                                <t-menu-item name="6-1-1">用户留存</t-menu-item>
+                                <t-menu-item name="6-1-2">流失用户</t-menu-item>
+                                <t-menu-item name="6-1-3">举报管理</t-menu-item>
+                            </t-submenu>
+                            <t-submenu name="6-2">
+                                <template slot="title">换卡换号</template>
+                                <t-menu-item name="6-2-1">用户留存</t-menu-item>
+                                <t-menu-item name="6-2-2">流失用户</t-menu-item>
+                                <t-menu-item name="6-2-3">举报管理</t-menu-item>
+                            </t-submenu>
+                            <t-submenu name="6-3">
+                                <template slot="title">状态变更</template>
+                                <t-menu-item name="6-3-1">用户留存</t-menu-item>
+                                <t-menu-item name="6-3-2">流失用户</t-menu-item>
+                                <t-menu-item name="6-3-3">举报管理</t-menu-item>
+                            </t-submenu>
+                        </t-menu>
                     </t-submenu>
                     <t-submenu name="7">
                         <template slot="title"><i class="aid aid-chart-bar"></i>行为视图</template>
-                        <t-menu-item name="1-1">新增和启动</t-menu-item>
-                        <t-menu-item name="2-2">活跃分析</t-menu-item>
-                        <t-menu-item name="3-3">时段分析</t-menu-item>
+                        <t-menu open-position="right">
+                            <t-submenu name="7-1">
+                                <template slot="title">开户业务</template>
+                                <t-menu-item name="7-1-1">用户留存</t-menu-item>
+                                <t-menu-item name="7-1-2">流失用户</t-menu-item>
+                                <t-menu-item name="7-1-3">举报管理</t-menu-item>
+                            </t-submenu>
+                            <t-submenu name="7-2">
+                                <template slot="title">换卡换号</template>
+                                <t-menu-item name="7-2-1">用户留存</t-menu-item>
+                                <t-menu-item name="7-2-2">流失用户</t-menu-item>
+                                <t-menu-item name="7-2-3">举报管理</t-menu-item>
+                            </t-submenu>
+                            <t-submenu name="7-3">
+                                <template slot="title">状态变更</template>
+                                <t-menu-item name="7-3-1">用户留存</t-menu-item>
+                                <t-menu-item name="7-3-2">流失用户</t-menu-item>
+                                <t-menu-item name="7-3-3">举报管理</t-menu-item>
+                            </t-submenu>
+                        </t-menu>
                     </t-submenu>
 
                 </t-menu>
@@ -98,7 +218,7 @@
                 <div class="tab-title"> 客户基本信息</div>
                 <t-tabs class="tab">
                     <t-tab-panel label="标签一" name="tab-1" class="tabname">
-                        <div style="min-height: 250px">
+                        <div style="min-height: 250px;padding-top: 20px">
                             <ul>
                                 <li>
                                     <p><span class="text-right">客户编号:</span><span>1231231231</span></p>
@@ -106,43 +226,33 @@
                                     <p><span class="text-right">证件类型：</span><span>身份证</span></p>
                                 </li>
                                 <li>
-                                    <p><span class="text-right">编号:</span><span>1231257657531231</span></p>
-                                    <p><span class="text-right">eee：</span><span>e小阳</span></p>
-                                    <p><span class="text-right">eeee：</span><span>身份证</span></p>
-
+                                    <p><span class="text-right">出生年月:</span><span>1987-09</span></p>
+                                    <p><span class="text-right">证件到期日期：</span><span>1987-09-09</span></p>
+                                    <p><span class="text-right">证件码号：</span><span>000098898987878787</span></p>
                                 </li>
                                 <li>
-                                    <p><span class="text-right">客户编号:</span><span>1231231231</span></p>
-                                    <p><span class="text-right">客户姓名：</span><span>唐小阳</span></p>
-                                    <p><span class="text-right">证件类型：</span><span>身份证</span></p>
+                                    <p><span class="text-right">性别:</span><span>男</span></p>
+                                    <p><span class="text-right">年龄：</span><span>56</span></p>
+                                    <p><span class="text-right">婚姻状况：</span><span>保密</span></p>
                                 </li>
                                 <li>
-                                    <p><span class="text-right">编号:</span><span>1231257657531231</span></p>
-                                    <p><span class="text-right">eee：</span><span>e小阳</span></p>
-                                    <p><span class="text-right">eeee：</span><span>身份证</span></p>
-
+                                    <p><span class="text-right">是否有子女:</span><span>是</span></p>
+                                    <p><span class="text-right">学历：</span><span>本科</span></p>
+                                    <p><span class="text-right">专业：</span><span>计算机应用技术</span></p>
                                 </li>
                                 <li>
-                                    <p><span class="text-right">客户编号客户编号:</span><span>1231231231</span></p>
-                                    <p><span class="text-right">客户姓名：</span><span>唐小阳</span></p>
-                                    <p><span class="text-right">证件类型：</span><span>身份证</span></p>
-                                </li>
-                                <li>
-                                    <p><span class="text-right">编号:</span><span>1231257657531231</span></p>
-                                    <p><span class="text-right">eee：</span><span>e小阳</span></p>
-                                    <p><span class="text-right"></span><span>五级信息层级弹窗  </span></p>
-
+                                    <p><span class="text-right">毕业院校:</span><span>清华大学</span></p>
+                                    <p><span class="text-right">职业：</span><span>交互设计师</span></p>
+                                    <p><span class="text-right"></span><span>五级弹窗</span></p>
                                 </li>
                             </ul>
                         </div>
                     </t-tab-panel>
                     <t-tab-panel label="标签二" name="tab-2">
-                        <div>
-                            222
-                        </div>
+                        2
                     </t-tab-panel>
                     <t-tab-panel label="标签三" name="tab-3">
-
+                        3
                     </t-tab-panel>
                 </t-tabs>
             </div>
@@ -293,8 +403,7 @@
                     padding: 10px 0 0 20px;
                 }
                 .tab {
-
-                    ul ,li{
+                    ul, li {
                         list-style: none;
                         padding: 0;
                         margin: 0;
@@ -303,12 +412,12 @@
                     .tabname {
                         font-size: 12px;
                     }
-                    ul li>p{
-                       float: left;
+                    ul li > p {
+                        float: left;
                         width: 33.3%;
-                        span:nth-child(1){
+                        span:nth-child(1) {
                             display: inline-block;
-                            width: 60px;
+                            width: 100px;
                         }
                     }
                 }
