@@ -264,10 +264,16 @@ export default{
 			      bottom:9px;
 	        	font-size:14px;
 	          color: #007a53;
+	          &:hover{
+	          	color:#3DAC6E;
+	          }
 	        }
 	      }
 	      .btn {
 	        height: 42px;
+	        &:active{
+	        	background:#007F3B!important;
+	        }
 	        span {
 	          font-size: 16px;
 	        }
@@ -280,13 +286,13 @@ export default{
   padding-left: 5px;
   height: 36px;
   .alert {
-    padding: 0 38px 0 43px;
+    padding: 0 38px 0 36px;
     min-height: 24px;
     color:#4c4a4a;
     font-size:12px;
     .alert__icon, .alert__close-icon {
       top: 3px;
-      left: 15px; 
+      left: 12px; 
       font-size:18px;
     }
     .alert__message{
