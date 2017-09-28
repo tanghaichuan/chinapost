@@ -22,6 +22,16 @@ const routes = [{
         name: 'AgentviewDetail',
         meta: '360视图',
         component: require('module/agentView/detail')
+    },{
+        path: 'jurisdiction',
+        name: 'jurisdiction',
+        meta: '360视图',
+        component: require('module/agentView/jurisdiction')
+    },{
+        path: 'test',
+        name: 'test',
+        meta: '360视图',
+        component: require('module/agentView/test')
     }]
 }]
 
