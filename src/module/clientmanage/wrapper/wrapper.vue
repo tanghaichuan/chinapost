@@ -17,24 +17,24 @@
         </t-form>
         <!-- 表格域 -->
         <!-- <div class="extend-attr">
-            <div class="form-top">
-                <div class="left" @click="showTable = !showTable">
-                    <span class="info-icon">
-                        <i class="iconfont" v-if="showTable">&#xe78e;</i>
-                        <i class="iconfont" v-else>&#xe78d;</i>
-                    </span>
-                    <h6>客户扩展属性</h6>
-                </div>
-                <div class="right"></div>
-            </div>
-            <div v-show="showTable" class="wrapper-table" ref="table">
-                <div class="table-top">
-                    <t-button @click.native="addTableList" type="outline" class="left sub-btn">新增</t-button>
-                    <t-input v-model="searchInfo" icon="magnify" class="right" icon-placement="right" placeholder="请输入搜索内容" style="width: 150px;"></t-input>
-                </div>
-                <edit-table :editColumn.sync="editColumn" :editData.sync="showTableList"></edit-table>
-            </div>
-        </div> -->
+                                                    <div class="form-top">
+                                                        <div class="left" @click="showTable = !showTable">
+                                                            <span class="info-icon">
+                                                                <i class="iconfont" v-if="showTable">&#xe78e;</i>
+                                                                <i class="iconfont" v-else>&#xe78d;</i>
+                                                            </span>
+                                                            <h6>客户扩展属性</h6>
+                                                        </div>
+                                                        <div class="right"></div>
+                                                    </div>
+                                                    <div v-show="showTable" class="wrapper-table" ref="table">
+                                                        <div class="table-top">
+                                                            <t-button @click.native="addTableList" type="outline" class="left sub-btn">新增</t-button>
+                                                            <t-input v-model="searchInfo" icon="magnify" class="right" icon-placement="right" placeholder="请输入搜索内容" style="width: 150px;"></t-input>
+                                                        </div>
+                                                        <edit-table :editColumn.sync="editColumn" :editData.sync="showTableList"></edit-table>
+                                                    </div>
+                                                </div> -->
         <div class="form-options">
             <t-button type="primary" class="save" @click.native="handleSubmit('formDynamic')">
                 <i class="iconfont">&#xe624;</i>保存</t-button>
@@ -44,6 +44,8 @@
     </div>
 </template>
 <script>
+import { reGroupTree } from 'module/clientManage/utils'
+import { mapActions } from 'vuex'
 import dynamicForm from './dynamicForm'
 import itemForm from './itemForm'
 import editTable from './editTable'
@@ -346,6 +348,26 @@ export default {
                         "OPER_MODE": "02"
                     }
                 ]
+            },
+
+            saveCustomerInfo: { // 管理个人特征定义数据
+                "systemParams": {},
+                "businessParams": {
+                    "customerId": "-1", //客户ID，如果还没有，填-1（因为在修改场景下，或中途存过数据就会有了
+                    "chaValue": [], // 客户特征信息（基本信息+更多信息）
+                    "idenList": [
+                        { // 客户联系信息
+                            "chaValue": []
+                        }
+                    ],
+                    "contMediumList": [
+                        {
+                            "chaValue": []
+                        }
+                    ],
+                    "addressList": [],
+                    "relPersonList": []
+                }
             }
         }
     },
@@ -375,6 +397,9 @@ export default {
         }
     },
     methods: {
+        ...mapActions({
+            saveFormItem: 'clientManage/saveFormItem'
+        }),
         currentView(item) {
             if (item.hasOwnProperty('formItem')) {
                 return 'itemForm'
@@ -391,21 +416,31 @@ export default {
         },
         getValidatePath(item, index) {
             return `${index}.`
-            // let ret = this.currentView(item);
-            // if (ret === 'dynamicForm') {
-            //     return `${index}.formList`
-            // } else {
-            //     return `${index}.formItem`
-            // }
         },
         addTableList() {
             this.editData.push(...this.addTableItem);
         },
+        regroupFormData() {
+            _.forEach(this.formData.businessParams.formItem, item => {
+                Object.keys(item).forEach(key => {
+                    _.forEach(item[key], val => {
+                        //this.saveCustomerInfo.businessParams.chaValue.push(  )
+                    })
+                })
+            })
+            //this.formData.businessParams.formItem
+        },
         handleSubmit(name) {
-            this.$refs[name].validate(valid => {
+            this.$refs[name].validate(async valid => {
                 if (valid) {
-                    console.log(this.formData);
-                    this.$Message.success('保存成功!');
+                    try {
+                        //console.log(this.formData);
+                        this.regroupFormData()
+                        //let res =  await this.saveFormItem(data)
+                        this.$Message.success('保存成功!');
+                    } catch (error) {
+                        console.error(error)
+                    }
                 } else {
                     this.$Message.danger('保存失败!');
                 }
@@ -447,9 +482,7 @@ export default {
             margin: 0 5px 0 8px;
         }
     }
-    .input-wrapper {
-        
-    }
+    .input-wrapper {}
     .input-group-icon {
         &.input-group-icon--right {
             right: -2px;

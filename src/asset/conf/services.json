@@ -14,7 +14,8 @@
         "queryCustomerIdenCharacterById": "/mock/queryCustomerIdenCharacterById",
         "queryCustomerContMediumCharacterById": "/mock/queryCustomerContMediumCharacterById",
         "queryCustomerAddressCharacterById": "/mock/queryCustomerAddressCharacterById",
-        "queryCustomerRelPersonCharacterById": "/mock/queryCustomerRelPersonCharacterById"
+        "queryCustomerRelPersonCharacterById": "/mock/queryCustomerRelPersonCharacterById",
+        "saveCustomerInfo": "/mock/saveCustomerInfo"
     },
     "GET_HISTORY": "/mock/historymenu",
     "SYSTEM_MENU": "/mock/getsysmenu",

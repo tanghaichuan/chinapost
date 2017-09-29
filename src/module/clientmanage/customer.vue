@@ -152,7 +152,7 @@ export default {
                     "OPER_MODE": "014"
                 }
             ],
-            baseInfo: {
+            businessParams: {
                 "isCollapse": true,
                 "isAsync": true,
                 "title": "个人客户基本信息",
@@ -163,7 +163,7 @@ export default {
                     }
                 ]
             },
-            idenInfo: {
+            idenList: {
                 "isExtend": true,
                 "isCollapse": true,
                 "title": "个人客户识别信息",
@@ -174,7 +174,7 @@ export default {
                     }
                 ]
             },
-            contactInfo: {
+            contMediumList: {
                 "isExtend": true,
                 "isCollapse": true,
                 "title": "个人客户联系信息",
@@ -187,7 +187,7 @@ export default {
 
                 ]
             },
-            address: {
+            addressList: {
                 "isExtend": true,
                 "isCollapse": true,
                 "title": "个人客户地址信息",
@@ -199,7 +199,7 @@ export default {
                     }
                 ]
             },
-            partyInfo: {
+            relPersonList: {
                 "isExtend": true,
                 "isCollapse": true,
                 "isAsync": true,
@@ -277,20 +277,20 @@ export default {
     async created() {
         try {
             await this.loadFormItem(this.data)
-            this.baseInfo.formItem[0].formList.push(...this.cusFormList[0].chaValue)
-            this.idenInfo.formItem[0].formList.push(...this.cusFormList[1].chaValue)
-            this.contactInfo.formItem[0].formList.push(...this.cusFormList[2].chaValue)
-            this.address.formItem[0].formList.push(...this.cusFormList[3].chaValue)
-            this.partyInfo.formItem[0].formList.push(...this.cusFormList[4].chaValue)
+            this.businessParams.formItem[0].formList.push(...this.cusFormList[0].chaValue)
+            this.idenList.formItem[0].formList.push(...this.cusFormList[1].chaValue)
+            this.contMediumList.formItem[0].formList.push(...this.cusFormList[2].chaValue)
+            this.addressList.formItem[0].formList.push(...this.cusFormList[3].chaValue)
+            this.relPersonList.formItem[0].formList.push(...this.cusFormList[4].chaValue)
         } catch (error) {
             console.error(error);
         }
         this.formData = Object.assign({}, this.formData, {
-            baseInfo: this.baseInfo,
-            idenInfo: this.idenInfo,
-            address: this.address,
-            contactInfo: this.contactInfo,
-            partyInfo:this.partyInfo
+            businessParams: this.businessParams,
+            idenList: this.idenList,
+            addressList: this.addressList,
+            contMediumList: this.contMediumList,
+            relPersonList:this.relPersonList
         })
     }
 

@@ -1,3 +1,5 @@
+import * as API from './api'
+
 // 客户特征值变量 specCode
 const IND_CUST_BASE_CHA = 'IND_CUST_BASE_CHA' // 个人客户基本信息
 const IND_CUST_EXT_CHA = 'IND_CUST_EXT_CHA' // 个人客户扩展信息
@@ -11,17 +13,9 @@ const CUST_REL_PERSON_CHA = 'CUST_ REL_PERSON_CHA' // 客户关系人信息
 import * as constants from './constant'
 import invokers from '../../../invokers'
 
-// clientmanage模块调用服务接口
-const queryCharacterSpecUrl = invokers.services.clientmanage.queryCharacterSpec
-const queryCustomerCharacterByIdUrl = invokers.services.clientmanage.queryCustomerCharacterById
-const queryCustomerIdenCharacterByIdUrl = invokers.services.clientmanage.queryCustomerIdenCharacterById
-const queryCustomerContMediumCharacterByIdUrl = invokers.services.clientmanage.queryCustomerContMediumCharacterById
-const queryCustomerAddressCharacterByIdUrl = invokers.services.clientmanage.queryCustomerAddressCharacterById
-const queryCustomerRelPersonCharacterByIdUrl = invokers.services.clientmanage.queryCustomerRelPersonCharacterById
-const urlArr = [queryCharacterSpecUrl, queryCustomerIdenCharacterByIdUrl, queryCustomerContMediumCharacterByIdUrl, queryCustomerAddressCharacterByIdUrl, queryCustomerRelPersonCharacterByIdUrl]
-
+// 发送post请求
 async function postUrlAccount(url, data) {
-    return await invokers  
+    return await invokers
         .domains
         .cnpost
         .post(url, data)
@@ -37,7 +31,7 @@ export async function loadFormItem({
             // 合并请求
             for (let i = 0; i < array.length; i++) {
                 // 加载请求
-                temp = await postUrlAccount(urlArr[i], array[i])
+                temp = await postUrlAccount(API.urlArr[i], array[i])
                 // 请求成功
                 if (temp.data.systemParams.RESPONSE_INFO.responseMsg === 'OK') {
                     res.push(temp.data.businessParams)
@@ -63,7 +57,7 @@ export async function loadExtFormItem({
 }, data) {
     return new Promise(async(resolve, reject) => {
         try {
-            let temp = await postUrlAccount(queryCustomerCharacterByIdUrl, data)
+            let temp = await postUrlAccount(API.queryCustomerCharacterByIdUrl, data)
             if (temp.data.systemParams.RESPONSE_INFO.responseMsg === 'OK') {
                 if (data.businessParams.specCode === "IDN_CUST_BASE_CHA") {
                     commit(constants.LOAD_CUS_EXT_FORM_LIST, temp.data.businessParams)
@@ -76,6 +70,19 @@ export async function loadExtFormItem({
             }
         } catch (error) {
             reject(`加载失败${error}`)
+        }
+    })
+}
+// 保存客户数据
+export async function saveFormItem({
+    commit
+}, data) {
+    return new Promise(async(resolve, reject) => {
+        try {
+            let res = await postUrlAccount(API.saveCustomerInfo, data)
+            console.log(res)
+        } catch (error) {
+            console.error(error)
         }
     })
 }

@@ -12,7 +12,7 @@ export default {
     name: "company",
     data() {
         return {
-            baseInfo: {
+            businessParams: {
                 "isCollapse": true,
                 "isAsync": true,
                 "title": "机构客户基本信息",
@@ -114,7 +114,7 @@ export default {
                     }
                 ]
             },
-            idenInfo: {
+            idenList: {
                 "isExtend": true,
                 "isCollapse": true,
                 "title": "机构客户识别信息",
@@ -167,7 +167,7 @@ export default {
                     }
                 ]
             },
-            address: {
+            addressList: {
                 "isExtend": true,
                 "isCollapse": true,
                 "title": "机构客户地址信息",
@@ -206,7 +206,7 @@ export default {
                     }
                 ]
             },
-            contactInfo: {
+            contMediumList: {
                 "isExtend": true,
                 "isCollapse": true,
                 "title": "机构客户联系信息",
@@ -261,7 +261,7 @@ export default {
                     }
                 ]
             },
-            partyInfo: {
+            relPersonList: {
                 "isExtend": true,
                 "isCollapse": true,
                 "isAsync": true,
@@ -322,11 +322,11 @@ export default {
     created() {
         // 逐块获取数据时可以用$set
         this.formData = Object.assign({}, this.formData, {
-            baseInfo: this.baseInfo,
-            idenInfo: this.idenInfo,
-            address: this.address,
-            contactInfo: this.contactInfo,
-            partyInfo: this.partyInfo
+            businessParams: this.businessParams,
+            idenList: this.idenList,
+            addressList: this.addressList,
+            contMediumList: this.contMediumList,
+            relPersonList: this.relPersonList
         })
     }
 }
