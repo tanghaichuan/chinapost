@@ -5,15 +5,23 @@ export default {
         state.id = payload
     },
     [constant.LOAD_CUS_FORM_LIST](state, payload) {
-        state.cusFormList.push(...payload)
+        Object
+            .keys(state.cusFormList)
+            .forEach((item, index, array) => {
+                state
+                    .cusFormList[item]
+                    .push(...payload[index].chaValue)
+            })
     },
     [constant.LOAD_COM_FORM_LIST](state, payload) {
-        state.comFormList.push(...payload)
+        state
+            .comFormList
+            .push(...payload)
     },
-    [constant.LOAD_CUS_EXT_FORM_LIST](state,payload) {
+    [constant.LOAD_CUS_EXT_FORM_LIST](state, payload) {
         state.cusExtFormList = payload
     },
-    [constant.LOAD_COM_EXT_FORM_LIST](state,payload) {
+    [constant.LOAD_COM_EXT_FORM_LIST](state, payload) {
         state.comExtFormList = payload
     }
 }

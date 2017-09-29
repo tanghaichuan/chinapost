@@ -27,12 +27,14 @@ const routes = [{
         name: 'jurisdiction',
         meta: '360视图',
         component: require('module/agentView/jurisdiction')
-    },{
-        path: 'test',
-        name: 'test',
-        meta: '360视图',
-        component: require('module/agentView/test')
-    }]
+    }
+    // ,{
+    //     path: 'test',
+    //     name: 'test',
+    //     meta: '360视图',
+    //     component: require('module/agentView/test')
+    // }
+    ]
 }]
 
 export default routes
