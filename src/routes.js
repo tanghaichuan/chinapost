@@ -3,6 +3,7 @@ import {proxyLoad} from './common/js/proxyLoad'
 // 客管路由
 import client from './module/clientmanage/route'
 import details from './module/details/route'
+import querylist from './module/queryList/route'
 // 360路由
 import agentview from './module/agentView/route'
 
@@ -32,6 +33,7 @@ export default[
   ...client,
   ...agentview,
   ...details,
+  ...querylist,
   {
     path : '*',
     component : {

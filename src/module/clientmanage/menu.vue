@@ -243,7 +243,7 @@ export default {
               url: "/client/company"
             }, {
               name: "查询列表",
-              url: "/client/querylist"
+              url: "/client/queryList"
             }, {
               name: "个人客户详细信息",
               url: "/client/customerDtl"
