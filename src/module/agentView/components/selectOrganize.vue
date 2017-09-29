@@ -19,7 +19,7 @@
 	    	<div class="right">
 	       	<h3>机构层级</h3>
 	       	<ul>
-	          <li v-for="(item,index) in list" :key="index" @click="compulete(item)">
+	          <li v-for="(item,index) in list" :key="index" @click="compulete(item)" :class="{bactive:item.isSelect}">
 	          	{{item.name}}
 	          	<span v-if="item.isSelect"><t-icon type="check" size="18"></t-icon></span>
 	          </li>
@@ -177,6 +177,9 @@ export default{
             height:0;
             clear:both;
             display:block;
+          }
+          &.bactive{
+            background:#eefff4;
           }
         }
         span{

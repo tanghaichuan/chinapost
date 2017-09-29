@@ -10,11 +10,10 @@
             </div>
         </div>
         <div class="form-container" v-show="userList.isCollapse">
-            <div class="form-item-container">
-                <item-wrap :row="row" :userList="userList" :formList="userList.formItem[0].formList"  v-for="(index,key) in userList.formItem" :key="key"></item-wrap>
+            <div class="form-item-container" v-for="(index,key) in userList.formItem" :key="key">
+                <item-wrap :row="row" :userList="userList" :formList="userList.formItem[0].formList"></item-wrap>
                 <!--异步加载更多-->
                 <dynamic-from  v-if="userList.title.indexOf('其他关系人信息') === -1" :row="row" :id="0" :isAsync="userList.isAsync" :userList.sync="userList"></dynamic-from>
-                <more-model v-if="userList.title.indexOf('其他关系人信息') > 0"></more-model>
             </div>
         </div>
     </div>
@@ -22,7 +21,6 @@
 <script>
 import itemWrap from './itemWrap'
 import dynamicFrom from './dynamicForm'
-import moreModel from './moreModel'
 export default {
     name: 'itemForm',
     data() {
@@ -57,8 +55,7 @@ export default {
     },
     components: {
         dynamicFrom,
-        itemWrap,
-        moreModel
+        itemWrap
     },
     methods: {
         addFormList() {
@@ -103,6 +100,13 @@ export default {
     position: relative;
     padding: 19px 0 9px;
     zoom: 1;
+    &::before {
+        margin-top: -19px;
+        padding-bottom: 19px;
+        display: block;
+        content: '';
+        border-top: 1px solid #dfe5e7;
+    }
     &:not(:first-child) {
         &::before {
             margin-left: 20px;
@@ -123,12 +127,13 @@ export default {
 }
 
 .form-item-wrap {
-    padding:3px 0;
-    margin-left: 25px;
-    margin-right: 25px;
+    padding-left: 25px;
     zoom: 1;
-    &:not(:first-child) {
-        border-top: 1px dashed #dfe5e7;
+    &:after {
+        content: '';
+        display: table;
+        clear: both;
+        overflow: hidden;
     }
 }
 

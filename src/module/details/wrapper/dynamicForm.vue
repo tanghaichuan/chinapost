@@ -17,98 +17,103 @@ export default {
         return {
             openSelect: false,
             flod: false,
-            customFormItem: [
-                {
-                    "CODE": "MAJOR_LOGISTICS_REQCONT",
-                    "VALUE": "文字内容",
-                    "DISP": "主要物流需求"
-                },
-                {
-                    "CODE": "INDUSTYR_TYPE_PARENT",
-                    "VALUE": "文字内容",
-                    "DISP": "行业类型"
-                },
-                {
-                    "CODE": "PAYMENT_TERM",
-                    "VALUE": "文字内容",
-                    "DISP": "账期"
-                },
-                {
-                    "CODE": "APPROVAL_FLAG",
-                    "VALUE": "文字内容",
-                    "DISP": "审批标志"
-                },
-                {
-                    "CODE": "POSTAGE_CONFIDENCE",
-                    "VALUE": "文字内容",
-                    "DISP": "客户对邮资信度"
-                },
-                {
-                    "CODE": "ACCOUNTING_FLAG",
-                    "VALUE": "文字内容",
-                    "DISP": "允许记账标志"
-                },
-                {
-                    "CODE": "ARREARS_LIMIT",
-                    "VALUE": "文字内容",
-                    "DISP": "欠费金额限制"
-                },
-                {
-                    "CODE": "ARREARS_TIME_LIMIT",
-                    "VALUE": "文字内容",
-                    "DISP": "欠费时间限制"
-                },
-                {
-                    "CODE": "IF_DEVELOPECUST",
-                    "VALUE": "文字内容",
-                    "DISP": "是否开发用户"
-                }
-            ],
+            customFormItem: {
+                baseInfo: [
+                    {
+                        "CODE": "MAJOR_LOGISTICS_REQCONT",
+                        "VALUE": "文字内容",
+                        "DISP": "客户类型"
+                    },
+                    {
+                        "CODE": "INDUSTYR_TYPE_PARENT",
+                        "VALUE": "文字内容",
+                        "DISP": "客户等级"
+                    },
+                    {
+                        "CODE": "PAYMENT_TERM",
+                        "VALUE": "文字内容",
+                        "DISP": "客户状态"
+                    },
+                    {
+                        "CODE": "APPROVAL_FLAG",
+                        "VALUE": "文字内容",
+                        "DISP": "客户群"
+                    },
+                    {
+                        "CODE": "POSTAGE_CONFIDENCE",
+                        "VALUE": "文字内容",
+                        "DISP": "扩展信息"
+                    },
+                    {
+                        "CODE": "ACCOUNTING_FLAG",
+                        "VALUE": "文字内容",
+                        "DISP": "扩展信息"
+                    },
+                    {
+                        "CODE": "ARREARS_LIMIT",
+                        "VALUE": "文字内容",
+                        "DISP": "扩展信息"
+                    },
+                    {
+                        "CODE": "ARREARS_TIME_LIMIT",
+                        "VALUE": "文字内容",
+                        "DISP": "扩展信息"
+                    },
+                    {
+                        "CODE": "IF_DEVELOPECUST",
+                        "VALUE": "文字内容",
+                        "DISP": "扩展信息"
+                    }
+                ],
+                idenInfo: [
+
+                ]
+            },
             companyFromItem: [
                 {
                     "CODE": "EBUSINESS_WEBSITE",
                     "VALUE": "文字内容",
-                    "DISP": "跨境电商平台"
+                    "DISP": "客户类型"
                 },
                 {
                     "CODE": "EBUSINESS_WEBSITE",
                     "VALUE": "文字内容",
-                    "DISP": "电商平台店铺网址"
+                    "DISP": "客户等级"
                 },
                 {
                     "CODE": "EBUSINESS_WEBSITE",
                     "VALUE": "文字内容",
-                    "DISP": "快递电商平台"
+                    "DISP": "客户状态"
                 },
                 {
                     "CODE": "EBUSINESS_WEBSITE",
                     "VALUE": "文字内容",
-                    "DISP": "快递电商平台店铺网址"
+                    "DISP": "客户群"
                 },
                 {
                     "CODE": "EBUSINESS_WEBSITE",
                     "VALUE": "文字内容",
-                    "DISP": "电子商务网址"
+                    "DISP": "扩展信息"
                 },
                 {
                     "CODE": "COMPANY_TYPE",
                     "VALUE": "文字内容",
-                    "DISP": "组织机构类型"
+                    "DISP": "扩展信息"
                 },
                 {
                     "CODE": "Economic_Nature",
                     "VALUE": "文字内容",
-                    "DISP": "经济性质"
+                    "DISP": "扩展信息"
                 },
                 {
                     "CODE": "IS_MARKET",
                     "VALUE": "文字内容",
-                    "DISP": "上市标志"
+                    "DISP": "扩展信息"
                 },
                 {
                     "CODE": "Operation_Mode",
                     "VALUE": "文字内容",
-                    "DISP": "经营方式"
+                    "DISP": "扩展信息"
                 }
             ]
         }
@@ -149,7 +154,7 @@ export default {
         },
         getCustomerForm(obj) {
             console.log(obj);
-            this.$set(obj, "addFormItem", this.customFormItem)
+            this.$set(obj, "addFormItem", this.customFormItem.baseInfo)
         },
         getCompany(obj) {
             console.log(obj);
@@ -165,8 +170,14 @@ export default {
 .form-item-wrap {
     padding-left: 25px;
     padding-top: 20px;
-    border-top: 1px dashed #dfe5e7;
     zoom: 1;
+    &:before {
+        margin-right: 25px;
+        margin-top: -19px;
+        display: block;
+        content: '';
+        border-top: 1px dashed #dfe5e7;
+    }
     &:after {
         content: '';
         display: table;
@@ -177,6 +188,20 @@ export default {
 
 .load-more {
     text-align: right;
+    a {
+        &:hover {
+            span,
+            i {
+                color: #3DAC6E;
+            }
+        }
+        &:active {
+            span,
+            i {
+                color: #007f3b;
+            }
+        }
+    }
 }
 
 .form-block--block {

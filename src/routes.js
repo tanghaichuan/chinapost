@@ -24,6 +24,10 @@ export default[
     name : 'Login',
     path : '/login',
     component : require('./module/login/login.vue')
+  },{
+    name : 'logins',
+    path : '/logins',
+    component : require('./module/login/logins.vue')
   },
   ...client,
   ...agentview,

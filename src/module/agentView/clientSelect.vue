@@ -126,6 +126,7 @@ export default{
   		li{
   			line-height:40px;
   			border-bottom:1px solid #e9e9e9;
+  			cursor:pointer;
   			&:after{
   				content:" ";
   				height:0;
