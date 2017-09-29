@@ -44,6 +44,7 @@ function rules(config) {
 }
 
 module.exports = {
+    strict:false,
     type: "frontend", // 项目类型
     spa: '/index.html', //是否单页应用,url rewrites 规则
     jsExt: ".js", //入口js文件后缀名
