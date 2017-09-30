@@ -581,4 +581,30 @@
             ]
         }
     }
+}, {
+    "url": "/mock/saveCustomerInfo",
+    "method": "post",
+    "response": {
+        "systemParams": {
+            "RESPONSE_INFO": {
+                "responseCode": "0",
+                "responseMsg": "OK"
+            }
+        },
+        "businessParams": {
+            "customerId": "123",
+            "idenList": [{
+                "ID": 900001
+            }],
+            "contMediumList": [{
+                "ID": 800001
+            }],
+            "addressList": [{
+                "ID": 700001
+            }],
+            "relPersonList": [{
+                "ID": 600001
+            }]
+        }
+    }
 }]
