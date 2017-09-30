@@ -262,9 +262,9 @@ export default{
 						this.addQueryCustomerList(dataList[i])
 					}
 					//弹窗关闭，切换路由，显示列表页面
-					// this.modal = false
-					// this.modals = false
-					// this.$router.push({path:'/agentview/clientSelect'})
+					this.modal = false
+					this.modals = false
+					this.$router.push({path:'/agentview/clientSelect'})
 				}else{
 					this.$Message.info('无此数据')
 				}
