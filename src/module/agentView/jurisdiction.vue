@@ -32,29 +32,20 @@
                 <div class="common-roles float-right">
                     <t-card style="" dis-hover>
                         <span slot="head">常用角色</span>
-                        <!--<t-tag type="text">标签1</t-tag>
-                        <t-tag type="text">标签2</t-tag>
-                        <t-tag type="text">标签3</t-tag>
+                        <!--    <span class="role-tag">
+                                <span>角色1</span>
+                                <i class="aid-close ml-2"></i>
+                            </span>-->
 
-                        <t-tag type="text">标签3</t-tag>
-                        <t-tag type="text">标签2</t-tag>
-                        <t-tag type="text">标签3</t-tag>-->
+                        <t-tag>超级管理员</t-tag>
+                        <t-tag>级管理员</t-tag>
+                        <t-tag>管理员</t-tag>
+                        <t-tag>理员</t-tag>
+                        <t-tag>超级管理</t-tag>
+                        <t-tag>超级管</t-tag>
+                        <t-tag>超级</t-tag>
+                        <t-tag>超级管理员</t-tag>
 
-                        <!--<div v-show="show"><span>标签1</span>
-                           <span class="ml-2" @click="modal1 = true">X</span>
-                            <t-modal
-                                    mask-closable="false"
-                                    v-model="modal1"
-                                    title="普通的t-modal对话框标题"
-                                    @on-ok="ok"
-                                    @on-cancel="cancel">
-                                <p>对话框内容</p>
-                                <p>对话框内容</p>
-                                <p>对话框内容</p>
-                            </t-modal></div>-->
-                        <t-tag type="text" @on-close="closed">标签2</t-tag>
-                        <t-tag type="text" @on-close="closed">标签2</t-tag>
-                        <t-tag type="text" @on-close="closed">标签2</t-tag>
 
                     </t-card>
                 </div>
@@ -95,63 +86,134 @@
                         <!--<t-input class="input-center" icon="magnify" icon-placement="right" placeholder="请输入角色名称"
                                  style="width: 340px"></t-input>-->
                         <div class="base-info">
-                            <p class="mt-lg-4">个人基本信息</p>
-                            <t-tabs>
-                                <t-tab-panel label="标签一" name="tab-1">
-                                    <t-checkbox-group size="lg" class="d-flex justify-content-between mt-3">
-                                        <span style="width: 25%"> <t-checkbox label="客户编号"></t-checkbox></span>
+                            <p class="mt-lg-4">选中三级名称</p>
+                            <!--  <t-tabs>
+                                  <t-tab-panel label="标签一" name="tab-1">
+                                      <t-checkbox-group size="lg" class="d-flex justify-content-between mt-3">
+                                          <span style="width: 25%"> <t-checkbox label="客户编号"></t-checkbox></span>
 
-                                        <span style="width: 25%"> <t-checkbox label="客户名称"></t-checkbox></span>
-                                        <span style="width: 25%"> <t-checkbox label="客户简称"></t-checkbox></span>
-                                        <span style="width: 25%"> <t-checkbox label="客户英文名称"></t-checkbox></span>
+                                          <span style="width: 25%"> <t-checkbox label="客户名称"></t-checkbox></span>
+                                          <span style="width: 25%"> <t-checkbox label="客户简称"></t-checkbox></span>
+                                          <span style="width: 25%"> <t-checkbox label="客户英文名称"></t-checkbox></span>
 
-                                    </t-checkbox-group>
-                                    <t-checkbox-group size="lg" class="d-flex justify-content-between mt-3 ">
-                                        <span style="width: 25%"> <t-checkbox label="英文简称"></t-checkbox></span>
+                                      </t-checkbox-group>
+                                      <t-checkbox-group size="lg" class="d-flex justify-content-between mt-3 ">
+                                          <span style="width: 25%"> <t-checkbox label="英文简称"></t-checkbox></span>
 
-                                        <span style="width: 25%"> <t-checkbox label="职工姓名"></t-checkbox></span>
-                                        <span style="width: 25%"> <t-checkbox label="组织机构代码"></t-checkbox></span>
-                                        <span style="width: 25%"> <t-checkbox label="客户类别"></t-checkbox></span>
+                                          <span style="width: 25%"> <t-checkbox label="职工姓名"></t-checkbox></span>
+                                          <span style="width: 25%"> <t-checkbox label="组织机构代码"></t-checkbox></span>
+                                          <span style="width: 25%"> <t-checkbox label="客户类别"></t-checkbox></span>
 
-                                    </t-checkbox-group>
-                                    <t-checkbox-group size="lg" class="d-flex justify-content-between mt-3 ">
-                                        <span style="width: 25%"> <t-checkbox label="客户编号"></t-checkbox></span>
+                                      </t-checkbox-group>
+                                      <t-checkbox-group size="lg" class="d-flex justify-content-between mt-3 ">
+                                          <span style="width: 25%"> <t-checkbox label="客户编号"></t-checkbox></span>
 
-                                        <span style="width: 25%"> <t-checkbox label="客户名称"></t-checkbox></span>
-                                        <span style="width: 25%"> <t-checkbox label="客户简称"></t-checkbox></span>
-                                        <span style="width: 25%"> <t-checkbox label="客户英文名称"></t-checkbox></span>
+                                          <span style="width: 25%"> <t-checkbox label="客户名称"></t-checkbox></span>
+                                          <span style="width: 25%"> <t-checkbox label="客户简称"></t-checkbox></span>
+                                          <span style="width: 25%"> <t-checkbox label="客户英文名称"></t-checkbox></span>
 
-                                    </t-checkbox-group>
-                                    <t-checkbox-group size="lg" class="d-flex justify-content-between mt-3 ">
-                                        <span style="width: 25%"> <t-checkbox label="英文简称"></t-checkbox></span>
+                                      </t-checkbox-group>
+                                      <t-checkbox-group size="lg" class="d-flex justify-content-between mt-3 ">
+                                          <span style="width: 25%"> <t-checkbox label="英文简称"></t-checkbox></span>
 
-                                        <span style="width: 25%"> <t-checkbox label="职工姓名"></t-checkbox></span>
-                                        <span style="width: 25%"> <t-checkbox label="组织机构代码"></t-checkbox></span>
-                                        <span style="width: 25%"> <t-checkbox label="客户类别"></t-checkbox></span>
+                                          <span style="width: 25%"> <t-checkbox label="职工姓名"></t-checkbox></span>
+                                          <span style="width: 25%"> <t-checkbox label="组织机构代码"></t-checkbox></span>
+                                          <span style="width: 25%"> <t-checkbox label="客户类别"></t-checkbox></span>
 
-                                    </t-checkbox-group>
-                                    <t-checkbox-group size="lg" class="d-flex justify-content-between mt-3 ">
-                                        <span style="width: 25%"> <t-checkbox label="客户编号"></t-checkbox></span>
+                                      </t-checkbox-group>
+                                      <t-checkbox-group size="lg" class="d-flex justify-content-between mt-3 ">
+                                          <span style="width: 25%"> <t-checkbox label="客户编号"></t-checkbox></span>
 
-                                        <span style="width: 25%"> <t-checkbox label="客户名称"></t-checkbox></span>
-                                        <span style="width: 25%"> <t-checkbox label="客户简称"></t-checkbox></span>
-                                        <span style="width: 25%"> <t-checkbox label="客户英文名称"></t-checkbox></span>
+                                          <span style="width: 25%"> <t-checkbox label="客户名称"></t-checkbox></span>
+                                          <span style="width: 25%"> <t-checkbox label="客户简称"></t-checkbox></span>
+                                          <span style="width: 25%"> <t-checkbox label="客户英文名称"></t-checkbox></span>
 
-                                    </t-checkbox-group>
-                                    <t-checkbox-group size="lg" class="d-flex justify-content-between mt-3 ">
-                                        <span style="width: 25%"> <t-checkbox label="英文简称"></t-checkbox></span>
+                                      </t-checkbox-group>
+                                      <t-checkbox-group size="lg" class="d-flex justify-content-between mt-3 ">
+                                          <span style="width: 25%"> <t-checkbox label="英文简称"></t-checkbox></span>
 
-                                        <span style="width: 25%"> <t-checkbox label="职工姓名"></t-checkbox></span>
-                                        <span style="width: 25%"> <t-checkbox label="组织机构代码"></t-checkbox></span>
-                                        <span style="width: 25%"> <t-checkbox label="客户类别"></t-checkbox></span>
+                                          <span style="width: 25%"> <t-checkbox label="职工姓名"></t-checkbox></span>
+                                          <span style="width: 25%"> <t-checkbox label="组织机构代码"></t-checkbox></span>
+                                          <span style="width: 25%"> <t-checkbox label="客户类别"></t-checkbox></span>
 
-                                    </t-checkbox-group>
+                                      </t-checkbox-group>
 
 
-                                </t-tab-panel>
-                                <t-tab-panel label="标签二" name="tab-2">标签二内容</t-tab-panel>
-                                <t-tab-panel label="标签三" name="tab-3">标签三内容</t-tab-panel>
-                            </t-tabs>
+                                  </t-tab-panel>
+                                  <t-tab-panel label="标签二" name="tab-2">标签二内容</t-tab-panel>
+                                  <t-tab-panel label="标签三" name="tab-3">标签三内容</t-tab-panel>
+                              </t-tabs>-->
+                            <t-collapse v-model="value" accordion style="background: #fff" >
+                                <t-panel name="1">
+                                    <t-checkbox
+                                            class="ml-2"
+                                            :indeterminate="indeterminate"
+                                            :value="checkAll"
+                                            @click.prevent.stop.native="all">四级指标1
+                                    </t-checkbox>
+                                    <p slot="content">
+                                        <t-checkbox-group size="lg" class="d-flex justify-content-between mb-2"
+                                                          v-model="checkAllGroup" @on-change="son">
+                                            <span style="width: 25%"> <t-checkbox label="客户编号"></t-checkbox></span>
+
+                                            <span style="width: 25%"> <t-checkbox label="客户名称"></t-checkbox></span>
+                                            <span style="width: 25%"> <t-checkbox label="客户简称"></t-checkbox></span>
+                                            <span style="width: 25%"> <t-checkbox label="客户英文名称"></t-checkbox></span>
+
+                                        </t-checkbox-group>
+                                        <t-checkbox-group size="lg" class="d-flex justify-content-between "  v-model="checkAllGroup" @on-change="son">
+                                            <span style="width: 25%"> <t-checkbox label="英文简称"></t-checkbox></span>
+
+                                            <span style="width: 25%"> <t-checkbox label="职工姓名"></t-checkbox></span>
+                                            <span style="width: 25%"> <t-checkbox label="组织机构代码"></t-checkbox></span>
+                                            <span style="width: 25%"> <t-checkbox label="客户类别"></t-checkbox></span>
+
+                                        </t-checkbox-group>
+                                    </p>
+                                </t-panel>
+                                <t-panel name="2">
+                                    <t-checkbox label="四级指标2"></t-checkbox>
+                                    <p slot="content">
+                                        <t-checkbox-group size="lg" class="d-flex justify-content-between mt-3">
+                                            <span style="width: 25%"> <t-checkbox label="客户编号"></t-checkbox></span>
+
+                                            <span style="width: 25%"> <t-checkbox label="客户名称"></t-checkbox></span>
+                                            <span style="width: 25%"> <t-checkbox label="客户简称"></t-checkbox></span>
+                                            <span style="width: 25%"> <t-checkbox label="客户英文名称"></t-checkbox></span>
+
+                                        </t-checkbox-group>
+                                        <t-checkbox-group size="lg" class="d-flex justify-content-between mt-3 ">
+                                            <span style="width: 25%"> <t-checkbox label="英文简称"></t-checkbox></span>
+
+                                            <span style="width: 25%"> <t-checkbox label="职工姓名"></t-checkbox></span>
+                                            <span style="width: 25%"> <t-checkbox label="组织机构代码"></t-checkbox></span>
+                                            <span style="width: 25%"> <t-checkbox label="客户类别"></t-checkbox></span>
+
+                                        </t-checkbox-group>
+                                    </p>
+                                </t-panel>
+                                <t-panel name="3">
+                                    <t-checkbox label="四级指标3"></t-checkbox>
+                                    <p slot="content">
+                                        <t-checkbox-group size="lg" class="d-flex justify-content-between mt-3">
+                                            <span style="width: 25%"> <t-checkbox label="客户编号"></t-checkbox></span>
+
+                                            <span style="width: 25%"> <t-checkbox label="客户名称"></t-checkbox></span>
+                                            <span style="width: 25%"> <t-checkbox label="客户简称"></t-checkbox></span>
+                                            <span style="width: 25%"> <t-checkbox label="客户英文名称"></t-checkbox></span>
+
+                                        </t-checkbox-group>
+                                        <t-checkbox-group size="lg" class="d-flex justify-content-between mt-3 ">
+                                            <span style="width: 25%"> <t-checkbox label="英文简称"></t-checkbox></span>
+
+                                            <span style="width: 25%"> <t-checkbox label="职工姓名"></t-checkbox></span>
+                                            <span style="width: 25%"> <t-checkbox label="组织机构代码"></t-checkbox></span>
+                                            <span style="width: 25%"> <t-checkbox label="客户类别"></t-checkbox></span>
+
+                                        </t-checkbox-group>
+                                    </p>
+                                </t-panel>
+                            </t-collapse>
 
                         </div>
                     </t-card>
@@ -162,25 +224,19 @@
                 <t-button type="outline-primary" @click="confirm">清空权限</t-button>
 
                 <t-button type="primary" class="ml-3">确定修改</t-button>
-                <!--<t-button type="primary" @click="modal = true">清空权限</t-button>
-                <t-modal
-                        v-model="modal"
-                        @on-ok="ok"
-                        @on-cancel="cancel">
-                    <div style="padding: 20px">
-                        <i style="font-size: 14px; font-style: normal" class="swsw">!</i><h4 style="font-size: 12px;display: inline-block;line-height: 12px;margin-bottom: -5px"> 是否要清空所有权限</h4>
-                        <p style="font-size: 12px">是否要清空所有权限是否要清空所有权限是否要清空所有权限</p>
-                    </div>
-                </t-modal>-->
             </div>
         </div>
     </div>
 </template>
 <script>
     import './index.less';
+
     export default {
         data() {
             return {
+                indeterminate: false,
+                checkAll: false,
+                checkAllGroup: [],
                 show: true,
                 customerId: this.$route.params.customerId,
                 dataList: [
@@ -334,13 +390,12 @@
                     setTimeout(() => {
                         this.loading1 = false;
                         var arr = []
-                        var ary=null
-                        
+                        var ary = null
+
                         this.person.map((e, i) => {
                             arr.push(e.name)
-                            ary=e.role
+                            ary = e.role
                         })
-                         console.log(ary)
                         const list = arr.map((item, index) => {
 
                             return {
@@ -350,8 +405,7 @@
                         });
 
                         this.options1 = list.filter(item => item.label.indexOf(query) > -1);
-                        
-                        
+
 
                     }, 200);
                 } else {
@@ -364,16 +418,46 @@
                     content: '<p style="font-size:14px;">是否要清空管理员权限?</p><p>清空管理员权限可能会造成查询客户信息不全</p>',
                     onOk: () => {
                         this.$Message.info('点击了确定');
-                        console.log(this.data[0].role[2])
                     },
                     onCancel: () => {
                         this.$Message.info('点击了取消');
                     }
                 });
             },
-            ok() {
-                this.show = false
+            //全选
+            all() {
 
+                if (this.indeterminate) {
+                    this.checkAll = false;
+                } else {
+                    this.checkAll = !this.checkAll;
+                }
+                this.indeterminate = false;
+
+                if (this.checkAll) {
+                    this.checkAllGroup = ['客户编号', '客户名称', '客户英文名称', '客户简称', '英文简称', '职工姓名', '客户类别', '组织机构代码'];
+                }else {
+                    this.checkAllGroup =[]
+                }
+
+            },
+
+            son(data) {
+                 console.log(data)
+
+                if (data.length === 8) {
+                    this.indeterminate = false;
+                    this.checkAll = true;
+                } else if (data.length > 0) {
+                    this.indeterminate = true;
+                    this.checkAll = false;
+                } else {
+                    this.indeterminate = false;
+                    this.checkAll = false;
+                }
+            },
+            aaa(e){
+ e.stopPropagation()
             }
         }
     }
@@ -432,16 +516,44 @@
         border: none !important;
     }
 
-    .input, .select .dropdown-input {
-        padding: 0 !important;
+    .input {
+        border-left: none !important;;
+        border-right: none !important;;
+        border-top: none !important;
+
+        padding: 0px !important;
     }
 
-    .swsw {
+    /*可删除角色标签*/
+    .role-tag {
         display: inline-block;
-        height: 14px;
-        width: 14px;
-        background: darkkhaki;
-        border-radius: 50%;
+        position: relative;
+        padding: 0 10px;
+        height: 24px;
+        line-height: 24px;
+        background-color: rgba(123, 147, 167, 0.1);
+        color: #7b93a7;
+        font-size: 12px;
+        border-radius: 4px;
+        width: auto;
+        .aid-close {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+        }
+        .aid-close:hover {
+            color: #000;
+        }
+
+        .aid-close::before {
+            position: absolute;
+            top: 1px;
+            font-family: "AI Design Icons";
+            content: "\F2B5";
+            font-style: normal;
+            box-sizing: inherit;
+            transform: scale(1.5);
+        }
     }
 
 </style>
