@@ -56,7 +56,8 @@ export default{
 			show:false,
       list:[],
       result1:'',
-      result2:''
+      result2:'',
+      code:''
 		}
 	},
 	methods: {
@@ -68,7 +69,8 @@ export default{
         obj = data.value;
         for(let i=0;i<obj.length;i++){
           let label = obj[i].name;
-          this.list.push({name:label,isSelect:false,id:`id_${Math.random()}`})
+          let code = obj[i].code;
+          this.list.push({name:label,isSelect:false,code:code})
         }
       }
       this.result1 = data.label
@@ -81,6 +83,7 @@ export default{
         this.list[i].isSelect = false;
       }
       item.isSelect = !item.isSelect
+      this.code = item.code
       this.result2 = '('+item.name+')'
       this.result1 = this.labels
     },
@@ -91,13 +94,14 @@ export default{
      	this.show = false;
      	this.result1 = '';
      	this.result2 = '';
+      this.code='';
     },
     closeTree(){
     	this.modals = false
     	this.$emit('close-tree')
     },
     oks(){
-    	this.$emit('show-data',this.result1 +'  ' +this.result2)
+    	this.$emit('show-data',this.result1 +'  ' +this.result2,this.code)
     	this.$emit('close-tree')
     },
     cancels(){

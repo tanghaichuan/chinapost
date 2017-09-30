@@ -118,11 +118,11 @@ export default{
 						label:'身份证'
 					},
 					{
-						value:'HDCard',
+						value:'passport',
 						label:'护照'
 					},
 					{
-						value:'JDCard',
+						value:'USCI',
 						label:'军官证'
 					}
 				]
@@ -137,11 +137,12 @@ export default{
 			},
 			organise:{
 				organiseName:'',
+				organiseCode:'',
 				organiseManager:'',
 				managerPerson:[
 					{
-						value:'1',
-						label:'无'
+						value:'208789',
+						label:'经理'
 					}
 				]
 			},
@@ -154,9 +155,11 @@ export default{
               label: '三级 1-1-1',
               value:[
                 {
+                	code:'10002020',
                   name:'市场组'
                 },
                 {
+                	code:'10002021',
                   name:'调研组'
                 }
               ]
@@ -171,9 +174,11 @@ export default{
               label: '三级 2-1-1',
               value:[
                 {
+                	code:'10002022',
                   name:'开发组'
                 },
                 {
+                	code:'10002023',
                   name:'测试组'
                 }
               ]
@@ -184,9 +189,11 @@ export default{
               label: '三级 2-2-1',
               value:[
                 {
+                	code:'10002024',
                   name:'无领导小组'
                 },
                 {
+                	code:'10002025',
                   name:'评估风险组'
                 }
               ]
@@ -223,8 +230,9 @@ export default{
 		cancel(){
 			this.modal = false
 		},
-		showData(data){
+		showData(data,code){
 			this.organise.organiseName = data
+			this.organise.organiseCode = code
 		},
 		showTree(){
 			this.modal = false
@@ -254,9 +262,9 @@ export default{
 						this.addQueryCustomerList(dataList[i])
 					}
 					//弹窗关闭，切换路由，显示列表页面
-					this.modal = false
-					this.modals = false
-					this.$router.push({path:'/agentview/clientSelect'})
+					// this.modal = false
+					// this.modals = false
+					// this.$router.push({path:'/agentview/clientSelect'})
 				}else{
 					this.$Message.info('无此数据')
 				}
@@ -266,32 +274,49 @@ export default{
 		queryDataList(){
 			//页面返回时，清空之前参数
 			this.paramsData.businessParams.queryCondition=[]
-			//按证件类型+证件号码查询
-			let identifyNr = {"condType":"identifyNr","condValue":[]}
-			identifyNr.condValue.push(this.personal.type)
-			identifyNr.condValue.push(this.personal.personNum)
-			//按名称查询
-			let name ={"condType":"name","condValue":[]}
-			name.condValue.push(this.construction.name)
-			//按名称模糊查询
-			let nameAndFuzzy ={"condType":"nameAndFuzzy","condValue":[]}
+
+			//按简称查询
+			let nameAndFuzzy ={"condType":"shortName","condValue":[]}
 			nameAndFuzzy.condValue.push(this.construction.simpleName)
+			
 			//按协议单号(如面单号，保险单号等)查询
 			let agreementCode ={"condType":"agreementCode","condValue":[]}
 			agreementCode.condValue.push(this.business.ticket)
 
+			//按组织部门查询
+			let depart = {"condType":"manageDepartmentId","condValue":[]}
+			depart.condValue.push(this.organise.organiseCode)
+
+			//按客户经理ID查询
+			let clientManager ={"condType":"customerManagerId","condValue":[]}
+			clientManager.condValue.push(this.organise.organiseManager)
+
+
 			if(this.tabValue == 0){
-				if(this.personal.type =='' || this.personal.personNum==''){
+				if((this.personal.personName == '') && (this.personal.type =='' || this.personal.personNum=='')){
 					this.$Message.info('请填写完整信息')
 				}else{
-					this.paramsData.businessParams.queryCondition.push(identifyNr)
+					//按证件类型+证件号码查询
+					let identifyNr = {"condType":"identifyNr","condValue":[]}
+					identifyNr.condValue.push(this.personal.type)
+					identifyNr.condValue.push(this.personal.personNum)
+					//按名称查询
+					let name ={"condType":"name","condValue":[]}
+					name.condValue.push(this.personal.personName)
+					this.paramsData.businessParams.queryCondition.push(identifyNr,name)
 					this.fetchMock()
 				}
 			}else if(this.tabValue == 1){
-				if(this.construction.name == '' && this.construction.simpleName ==''){
+				if(this.construction.code == '' && this.construction.name == '' && this.construction.simpleName ==''){
 					this.$Message.info('请填写完整信息')
 				}else{
-					this.paramsData.businessParams.queryCondition.push(name,nameAndFuzzy)
+					//按信用代码查询
+					let identifyNr = {"condType":"identifyNr","condValue":['USCI']}
+					identifyNr.condValue.push(this.construction.code)
+					//按名称查询
+					let name ={"condType":"name","condValue":[]}
+					name.condValue.push(this.construction.name)
+					this.paramsData.businessParams.queryCondition.push(identifyNr,name,nameAndFuzzy)
 					this.fetchMock()
 				}
 			}else if(this.tabValue == 2){
@@ -302,7 +327,12 @@ export default{
 					this.fetchMock()
 				}
 			}else{
-				this.$Message.info('请切换选项查询')
+				if(this.organise.organiseCode == '' && this.organise.organiseManager ==''){
+					this.$Message.info('请填写完整信息')
+				}else{
+					this.paramsData.businessParams.queryCondition.push(depart,clientManager)
+					this.fetchMock()
+				}
 			}
 
 		}
@@ -395,9 +425,9 @@ export default{
       }
     }
     .input-group-addon{
-      line-height:26px;
+      line-height:25px;
       position:relative;
-      top:-0.5px;
+      top:0;
       left:-6px;
       border:1px solid #d9d9d9;
       border-left:0;

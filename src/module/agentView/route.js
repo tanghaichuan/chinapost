@@ -28,12 +28,12 @@ const routes = [{
         meta: '360视图',
         component: require('module/agentView/jurisdiction')
     }
-    // ,{
-    //     path: 'test',
-    //     name: 'test',
-    //     meta: '360视图',
-    //     component: require('module/agentView/test')
-    // }
+    ,{
+        path: 'uspa',
+        name: 'uspa',
+        meta: '360视图',
+        component: require('module/agentView/uspa')
+    }
     ]
 }]
 
