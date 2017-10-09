@@ -43,13 +43,14 @@
                 <t-button type="outline-primary" class="nature-btn ml-2"><i class="iconfont">&#xe62c;</i>搜索</t-button>
             </div>
         </div>
-        <!--查询区域-->
+        <!--查询无结果-->
         <div class="view-empty">
             <p class="empty-img">
                 <img src="../../asset/image/query-ept.png" />
             </p>
             <p class="notice-txt">SO 抱歉！无相关结果，有劳重搜。</p>
         </div>
+        <!--查询列表-->
         <div class="queryresult">   
            <div class="query-list">
                 <ul class="list-tit">
