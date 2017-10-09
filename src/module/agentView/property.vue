@@ -1,3 +1,4 @@
+<script src="../../../.ipu/ipu.js"></script>
 <template>
     <div class="agent" style="margin-right: 20px">
         <!-- 面包屑导航 -->
@@ -9,14 +10,14 @@
             <t-breadcrumb-item>当前页</t-breadcrumb-item>
         </t-breadcrumb>
         <!--权限管理视图-->
-        <div class="jurisdiction">
+        <div class="property">
             <div>
                 <p>权限管理</p>
             </div>
-            <div class="jurisdiction-top clearfix">
+            <div class="property-top clearfix">
                 <div class="role-query float-left">
-                    <t-card style="" dis-hover>
-                        <span slot="head">角色询查   </span>
+                    <t-card  dis-hover style="height: 120px">
+                        <span slot="head"><span style="font-size: 12px">用户角色询查</span></span>
                         <t-select
                                 style="width: "
                                 v-model="model13"
@@ -30,37 +31,27 @@
                     </t-card>
                 </div>
                 <div class="common-roles float-right">
-                    <t-card style="" dis-hover>
-                        <span slot="head">常用角色</span>
-                        <!--    <span class="role-tag">
-                                <span>角色1</span>
-                                <i class="aid-close ml-2"></i>
-                            </span>-->
-
-                        <t-tag>超级管理员</t-tag>
-                        <t-tag>级管理员</t-tag>
-                        <t-tag>管理员</t-tag>
-                        <t-tag>理员</t-tag>
-                        <t-tag>超级管理</t-tag>
-                        <t-tag>超级管</t-tag>
-                        <t-tag>超级</t-tag>
-                        <t-tag>超级管理员</t-tag>
-
-
+                    <t-card  dis-hover style="height: 120px">
+                        <span slot="head"><span style="font-size: 12px">该用户下角色</span>  </span>
+                       <div v-for="(items,index) in tagrole" style="display: inline-block" @click="clickedTag(index)">
+                           <t-tag :class="{active: isActive}" > <span >{{items.name}},{{index}}</span></t-tag>
+                       </div>
                     </t-card>
                 </div>
             </div>
-            <div class="jurisdiction-down clearfix mt-3">
+
+
+            <div class="property-down clearfix mt-3">
                 <div class="distribution float-left">
                     <t-card style="" dis-hover>
-                        <span slot="head">权限分配</span>
+                        <span slot="head"><span style="font-size: 12px">权限分配</span>   </span>
                         <!-- <tree></tree>-->
                         <t-tree
                                 all-expandable="ture"
                                 :data="dataList"
                                 is-check
                                 :props="defaultProps"
-                                @on-click="handleNodeClick">
+                                @on-select="handleNodeClick">
 
                         </t-tree>
 
@@ -69,9 +60,9 @@
                 </div>
                 <div class="administrators float-right ">
                     <t-card style="" dis-hover>
-                        <span slot="head" style="width: 100%">
-                            <span>当前选中角色：管理员 </span>
-                            <span class="amount">已选择指标数:1000/个</span>
+                        <span slot="head" style="width: 100%;font-size: 12px; display: inline-block;" class="clearfix">
+                            <span class="float-left">当前选中角色:管理员 </span>
+                            <span class="amount float-right">已选择指标数: <span style="color:#009241 ">1000</span> /个</span>
                         </span>
                         <t-select
                                 class="select-role"
@@ -86,7 +77,7 @@
                         <!--<t-input class="input-center" icon="magnify" icon-placement="right" placeholder="请输入角色名称"
                                  style="width: 340px"></t-input>-->
                         <div class="base-info">
-                            <p class="mt-lg-4">选中三级名称</p>
+                            <p class="mt-lg-4" style="font-size: 12px">选中三级名称</p>
                             <!--  <t-tabs>
                                   <t-tab-panel label="标签一" name="tab-1">
                                       <t-checkbox-group size="lg" class="d-flex justify-content-between mt-3">
@@ -143,25 +134,39 @@
                                   <t-tab-panel label="标签二" name="tab-2">标签二内容</t-tab-panel>
                                   <t-tab-panel label="标签三" name="tab-3">标签三内容</t-tab-panel>
                               </t-tabs>-->
-                            <t-collapse v-model="value" accordion style="background: #fff" >
+                            <t-collapse v-model="value" accordion style="background: #fff;">
+
                                 <t-panel name="1">
                                     <t-checkbox
                                             class="ml-2"
+                                            style="font-size: 12px;"
                                             :indeterminate="indeterminate"
                                             :value="checkAll"
                                             @click.prevent.stop.native="all">四级指标1
                                     </t-checkbox>
-                                    <p slot="content">
-                                        <t-checkbox-group size="lg" class="d-flex justify-content-between mb-2"
+                                    <p slot="content" style="font-size: 12px;">
+                                        <t-checkbox-group class="d-flex justify-content-between mb-2"
                                                           v-model="checkAllGroup" @on-change="son">
-                                            <span style="width: 25%"> <t-checkbox label="客户编号"></t-checkbox></span>
 
-                                            <span style="width: 25%"> <t-checkbox label="客户名称"></t-checkbox></span>
-                                            <span style="width: 25%"> <t-checkbox label="客户简称"></t-checkbox></span>
-                                            <span style="width: 25%"> <t-checkbox label="客户英文名称"></t-checkbox></span>
+                                            <span style="width: 25%">
+                                                <t-checkbox>客户编号</t-checkbox>
+                                            </span>
+                                            <span style="width: 25%">
+                                                <t-checkbox>客户编号</t-checkbox>
+                                            </span>
+
+                                            <span style="width: 25%">
+                                                <t-checkbox>客户编号</t-checkbox>
+                                            </span>
+
+                                            <span style="width: 25%">
+                                                <t-checkbox>客户编号</t-checkbox>
+                                            </span>
+
 
                                         </t-checkbox-group>
-                                        <t-checkbox-group size="lg" class="d-flex justify-content-between "  v-model="checkAllGroup" @on-change="son">
+                                        <t-checkbox-group class="d-flex justify-content-between "
+                                                          v-model="checkAllGroup" @on-change="son">
                                             <span style="width: 25%"> <t-checkbox label="英文简称"></t-checkbox></span>
 
                                             <span style="width: 25%"> <t-checkbox label="职工姓名"></t-checkbox></span>
@@ -172,17 +177,53 @@
                                     </p>
                                 </t-panel>
                                 <t-panel name="2">
-                                    <t-checkbox label="四级指标2"></t-checkbox>
-                                    <p slot="content">
-                                        <t-checkbox-group size="lg" class="d-flex justify-content-between mt-3">
+                                    <t-checkbox
+                                            class="ml-2"
+                                            style="font-size: 12px;"
+                                            :indeterminate="indeterminate"
+                                            :value="checkAll"
+                                            @click.prevent.stop.native="all">四级指标1
+                                    </t-checkbox>
+                                    <p slot="content" style="">
+                                        <t-checkbox-group size="lg" class="d-flex justify-content-between mb-2"
+                                                          v-model="checkAllGroup" @on-change="son">
                                             <span style="width: 25%"> <t-checkbox label="客户编号"></t-checkbox></span>
 
-                                            <span style="width: 25%"> <t-checkbox label="客户名称"></t-checkbox></span>
+                                            <span style="width: 25%">
+                                                <t-checkbox>
+                                                    <a href="javascript:;" @click="modal = true">客户名称</a>
+                                                    <t-modal
+                                                            v-model="modal"
+                                                            title="普通的t-modal对话框标题"
+                                                            @on-ok="ok"
+                                                            @on-cancel="cancel">
+                                     <t-checkbox-group size="lg" class="d-flex justify-content-between "
+                                                       v-model="checkAllGroup" @on-change="son">
+                                            <span style="width: 25%"> <t-checkbox label="英文简称"></t-checkbox></span>
+
+                                            <span style="width: 25%"> <t-checkbox label="职工姓名"></t-checkbox></span>
+                                            <span style="width: 25%"> <t-checkbox label="组织机构代码"></t-checkbox></span>
+                                            <span style="width: 25%"> <t-checkbox label="客户类别"></t-checkbox></span>
+
+                                        </t-checkbox-group>  <t-checkbox-group size="lg"
+                                                                               class="d-flex justify-content-between "
+                                                                               v-model="checkAllGroup" @on-change="son">
+                                            <span style="width: 25%"> <t-checkbox label="英文简称"></t-checkbox></span>
+
+                                            <span style="width: 25%"> <t-checkbox label="职工姓名"></t-checkbox></span>
+                                            <span style="width: 25%"> <t-checkbox label="组织机构代码"></t-checkbox></span>
+                                            <span style="width: 25%"> <t-checkbox label="客户类别"></t-checkbox></span>
+
+                                        </t-checkbox-group>
+                                    </t-modal>
+                                                </t-checkbox>
+                                            </span>
                                             <span style="width: 25%"> <t-checkbox label="客户简称"></t-checkbox></span>
                                             <span style="width: 25%"> <t-checkbox label="客户英文名称"></t-checkbox></span>
 
                                         </t-checkbox-group>
-                                        <t-checkbox-group size="lg" class="d-flex justify-content-between mt-3 ">
+                                        <t-checkbox-group size="lg" class="d-flex justify-content-between "
+                                                          v-model="checkAllGroup" @on-change="son">
                                             <span style="width: 25%"> <t-checkbox label="英文简称"></t-checkbox></span>
 
                                             <span style="width: 25%"> <t-checkbox label="职工姓名"></t-checkbox></span>
@@ -193,17 +234,53 @@
                                     </p>
                                 </t-panel>
                                 <t-panel name="3">
-                                    <t-checkbox label="四级指标3"></t-checkbox>
-                                    <p slot="content">
-                                        <t-checkbox-group size="lg" class="d-flex justify-content-between mt-3">
+                                    <t-checkbox
+                                            class="ml-2"
+                                            style="font-size: 12px;"
+                                            :indeterminate="indeterminate"
+                                            :value="checkAll"
+                                            @click.prevent.stop.native="all">四级指标1
+                                    </t-checkbox>
+                                    <p slot="content" style="">
+                                        <t-checkbox-group size="lg" class="d-flex justify-content-between mb-2"
+                                                          v-model="checkAllGroup" @on-change="son">
                                             <span style="width: 25%"> <t-checkbox label="客户编号"></t-checkbox></span>
 
-                                            <span style="width: 25%"> <t-checkbox label="客户名称"></t-checkbox></span>
+                                            <span style="width: 25%">
+                                                <t-checkbox>
+                                                    <a href="javascript:;" @click="modal = true">客户名称</a>
+                                                    <t-modal
+                                                            v-model="modal"
+                                                            title="普通的t-modal对话框标题"
+                                                            @on-ok="ok"
+                                                            @on-cancel="cancel">
+                                     <t-checkbox-group size="lg" class="d-flex justify-content-between "
+                                                       v-model="checkAllGroup" @on-change="son">
+                                            <span style="width: 25%"> <t-checkbox label="英文简称"></t-checkbox></span>
+
+                                            <span style="width: 25%"> <t-checkbox label="职工姓名"></t-checkbox></span>
+                                            <span style="width: 25%"> <t-checkbox label="组织机构代码"></t-checkbox></span>
+                                            <span style="width: 25%"> <t-checkbox label="客户类别"></t-checkbox></span>
+
+                                        </t-checkbox-group>  <t-checkbox-group size="lg"
+                                                                               class="d-flex justify-content-between "
+                                                                               v-model="checkAllGroup" @on-change="son">
+                                            <span style="width: 25%"> <t-checkbox label="英文简称"></t-checkbox></span>
+
+                                            <span style="width: 25%"> <t-checkbox label="职工姓名"></t-checkbox></span>
+                                            <span style="width: 25%"> <t-checkbox label="组织机构代码"></t-checkbox></span>
+                                            <span style="width: 25%"> <t-checkbox label="客户类别"></t-checkbox></span>
+
+                                        </t-checkbox-group>
+                                    </t-modal>
+                                                </t-checkbox>
+                                            </span>
                                             <span style="width: 25%"> <t-checkbox label="客户简称"></t-checkbox></span>
                                             <span style="width: 25%"> <t-checkbox label="客户英文名称"></t-checkbox></span>
 
                                         </t-checkbox-group>
-                                        <t-checkbox-group size="lg" class="d-flex justify-content-between mt-3 ">
+                                        <t-checkbox-group size="lg" class="d-flex justify-content-between "
+                                                          v-model="checkAllGroup" @on-change="son">
                                             <span style="width: 25%"> <t-checkbox label="英文简称"></t-checkbox></span>
 
                                             <span style="width: 25%"> <t-checkbox label="职工姓名"></t-checkbox></span>
@@ -220,6 +297,8 @@
                 </div>
 
             </div>
+
+
             <div class="foot float-right mt-2 mb-3">
                 <t-button type="outline-primary" @click="confirm">清空权限</t-button>
 
@@ -229,11 +308,24 @@
     </div>
 </template>
 <script>
-    import './index.less';
-
+    import axios from 'axios'
     export default {
         data() {
             return {
+                isActive: false,
+                tagrole: [
+                    {
+                        name:'a1',
+                        id:1
+                    },{
+                        name:'a2',
+                        id:2
+                    },{
+                        name:'a3',
+                        id:3
+                    }
+                ],
+                isClicked: false,
                 indeterminate: false,
                 checkAll: false,
                 checkAllGroup: [],
@@ -278,58 +370,6 @@
                 model13: '',
                 loading1: false,
                 options1: [],
-                list: [
-                    'Alabama',
-                    'Alaska',
-                    'Arizona',
-                    'Arkansas',
-                    'California',
-                    'Colorado',
-                    'Connecticut',
-                    'Delaware',
-                    'Florida',
-                    'Georgia',
-                    'Hawaii',
-                    'Idaho',
-                    'Illinois',
-                    'Indiana',
-                    'Iowa',
-                    'Kansas',
-                    'Kentucky',
-                    'Louisiana',
-                    'Maine',
-                    'Maryland',
-                    'Massachusetts',
-                    'Michigan',
-                    'Minnesota',
-                    'Mississippi',
-                    'Missouri',
-                    'Montana',
-                    'Nebraska',
-                    'Nevada',
-                    'New hampshire',
-                    'New jersey',
-                    'New mexico',
-                    'New york',
-                    'North carolina',
-                    'North dakota',
-                    'Ohio',
-                    'Oklahoma',
-                    'Oregon',
-                    'Pennsylvania',
-                    'Rhode island',
-                    'South carolina',
-                    'South dakota',
-                    'Tennessee',
-                    'Texas',
-                    'Utah',
-                    'Vermont',
-                    'Virginia',
-                    'Washington',
-                    'West virginia',
-                    'Wisconsin',
-                    'Wyoming'
-                ],
                 person: [
                     {
                         name: '张三',
@@ -352,37 +392,25 @@
 
             }
         },
-        /* created() {
-             let params = {
-                 "systemParams": {
-                     "pageInfo": {
-                         "CURRENT_PAGE": "1",
-                         "PAGE_SIZE": "10"
-                     }
-                 },
-                 "businessParams": {
-                     "queryCondition": [{
-                         "condType": "chaSpecCatalogId",
-                         "condValue": [
-                             "0"
-                         ]
-                     }]
-                 }
-             }
-
-             this.$domains.cnpost.post(this.$services.AGENTVIEW.GET_AGENTVIEW_MENUS, {
-                 params
-             })
-                 .then(({
-                            data
-                        }) => {
-                     console.log(data)
-                 })
-         },*/
         components: {},
         mounted() {
+            axios.get('/mock/property', {
+            }).then( (response)=> {
+                var serData=response.data.data
+                for(var i=0;i<serData.length;i++){
+                    for(var a in serData[i]){
+                        } 
+                    } 
+
+            });
         },
         methods: {
+            handleNodeClick(datanode, dd, aa) {
+
+            },
+            clickedTag(event,index) {
+
+            },
             //客户查询
             remoteMethod1(query) {
                 if (query !== '') {
@@ -436,14 +464,14 @@
 
                 if (this.checkAll) {
                     this.checkAllGroup = ['客户编号', '客户名称', '客户英文名称', '客户简称', '英文简称', '职工姓名', '客户类别', '组织机构代码'];
-                }else {
-                    this.checkAllGroup =[]
+                } else {
+                    this.checkAllGroup = []
                 }
 
             },
 
             son(data) {
-                 console.log(data)
+                console.log(data)
 
                 if (data.length === 8) {
                     this.indeterminate = false;
@@ -456,104 +484,65 @@
                     this.checkAll = false;
                 }
             },
-            aaa(e){
- e.stopPropagation()
-            }
         }
     }
 </script>
-<style lang="less">
-    .agent {
-        padding: 0;
-        padding-left: 20px;
-        .breadcrumb {
-            width: 100%;
-            height: 44px;
-            padding: 0;
-            padding-top: 13px;
-            padding-bottom: 10px;
-        }
-        .jurisdiction {
-            width: 100%;
-            .jurisdiction-top {
-                width: 100%;
-                .role-query {
-                    width: 33.3%;
-                }
-                .common-roles {
-                    width: 66.7%;
-                }
-            }
-            .jurisdiction-down {
 
-                width: 100%;
-                .distribution {
-                    width: 33.3%;
-                }
-                .administrators {
-                    width: 66.7%;
-                    .input-center {
-                        margin-left: 180px;
+<style lang="less" scoped>
+    .active{
+        background: skyblue;
+    }
+
+    .breadcrumb__item:hover{
+      color: #2D98FF !important;
+    }
+
+    .property {
+        width: 100%;
+        .property-top {
+            width: 100%;
+            .role-query {
+                width: 35%;
+                .input {
+                    border: none !important;
+
+                    .aid {
+                        display: block !important;
+                        margin-right: 20px;
+                        color: #eaeaea;
                     }
-                    .amount {
-                        margin-left: 60%;
-                    }
-                    .modal-footer {
-                        border: hidden !important;
-                    }
-                    .select-role {
-                        width: 500px !important;
-                        margin-left: 100px;
+                    .aid::before {
+                        content: "\F54E";
                     }
                 }
             }
+            .common-roles {
+                width: 65%;
+            }
 
         }
+        .property-down {
+            width: 100%;
+            .distribution {
+              width: 35% ;
+            }
+            .administrators {
+                width: 65%;
+                .input {
+                    border: none !important;
+                    .aid {
+                        display: block !important;
+                        margin-right: 20px;
+                        color: #eaeaea;
+                    }
+                    .aid::before {
+                        content: "\F54E";
+                    }
+                }
+            }
 
-    }
-
-    .modal-footer {
-        border: none !important;
-    }
-
-    .input {
-        border-left: none !important;;
-        border-right: none !important;;
-        border-top: none !important;
-
-        padding: 0px !important;
-    }
-
-    /*可删除角色标签*/
-    .role-tag {
-        display: inline-block;
-        position: relative;
-        padding: 0 10px;
-        height: 24px;
-        line-height: 24px;
-        background-color: rgba(123, 147, 167, 0.1);
-        color: #7b93a7;
-        font-size: 12px;
-        border-radius: 4px;
-        width: auto;
-        .aid-close {
-            display: inline-block;
-            width: 12px;
-            height: 12px;
-        }
-        .aid-close:hover {
-            color: #000;
-        }
-
-        .aid-close::before {
-            position: absolute;
-            top: 1px;
-            font-family: "AI Design Icons";
-            content: "\F2B5";
-            font-style: normal;
-            box-sizing: inherit;
-            transform: scale(1.5);
         }
     }
+
 
 </style>
