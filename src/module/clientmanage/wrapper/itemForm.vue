@@ -15,7 +15,7 @@
         <div class="form-container" v-show="userList.isCollapse">
             <div class="form-item-container">
                 <!--普通表单域-->
-                <item-wrap :row="row" :path="getValidatePath+'formItem.0.formList.'" :userList="userList" :formList="userList.formItem[0].formList"></item-wrap>
+                <item-wrap :row="row" :path="getValidatePath+'formItem.0.chaValue.'" :userList="userList" :formList="userList.formItem[0].chaValue"></item-wrap>
                 <!--加载更多表单域-->
                 <dynamic-from v-if="userList.title.indexOf('其他关系人信息') === -1" :getValidatePath="getValidatePath" :row="row" :id="0" :isAsync="userList.isAsync" :userList="userList"></dynamic-from>
                 <!--创建其他关系人-->
@@ -24,7 +24,7 @@
             <!--扩展表表单域-->
             <div class="form-item-container" v-for="(item1, x) in userList.formItem" v-if="x > 0" :key="x" :class="userList.title === '基本信息' ? 'base-style' : ''">
                 <i class="iconfont del" @click="delFormList(userList.formItem, x)">&#xe61b;</i>
-                <item-wrap :row="row" :path="getValidatePath+'formItem.'+x+'.formList.'" :userList="userList" :formList="item1.formList"></item-wrap>
+                <item-wrap :row="row" :path="getValidatePath+'formItem.'+x+'.chaValue.'" :userList="userList" :formList="item1.chaValue"></item-wrap>
                 <dynamic-from v-if="userList.title.indexOf('其他关系人信息') === -1" :getValidatePath="getValidatePath" :row="row" :id="x" :isAsync="userList.isAsync" :userList="userList"></dynamic-from>
                 <create-rel-per v-if="userList.title.indexOf('其他关系人信息') > 0"></create-rel-per>
             </div>

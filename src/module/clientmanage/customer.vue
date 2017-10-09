@@ -1,7 +1,7 @@
 <template>
     <div class="customer">
         <!--表单区域-->
-        <wrapper icon="&#xe78b;" title="创建个人客户信息" :row="4" :formData="formData"></wrapper>
+        <wrapper icon="&#xe78b;" title="创建个人客户信息" :row="4" :renderData="renderData"></wrapper>
     </div>
 </template>
 <script>
@@ -14,7 +14,7 @@ export default {
     name: "customer",
     data() {
         return {
-            formData: {
+            renderData: {  // 渲染dom树
             },
             data: [
                 {   // 基本信息
@@ -70,7 +70,7 @@ export default {
     },
     computed: {
         ...mapGetters('clientManage', {
-            getCusFormRenderModel: 'getCusFormRenderModel'
+            getCusFormRenderModel: 'getCusFormRenderModel',
         }),
         ...mapState('clientManage', {
             cusFormList: state => state.cusFormList
@@ -85,7 +85,7 @@ export default {
         try {
             await this.loadFormItem(this.data)
             // 由store原型得到本地渲染模型
-            this.formData = this.getCusFormRenderModel()
+            this.renderData = this.getCusFormRenderModel
         } catch (error) {
             console.error(error);
         }
