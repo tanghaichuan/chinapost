@@ -22,25 +22,24 @@ const routes = [{
         name: 'AgentviewDetail',
         meta: '360视图',
         component: require('module/agentView/detail')
-    },{
+    }, {
         path: 'property',
         name: 'property',
         meta: '360视图',
         component: require('module/agentView/property')
-    }
-    ,{
+    }, {
         path: 'uspa',
         name: 'uspa',
         meta: '360视图',
         component: require('module/agentView/uspa')
     }
-        ,{
-            path: 'test',
-            name: 'test',
-            meta: '360视图',
-            component: require('module/agentView/test')
-        }
-    ]
+    // {
+    //     path: 'test',
+    //     name: 'test',
+    //     meta: '360视图',
+    //     component: require('module/agentView/test')
+    // }
+]
 }]
 
 export default routes

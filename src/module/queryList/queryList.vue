@@ -11,7 +11,7 @@
             </div>
             <div class="powerselect">
                 <t-select v-model="model1" filterable remote :remote-method="remoteMethod1" :loading="loading1" placeholder="戴维">
-                    <t-option v-for="option in options1" :value="option.value" :key="new Date()">{{option.label}}</t-option>
+                    <t-option v-for="(option, index) in options1" :value="option.value" :key="index">{{option.label}}</t-option>
                 </t-select>
             </div>
         </div>
@@ -29,7 +29,7 @@
                     <t-option value="shenzhen">按类型</t-option>
                 </t-select>
                 <t-select class="ml-1" v-model="model2" filterable remote :remote-method="remoteMethod2" :loading="loading2" placeholder="请输入名称">
-                    <t-option v-for="option in options2" :value="option.value" :key="new Date()">{{option.label}}</t-option>
+                    <t-option v-for="(option, index) in options2" :value="option.value" :key="index">{{option.label}}</t-option>
                 </t-select>
                 <t-button type="outline-primary" class="nature-btn ml-2">
                     <i class="iconfont">&#xe62c;</i>搜索</t-button>
@@ -39,16 +39,14 @@
         <query-result :column="column" :data="queryList"></query-result>
         <div class="queryresult">
             <div class="query-list">
-        <!--查询无结果-->
-        <div class="view-empty">
-            <p class="empty-img">
-                <img src="../../asset/image/query-ept.png" />
-            </p>
-            <p class="notice-txt">SO 抱歉！无相关结果，有劳重搜。</p>
-        </div>
-        <!--查询列表-->
-        <div class="queryresult">   
-           <div class="query-list">
+                <!--查询无结果-->
+                <div class="view-empty" style="display: none;">
+                    <p class="empty-img">
+                        <img src="../../asset/image/query-ept.png" />
+                    </p>
+                    <p class="notice-txt">SO 抱歉！无相关结果，有劳重搜。</p>
+                </div>
+                <!--查询列表-->
                 <ul class="list-tit">
                     <li>客户名称</li>
                     <li>主码</li>
@@ -416,9 +414,9 @@ export default {
         async submitForm(name) {
             try {
                 let data = {
-                    customerName:this.personal.name,
-                    idenCode:this.personal.type,
-                    idenNr:this.personal.num
+                    customerName: this.personal.name,
+                    idenCode: this.personal.type,
+                    idenNr: this.personal.num
                 }
                 let res = await this.judgeCustomerUnicity(data)
                 console.log(res)
@@ -647,24 +645,25 @@ export default {
         margin-bottom: 15px;
     }
 }
-.view-empty{
-    background:#fff;
-    padding:130px 0;
-    p{
-        margin:0;
+
+.view-empty {
+    background: #fff;
+    padding: 130px 0;
+    p {
+        margin: 0;
     }
-    .empty-img{
-        text-align:center;
-        img{
-            width:180px;
+    .empty-img {
+        text-align: center;
+        img {
+            width: 180px;
         }
     }
 
-    .notice-txt{
-        font-size:12px;
-        color:#767676;
-        text-align:center;
-        line-height:50px;
+    .notice-txt {
+        font-size: 12px;
+        color: #767676;
+        text-align: center;
+        line-height: 50px;
     }
 }
 </style>
