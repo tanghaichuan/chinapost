@@ -44,6 +44,12 @@
             </div>
         </div>
         <!--查询区域-->
+        <div class="view-empty">
+            <p class="empty-img">
+                <img src="../../asset/image/query-ept.png" />
+            </p>
+            <p class="notice-txt">SO 抱歉！无相关结果，有劳重搜。</p>
+        </div>
         <div class="queryresult">   
            <div class="query-list">
                 <ul class="list-tit">
@@ -493,6 +499,26 @@ export default {
     padding:10px 10px 20px;
     .form-group {
         margin-bottom: 15px;
+    }
+}
+.view-empty{
+    background:#fff;
+    padding:130px 0;
+    p{
+        margin:0;
+    }
+    .empty-img{
+        text-align:center;
+        img{
+            width:180px;
+        }
+    }
+
+    .notice-txt{
+        font-size:12px;
+        color:#767676;
+        text-align:center;
+        line-height:50px;
     }
 }
 </style>
