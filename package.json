@@ -55,10 +55,9 @@
     "vue-template-compiler": "^2.2.1"
   },
   "dependencies": {
-    "aid-elements": "^0.7.51",
-    "aid-taurus-desktop": "^0.8.18",
+    "aid-elements": "^0.7.53",
+    "aid-taurus-desktop": "^0.8.20",
     "axios": "^0.15.3",
-    "immutability-helper": "^2.4.0",
     "vue": "^2.1.10",
     "vue-i18n": "^7.0.5",
     "vue-router": "^2.2.1",

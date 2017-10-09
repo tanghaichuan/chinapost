@@ -24,65 +24,54 @@ async function postUrlAccount(url, data) {
 export async function loadFormItem({
     commit
 }, array) {
-    return new Promise(async(resolve, reject) => {
-        try {
-            let res = [],
-                temp
-            // 合并请求
-            for (let i = 0; i < array.length; i++) {
-                // 加载请求
-                temp = await postUrlAccount(API.urlArr[i], array[i])
-                // 请求成功
-                if (temp.data.systemParams.RESPONSE_INFO.responseMsg === 'OK') {
-                    res.push(temp.data.businessParams)
-                } else {
-                    reject(`加载失败`)
-                }
-            }
-            // 这里将个人客户和机构客户的表单元素分开存储
-            if (array[0].businessParams.specCode === "IND_CUST_BASE_CHA") {
-                commit(constants.LOAD_CUS_FORM_LIST, res)
+
+    try {
+        let res = [],
+            temp
+        // 合并请求
+        for (let i = 0; i < array.length; i++) {
+            // 加载请求
+            temp = await postUrlAccount(API.urlArr[i], array[i])
+            // 请求成功
+            if (temp.data.systemParams.RESPONSE_INFO.responseMsg === 'OK') {
+                res.push(temp.data.businessParams)
             } else {
-                commit(constants.LOAD_COM_FORM_LIST, res)
+                return 1
             }
-            resolve()
-        } catch (error) {
-            reject(`加载失败${error}`)
         }
-    })
+        if(res) {
+            commit(constants.LOAD_CUS_FORM_LIST, res)
+        }else{
+            console.error(`加载失败`)
+        }  
+    } catch (error) {
+        console.error(`加载失败${error}`)
+    }
 }
 // 加载客户更多信息特征值列表
 export async function loadExtFormItem({
     commit
 }, data) {
-    return new Promise(async(resolve, reject) => {
-        try {
-            let temp = await postUrlAccount(API.queryCustomerCharacterByIdUrl, data)
-            if (temp.data.systemParams.RESPONSE_INFO.responseMsg === 'OK') {
-                if (data.businessParams.specCode === "IDN_CUST_BASE_CHA") {
-                    commit(constants.LOAD_CUS_EXT_FORM_LIST, temp.data.businessParams)
-                } else {
-                    commit(constants.LOAD_COM_EXT_FORM_LIST, temp.data.businessParams)
-                }
-                resolve()
-            } else {
-                reject(`加载失败`)
-            }
-        } catch (error) {
-            reject(`加载失败${error}`)
+    try {
+        let temp = await postUrlAccount(API.queryCustomerCharacterByIdUrl, data)
+        if (temp.data.systemParams.RESPONSE_INFO.responseMsg === 'OK') {
+            commit(constants.LOAD_CUS_EXT_FORM_LIST, temp.data.businessParams)
+        } else {
+            return 1
         }
-    })
+    } catch (error) {
+        console.error(`加载失败${error}`)
+    }
 }
 // 保存客户数据
 export async function saveFormItem({
     commit
 }, data) {
-    return new Promise(async(resolve, reject) => {
-        try {
-            let res = await postUrlAccount(API.saveCustomerInfo, data)
-            console.log(res)
-        } catch (error) {
-            console.error(error)
-        }
-    })
+    try {
+        console.log(data);
+        let res = await postUrlAccount(API.saveCustomerInfo, data)
+        return res.data
+    } catch (error) {
+        console.error(error)
+    }
 }

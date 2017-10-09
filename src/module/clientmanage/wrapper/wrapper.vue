@@ -10,8 +10,8 @@
             </p>
         </div>
         <!-- 表单域 -->
-        <t-form :model="formData" ref="formDynamic" label-position="left" :label-span="5">
-            <div class="wrapper-form" v-for="(item, index) in formData" :key="index">
+        <t-form :model="renderData" ref="formDynamic" label-position="left" :label-span="5">
+            <div class="wrapper-form" v-for="(item, index) in renderData" :key="index">
                 <item-form :row="row" :getValidatePath="getValidatePath(item, index)" :isDisabled="isDisabled" ref="form" :userList="item"></item-form>
             </div>
         </t-form>
@@ -26,6 +26,8 @@
 <script>
 import { reGroupTree } from 'module/clientManage/utils'
 import { mapActions } from 'vuex'
+import { mapGetters } from 'vuex'
+import { mapMutations } from 'vuex'
 import dynamicForm from './dynamicForm'
 import itemForm from './itemForm'
 import editTable from './editTable'
@@ -45,7 +47,7 @@ export default {
             type: Number,
             default: 4
         },
-        formData: {
+        renderData: {
             type: Object,
             default: {}
         }
@@ -61,50 +63,41 @@ export default {
                 let reg = new RegExp(this.searchInfo);
                 return item.type.match(reg);
             })
-        }
+        },
+        ...mapGetters('clientManage', {
+            getCusFormDataModel: 'getCusFormDataModel'
+        })
     },
     methods: {
-        ...mapActions({
-            saveFormItem: 'clientManage/saveFormItem'
+        ...mapMutations('clientManage', {
+            SET_CUS_FORM_LIST: 'SET_CUS_FORM_LIST'
         }),
-        currentView(item) {
-            if (item.hasOwnProperty('formItem')) {
-                return 'itemForm'
-            } else {
-                return 'dynamicForm'
-            }
-        },
-        currentList(item) {
-            if (this.currentView(item) === 'dynamicForm') {
-                return item.formList
-            } else {
-                return item.formItem
-            }
-        },
+        ...mapActions('clientManage', {
+            saveFormItem: 'saveFormItem'
+        }),
+        ...mapGetters('clientManage', {
+            getCusFormDataModel: 'getCusFormDataModel',
+        }),
         getValidatePath(item, index) {
             return `${index}.`
         },
         addTableList() {
             this.editData.push(...this.addTableItem);
         },
-        regroupFormData() {
-            _.forEach(this.formData.businessParams.formItem, item => {
-                Object.keys(item).forEach(key => {
-                    _.forEach(item[key], val => {
-                        //this.saveCustomerInfo.businessParams.chaValue.push(  )
-                    })
-                })
-            })
-            //this.formData.businessParams.formItem
-        },
         handleSubmit(name) {
             this.$refs[name].validate(async valid => {
                 if (valid) {
                     try {
-                        //console.log(this.formData);
-                        this.regroupFormData()
-                        //let res =  await this.saveFormItem(data)
-                        this.$Message.success('保存成功!');
+                        // 数据本地同步(store) 更新数据层模型,触发getter依赖收集
+                        this.SET_CUS_FORM_LIST(this.renderData)
+                        // this.getCusFormDataModel为从渲染模型映射出的数据模型
+                        // 将数据模型发送到服务端
+                        let res = await this.saveFormItem(this.getCusFormDataModel)
+                        if (res.systemParams.RESPONSE_INFO.responseCode == 0) {
+                            this.$Message.success('保存成功!');
+                        } else {
+                            this.$Message.danger('保存失败!');
+                        }
                     } catch (error) {
                         console.error(error)
                     }
