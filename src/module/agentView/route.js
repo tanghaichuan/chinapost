@@ -23,10 +23,10 @@ const routes = [{
         meta: '360视图',
         component: require('module/agentView/detail')
     },{
-        path: 'jurisdiction',
-        name: 'jurisdiction',
+        path: 'property',
+        name: 'property',
         meta: '360视图',
-        component: require('module/agentView/jurisdiction')
+        component: require('module/agentView/property')
     }
     ,{
         path: 'uspa',
@@ -34,6 +34,12 @@ const routes = [{
         meta: '360视图',
         component: require('module/agentView/uspa')
     }
+        ,{
+            path: 'test',
+            name: 'test',
+            meta: '360视图',
+            component: require('module/agentView/test')
+        }
     ]
 }]
 

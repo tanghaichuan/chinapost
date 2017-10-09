@@ -339,7 +339,7 @@ export default{
 	}
 }	
 </script>
-<style lang="less" >
+<style lang="less" scoped>
 .view-empty{
 	margin:0 20px 0 20px;
 	min-height:1204px;

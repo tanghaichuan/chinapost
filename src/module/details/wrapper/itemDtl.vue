@@ -10,11 +10,15 @@
             </div>
         </div>
         <div class="form-container" v-show="userList.isCollapse">
-            <div class="form-item-container">
-                <item-wrap :row="row" :userList="userList" :formList="userList.formItem[0].formList"  v-for="(index,key) in userList.formItem" :key="key"></item-wrap>
+            <div class="form-item-container" v-if="userList.title.indexOf('其他关系人信息') === -1">
+                <item-wrap :row="row" :userList="userList" :formList="userList.formItem[0].formList" v-for="(index,key) in userList.formItem" :key="key"></item-wrap>
                 <!--异步加载更多-->
-                <dynamic-from  v-if="userList.title.indexOf('其他关系人信息') === -1" :row="row" :id="0" :isAsync="userList.isAsync" :userList.sync="userList"></dynamic-from>
-                <more-model v-if="userList.title.indexOf('其他关系人信息') > 0"></more-model>
+                <dynamic-from :row="row" :id="0" :isAsync="userList.isAsync" :userList.sync="userList"></dynamic-from>
+            </div>
+            <div class="form-item-container" v-if="userList.title.indexOf('其他关系人信息') > 0" v-for="(index,key) in userList.formItem" :key="key">
+                <item-wrap :row="row" :userList="userList" :formList="userList.formItem[0].formList" ></item-wrap>
+                <!--异步加载更多-->
+                <more-model></more-model>
             </div>
         </div>
     </div>

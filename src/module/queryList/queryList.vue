@@ -39,6 +39,16 @@
         <query-result :column="column" :data="queryList"></query-result>
         <div class="queryresult">
             <div class="query-list">
+        <!--查询无结果-->
+        <div class="view-empty">
+            <p class="empty-img">
+                <img src="../../asset/image/query-ept.png" />
+            </p>
+            <p class="notice-txt">SO 抱歉！无相关结果，有劳重搜。</p>
+        </div>
+        <!--查询列表-->
+        <div class="queryresult">   
+           <div class="query-list">
                 <ul class="list-tit">
                     <li>客户名称</li>
                     <li>主码</li>
@@ -635,6 +645,26 @@ export default {
     padding: 10px 10px 20px;
     .form-group {
         margin-bottom: 15px;
+    }
+}
+.view-empty{
+    background:#fff;
+    padding:130px 0;
+    p{
+        margin:0;
+    }
+    .empty-img{
+        text-align:center;
+        img{
+            width:180px;
+        }
+    }
+
+    .notice-txt{
+        font-size:12px;
+        color:#767676;
+        text-align:center;
+        line-height:50px;
     }
 }
 </style>
