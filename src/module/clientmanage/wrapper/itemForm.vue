@@ -100,8 +100,8 @@ export default {
         }
     },
     created() {
-        //console.log(this.userList);
-        //console.log(this.getValidatePath);
+
+ 
     }
 }
 </script>

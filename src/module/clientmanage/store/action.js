@@ -57,7 +57,7 @@ export async function loadExtFormItem({
         if (temp.data.systemParams.RESPONSE_INFO.responseMsg === 'OK') {
             commit(constants.LOAD_CUS_EXT_FORM_LIST, temp.data.businessParams)
         } else {
-            return 1
+            return `加载失败`
         }
     } catch (error) {
         console.error(`加载失败${error}`)
