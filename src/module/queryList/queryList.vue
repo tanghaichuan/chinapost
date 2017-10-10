@@ -9,107 +9,63 @@
                 <span>
                     <i class="iconfont">&#xe66b;</i>{{userInfo.position}}</span>
             </div>
-            <div class="powerselect">
-                <t-select v-model="model1" filterable remote :remote-method="remoteMethod1" :loading="loading1" placeholder="戴维">
+            <!--用户下属经理-->
+            <div class="customer-select">
+                <t-select v-model="show" filterable>
                     <t-option v-for="(option, index) in options1" :value="option.value" :key="index">{{option.label}}</t-option>
                 </t-select>
             </div>
         </div>
         <div class="operatearea clearfix">
             <div class="btngroup">
-                <t-button type="primary" @click="modal = true">
+                <t-button type="primary" @click="showJudgeModal = true">
                     <i class="iconfont">&#xe632;</i>新建</t-button>
                 <t-button type="outline" class="sub-btn ml-2">
                     <i class="iconfont">&#xe636;</i>导入</t-button>
             </div>
+            <!--查询-->
             <div class="searcharea">
-                <t-select v-model="model3" placeholder="按名称">
-                    <t-option value="beijing">按名称</t-option>
-                    <t-option value="shanghai">按号码</t-option>
-                    <t-option value="shenzhen">按类型</t-option>
+                <t-select v-model="queryCustomerByType" placeholder="按名称">
+                    <t-option value="name">按名称</t-option>
+                    <t-option value="customerCode">按主码</t-option>
+                    <t-option value="partyId">按识别号码</t-option>
                 </t-select>
-                <t-select class="ml-1" v-model="model2" filterable remote :remote-method="remoteMethod2" :loading="loading2" placeholder="请输入名称">
-                    <t-option v-for="(option, index) in options2" :value="option.value" :key="index">{{option.label}}</t-option>
+                <t-select class="ml-1" v-model="queryCustomer" clearable :loading="typeLoading" filterable remote :remote-method="filterRemoteMethod" @on-query-change="onQueryChange" @on-change="onChange">
+                    <t-option v-for="(option, index) in searchReslist" :value="option" :key="index">{{option}}</t-option>
                 </t-select>
-                <t-button type="outline-primary" class="nature-btn ml-2">
-                    <i class="iconfont">&#xe62c;</i>搜索</t-button>
             </div>
         </div>
-        <!--查询区域-->
-        <query-result :column="column" :data="queryList"></query-result>
-        <div class="queryresult">
-            <div class="query-list">
-                <!--查询无结果-->
-                <div class="view-empty" style="display: none;">
-                    <p class="empty-img">
-                        <img src="../../asset/image/query-ept.png" />
-                    </p>
-                    <p class="notice-txt">SO 抱歉！无相关结果，有劳重搜。</p>
-                </div>
-                <!--查询列表-->
-                <ul class="list-tit">
-                    <li>客户名称</li>
-                    <li>主码</li>
-                    <li>识别码</li>
-                    <li>纳税人识别号</li>
-                    <li>状态</li>
-                    <li>操作</li>
-                </ul>
-                <ul class="list-result">
-                    <li v-for="(items,index) in queryLists" :key="index">
-                        <p>
-                            <a href="javascript:;">
-                                <i class="iconfont iconClient" v-if="items.partyType ==1001">&#xe7ab;</i>
-                                <i class="iconfont iconPerson" v-if="items.partyType ==1002">&#xe7ac;</i>
-                                <span>{{items.name}}</span>
-                            </a>
-                        </p>
-                        <p>
-                            <span>{{items.mainCode}}</span>
-                        </p>
-                        <div class="iden-code">
-                            <p>
-                                <span>{{items.idenCode}}</span>
-                            </p>
-                            <p>
-                                <span>{{items.idenNr}}</span>
-                            </p>
-                        </div>
-                        <p>
-                            <span>{{items.customerCode}}</span>
-                        </p>
-                        <p>
-                            <span>{{items.StatusName}}</span>
-                        </p>
-                        <p>
-                            <span>
-                                <a href="javascript:;" v-for="(item,key) in items.operation" :key="key">{{item}}</a>
-                            </span>
-                        </p>
-                    </li>
-                </ul>
-            </div>
-            <div class="client-pager">
-                <t-pager :total="100" :show-elevator="true" :show-sizer="true"></t-pager>
-            </div>
+        <!--查询无结果-->
+        <div class="view-empty" v-if="showEmptyBg">
+            <p class="empty-img">
+                <img src="../../asset/image/query-ept.png" width="100%;" />
+            </p>
+            <p class="notice-txt">SO 抱歉！无相关结果，有劳重搜。</p>
         </div>
-        <t-modal v-model="modal" width="430">
+        <!--查询列表区域-->
+        <query-result v-else :column="column" :data="queryList"></query-result>
+        <!--分页-->
+        <div class="client-pager">
+            <t-pager :page-size="pageSize" :sizer-range="[10, 15, 20]" :total="currentList.length" :show-sizer="true" :show-elevator="true" @on-change="changePage"></t-pager>
+        </div>
+        <!--校验-->
+        <t-modal v-model="showJudgeModal" width="430">
             <p slot="header">
                 <span>客户唯一性校验</span>
             </p>
             <div class="dialog-content">
-                <t-form :model="personal" ref="personal" label-position="left" :label-span="2">
-                    <t-form-item label="客户名称">
+                <t-form :rules="ruleForm" :model="personal" ref="personal" label-position="left" :label-span="2">
+                    <t-form-item label="客户名称" prop="name">
                         <t-input v-model="personal.name" placeholder="请输入"></t-input>
                     </t-form-item>
-                    <t-form-item label="识别类型">
+                    <t-form-item label="识别类型" prop="type">
                         <t-select v-model="personal.type" placeholder="请选择">
-                            <t-option v-for="(item,index) in personal.cardType" :value="item.value" :key="index">
+                            <t-option v-for="(item,index) in cardType" :value="item.value" :key="index">
                                 {{item.label}}
                             </t-option>
                         </t-select>
                     </t-form-item>
-                    <t-form-item label="号码">
+                    <t-form-item label="号码" prop="num">
                         <t-input v-model="personal.num" placeholder="请输入"></t-input>
                     </t-form-item>
                 </t-form>
@@ -131,6 +87,8 @@ export default {
     },
     data() {
         return {
+            pageSize: 10,
+            showEmptyBg: false,
             userInfo: {
                 userImg: require('../../asset/image/user-img.png'),
                 username: '戴维(18919000923)',
@@ -140,36 +98,32 @@ export default {
             personal: {
                 type: '',
                 name: '',
-                num: '',
-                cardType: [
-                    {
-                        value: 'IDCard',
-                        label: '组织机构代码'
-                    },
-                    {
-                        value: 'HDCard',
-                        label: '纳税人识别号'
-                    },
-                    {
-                        value: 'JDCard',
-                        label: '军官证'
-                    }
-                ]
+                num: ''
             },
-            modal: false,
-            model1: '',
-            model2: '',
-            model3: '',
-            loading1: false,
-            loading2: false,
-            options1: [],
-            options2: [],
-            list: [
-                '戴维',
-                '张三',
-                '李四',
-                '王五'
+            cardType: [
+                {
+                    value: 'IDCard',
+                    label: '组织机构代码'
+                },
+                {
+                    value: 'HDCard',
+                    label: '纳税人识别号'
+                },
+                {
+                    value: 'JDCard',
+                    label: '军官证'
+                }
             ],
+            ruleForm: {
+                type: [{ required: true, message: '不能为空', trigger: 'blur' }],
+                name: [{ required: true, message: '不能为空', trigger: 'blur' }],
+                num: [{ required: true, message: '不能为空', trigger: 'blur' }]
+            },
+            showJudgeModal: false,
+            queryCustomerByType: 'name', // 查询类型，默认按姓名
+            queryCustomer: '', // 查询条件
+            typeLoading: false,
+            searchReslist: [],
             column: [
                 {
                     title: "客户名称",
@@ -181,9 +135,13 @@ export default {
                             }
                         }, [
                                 h('i', {
-                                    'class': 'iconfont iconClient',
+                                    'class': {
+                                        iconfont: true,
+                                        iconClient: params.row.partType !== '1000',
+                                        iconPerson: params.row.partType === '1000'
+                                    },
                                     domProps: {
-                                        innerHTML: '&#xe7ab;'
+                                        innerHTML: params.row.partType === '1000' ? '&#xe7ac;' : '&#xe7ab;'
                                     },
                                 }),
                                 h('span', {
@@ -228,130 +186,9 @@ export default {
                     title: "操作"
                 }
             ],
-            queryList: [
-                {
-                    "customerId": "1", //参与人角色ID，也就是客户ID
-                    "partyId": "123", //参与人ID
-                    "customerCode": "C1039", //客户编码
-                    "name": "亚信科技", //客户名称
-                    "idenCode": "USCI", //证件类型
-                    "idenNr": "91430111MA4L16JQ9B",  //证件号码
-                    "custmerStatusId": "1", //客户状态标识
-                    "custmerStatusName": "正常" //客户状态名称
-                }
-            ],
-            queryLists: [
-                {
-                    customerid: "1",
-                    partyType: "1001",
-                    name: "亚信中国",
-                    mainCode: "12114114",
-                    idenCode: "组织机构代码",
-                    idenNr: "66881786-2",
-                    customerCode: "320114302674668",
-                    StatusName: "修改待提交",
-                    operation: ["修改详情"]
-                },
-                {
-                    customerid: "2",
-                    partyType: "1001",
-                    name: "亚信中国",
-                    mainCode: "12114114",
-                    idenCode: "组织机构代码",
-                    idenNr: "66881786-2",
-                    customerCode: "320114302674668",
-                    StatusName: "修改审批中",
-                    operation: ["审批查询"]
-                },
-                {
-                    customerid: "3",
-                    partyType: "1001",
-                    name: "中国银行",
-                    mainCode: "12114114",
-                    idenCode: "组织机构代码",
-                    idenNr: "66881786-2",
-                    customerCode: "320114302674668",
-                    StatusName: "在网",
-                    operation: ["修改", "注销", "添加协议"]
-                },
-                {
-                    customerid: "4",
-                    partyType: "1001",
-                    name: "中国石化",
-                    mainCode: "12114114",
-                    idenCode: "组织机构代码",
-                    idenNr: "66881786-2",
-                    customerCode: "320114302674668",
-                    StatusName: "创建待提交",
-                    operation: ""
-                },
-                {
-                    customerid: "5",
-                    partyType: "1001",
-                    name: "交通银行",
-                    mainCode: "12114114",
-                    idenCode: "组织机构代码",
-                    idenNr: "66881786-2",
-                    customerCode: "320114302674668",
-                    StatusName: "修改审批中",
-                    operation: ["审批查询"]
-                },
-                {
-                    customerid: "6",
-                    partyType: "1001",
-                    name: "京东",
-                    mainCode: "12114114",
-                    idenCode: "组织机构代码",
-                    idenNr: "66881786-2",
-                    customerCode: "320114302674668",
-                    StatusName: "离网",
-                    operation: ["修改"]
-                },
-                {
-                    customerid: "7",
-                    partyType: "1002",
-                    name: "唐晓阳",
-                    mainCode: "12114114",
-                    idenCode: "身份证",
-                    idenNr: "320113196307064578",
-                    customerCode: "320114302674668",
-                    StatusName: "在网",
-                    operation: ["修改", "注销", "添加协议"]
-                },
-                {
-                    customerid: "8",
-                    partyType: "1002",
-                    name: "唐睿智",
-                    mainCode: "12114114",
-                    idenCode: "军官证",
-                    idenNr: "政字第00111206",
-                    customerCode: "320114302674668",
-                    StatusName: "在网",
-                    operation: ["修改", "注销", "添加协议"]
-                },
-                {
-                    customerid: "9",
-                    partyType: "1001",
-                    name: "交通银行",
-                    mainCode: "12114114",
-                    idenCode: "组织机构代码",
-                    idenNr: "66881786-2",
-                    customerCode: "320114302674668",
-                    StatusName: "修改审批中",
-                    operation: ["审批查询"]
-                },
-                {
-                    customerid: "10",
-                    partyType: "1001",
-                    name: "京东",
-                    mainCode: "12114114",
-                    idenCode: "组织机构代码",
-                    idenNr: "66881786-2",
-                    customerCode: "320114302674668",
-                    StatusName: "离网",
-                    operation: ["修改"]
-                }
-            ],
+            queryList: [], // 渲染层
+            result: [],  // 数据源
+            currentList: [],// 中间层，用于处理分页逻辑
             data: {
                 systemParams: {
                     PAGE_INFO: {
@@ -365,51 +202,52 @@ export default {
             }
         }
     },
+    computed: {
+
+    },
     methods: {
         ...mapActions('queryList', {
-            loadCustomerList: 'loadCustomerList',
-            judgeCustomerUnicity: 'judgeCustomerUnicity'
+            loadCustomerList: 'loadCustomerList', // 加载客户列表
+            judgeCustomerUnicity: 'judgeCustomerUnicity' // 判断客户唯一性
         }),
-        remoteMethod1(query) {
+        // 按名类型(查询类型(queryCustomerByType)和条件(queryCustomer)筛选客户列表(动态刷新)
+        filterCustomerList(query) {
+            return this.result.businessParams.customerList.filter(item => item[this.queryCustomerByType].indexOf(query) > -1)
+        },
+        // 自动补全
+        filterRemoteMethod(query) {
             if (query !== '') {
-                this.loading1 = true;
+                this.typeLoading = true
                 setTimeout(() => {
-                    this.loading1 = false;
-                    const list = this.list.map((item, index) => {
-                        return {
-                            value: item,
-                            label: item
-                        };
-                    });
-                    this.options1 = list.filter(item => item.label.indexOf(query) > -1);
+                    this.typeLoading = false
+                    let tempList = this.result.businessParams.customerList.map(item => item[this.queryCustomerByType]) // 默认按名称搜索
+                    this.searchReslist = tempList.filter(item => item.indexOf(query) > -1)
                 }, 200);
             } else {
-                this.options1 = [];
+                this.searchReslist = []
             }
         },
-        remoteMethod2(query) {
-            if (query !== '') {
-                this.loading2 = true;
-                setTimeout(() => {
-                    this.loading2 = false;
-                    const list = this.list.map((item, index) => {
-                        return {
-                            value: item,
-                            label: item
-                        };
-                    });
-                    this.options2 = list.filter(item => item.label.indexOf(query) > -1);
-                }, 200);
-            } else {
-                this.options2 = [];
-            }
+        // select框值改变时触发筛选
+        onQueryChange(query) {
+            this.queryList = this.filterCustomerList(query)
+            this.currentList = this.queryList
+        },
+        // option值选中时触发筛选
+        onChange() {
+            this.queryList = this.filterCustomerList(this.queryCustomer)
+            this.currentList = this.queryList
+        },
+        changePage(current) {
+            // currentList用于记录初始数据
+            this.queryList = this.currentList.filter((item, index) => index >= (current - 1) * this.pageSize && current * this.pageSize - 1
+            )
         },
         showModal() {
-            this.modal = true
+            this.showJudgeModal = true
         },
         cancel(name) {
-            //this.$refs[name].resetFields()
-            this.modal = false
+            this.$refs[name].resetFields()
+            this.showJudgeModal = false
         },
         async submitForm(name) {
             try {
@@ -418,21 +256,27 @@ export default {
                     idenCode: this.personal.type,
                     idenNr: this.personal.num
                 }
-                let res = await this.judgeCustomerUnicity(data)
+                let res = await this.judgeCustomerUnicity(data) // 确定是否唯一，不唯一则返回相似性数据列表
                 console.log(res)
             } catch (error) {
                 console.error(error)
             }
-            this.$Message.success('提交成功!')
-
+            this.$Message.success('验证成功!')
         }
     },
     async created() {
         try {
-            let res = await this.loadCustomerList(this.data)
-            if (res.systemParams.RESPONSE_INFO.responseCode === '0') {
-                //console.log(res.businessParams)
+            this.result = await this.loadCustomerList(this.data)
+            if (this.result.systemParams.RESPONSE_INFO.responseCode === '0') {
+                if (this.result.businessParams.customerList.length !== 0) {
+                    this.showEmptyBg = false
+                    this.queryList = this.result.businessParams.customerList // 初始化渲染曾
+                    this.currentList = this.result.businessParams.customerList// 初始化中间层
+                } else {
+                    this.showEmptyBg = true
+                }
             } else {
+                this.showEmptyBg = true
                 console.error('加载失败')
             }
         } catch (error) {
@@ -484,7 +328,7 @@ export default {
             }
         }
     }
-    .powerselect {
+    .customer-select {
         margin-top: 22px;
         float: right;
         width: 150px;
@@ -508,6 +352,7 @@ export default {
         }
     }
     .searcharea {
+        margin-right: 25px;
         float: right;
         .select {
             width: 208px !important;
@@ -625,17 +470,22 @@ export default {
             }
         }
     }
-    .client-pager {
-        padding: 20px 10px 20px 0;
-        .pagination {
-            float: right;
-        }
-        &:after {
-            content: " ";
-            height: 0;
-            clear: both;
-            display: block;
-        }
+}
+
+.client-pager {
+    background: #fff;
+    padding: 20px 10px 20px 0;
+    border: 1px solid #d9d9d9;
+    border-top: 0;
+    margin-bottom: 20px;
+    .pagination {
+        float: right;
+    }
+    &:after {
+        content: " ";
+        height: 0;
+        clear: both;
+        display: block;
     }
 }
 

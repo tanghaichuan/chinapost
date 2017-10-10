@@ -25,7 +25,6 @@ export default {
 </script>
 <style scoped lang="less">
 .query-result {
-    margin-bottom: 20px;
     width: 100%;
     background-color: #fff;
     border: 1px solid #d9d9d9;
@@ -79,6 +78,12 @@ export default {
         vertical-align: top;
         margin-right: 4px;
         color: #007f3b;
+    }
+    .iconPerson {
+        font-size: 20px;
+        vertical-align: top;
+        margin-right: 4px;
+        color: #ffbb37;
     }
 }
 

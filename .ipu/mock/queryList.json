@@ -95,6 +95,103 @@
         },
         "businessParams": {
             "customerList": [{
+                "partType":"1001",
+                "customerId": "1",
+                "partyId": "123",
+                "customerCode": "C1039",
+                "name": "亚信中国",
+                "idenCode": "USCI",
+                "idenNr": "91430111MA4L16JQ9B",
+                "custmerStatusId": "1",
+                "custmerStatusName": "正常"
+            }, {
+                "partType":"1001",
+                "customerId": "1",
+                "partyId": "123",
+                "customerCode": "C1039",
+                "name": "亚信银行",
+                "idenCode": "USCI",
+                "idenNr": "91430111MA4L16JQ9B",
+                "custmerStatusId": "1",
+                "custmerStatusName": "正常"
+            }, {
+                "partType":"1001",
+                "customerId": "1",
+                "partyId": "123",
+                "customerCode": "C1039",
+                "name": "中国石化",
+                "idenCode": "USCI",
+                "idenNr": "91430111MA4L16JQ9B",
+                "custmerStatusId": "1",
+                "custmerStatusName": "正常"
+            }, {
+                "partType":"1001",
+                "customerId": "1",
+                "partyId": "123",
+                "customerCode": "C1039",
+                "name": "阿里巴巴",
+                "idenCode": "USCI",
+                "idenNr": "91430111MA4L16JQ9B",
+                "custmerStatusId": "1",
+                "custmerStatusName": "正常"
+            }, {
+                "partType":"1001",
+                "customerId": "1",
+                "partyId": "123",
+                "customerCode": "C1039",
+                "name": "交通银行",
+                "idenCode": "USCI",
+                "idenNr": "91430111MA4L16JQ9B",
+                "custmerStatusId": "1",
+                "custmerStatusName": "正常"
+            }, {
+                "partType":"1000",
+                "customerId": "1",
+                "partyId": "123",
+                "customerCode": "C1039",
+                "name": "张三",
+                "idenCode": "USCI",
+                "idenNr": "91430111MA4L16JQ9B",
+                "custmerStatusId": "1",
+                "custmerStatusName": "正常"
+            }, {
+                "partType":"1000",
+                "customerId": "1",
+                "partyId": "123",
+                "customerCode": "C1039",
+                "name": "李四",
+                "idenCode": "USCI",
+                "idenNr": "91430111MA4L16JQ9B",
+                "custmerStatusId": "1",
+                "custmerStatusName": "正常"
+            }, {
+                "customerId": "1",
+                "partyId": "123",
+                "customerCode": "C1039",
+                "name": "亚信科技",
+                "idenCode": "USCI",
+                "idenNr": "91430111MA4L16JQ9B",
+                "custmerStatusId": "1",
+                "custmerStatusName": "正常"
+            }, {
+                "customerId": "1",
+                "partyId": "123",
+                "customerCode": "C1039",
+                "name": "亚信科技",
+                "idenCode": "USCI",
+                "idenNr": "91430111MA4L16JQ9B",
+                "custmerStatusId": "1",
+                "custmerStatusName": "正常"
+            }, {
+                "customerId": "1",
+                "partyId": "123",
+                "customerCode": "C1039",
+                "name": "亚信科技",
+                "idenCode": "USCI",
+                "idenNr": "91430111MA4L16JQ9B",
+                "custmerStatusId": "1",
+                "custmerStatusName": "正常"
+            }, {
                 "customerId": "1",
                 "partyId": "123",
                 "customerCode": "C1039",
@@ -121,18 +218,16 @@
             },
             "businessParams": {
                 "unicity": "Y",
-                "customerList": [
-                    {
-                        "customerId": "1",
-                        "partyId": "123",
-                        "customerCode": "C1039",
-                        "name": "亚信科技",
-                        "idenCode": "USCI",
-                        "idenNr": "91430111MA4L16JQ9B",
-                        "customerManagerId": "10001",
-                        "customerManagerName": "马云"
-                    }
-                ]
+                "customerList": [{
+                    "customerId": "1",
+                    "partyId": "123",
+                    "customerCode": "C1039",
+                    "name": "亚信科技",
+                    "idenCode": "USCI",
+                    "idenNr": "91430111MA4L16JQ9B",
+                    "customerManagerId": "10001",
+                    "customerManagerName": "马云"
+                }]
             }
         }
     }
