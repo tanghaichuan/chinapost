@@ -10,11 +10,11 @@
             <t-breadcrumb-item>当前页</t-breadcrumb-item>
         </t-breadcrumb>
         <!--权限管理视图-->
-        <div class="property">
+        <div class="privilege">
             <div>
                 <p>权限管理</p>
             </div>
-            <div class="property-top clearfix">
+            <div class="privilege-top clearfix">
                 <div class="role-query float-left">
                     <t-card  dis-hover style="height: 120px">
                         <span slot="head"><span style="font-size: 12px">用户角色询查</span></span>
@@ -41,7 +41,7 @@
             </div>
 
 
-            <div class="property-down clearfix mt-3">
+            <div class="privilege-down clearfix mt-3">
                 <div class="distribution float-left">
                     <t-card style="" dis-hover>
                         <span slot="head"><span style="font-size: 12px">权限分配</span>   </span>
@@ -497,9 +497,9 @@
       color: #2D98FF !important;
     }
 
-    .property {
+    .privilege {
         width: 100%;
-        .property-top {
+        .privilege-top {
             width: 100%;
             .role-query {
                 width: 35%;
@@ -521,7 +521,7 @@
             }
 
         }
-        .property-down {
+        .privilege-down {
             width: 100%;
             .distribution {
               width: 35% ;
