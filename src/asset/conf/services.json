@@ -23,6 +23,7 @@
     "GET_NAMES": "/mock/namesObj",
     "AGENTVIEW": {
         "GET_CUSTOMER_LIST": "/mock/queryCustomerListByParams",
-        "GET_AGENTVIEW_MENUS": "/mock/queryChaSpecCatalog"
+        "GET_AGENTVIEW_MENUS": "/mock/queryChaSpecCatalog",
+        "GET_AGENTVIEW_CATA": "/mock/queryChaSpecByCatalog"
     }
 }
