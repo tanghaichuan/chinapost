@@ -1,29 +1,63 @@
 export default {
-    // 客管模块个人客户
-    cusFormList : [], // 管理个人所有特征定义列表
-    cusExtFormList : [], // 管理个人特征值列表（加载更多）
-    saveCustomerInfo : { // 管理个人特征定义数据
-        "systemParams": {},
-        "businessParams": {
-            "customerId": "-1", //客户ID，如果还没有，填-1（因为在修改场景下，或中途存过数据就会有了
-            "chaValue": [], // 客户特征信息（基本信息+更多信息）
-            "idenList": [
-                { // 客户联系信息
-                    "chaValue": []
-                }
-            ],
-            "contMediumList": [
+    // 渲染层原始特征值模型
+    cusRenderFormList : {
+        businessParams: {
+            isCollapse: true,
+            isAsync: true,
+            title: "个人客户基本信息",
+            formItem: [
                 {
-                    "chaValue": []
+                    chaValue: []
                 }
-            ],
-            "addressList": [],
-            "relPersonList": []
+            ]
+        },
+        idenList: {
+            isExtend: true,
+            isCollapse: true,
+            title: "个人客户识别信息",
+            formItem: [
+                {
+                    chaValue: []
+                }
+            ]
+        },
+        addressList: {
+            isExtend: true,
+            isCollapse: true,
+            title: "个人客户地址信息",
+            formItem: [
+                {
+                    chaValue: []
+                }
+            ]
+        },
+        contMediumList: {
+            isExtend: true,
+            isCollapse: true,
+            title: "个人客户联系信息",
+            formItem: [
+                {
+                    chaValue: []
+                }
+
+            ]
+        },
+        relPersonList: {
+            isExtend: true,
+            isCollapse: true,
+            isAsync: true,
+            title: "个人客户其他关系人信息",
+            formItem: [
+                {
+                    chaValue: []
+                }
+            ]
         }
     },
-    // 客观模块机构客户
-    comFormList : [],
-    comExtFormList : [],
-    saveCompanyInfo : []
-
+    // 数据层原始特征值模型(与后端模型同构)
+    cusDataFormList : {
+        
+    },
+    // 管理个人特征值列表（加载更多）
+    cusExtFormList : []
 }

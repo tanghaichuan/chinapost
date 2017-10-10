@@ -5,6 +5,7 @@
                 <div class="rel-container">
                     <div class="person-content-top">
                         <h3 v-if="$route.name.indexOf('个人客户')>-1">创建更多个人客户其他关系人信息</h3>
+                        <h3 v-else>创建更多机构客户其他关系人信息</h3>
                         <i class="iconfont" @click="flod=false">&#xe60a;</i>
                     </div>
                     <t-form :model="formData" ref="createRelForm" label-position="left" :label-span="5">
@@ -41,11 +42,10 @@ export default {
             formData: {
                 baseInfo: {
                     "isCollapse": true,
-                    "isAsync": true,
                     "title": "机构客户基本信息",
                     "formItem": [
                         {
-                            "formList": [
+                            "chaValue": [
                                 {
                                     "CODE": "COMPANY_NAME",
                                     "VALUE": "",

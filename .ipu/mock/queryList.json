@@ -1,0 +1,139 @@
+[{
+    "url": "/mock/queryCustomerListByName",
+    "method": "post",
+    "response": {
+        "systemParams": {
+            "PAGE_INFO": {
+                "CURRENT_PAGE": "-1",
+                "PAGE_SIZE": "-1"
+            },
+            "RESPONSE_INFO": {
+                "responseCode": "0",
+                "responseMsg": "OK"
+            }
+        },
+        "businessParams": {
+            "customerList": [{
+                "customerId": "1",
+                "partyId": "123",
+                "customerCode": "C1039",
+                "name": "亚信科技",
+                "idenCode": "USCI",
+                "idenNr": "91430111MA4L16JQ9B",
+                "custmerStatusId": "1",
+                "custmerStatusName": "正常"
+            }]
+        }
+    }
+}, {
+    "url": "/mock/queryCustomerListByCustomerCode",
+    "method": "post",
+    "response": {
+        "systemParams": {
+            "PAGE_INFO": {
+                "CURRENT_PAGE": "-1",
+                "PAGE_SIZE": "-1"
+            },
+            "RESPONSE_INFO": {
+                "responseCode": "0",
+                "responseMsg": "OK"
+            }
+        },
+        "businessParams": {
+            "customerList": [{
+                "customerId": "1",
+                "partyId": "123",
+                "customerCode": "C1039",
+                "name": "亚信科技",
+                "idenCode": "USCI",
+                "idenNr": "91430111MA4L16JQ9B",
+                "custmerStatusId": "1",
+                "custmerStatusName": "正常"
+            }]
+        }
+    }
+}, {
+    "url": "/mock/queryCustomerListByIdenNr",
+    "method": "post",
+    "response": {
+        "systemParams": {
+            "PAGE_INFO": {
+                "CURRENT_PAGE": "-1",
+                "PAGE_SIZE": "-1"
+            },
+            "RESPONSE_INFO": {
+                "responseCode": "0",
+                "responseMsg": "OK"
+            }
+        },
+        "businessParams": {
+            "customerList": [{
+                "customerId": "1",
+                "partyId": "123",
+                "customerCode": "C1039",
+                "name": "亚信科技",
+                "idenCode": "USCI",
+                "idenNr": "91430111MA4L16JQ9B",
+                "custmerStatusId": "1",
+                "custmerStatusName": "正常"
+            }]
+        }
+    }
+}, {
+    "url": "/mock/queryCustomerListByCustomerManagerId",
+    "method": "post",
+    "response": {
+        "systemParams": {
+            "PAGE_INFO": {
+                "CURRENT_PAGE": "-1",
+                "PAGE_SIZE": "-1"
+            },
+            "RESPONSE_INFO": {
+                "responseCode": "0",
+                "responseMsg": "OK"
+            }
+        },
+        "businessParams": {
+            "customerList": [{
+                "customerId": "1",
+                "partyId": "123",
+                "customerCode": "C1039",
+                "name": "亚信科技",
+                "idenCode": "USCI",
+                "idenNr": "91430111MA4L16JQ9B",
+                "custmerStatusId": "1",
+                "custmerStatusName": "正常"
+            }]
+        }
+    }
+}, {
+    "url": "/mock/judgeCustomerUnicity",
+    "method": "post",
+    "response": {
+        "systemParams": {
+            "PAGE_INFO": {
+                "CURRENT_PAGE": "-1",
+                "PAGE_SIZE": "-1"
+            },
+            "RESPONSE_INFO": {
+                "responseCode": "0",
+                "responseMsg": "OK"
+            },
+            "businessParams": {
+                "unicity": "Y",
+                "customerList": [
+                    {
+                        "customerId": "1",
+                        "partyId": "123",
+                        "customerCode": "C1039",
+                        "name": "亚信科技",
+                        "idenCode": "USCI",
+                        "idenNr": "91430111MA4L16JQ9B",
+                        "customerManagerId": "10001",
+                        "customerManagerName": "马云"
+                    }
+                ]
+            }
+        }
+    }
+}]

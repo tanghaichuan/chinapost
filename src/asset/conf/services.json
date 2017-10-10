@@ -17,6 +17,13 @@
         "queryCustomerRelPersonCharacterById": "/mock/queryCustomerRelPersonCharacterById",
         "saveCustomerInfo": "/mock/saveCustomerInfo"
     },
+    "QUERY_LIST":{
+        "queryCustomerListByName":"/mock/queryCustomerListByName",
+        "queryCustomerListByCustomerCode":"/mock/queryCustomerListByCustomerCode",
+        "queryCustomerListByIdenNr":"/mock/queryCustomerListByIdenNr",
+        "queryCustomerListByCustomerManagerId":"/mock/queryCustomerListByCustomerManagerId",
+        "judgeCustomerUnicity":"/mock/judgeCustomerUnicity"
+    },
     "GET_HISTORY": "/mock/historymenu",
     "SYSTEM_MENU": "/mock/getsysmenu",
     "GET_MEMO": "/mock/memomenu",

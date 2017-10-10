@@ -1,6 +1,6 @@
 <template>
     <div class="company">
-        <wrapper @addItem="loadMore" icon="&#xe64c;" title="创建机构客户信息" :row="4" :formData="formData"></wrapper>
+        <wrapper @addItem="loadMore" icon="&#xe64c;" title="创建机构客户信息" :row="4" :renderData="formData"></wrapper>
         <!--右侧表单区域-->
     </div>
 </template>
@@ -18,7 +18,7 @@ export default {
                 "title": "机构客户基本信息",
                 "formItem": [
                     {
-                        "formList": [
+                        "chaValue": [
                             {
                                 "CODE": "COMPANY_NAME",
                                 "VALUE": "",
@@ -120,7 +120,7 @@ export default {
                 "title": "机构客户识别信息",
                 "formItem": [
                     {
-                        "formList": [
+                        "chaValue": [
                             {
                                 "CODE": "IDEN_TYPE_ID",
                                 "VALUE": "",
@@ -173,7 +173,7 @@ export default {
                 "title": "机构客户地址信息",
                 "formItem": [
                     {
-                        "formList": [
+                        "chaValue": [
                             {
                                 "CODE": "ADD_TYPE_ID",
                                 "VALUE": "",
@@ -212,7 +212,7 @@ export default {
                 "title": "机构客户联系信息",
                 "formItem": [
                     {
-                        "formList": [
+                        "chaValue": [
                             {
                                 "CODE": "CONTACT_TYPE_ID",
                                 "VALUE": "",
@@ -268,7 +268,7 @@ export default {
                 "title": "机构客户其他关系人信息",
                 "formItem": [
                     {
-                        "formList": [
+                        "chaValue": [
                             {
                                 "CODE": "PARTY_TYPE_ID",
                                 "VALUE": "",

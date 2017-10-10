@@ -353,6 +353,23 @@ export default {
             name: "知识优化",
             url: ""
           }]
+        },
+        {
+          name: "权限管理中心",
+          icon: "&#xe788;",
+          children :[{
+            name: "功能管理",
+            children:[{
+              name:"实体操作行为绑定",
+              url: "/agentview/uspa"
+            },{
+              name:"操作人员授权",
+              url: "/agentview/uspa"
+            },{
+              name:"组织授权",
+              url: "/agentview/uspa"
+            }]
+          }]
         }
       ],
       currentMenu: "",
