@@ -70,5 +70,8 @@ export default {
 
 .form-block--block {
     float: left;
+    .form-group__label {
+        min-width: 115px;
+    }
 }
 </style>
