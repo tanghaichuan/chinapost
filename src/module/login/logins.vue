@@ -189,7 +189,7 @@ export default{
 	          font-size: 22px;
 	        }
 	        .input {
-	          padding-left: 43px;
+	          padding-left: 43px!important;
 	          color: #232323;
 	          height: 40px;
 	          line-height: 40px;

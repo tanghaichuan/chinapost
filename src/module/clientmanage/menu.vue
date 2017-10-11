@@ -361,13 +361,64 @@ export default {
             name: "功能管理",
             children:[{
               name:"实体操作行为绑定",
-              url: "/agentview/uspa"
+              url: "/uspaManage/uspa/entityPrivRelaManager"
             },{
-              name:"操作人员授权",
-              url: "/agentview/uspa"
+              name:"操作员授权",
+              url: "/uspaManage/uspa/operatorAuthorManager"
             },{
               name:"组织授权",
-              url: "/agentview/uspa"
+              url: "/uspaManage/uspa/organizeAuthorManager"
+            },{
+              name:"岗位类型授权",
+              url:"/uspaManage/uspa/stationTypeAuthorManager"
+            },{
+              name:"实体与功能集绑定",
+              url:"/uspaManage/uspa/roleEntityRelaManager"
+            },{
+              name:"菜单与功能集绑定",
+              url:"/uspaManage/uspa/roleFunctionRelaManager"
+            }]
+          },{
+            name:"组织架构管理",
+            children:[{
+              name:"岗位类型管理",
+              url:"/uspaManage/uspa/stationTypeManager"
+            },{
+              name:"组织管理",
+              url:"/uspaManage/uspa/organizeManager"
+            },{
+              name:"员工管理",
+              url:"/uspaManage/uspa/operatorManager"
+            },{
+              name:"虚拟组管理",
+              url:"/uspaManage/uspa/virtualGroupManager"
+            },{
+              name:"操作员上岗",
+              url:"/uspaManage/uspa/opStationManager"
+            },{
+              name:"岗位管理",
+              url:"/uspaManage/uspa/stationManager"
+            }]
+          },{
+            name:"权限管理",
+            children:[{
+              name:"功能集互斥管理",
+              url:"/uspaManage/uspa/roleExclude"
+            },{
+              name:"实体分类管理",
+              url:"/uspaManage/uspa/entityClassManager"
+            },{
+              name:"菜单管理",
+              url:"/uspaManage/uspa/functionManager"
+            },{
+              name:"功能集管理",
+              url:"/uspaManage/uspa/roleManager"
+            },{
+              name:"实体管理",
+              url:"/uspaManage/uspa/entityManager"
+            },{
+              name:"操作行为管理",
+              url:"/uspaManage/uspa/privManager"
             }]
           }]
         }
