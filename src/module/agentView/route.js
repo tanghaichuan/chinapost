@@ -27,11 +27,6 @@ const routes = [{
         name: 'privilege',
         meta: '360视图',
         component: require('module/agentView/privilege')
-    }, {
-        path: 'uspa',
-        name: 'uspa',
-        meta: '360视图',
-        component: require('module/agentView/uspa')
     }
     // {
     //     path: 'test',
