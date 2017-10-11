@@ -5,12 +5,12 @@ const routes = [
         component: require('module/clientmanage/menu.vue'),
         children: [
             {
-                path: 'customerDtl',
+                path: 'customerDtl/:name/:id',
                 name: '个人客户信息详情',
                 component: require('module/details/customerDtl.vue')
             },
             {
-                path: 'companyDtl',
+                path: 'companyDtl/:name/:id',
                 name: '机构客户信息详情',
                 component: require('module/details/companyDtl.vue')
             }

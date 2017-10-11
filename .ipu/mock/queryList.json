@@ -95,17 +95,17 @@
         },
         "businessParams": {
             "customerList": [{
-                "partType":"1001",
+                "partType": "1001",
                 "customerId": "1",
                 "partyId": "123",
                 "customerCode": "C1039",
                 "name": "亚信中国",
                 "idenCode": "USCI",
                 "idenNr": "91430111MA4L16JQ9B",
-                "custmerStatusId": "1",
-                "custmerStatusName": "正常"
+                "custmerStatusId": "0",
+                "custmerStatusName": "失效"
             }, {
-                "partType":"1001",
+                "partType": "1001",
                 "customerId": "1",
                 "partyId": "123",
                 "customerCode": "C1039",
@@ -115,17 +115,27 @@
                 "custmerStatusId": "1",
                 "custmerStatusName": "正常"
             }, {
-                "partType":"1001",
+                "partType": "1001",
+                "customerId": "1",
+                "partyId": "123",
+                "customerCode": "C1039",
+                "name": "亚信中国",
+                "idenCode": "USCI",
+                "idenNr": "91430111MA4L16JQ9B",
+                "custmerStatusId": "2",
+                "custmerStatusName": "正在修改"
+            }, {
+                "partType": "1001",
                 "customerId": "1",
                 "partyId": "123",
                 "customerCode": "C1039",
                 "name": "中国石化",
                 "idenCode": "USCI",
                 "idenNr": "91430111MA4L16JQ9B",
-                "custmerStatusId": "1",
-                "custmerStatusName": "正常"
+                "custmerStatusId": "3",
+                "custmerStatusName": "审核"
             }, {
-                "partType":"1001",
+                "partType": "1001",
                 "customerId": "1",
                 "partyId": "123",
                 "customerCode": "C1039",
@@ -135,7 +145,7 @@
                 "custmerStatusId": "1",
                 "custmerStatusName": "正常"
             }, {
-                "partType":"1001",
+                "partType": "1001",
                 "customerId": "1",
                 "partyId": "123",
                 "customerCode": "C1039",
@@ -145,7 +155,7 @@
                 "custmerStatusId": "1",
                 "custmerStatusName": "正常"
             }, {
-                "partType":"1000",
+                "partType": "1000",
                 "customerId": "1",
                 "partyId": "123",
                 "customerCode": "C1039",
@@ -155,7 +165,7 @@
                 "custmerStatusId": "1",
                 "custmerStatusName": "正常"
             }, {
-                "partType":"1000",
+                "partType": "1000",
                 "customerId": "1",
                 "partyId": "123",
                 "customerCode": "C1039",
@@ -165,6 +175,7 @@
                 "custmerStatusId": "1",
                 "custmerStatusName": "正常"
             }, {
+                "partType": "1000",
                 "customerId": "1",
                 "partyId": "123",
                 "customerCode": "C1039",
@@ -174,6 +185,7 @@
                 "custmerStatusId": "1",
                 "custmerStatusName": "正常"
             }, {
+                "partType": "1000",
                 "customerId": "1",
                 "partyId": "123",
                 "customerCode": "C1039",
@@ -183,6 +195,7 @@
                 "custmerStatusId": "1",
                 "custmerStatusName": "正常"
             }, {
+                "partType": "1000",
                 "customerId": "1",
                 "partyId": "123",
                 "customerCode": "C1039",
@@ -192,6 +205,7 @@
                 "custmerStatusId": "1",
                 "custmerStatusName": "正常"
             }, {
+                "partType": "1000",
                 "customerId": "1",
                 "partyId": "123",
                 "customerCode": "C1039",
@@ -217,8 +231,9 @@
                 "responseMsg": "OK"
             },
             "businessParams": {
-                "unicity": "Y",
+                "unicity": "N",
                 "customerList": [{
+                    "partType": "1000",
                     "customerId": "1",
                     "partyId": "123",
                     "customerCode": "C1039",

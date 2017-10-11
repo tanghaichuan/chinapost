@@ -43,17 +43,20 @@
             <p class="notice-txt">SO 抱歉！无相关结果，有劳重搜。</p>
         </div>
         <!--查询列表区域-->
-        <query-result v-else :column="column" :data="queryList"></query-result>
+        <t-table v-else class="query-result query-table" :columns="column" :data="queryList" @on-sort-change="onSortChange"></t-table>
         <!--分页-->
         <div class="client-pager">
             <t-pager :page-size="pageSize" :sizer-range="[10, 15, 20]" :total="currentList.length" :show-sizer="true" :show-elevator="true" @on-change="changePage"></t-pager>
         </div>
         <!--校验-->
-        <t-modal v-model="showJudgeModal" width="430">
+        <t-modal v-model="showJudgeModal" class="judge-modal" width="430">
             <p slot="header">
                 <span>客户唯一性校验</span>
             </p>
             <div class="dialog-content">
+                <t-alert v-if="showCreateFaileMsg" class="createFailed" type="danger" show-icon>客户已存在，请[
+                    <span class="feedback-cell" @click="showDetails">查看详情</span>]或[
+                    <span class="feedback-cell" @click="cancel('personal')">返回</span>]</t-alert>
                 <t-form :rules="ruleForm" :model="personal" ref="personal" label-position="left" :label-span="2">
                     <t-form-item label="客户名称" prop="name">
                         <t-input v-model="personal.name" placeholder="请输入"></t-input>
@@ -79,14 +82,12 @@
 </template>
 <script>
 import { mapActions } from 'vuex'
-import queryResult from './wrapper/queryResult'
 export default {
     name: "company",
-    components: {
-        queryResult
-    },
     data() {
         return {
+            similarCustomerList: [], // 缓存相似客户列表
+            showCreateFaileMsg: false,
             pageSize: 10,
             showEmptyBg: false,
             userInfo: {
@@ -126,13 +127,13 @@ export default {
             searchReslist: [],
             column: [
                 {
+                    sortable: true,
                     title: "客户名称",
+                    key: "name",
                     render: (h, params) => {
                         let vm = this;
                         return h('div', {
-                            style: {
-                                paddingLeft: '12px'
-                            }
+
                         }, [
                                 h('i', {
                                     'class': {
@@ -148,9 +149,12 @@ export default {
                                     'class': 'table-body-name_cell--text',
                                     on: {
                                         click: function() {
-                                            // 向后端请求对应客户信息 存储到vuex中，跳转
                                             vm.$router.push('/client/customerDtl')
-                                            //console.log(params.row.customerId)
+                                            if (params.row.partType === '1000') {
+                                                vm.linkToCumDetails(params.row.name, params.row.customerId)
+                                            } else {
+                                                vm.linkToComDetails(params.row.name, params.row.customerId)
+                                            }
                                         }
                                     },
                                 }, [params.row.name])
@@ -164,7 +168,12 @@ export default {
                 {
                     title: "识别码",
                     render: (h, params) => {
-                        return h('div', {}, [
+                        return h('div', {
+                            style:{
+                                position:'relative',
+                                left:'15px'
+                            }
+                        }, [
                             h('p', {
                                 'class': 'table-body-iden_cell--text'
                             }, [params.row.idenCode]),
@@ -183,7 +192,34 @@ export default {
                     key: "custmerStatusName"
                 },
                 {
-                    title: "操作"
+                    title: "操作",
+                    render: (h, params) => {
+                        if (params.row.custmerStatusId === '0') {
+                            return h('div', {}, [
+                                h('span', {
+                                    'class': 'option-status'
+                                }, ['添加协议'])
+                            ])
+                        } else if (params.row.custmerStatusId === '1' || params.row.custmerStatusId === '2') {
+                            return h('div', {}, [
+                                h('span', {
+                                    'class': 'option-status'
+                                }, ['修改']),
+                                h('span', {
+                                    'class': 'option-status'
+                                }, ['添加协议'])
+                            ])
+                        } else if (params.row.custmerStatusId === '3') {
+                            return h('div', {}, [
+                                h('span', {
+                                    'class': 'option-status'
+                                }, ['审核']),
+                                h('span', {
+                                    'class': 'option-status'
+                                }, ['添加协议'])
+                            ])
+                        }
+                    }
                 }
             ],
             queryList: [], // 渲染层
@@ -227,6 +263,21 @@ export default {
                 this.searchReslist = []
             }
         },
+        // 名称排序（首字母）降序
+        sortByPinYinAlphabeticalDesc(property) {
+            return (a, b) => {
+                return b[property] - a[property]
+            }
+        },
+        // 升序
+        sortByPinYinAlphabeticalAsce(property) {
+            return (a, b) => {
+                return a[property] - b[property]
+            }
+        },
+        onSortChange(column, key, order) {
+
+        },
         // select框值改变时触发筛选
         onQueryChange(query) {
             this.queryList = this.filterCustomerList(query)
@@ -242,26 +293,73 @@ export default {
             this.queryList = this.currentList.filter((item, index) => index >= (current - 1) * this.pageSize && current * this.pageSize - 1
             )
         },
+        // 跳转至个人客户详情(机构和个人详情页参数可能不同，这里先不合并)
+        linkToCumDetails(name, id) {
+            this.$router.push({
+                name: `个人客户信息详情`, params: {
+                    name: name,
+                    id: id
+                }
+            })
+        },
+        // 跳转至机构客户详情 
+        linkToComDetails(name, id) {
+            this.$router.push({
+                name: `机构客户信息详情`, params: {
+                    name: name,
+                    id: id
+                }
+            })
+        },
+        showDetails() {
+            this.$refs.personal.resetFields()
+            this.showJudgeModal = false
+            this.showCreateFaileMsg = false
+            // 目前查看相似客户详情按第一条
+            if (this.similarCustomerList[0].partType === '1000') {
+                this.linkToCumDetails(this.similarCustomerList[0].name, this.similarCustomerList[0].customerId)
+            } else {
+                this.linkToComDetails(this.similarCustomerList[0].name, this.similarCustomerList[0].customerId)
+            }
+        },
         showModal() {
             this.showJudgeModal = true
         },
         cancel(name) {
             this.$refs[name].resetFields()
             this.showJudgeModal = false
+            this.showCreateFaileMsg = false
         },
         async submitForm(name) {
-            try {
-                let data = {
-                    customerName: this.personal.name,
-                    idenCode: this.personal.type,
-                    idenNr: this.personal.num
+            this.$refs[name].validate(async valid => {
+                if (valid) {
+                    try {
+                        let data = {
+                            customerName: this.personal.name,
+                            idenCode: this.personal.type,
+                            idenNr: this.personal.num
+                        }
+                        let res = await this.judgeCustomerUnicity(data) // 确定是否唯一，不唯一则返回相似性数据列表
+                        if (res.systemParams.businessParams.unicity === 'Y') {
+                            // 创建的客户唯一
+
+                            this.$Message.success('验证成功!')
+                            this.showCreateFaileMsg = false
+                        } else {
+                            // 创建的客户不唯一
+                            this.showCreateFaileMsg = true
+                            // 若不唯一则拿到相似客户信息
+                            this.similarCustomerList = res.systemParams.businessParams.customerList
+                        }
+                    } catch (error) {
+                        console.error(error)
+                    }
+
+                } else {
+                    this.$Message.success('验证失败!')
                 }
-                let res = await this.judgeCustomerUnicity(data) // 确定是否唯一，不唯一则返回相似性数据列表
-                console.log(res)
-            } catch (error) {
-                console.error(error)
-            }
-            this.$Message.success('验证成功!')
+            })
+
         }
     },
     async created() {
@@ -286,6 +384,25 @@ export default {
 }
 </script>
 <style scoped lang="less">
+.judge-modal {
+    .modal-content {
+        max-height: 100% !important;
+    }
+    .dialog-content {
+        padding: 10px 10px 0px;
+    }
+}
+
+.createFailed {
+    .feedback-cell {
+        cursor: pointer;
+        color: #108eea;
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+}
+
 .clearfix {
     zoom: 1;
     &:after {
@@ -341,6 +458,97 @@ export default {
     }
 }
 
+.query-result {
+    width: 100%;
+    background-color: #fff;
+    border: 1px solid #d9d9d9;
+    border-bottom: transparent;
+    border-radius: 4px;
+    .table--border th {
+        border-left: 0;
+    }
+    .table th {
+        width: 16.666666%;
+        font-size: 12px;
+        font-weight: 400;
+        color: #000;
+        text-align: left;
+        text-indent: 7px;
+    }
+    thead {
+        tr {
+            line-height: 40px;
+            background: #f7f7f7;
+        }
+    }
+    .table td {
+        border-bottom: 1px solid #e9e9e9;
+    }
+    .table__body {
+        .table__cell--text {
+            padding-left: 28px;
+            opacity: 0.8;
+            font-size: 12px;
+            color: #000;
+        }
+    }
+    .table-body-iden_cell--text {
+        margin: 0;
+        line-height: 30px;
+        font-size: 12px;
+        color: #000;
+        text-indent: 14px;
+        opacity: 0.8;
+    }
+    .table-body-name_cell--text {
+        padding-left: 6px;
+        color: #1f90e6;
+        font-size: 12px;
+        cursor: pointer;
+        opacity: 0.8;
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+    .iconClient {
+        font-size: 20px;
+        vertical-align: middle;
+        margin-right: 4px;
+        color: #007f3b;
+    }
+    .iconPerson {
+        font-size: 20px;
+        vertical-align: middle;
+        margin-right: 4px;
+        color: #ffbb37;
+    }
+    .option-status {
+        padding: 0 5px;
+        &:first-child{
+            padding-left: 25px;
+        }
+        display: inline-block;
+        line-height: 12px;
+        font-size: 12px;
+        color: #108eea;
+        cursor: pointer;
+        &:hover {
+            text-decoration: underline;
+        }
+        &:not(:first-child) {
+            border-left: 1px solid #ccc;
+        }
+    }
+}
+
+.query-table .table th {
+    width: 16.666666%;
+    font-size: 12px;
+    color: #000;
+    text-align: left;
+    text-indent: 25px;
+}
+
 .operatearea {
     padding: 20px 0;
     .btngroup {
@@ -372,101 +580,6 @@ export default {
         button {
             i {
                 margin-right: 5px;
-            }
-        }
-    }
-}
-
-.queryresult {
-    margin-bottom: 20px;
-    width: 100%;
-    background-color: #fff;
-    border: 1px solid #d9d9d9;
-    border-radius: 4px;
-    p {
-        margin: 0;
-    }
-    ul {
-        list-style: none;
-        margin: 0;
-        padding: 0;
-    }
-    .query-list {
-        .list-tit {
-            line-height: 40px;
-            background: #f7f7f7;
-            li {
-                width: 16.666666%;
-                font-size: 12px;
-                color: #000;
-                text-align: left;
-                text-indent: 25px;
-                float: left;
-            }
-            &:after {
-                content: " ";
-                height: 0;
-                clear: both;
-                display: block;
-            }
-        }
-        .list-result {
-            li {
-                line-height: 60px;
-                border-bottom: 1px solid #e9e9e9;
-                cursor: pointer;
-                &:after {
-                    content: " ";
-                    height: 0;
-                    clear: both;
-                    display: block;
-                }
-                p {
-                    width: 16.666666%;
-                    font-size: 12px;
-                    color: #000;
-                    float: left;
-                    text-indent: 25px;
-                    span {
-                        opacity: 0.8;
-                        filter: alpha(opacity=80);
-                    }
-                    i {
-                        font-size: 20px;
-                        vertical-align: top;
-                        margin-right: 2px;
-                        &.iconClient {
-                            color: #007f3b;
-                        }
-                        &.iconPerson {
-                            color: #ffbb37;
-                        }
-                    }
-                    a {
-                        color: #1f90e6;
-                        &:not(:last-child) {
-                            zoom: 1;
-                            &:after {
-                                margin: 0 10px;
-                                display: inline-block;
-                                content: '';
-                                height: 10px;
-                                border-right: 1px solid #ccc;
-                            }
-                        }
-                    }
-                }
-                .iden-code {
-                    width: 16.666666%;
-                    float: left;
-                    p {
-                        width: 100%;
-                        line-height: 30px;
-                    }
-                }
-                &:hover {
-                    background: #F3FAF6;
-                }
             }
         }
     }
