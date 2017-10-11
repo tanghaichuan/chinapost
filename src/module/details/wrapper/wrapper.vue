@@ -4,7 +4,7 @@
             <i class="iconfont tit-icon" v-html="icon"></i>{{title}}</h5>
         <div class="back-options">
             <p class="btn-icon">
-                <t-button type="outline" class="sub-btn">
+                <t-button type="outline" @click="$router.go(-2)" class="sub-btn">
                     <i class="iconfont">&#xe639;</i>返回</t-button>
                 <!-- <t-button type="outline" class="sub-btn" @click="handleSubmit('formDynamic')"><i class="iconfont">&#xe624;</i>保存</t-button> -->
             </p>

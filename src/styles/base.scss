@@ -753,3 +753,8 @@ danger;
     }
   }
 }
+.menu--open .dropdown--open{
+  .menu.menu__vertical{
+    height: 100% !important;
+  }
+}

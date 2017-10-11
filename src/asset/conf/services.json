@@ -15,7 +15,12 @@
         "queryCustomerContMediumCharacterById": "/mock/queryCustomerContMediumCharacterById",
         "queryCustomerAddressCharacterById": "/mock/queryCustomerAddressCharacterById",
         "queryCustomerRelPersonCharacterById": "/mock/queryCustomerRelPersonCharacterById",
-        "saveCustomerInfo": "/mock/saveCustomerInfo"
+        "saveCustomerInfo": "/mock/saveCustomerInfo",
+        "deleteOrgTreeNode":"/mock/deleteOrgTreeNode",
+        "modifyOrgTreeNode":"/mock/modifyOrgTreeNode",
+        "createOrgTreeNode":"/mock/createOrgTreeNode",
+        "queryOrgTreeByCustomerId":"/mock/queryOrgTreeByCustomerId",
+        "queryIndustryTypeList":"/mock/queryIndustryTypeList"
     },
     "QUERY_LIST":{
         "queryCustomerListByName":"/mock/queryCustomerListByName",

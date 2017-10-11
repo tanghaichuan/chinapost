@@ -15,7 +15,7 @@ import invokers from '../../../invokers'
 
 // 发送post请求
 async function postUrlAccount(url, data) {
-    return await invokers
+    return invokers
         .domains
         .cnpost
         .post(url, data)
@@ -39,11 +39,11 @@ export async function loadFormItem({
                 return 1
             }
         }
-        if(res) {
+        if (res) {
             commit(constants.LOAD_CUS_FORM_LIST, res)
-        }else{
+        } else {
             console.error(`加载失败`)
-        }  
+        }
     } catch (error) {
         console.error(`加载失败${error}`)
     }

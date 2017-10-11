@@ -145,7 +145,7 @@ export default {
     .input-wrapper {}
     .input-group-icon {
         &.input-group-icon--right {
-            right: -2px;
+            right: 15px;
             cursor: pointer;
         }
     }

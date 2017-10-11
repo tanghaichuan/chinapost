@@ -607,4 +607,108 @@
             }]
         }
     }
+}, {
+    "url": "/mock/queryIndustryTypeList",
+    "method": "post",
+    "response": {
+        "systemParams": {
+            "RESPONSE_INFO": {
+                "responseCode": "0",
+                "responseMsg": "OK"
+            }
+        },
+        "businessParams": {
+            "industryTypeList": [{
+                    "INDUSTRY_ID": "100000025",
+                    "UP_INDUSTRY_ID": "100000002",
+                    "INDUSTRY_NAME": "农业"
+                },
+                {
+                    "INDUSTRY_ID": "100000026",
+                    "UP_INDUSTRY_ID": "100000002",
+                    "INDUSTRY_NAME": "林业"
+                }
+            ]
+        }
+    }
+}, {
+    "url": "/mock/queryOrgTreeByCustomerId",
+    "method": "post",
+    "response": {
+        "systemParams": {
+            "RESPONSE_INFO": {
+                "responseCode": "0",
+                "responseMsg": "OK"
+            }
+        },
+        "businessParams": {
+            "organizationList": [{
+                    "organizationId": "1002",
+                    "upOrganizationId": "123",
+                    "partyName": "亚信BIU",
+                    "partyCode": ""
+                },
+                {
+                    "organizationId": "1002",
+                    "upOrganizationId": "123",
+                    "partyName": "亚信远航公司",
+                    "partyCode": "W3918"
+                },
+                {
+                    "organizationId": "1003",
+                    "upOrganizationId": "123",
+                    "partyName": "亚信PRD",
+                    "partyCode": ""
+                },
+                {
+                    "organizationId": "1025",
+                    "upOrganizationId": "1003",
+                    "partyName": "亚信PRD-CRM研发部",
+                    "partyCode": ""
+                }
+            ]
+        }
+    }
+}, {
+    "url": "/mock/createOrgTreeNode",
+    "method": "post",
+    "response": {
+        "systemParams": {
+            "RESPONSE_INFO": {
+                "responseCode": "0",
+                "responseMsg": "OK"
+            }
+        },
+        "businessParams": {
+            "organizationId": "1099"
+        }
+    }
+}, {
+    "url": "/mock/modifyOrgTreeNode",
+    "method": "post",
+    "response": {
+        "systemParams": {
+            "RESPONSE_INFO": {
+                "responseCode": "0",
+                "responseMsg": "OK"
+            }
+        },
+        "businessParams": {
+
+        }
+    }
+},{
+    "url": "/mock/deleteOrgTreeNode",
+    "method": "post",
+    "response": {
+        "systemParams": {
+            "RESPONSE_INFO": {
+                "responseCode": "0",
+                "responseMsg": "OK"
+            }
+        },
+        "businessParams": {
+
+        }
+    }
 }]
