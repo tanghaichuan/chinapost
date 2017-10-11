@@ -6,7 +6,8 @@ import details from './module/details/route'
 import querylist from './module/queryList/route'
 // 360路由
 import agentview from './module/agentView/route'
-
+//权限管理路由
+import uspa from './module/uspamanage/route'
 
 // const test = proxyLoad('demo/test/test', 'test')
 
@@ -34,6 +35,7 @@ export default[
   ...agentview,
   ...details,
   ...querylist,
+  ...uspa,
   {
     path : '*',
     component : {
