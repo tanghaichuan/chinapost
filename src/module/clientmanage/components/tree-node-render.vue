@@ -4,7 +4,6 @@
           <t-dropdown placement="bottom-end" trigger="click">
             <a href="javascript:void(0)" @click="rotate">
               操作
-                <!-- <t-icon type="arrow-down-drop"></t-icon>-->
                 <i class="iconfont mt-sm-3" style="font-size: 12px" v-show="!rotated">&#xe78e;</i>
                 <i class="iconfont mt-sm-3" style="font-size: 12px" v-show="rotated">&#xe78d;</i>
             </a>
@@ -106,7 +105,7 @@
         }
     }
 </script>
-<style lang="less">
+<style lang="less" scoped>
     .downbox {
         border: 1px solid #eaeaea;
         border-radius: 5px;
@@ -128,6 +127,9 @@
 
     .downbox {
         margin-top: -7px;
+    }
+    .input{
+      font-size: 20px !important;
     }
 
 
