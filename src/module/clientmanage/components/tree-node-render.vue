@@ -4,26 +4,26 @@
           <t-dropdown placement="bottom-end" trigger="click">
             <a href="javascript:void(0)" @click="rotate">
               操作
-                <i class="iconfont mt-sm-3" style="font-size: 12px" v-show="!rotated">&#xe78e;</i>
-                <i class="iconfont mt-sm-3" style="font-size: 12px" v-show="rotated">&#xe78d;</i>
+                <i class="iconfont mt-sm-3 fz12"  v-show="!rotated">&#xe78e;</i>
+                <i class="iconfont mt-sm-3 fz12" v-show="rotated">&#xe78d;</i>
             </a>
             <t-dropdown-menu slot="list" class="downbox">
               <t-dropdown-item @on-click="isrotate">
                   <span @click="add">
                       <i class="iconfont float-left mr-2 top-3">&#xe61a;</i>
-                      <span style="font-size: 12px"> 增加</span>
+                      <span class="fz12"> 增加</span>
                   </span>
               </t-dropdown-item>
               <t-dropdown-item class="edit">
                   <span @click="edit">
-                      <span style="font-size: 12px"> 编辑</span>
+                      <span class="fz12"> 编辑</span>
                       <i class="iconfont float-left mr-2 top-3">&#xe7a1;</i>
                   </span>
               </t-dropdown-item>
               <t-dropdown-item class="cut">
                   <span @click="cut">
                      <i class="iconfont float-left mr-2 top-3">&#xe626;</i>
-                      <span style="font-size: 12px"> 删除</span>
+                      <span class="fz12"> 删除</span>
                   </span>
               </t-dropdown-item>
             </t-dropdown-menu>
@@ -33,7 +33,7 @@
             <span>
               <span v-show="!show">  {{nodeName}} </span>
                 <span v-show="show">
-                    <t-input style="display: inline-block" v-model='value' placeholder="请输入..."></t-input>
+                    <t-input class="d-inline-block fz12" v-model='value' placeholder="请输入..."></t-input>
                   <span @click="sure">
                        <t-tooltip content="点击保存" placement="top">
             <t-icon type="check" gradient="primary" size="20" class="mb-2 ml-2"></t-icon>
@@ -131,6 +131,10 @@
     .input{
       font-size: 20px !important;
     }
+  .fz12{
+    font-size: 12px !important;
+  }
+
 
 
 </style>

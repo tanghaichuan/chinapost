@@ -9,14 +9,14 @@
     </div>
 
     <t-modal
+      class="t-modal"
       v-model="modal"
       title="机构选择"
       @on-ok="ok"
-      style="width: 480px"
       @on-cancel="cancel">
-      <div style="width: 500px;" class="actionableTree">
+      <div class="actionableTree">
         <t-input placeholder="搜索" v-model="filterText" icon="magnify" icon-placement="right"
-                 style="width: 440px"></t-input>
+                 class="magnify"></t-input>
         <t-tree
           :data="dataList"
           :props="defaultProps"
@@ -117,46 +117,24 @@
   .dropTree {
     width: 100%;
   }
-  .modal-title {
-    margin-bottom: 0;
-    line-height: 1.5;
-    font-size: 14px;
-    color:#455a74 !important;
+
+  .magnify {
+    width: 440px;
   }
 
   .actionableTree {
     padding-right: 15px;
+    width: 500px;
   }
 
-  .modal-footer {
+  /*.modal-footer {
     padding: 10px 10px;
     border-top: 1px solid #eaeaea;
   }
-
-  .tree__node-content--checked {
-    border-left: none !important;
-  }
-
   .modal-header {
-    background: #FFFFFF !important;
+    background: #000 !important;
     border-bottom: 1px solid #eaeaea;
-  }
-
-  .modal-title {
-    font-size: 14px;
-  }
-
-  .modal-title, .close > span {
-    color: #455a74;
-  }
-
-  .modal-content {
-    width: 480px;
-  }
-
-  .modal-body {
-    overflow-x: hidden !important;
-  }
+  }*/
 
   .input-wrapper {
     width: 100% !important;
@@ -188,8 +166,31 @@
     margin-right: 35px !important;
   }
 
+  .t-modal {
+    .modal-title {
+      color: #455a74 !important;
+      font-size: 14px;
+
+    }
+    .close>span{
+      color: #455a74 !important;
+    }
+    .modal-content {
+      width: 480px;
+    }
+
+    .modal-body {
+      overflow-x: hidden !important;
+    }
+  }
+  .filter-tree{
+    .tree__node-content--checked {
+      border-left: none !important;
+    }
+  }
 
 
 </style>
+
 
 
