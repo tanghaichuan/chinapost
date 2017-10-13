@@ -46,8 +46,8 @@
 		</div>
 		<!-- 视图指标 -->
 		<div class="views-menu" style="margin-top: 10px">
-			<div :class="[{'bg-warning h500': theme2 == 'ghost' }]">
-				<t-menu  mode="horizontal" open-position="right"  ref="myMenu">
+			<div class="xxxx">
+				<t-menu  mode="horizontal" open-position="right">
 					<t-submenu
 						v-for="(topItem, topIndex) in menuList"  :name="topIndex" :key="topIndex">
 						<template slot="title">
@@ -76,11 +76,11 @@
 				</t-menu>
 			</div>
 			<!--视图内容-->
-			<div class="viewContent">
+			<div class="view-content">
 				<div class="tab-title">{{defaultTitle}}</div>
-				<t-tabs class="tab">
+				<!-- <t-tabs class="tab">
 					<t-tab-panel v-for="(fourItem, fourth) in otherMenus" :key="fourth" :label="fourItem.catalogName" :name="`tab-${fourth}`">
-						<div class="model-beg" v-if="fourItem.isLeaf"  v-for="(fiveItem,fifth) in fourItem.subChaSpecCataLog" :key="fifth">
+						<div class="model-beg col" v-if="fourItem.isLeaf"  v-for="(fiveItem,fifth) in fourItem.subChaSpecCataLog" :key="fifth">
 							<span @click="fiveClick(fiveItem)">
 								 五级菜单: <span class="fivemenu">{{fiveItem.catalogName}}</span>
 							</span>
@@ -91,20 +91,61 @@
 										:label="sixItem.catalogName" 
 										:name="`tab-${six}`"
 										:key="six">
-										标签{{six}}内容
+										<t-form inline="true" :model="formRight" :rules="ruleFormLabel" label-position="left" :label-span="4">
+											<t-form-item label="标题:">
+												<span>222</span>
+											</t-form-item>
+											<t-form-item label="标题">
+												<span>222</span>
+											</t-form-item>
+										</t-form>
 									</t-tab-panel>
 								 </t-tabs>
 							</t-modal>
 						</div>
 					</t-tab-panel>
 				</t-tabs>
-				<div class="container"></div>
+
+						<t-form inline="true" :model="formRight" :rules="ruleFormLabel" label-position="left" :label-span="4" label-width="210">
+											<t-form-item label="标题:" class="col-4">
+												<span class="text-left">222</span>
+											</t-form-item>
+											<t-form-item label="标题:" class="col-4">
+												<span class="text-center">222</span>
+											</t-form-item>
+											<t-form-item label="标题:" class="col-4">
+												<span class="text-center">222</span>
+											</t-form-item>
+											<t-form-item label="标题:" class="col-4">
+												<span class="text-center">222</span>
+											</t-form-item>
+										</t-form> -->
+				<div class="menutrees">
+					<div class="view-tree">
+						<div class="view-tree-left" v-if="otherMenus.length">
+							<t-tree :data="otherMenus"  is-select :props="defaultProps" @on-click="handleNodeClick"></t-tree>
+						</div>
+						<div :class="[ { full: !otherMenus.length }, 'view-tree-right']">
+							<div class="form-container">
+							<div class="form-item-container">
+							<div class="row border">
+								<div class="col-4 " v-for="(catas, cataIndex) in cataList">
+									<div class="form-group row">
+									  <label class="form-group__label text-right col-5">{{catas.chaSpecVal.displayValue}}:</label> 
+									  <div class="form-group__content col"><span>{{catas.chaSpecVal.value}}</span></div>
+									</div>
+								</div>
+							</div>
+							</div></div>
+						</div>
+					</div>
+				</div>
+				<!-- <div class="container"></div> -->
 			</div>
 		</div>
 	</div>
 </template>
 <script>
-import './index.less';
 
 export default {
 	data() {
@@ -112,23 +153,27 @@ export default {
 			customerId: this.$route.params.customerId,
 			menuList: [],
 			cataList: [],
-			otherMenus: [],
 			defaultTitle: '基础视图',
 			defaultCata: 1,
 			defaultId: null,
+			otherMenus: [],
+      defaultProps: {
+        children: 'subChaSpecCataLog',
+        label: 'catalogName'
+      }
 		}
 	},
 	methods: {
-		fiveClick(fiveItem){
-			fiveItem.modalShow=true
+		handleNodeClick(obj, node, self){
+			console.log(obj, node, self)
 		},
 		itemClickHandle({catalogName, chaSpecCatalogId, isLeaf}){
 			// 点击上面的三级菜单展示五六级菜单或者展示指标
-			this.defaultCata = isLeaf
+			this.defaultCata = chaSpecCatalogId
 			this.defaultTitle = catalogName
 			if(isLeaf == 0){
 				// 获取四五六级菜单
-				let params = {
+				let menuParams = {
 					"systemParams": {
 						"pageInfo": {
 							"CURRENT_PAGE": "1",
@@ -144,18 +189,20 @@ export default {
 						}]
 					}
 				}
-				this.$domains.cnpost.post(this.$services.AGENTVIEW.GET_AGENTVIEW_MENUS, {...params})
+				// 获取四级以下菜单
+				this.$domains.cnpost.post(this.$services.AGENTVIEW.GET_AGENTVIEW_MENUS, {...menuParams})
 				.then(({ data }) => {
 					// console.log('otherMenus',data.businessParams.responseList)
 					let otherMenus = data.businessParams.responseList
-					for(let i =0; i<otherMenus.length; i++){
-						for(let j=0; j<otherMenus[i].subChaSpecCataLog.length;j++){
-							console.log('showshow',i,j)
-							otherMenus[i].subChaSpecCataLog[j].modalShow = false
-						}
-					}
+					
 					console.log('otherMenus',otherMenus)
 					this.otherMenus = otherMenus
+				})
+
+				// 获取当前菜单的指标
+				this.initGetCata(chaSpecCatalogId)
+				.then((res)=>{
+					console.log(res.data)
 				})
 			}else{
 				// 获取指标
@@ -166,7 +213,6 @@ export default {
 					this.cataList = res.data.businessParams.responseList
 				})
 
-				console.log('is the last one',isLeaf)
 			}
 		},
 		initGetCata(chaSpecCatalogId){
@@ -209,10 +255,27 @@ export default {
 				}]
 			}
 		}
+		// 初始化三级菜单
 		this.$domains.cnpost.post(this.$services.AGENTVIEW.GET_AGENTVIEW_MENUS, {...params})
 		.then(({ data }) => {
-			console.log(data.businessParams.responseList)
+			// 获取菜单数组
 			this.menuList = data.businessParams.responseList
+			
+			// 获取第一级菜单第一个末级 id
+      let firstViewChild = this.menuList[0].subChaSpecCataLog[0]
+			let initCataId;
+			if(firstViewChild.subChaSpecCataLog){
+				firstViewChild.subChaSpecCataLog[0].subChaSpecCataLog[0] ? initCataId = firstViewChild.subChaSpecCataLog[0].subChaSpecCataLog[0].chaSpecCatalogId : initCataId = firstViewChild.subChaSpecCataLog[0].chaSpecCatalogId
+			}else{
+				initCataId = firstViewChild.chaSpecCatalogId
+			}
+			// 初始化第一次加载的指标项 
+			this.$Loading.start();
+			this.initGetCata(initCataId)
+			.then(({data})=>{
+				this.$Loading.finish();
+				this.cataList = data.businessParams.responseList
+			})
 		})
 	},
 	components: {
@@ -220,6 +283,8 @@ export default {
 }
 </script>
 <style lang="less" scoped>
+
+@import './index.less';
 .tab-content{
 	padding: 20px;
 }

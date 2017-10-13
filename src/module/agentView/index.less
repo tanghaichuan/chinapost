@@ -20,12 +20,7 @@
         background: #fff;
       }
     }
-    .views-menu .menu--horizontal li ul.dropdown__menu{
-      margin-top: 0!important;
-    }
-    .views-menu .wrap-green-layout .menu--vertical .menu__submenu .menu__item {
-      padding: 0 44px 0 20px!important;
-    }
+    
     .carousel {
       position: relative;
       margin-left: 127px;
@@ -93,40 +88,60 @@
   }
   .views-menu {
     background: #fff;
-    height: 100;
+    padding: 12px 20px;
+    .menu--light.menu--horizontal > .menu__submenu .menu__submenu-title:hover{
+      background-color: #F3FAF6;
+    }
+    .menu--horizontal li ul.dropdown__menu{
+      margin-top: 0px;
+    }
+    
+    .menu--light.menu:after{
+      height: 0;
+    }
     .menu--horizontal li {
       border-bottom: none;
     }
-    .viewContent {
+    .view-content {
+      margin-top: 10px;
       .tab-title {
         font-size: 14px;
-        padding: 10px 0 0 20px;
+        height: 40px;
+        line-height: 40px;
+        background: #F7F7F7;
+        padding-left: 25px;
+        margin-bottom: 10px;
       }
-      .tab {
-        ul,
-        li {
-          list-style: none;
-          padding: 0;
-          margin: 0;
-        }
-        padding-left: 5px;
-        .tabname {
-          font-size: 12px;
-        }
-        ul li>p {
-          float: left;
-          width: 33.3%;
-          span:nth-child(1) {
-            display: inline-block;
-            width: 100px;
-          }
-        }
+      
+    }
+  }
+  .view-tree{
+    overflow: hidden
+  }
+  .view-tree-left{
+    padding: 20px 20px 20px 0;
+    width: 210px;
+    float: left;
+  }
+  .view-tree-right{
+    float: left;
+    width: 100%;
+    margin-left: -210px;
+    padding-left: 210px;
+    .border.row{
+      padding: 20px;
+      border-left: 1px solid #E4EBEA;
+      .form-group *{
+        color: #455155;
+        font-size: 12px;
       }
+    }
+    &.full{
+      width: 100%;
+      margin-left: 0;padding-left: 0;
     }
   }
 }
-.fivemenu{
-  color: #009241;
-  cursor: pointer;
-  text-decoration: underline;
+.wrap-green-layout .views-menu .menu--vertical .menu__submenu .dropdown__menu .menu__item{
+  padding-left: 20px;
 }
