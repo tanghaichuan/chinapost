@@ -203,7 +203,7 @@ export default {
     width: 100%;
 }
 
-.form-block--block {
+.form-wrap-block {
     float: left;
 }
 

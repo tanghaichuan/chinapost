@@ -1,6 +1,6 @@
 <template>
     <div class="form-item-wrap">
-        <div class="form-block--block" :class="['col-'+row]" v-for="(item, y) in formList" :key="y">
+        <div class="form-wrap-block" :class="['col-'+row]" v-for="(item, y) in formList" :key="y">
             <t-form-item 
             :label="item.DISP+':'" 
             :prop="path+ y +'.VALUE'" 
@@ -12,7 +12,7 @@
                 <t-input :disabled="isDisabled" v-model="item.VALUE" v-if="item.OPER_MODE === '010'"></t-input>
                 <t-input :disabled="isDisabled" v-model="item.VALUE" v-if="item.OPER_MODE === '013'" type="textarea"></t-input>
                 <t-date-picker v-model="item.VALUE" v-if="item.OPER_MODE === '014'"></t-date-picker>
-                <drop-tree v-if="item.OPER_MODE === '018'" v-model="item.VALUE"></drop-tree>
+                <drop-tree class="drop-tree" v-if="item.OPER_MODE === '018'" v-model="item.VALUE"></drop-tree>
                 <industry v-if="item.OPER_MODE === '017'" v-model="item.VALUE"></industry>
             </t-form-item>
         </div>
@@ -68,7 +68,7 @@ export default {
     }
 }
 
-.form-block--block {
+.form-wrap-block {
     float: left;
     .form-group__label {
         min-width: 115px;

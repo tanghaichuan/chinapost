@@ -3,7 +3,7 @@ import invokers from '../../../invokers'
 
 // 发送post请求
 async function postUrlAccount(url, data) {
-    return await invokers
+    return invokers
         .domains
         .cnpost
         .post(url, data)

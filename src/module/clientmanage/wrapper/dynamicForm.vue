@@ -380,7 +380,7 @@ export default {
     }
 }
 
-.form-block--block {
+.form-wrap-block {
     float: left;
 }
 
