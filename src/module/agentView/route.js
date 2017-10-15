@@ -28,12 +28,6 @@ const routes = [{
         meta: '360视图',
         component: require('module/agentView/privilege')
     }
-    // {
-    //     path: 'test',
-    //     name: 'test',
-    //     meta: '360视图',
-    //     component: require('module/agentView/test')
-    // }
 ]
 }]
 
