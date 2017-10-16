@@ -1,147 +1,344 @@
 .agent {
   padding: 20px;
+
   .breadcrumb {
-    width: 100%;
-    height: 44px;
-    padding: 0;
-    padding-top: 13px;
-    padding-bottom: 10px;
+    width  : 100%;
+    height : 44px;
+    padding: 13px 0 10px;
   }
+
   .customers {
-    width: 100%;
-    height: 117px;
+    width     : 100%;
+    height    : 117px;
     background: #fff;
-    padding: 10px 0;
+    padding   : 10px;
+
     .new-customer {
       margin-right: 7px;
+
       .btn-new-customer {
-        width: 120px;
-        height: 97px;
+        width     : 120px;
+        height    : 97px;
         background: #fff;
       }
     }
-    
+
     .carousel {
-      position: relative;
+      position   : relative;
       margin-left: 127px;
-      background: red;
-      width: 790px;
+      background : red;
+      width      : 790px;
+
       .p-left {
-        padding: 0;
-        width: 15px;
+        padding : 0;
+        width   : 15px;
         position: absolute;
-        left: -10px;
-        top: 40px;
+        left    : -10px;
+        top     : 40px;
       }
+
       .p-right {
-        padding: 0;
-        width: 15px;
+        padding : 0;
+        width   : 15px;
         position: absolute;
-        right: 100px;
-        top: 40px;
+        right   : 100px;
+        top     : 40px;
       }
+
       .institutional-clients {
         margin-right: 7px;
+
         .btn-new-customer {
-          width: 187px;
-          height: 97px;
+          width        : 187px;
+          height       : 97px;
           border-radius: 2px;
-          background: #F3FAF6;
-          position: relative;
+          background   : #F3FAF6;
+          position     : relative;
+
           .close {
-            position: absolute;
-            right: 5px;
-            top: 5px;
+            position : absolute;
+            right    : 5px;
+            top      : 5px;
             font-size: 20px;
           }
+
           .c-icon {
-            font-size: 40px;
-            margin-top: 15px;
+            font-size    : 40px;
+            margin-top   : 15px;
             margin-bottom: 5px;
-            color: #3ca358;
+            color        : #3ca358;
           }
+
           .person {
             color: #FFBB37;
           }
         }
       }
     }
+
     .customer-share {
-      width: 220px;
+      width : 220px;
       height: 97px;
-      float: right;
+      float : right;
+
       .t-button {
-        width: 120px;
-        height: 28px;
-        padding-left: 0px;
-        font-size: 12px;
+        width       : 120px;
+        height      : 28px;
+        padding-left: 0;
+        font-size   : 12px;
+
         .memory {
           padding-left: 5px;
         }
       }
+
       .service-line {
-        height: 50px;
+        height     : 50px;
         line-height: 50px;
-        font-size: 12px;
+        font-size  : 12px;
       }
     }
   }
+
   .views-menu {
     background: #fff;
-    padding: 12px 20px;
-    .menu--light.menu--horizontal > .menu__submenu .menu__submenu-title:hover{
-      background-color: #F3FAF6;
+    padding   : 12px 20px;
+    /*   .menu--light.menu--horizontal > .menu__submenu .menu__submenu-title:hover {
+    background-color: #F3FAF6;
+  } */
+    .menu--horizontal li ul.dropdown__menu {
+      margin-top: 0;
     }
-    .menu--horizontal li ul.dropdown__menu{
-      margin-top: 0px;
-    }
-    
-    .menu--light.menu:after{
+
+    .menu--light.menu:after {
       height: 0;
     }
+
     .menu--horizontal li {
       border-bottom: none;
     }
+
     .view-content {
       margin-top: 10px;
+
       .tab-title {
-        font-size: 14px;
-        height: 40px;
-        line-height: 40px;
-        background: #F7F7F7;
-        padding-left: 25px;
+        font-size    : 14px;
+        height       : 40px;
+        line-height  : 40px;
+        background   : #F7F7F7;
+        padding-left : 25px;
         margin-bottom: 10px;
       }
-      
     }
   }
-  .view-tree{
-    overflow: hidden
+
+  .cata-list {
+    overflow: hidden;
   }
-  .view-tree-left{
+
+  .view-tree-left {
     padding: 20px 20px 20px 0;
-    width: 210px;
-    float: left;
+    width  : 210px;
+    float  : left;
   }
-  .view-tree-right{
-    float: left;
-    width: 100%;
-    margin-left: -210px;
+
+  .view-tree-right {
+    float       : left;
+    width       : 100%;
+    margin-left : -210px;
     padding-left: 210px;
-    .border.row{
-      padding: 20px;
+
+    .border.row {
+      padding    : 20px;
       border-left: 1px solid #E4EBEA;
-      .form-group *{
-        color: #455155;
+
+      .form-group * {
+        color    : #455155;
         font-size: 12px;
       }
     }
-    &.full{
-      width: 100%;
-      margin-left: 0;padding-left: 0;
+
+    &.full {
+      width       : 100%;
+      margin-left : 0;
+      padding-left: 0;
     }
   }
 }
-.wrap-green-layout .views-menu .menu--vertical .menu__submenu .dropdown__menu .menu__item{
+
+.wrap-green-layout .views-menu .menu--vertical .menu__submenu .dropdown__menu .menu__item {
   padding-left: 20px;
+}
+
+.wrap-green-layout .views-menu .menu .menu__item:hover {
+  background: #fff;
+  color     : #009241;
+}
+
+.wrap-green-layout .views-menu .menu--light.menu--horizontal > .menu__submenu--checked .menu__submenu-title {
+  color: #455a74;
+}
+
+.wrap-green-layout .views-menu .menu__submenu.menu__submenu--checked .menu__submenu-title {
+  background: #fff;
+}
+
+.wrap-green-layout .views-menu .menu--light .menu__item--checked {
+  background: #fff;
+}
+
+.wrap-green-layout .views-menu .menu--light.menu--horizontal > .menu__submenu .menu__submenu-title:hover {
+  color: #009241;
+}
+/* 360视图首页 空页面查询 */
+.view-empty {
+  margin    : 0 20px;
+  min-height: 1204px;
+  background: #fff;
+
+  p {
+    margin: 0;
+  }
+
+  .empty-img {
+    padding-top: 204px;
+    text-align : center;
+
+    img {
+      width: 112px;
+    }
+  }
+
+  .notice-txt {
+    padding    : 12px 0;
+    font-size  : 12px;
+    color      : #000;
+    text-align : center;
+    line-height: 26px;
+  }
+
+  .query-btn {
+    text-align: center;
+
+    i {
+      font-size   : 10px;
+      color       : #F7FBF9;
+      margin-right: 8px;
+    }
+  }
+}
+
+.query-tab {
+  padding: 0 38px;
+
+  .form-group {
+    margin-bottom: 18px;
+  }
+
+  .form--label-left {
+    .form-group__label {
+      padding-left: 0;
+      min-width   : 118px;
+      font-size   : 14px;
+      color       : #000;
+      opacity     : 0.65;
+      filter:alpha(opacity=65);
+    }
+  }
+
+  .tabs {
+    .nav-tabs {
+      .nav-link {
+        margin-right: 0;
+        padding     : 0 16px;
+        font-size   : 14px;
+        color       : #455155;
+      }
+    }
+  }
+
+  .content {
+    min-height : 208px;
+    padding-top: 38px;
+
+    .icon-text {
+      cursor: pointer;
+      color : #007F3B;
+    }
+
+    .icon-search {
+      font-size: 12px;
+      color    : #999;
+    }
+
+    .tooltip {
+      .tooltip-inner {
+        max-width       : 224px;
+        background-color: rgba(31,45,61,0.85);
+        border-radius   : 2px;
+      }
+
+      .list-unstyled {
+        margin: 0;
+
+        li {
+          font-size  : 12px;
+          line-height: 16px;
+          color      : #fff;
+        }
+      }
+    }
+
+    .input-group-addon {
+      line-height: 25px;
+      position   : relative;
+      top        : 0;
+      left       : -6px;
+      border     : 1px solid #d9d9d9;
+      border-left: 0;
+      cursor     : pointer;
+      background : #f7f7f7;
+      padding    : 0 10px 0 15px;
+      z-index    : 0;
+    }
+
+    &.con {
+      padding-top: 65px;
+
+      .col {
+        position: relative;
+
+        .input-wrapper {
+          width: 240px;
+        }
+
+        .tooltip-wrap {
+          position: absolute;
+          top     : 1px;
+          right   : 11px;
+
+          .tooltip {
+            top : -65px!important;
+            left: -170px!important;
+
+            .tooltip-arrow {
+              left: 79%;
+            }
+          }
+        }
+      }
+
+      .form--label-left {
+        .form-group__label {
+          min-width: 105px;
+        }
+      }
+    }
+
+    &.cons {
+      .select {
+        width: 246px!important;
+      }
+    }
+  }
 }
