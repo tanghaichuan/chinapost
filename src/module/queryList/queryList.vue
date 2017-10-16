@@ -16,11 +16,59 @@
                 </t-select>
             </div>
         </div>
+        <!--导入-->
+        <t-modal class="upload-in" v-model="showPutInModal" @on-cancel="uploadOnCancel" @on-ok="uploadOnOk">
+            <p slot="header">导入文档</p>
+            <t-upload  
+            ref="upload" 
+            multiple 
+            type="drag" 
+            action="//jsonplaceholder.typicode.com/posts/" 
+            style="margin:0 auto; width:260px;" 
+            show-progress 
+            :show-upload-list="false" 
+            :format="['xlsx','xls']" 
+            :on-success="uploadSuccess" 
+            :on-error="uploadError" 
+            :on-preview="uploadPreview" 
+            :on-remove="uploadRemove" 
+            :on-format-error="uploadFormatError" 
+            :on-exceeded-size="uploadExce">
+                <span tabindex="0" role="button">
+                    <div class="upload--drag__container">
+                        <p class="upload--drag__icon">
+                            <i class="aid iconfont text-80 icon-gradient-primary" style="color: #0f7d3d;">&#xe7ae;</i>
+                        </p>
+                        <p>点击或拖动文件到这个区域导入</p>
+                    </div>
+                </span>
+            </t-upload>
+            <div v-for="(item, index) in uploadFileList" :key="index">
+                <template v-if="item.status === 'finished'">
+                    <div class="upload-file__info upload__success">
+                        <p>
+                            <i class="iconfont">&#xe623;</i>
+                            <span>{{item.name}}</span>
+                        </p>
+                        <i class="iconfont upload__del" @click="delUploadFile(item)">&#xe626;</i>
+                    </div>
+                </template>
+                <template v-else>
+                    <t-progress 
+                    status="active" 
+                    v-if="item.showProgress" 
+                    :percent="item.percentage" 
+                    hide-info
+                    style="width:260px; margin: 10px auto;">
+                    </t-progress>
+                </template>
+            </div>
+        </t-modal>
         <div class="operatearea clearfix">
             <div class="btngroup">
                 <t-button type="primary" @click="showJudgeModal = true">
                     <i class="iconfont">&#xe632;</i>新建</t-button>
-                <t-button type="outline" class="sub-btn ml-2">
+                <t-button type="outline" class="sub-btn ml-2" @click="showPutInModal = true">
                     <i class="iconfont">&#xe636;</i>导入</t-button>
             </div>
             <!--查询-->
@@ -86,6 +134,9 @@ export default {
     name: "company",
     data() {
         return {
+            uploadFileList: [],
+            uploadRes: {},
+            showPutInModal: false,
             similarCustomerList: [], // 缓存相似客户列表
             showCreateFaileMsg: false,
             pageSize: 10,
@@ -169,18 +220,18 @@ export default {
                     title: "识别码",
                     render: (h, params) => {
                         return h('div', {
-                            style:{
-                                position:'relative',
-                                left:'15px'
+                            style: {
+                                position: 'relative',
+                                left: '15px'
                             }
                         }, [
-                            h('p', {
-                                'class': 'table-body-iden_cell--text'
-                            }, [params.row.idenCode]),
-                            h('p', {
-                                'class': 'table-body-iden_cell--text'
-                            }, [params.row.idenNr])
-                        ])
+                                h('p', {
+                                    'class': 'table-body-iden_cell--text'
+                                }, [params.row.idenCode]),
+                                h('p', {
+                                    'class': 'table-body-iden_cell--text'
+                                }, [params.row.idenNr])
+                            ])
                     }
                 },
                 {
@@ -293,6 +344,68 @@ export default {
             this.queryList = this.currentList.filter((item, index) => index >= (current - 1) * this.pageSize && current * this.pageSize - 1
             )
         },
+        // 删除上传文件
+        delUploadFile(file) {
+            const fileList = this.$refs.upload.fileList;
+            this.$refs.upload.fileList.splice(fileList.indexOf(file), 1);
+        },
+        uploadOnCancel(){
+            // 清空上传列表
+            this.uploadFileList = this.$refs.upload.fileList = []
+        },
+        uploadOnOk(){
+            if(this.uploadRes.id) {
+                this.$Message.success("导入成功")
+            }else{
+                this.$Message.danger("导入失败")
+            }
+            // 模拟一条数据插入
+            const obj = {
+                "partType": "1000",
+                "customerId": "1",
+                "partyId": "123",
+                "customerCode": "C1039",
+                "name": "亚信",
+                "idenCode": "USCI",
+                "idenNr": "91430111MA4L16JQ9B",
+                "custmerStatusId": "2",
+                "custmerStatusName": "正在修改"
+            }
+            this.queryList.unshift(obj)
+            // 清空上传列表
+            this.uploadFileList = this.$refs.upload.fileList = []
+        },
+        // 文件上传成功
+        uploadSuccess(response, file, fileList) {
+            if(response){
+                this.uploadRes = response
+            }
+        },
+        // 文件上传失败
+        uploadError(error, file, fileList) {
+            this.$Notice.error({
+                title: '文件上传失败',
+                desc: `文件  + ${file.name} + ' 上传失败，${error}。`
+            })
+        },
+        // 文件已上传文件链接
+        uploadPreview(file) {
+            //console.log(file);
+        },
+        // 文件格式验证失败
+        uploadFormatError(file, fileList) {
+            this.$Notice.warning({
+                title: '文件格式不正确',
+                desc: '文件 ' + file.name + ' 格式不正确，请上传 xls 或 xlsx 格式的文件。'
+            })
+        },
+        // 文件大小超出限制
+        uploadExce(file, fileList) {
+            // this.$Notice.warning({
+            //     title: '超出文件大小限制',
+            //     desc: '文件 ' + file.name + ' 太大，不能超过 2M。'
+            // })
+        },
         // 跳转至个人客户详情(机构和个人详情页参数可能不同，这里先不合并)
         linkToCumDetails(name, id) {
             this.$router.push({
@@ -380,10 +493,43 @@ export default {
         } catch (error) {
             console.error(error)
         }
+    },
+    mounted () {
+        this.uploadFileList = this.$refs.upload.fileList;
     }
 }
 </script>
 <style scoped lang="less">
+.upload__success {
+    color: rgb( 60, 149, 97);
+}
+
+.upload__failed {
+    color: red;
+}
+
+.upload-file__info {
+    width: 260px;
+    margin: 10px auto;
+    p {
+        display: inline-block;
+    }
+    span {
+        margin-left: 10px;
+        display: inline-block;
+    }
+    .upload__del {
+        cursor: pointer;
+        float: right;
+    }
+}
+
+.upload-in {
+    .modal-content {
+        max-height: 100%;
+    }
+}
+
 .judge-modal {
     .modal-content {
         max-height: 100% !important;
@@ -524,7 +670,7 @@ export default {
     }
     .option-status {
         padding: 0 5px;
-        &:first-child{
+        &:first-child {
             padding-left: 25px;
         }
         display: inline-block;
